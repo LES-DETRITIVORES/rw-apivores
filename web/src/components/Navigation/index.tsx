@@ -4,6 +4,7 @@ import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 
 import { Link } from '@redwoodjs/router'
+
 import Icons from 'src/components/Icons'
 
 const classNames = (...classes: string[]) => {
