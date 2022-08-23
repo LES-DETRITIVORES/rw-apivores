@@ -8,8 +8,6 @@ import { ComboboxProps, DataProps } from '../../../interfaces'
 const Combo = ({ data, query, onChange, setQuery }: ComboboxProps) => {
   const [selected, setSelected] = useState(data)
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   const filtered =
     query === ''
       ? data
@@ -20,8 +18,6 @@ const Combo = ({ data, query, onChange, setQuery }: ComboboxProps) => {
             .includes(query.toLowerCase().replace(/\s+/g, ''))
         })
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   return (
     <div className="fixed top-16 w-72">
       <Combobox value={selected} onChange={setSelected}>

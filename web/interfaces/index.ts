@@ -1,5 +1,6 @@
-import { GraphQLError } from 'graphql'
 import { ReactNode } from 'react'
+
+import { GraphQLError } from 'graphql'
 
 interface ServerParseError extends Error {
   response: Response

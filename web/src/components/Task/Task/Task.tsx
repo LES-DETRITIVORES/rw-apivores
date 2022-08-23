@@ -4,7 +4,7 @@ import { toast } from '@redwoodjs/web/toast'
 
 import { confirmated, timeTag } from 'src/utils/other'
 
-import { RWGqlError, TaskProps } from '../../../../interfaces'
+import { TaskProps } from '../../../../interfaces'
 
 const DELETE_TASK_MUTATION = gql`
   mutation DeleteTaskMutation($id: Int!) {

@@ -12,8 +12,8 @@ import { toast } from '@redwoodjs/web/toast'
 
 import { EDIT_TASK_QUERY } from 'src/components/Task/Tasks/Tasks'
 
-import MyEvent from '../Events'
 import { CalendarProps, EventProps } from '../../../interfaces'
+import MyEvent from '../Events'
 
 const Calenda = ({ tasks }: CalendarProps) => {
   const formatDate = (startTime: string) => {
@@ -46,7 +46,11 @@ const Calenda = ({ tasks }: CalendarProps) => {
   const localize = momentLocalizer(moment)
   const DnDCalendar = withDragAndDrop(Calendar)
   const onSave = (
-    input: { id: number; start: string; end: string },
+    input: {
+      id: number
+      start: string
+      end: string
+    },
     id: number
   ) => {
     const castInput = Object.assign(input, {
@@ -136,7 +140,6 @@ const Calenda = ({ tasks }: CalendarProps) => {
       // @ts-ignore
       newEvent(lycos)
     },
-
     [draggedEvent, counters, setDraggedEvent, setCounters, newEvent]
   )
 

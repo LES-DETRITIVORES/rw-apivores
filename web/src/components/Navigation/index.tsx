@@ -5,7 +5,7 @@ import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 
 import { Link } from '@redwoodjs/router'
 
-function classNames(...classes: string[]) {
+const classNames = (...classes: string[]) => {
   return classes.filter(Boolean).join(' ')
 }
 
