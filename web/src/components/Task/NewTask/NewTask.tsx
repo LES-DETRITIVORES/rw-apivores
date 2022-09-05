@@ -18,13 +18,23 @@ const NewTask = () => {
       toast.success('Task created')
       navigate(routes.tasks())
     },
-    onError: (error) => {
+    onError: (error: Error) => {
       toast.error(error.message)
     },
   })
-
-  const onSave = (input) => {
+  type Inputs = {
+    id?: number | any
+    plannedAt: string
+    serviceId: number | any
+    workerId: number | any
+    materialId: number | any
+    containerId: number | any
+    customerId: number | any
+    siteId: number | any
+  }
+  const onSave = (input: Inputs) => {
     const castInput = Object.assign(input, {
+      id: parseInt(input.id),
       workerId: parseInt(input.workerId),
       customerId: parseInt(input.customerId),
       siteId: parseInt(input.siteId),
@@ -32,7 +42,11 @@ const NewTask = () => {
       materialId: parseInt(input.materialId),
       serviceId: parseInt(input.serviceId),
     })
-    createTask({ variables: { input: castInput } })
+    createTask({ variables: { id: input.id, input: castInput } }).then(
+      (result) => {
+        console.log('result: ', result)
+      }
+    )
   }
 
   return (

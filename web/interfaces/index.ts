@@ -107,8 +107,8 @@ export interface AlertProps {
   closeModal: () => void
 }
 export interface TaskProps {
-  error: RWGqlError | null
-  onSave: (data, id) => void
+  error?: RWGqlError | null
+  onSave?: (data, id) => void
   task?: {
     workerId: number
     customerId: number

@@ -16,9 +16,10 @@ export const task: QueryResolvers['task'] = ({ id }) => {
   })
 }
 
-export const createTask: MutationResolvers['createTask'] = ({ input }) => {
+export const createTask: MutationResolvers['createTask'] = ({ id, input }) => {
   return db.task.create({
     data: input,
+    where: { id },
   })
 }
 

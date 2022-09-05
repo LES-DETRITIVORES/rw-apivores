@@ -100,7 +100,6 @@ const TasksList = ({ tasks }: Props) => {
   }
   return (
     <div className="rw-table-wrapper-responsive space-y-2">
-      <Calenda tasks={tasks} />
       <div className={'rw-segment'}>
         <table className="rw-table">
           <thead>

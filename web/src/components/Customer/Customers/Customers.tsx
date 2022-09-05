@@ -25,7 +25,7 @@ const truncate = (text) => {
   return output
 }
 
-interface Props {
+type Props = {
   error: RWGqlError | null
   onSave: (data, id) => void
   id: number

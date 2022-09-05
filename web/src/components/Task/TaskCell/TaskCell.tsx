@@ -32,12 +32,5 @@ export const Failure = ({ error }: CellFailureProps) => (
 export const Success = ({ task }: CellSuccessProps<FindTaskById>) => {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  return (
-    <Task
-      task={task as any}
-      error={undefined}
-      onSave={() => null}
-      loading={false}
-    />
-  )
+  return <Task task={task} loading={false} />
 }

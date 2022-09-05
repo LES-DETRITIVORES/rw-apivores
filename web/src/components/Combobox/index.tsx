@@ -6,18 +6,23 @@ import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 import { ComboboxProps, DataProps } from '../../../interfaces'
 
 const Combo = ({ data, query, onChange, setQuery }: ComboboxProps) => {
-  const [selected, setSelected] = useState(data)
+  const [selected, setSelected] = useState<string[]>(data)
+  type Option = {
+    id: number
+    name: string
+    active: boolean
+    selected: boolean
+  }
 
-  const filtered =
+  const filtered: string[] =
     query === ''
       ? data
-      : data.filter((data) => {
+      : data.filter((data: string) => {
           return data['name']
             .toLowerCase()
             .replace(/\s+/g, '')
             .includes(query.toLowerCase().replace(/\s+/g, ''))
         })
-
   return (
     <div className="fixed top-16 w-72">
       <Combobox value={selected} onChange={setSelected}>
@@ -49,43 +54,49 @@ const Combo = ({ data, query, onChange, setQuery }: ComboboxProps) => {
                 </div>
               ) : (
                 <>
-                  {filtered.map((data: any) => {
-                    return (
-                      <Combobox.Option
-                        key={data.id}
-                        className={({ active }) =>
-                          `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                            active ? 'bg-teal-600 text-white' : 'text-gray-900'
-                          }`
-                        }
-                        value={data}
-                      >
-                        {({ selected, active }) => (
-                          <>
-                            <span
-                              className={`block truncate ${
-                                selected ? 'font-medium' : 'font-normal'
-                              }`}
-                            >
-                              {data.name}
-                            </span>
-                            {selected ? (
+                  {
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                    // @ts-ignore
+                    filtered.map((data: Option) => {
+                      return (
+                        <Combobox.Option
+                          key={data.id}
+                          className={({ active }) =>
+                            `relative cursor-default select-none py-2 pl-10 pr-4 ${
+                              active
+                                ? 'bg-teal-600 text-white'
+                                : 'text-gray-900'
+                            }`
+                          }
+                          value={data}
+                        >
+                          {({ selected, active }: Option) => (
+                            <>
                               <span
-                                className={`absolute inset-y-0 left-0 flex items-center pl-3 ${
-                                  active ? 'text-white' : 'text-teal-600'
+                                className={`block truncate ${
+                                  selected ? 'font-medium' : 'font-normal'
                                 }`}
                               >
-                                <CheckIcon
-                                  className="h-5 w-5"
-                                  aria-hidden="true"
-                                />
+                                {data.name}
                               </span>
-                            ) : null}
-                          </>
-                        )}
-                      </Combobox.Option>
-                    )
-                  })}
+                              {selected ? (
+                                <span
+                                  className={`absolute inset-y-0 left-0 flex items-center pl-3 ${
+                                    active ? 'text-white' : 'text-teal-600'
+                                  }`}
+                                >
+                                  <CheckIcon
+                                    className="h-5 w-5"
+                                    aria-hidden="true"
+                                  />
+                                </span>
+                              ) : null}
+                            </>
+                          )}
+                        </Combobox.Option>
+                      )
+                    })
+                  }
                 </>
               )}
             </Combobox.Options>

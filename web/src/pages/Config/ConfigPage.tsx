@@ -1,4 +1,4 @@
-import { MetaTags, useQuery } from '@redwoodjs/web'
+import { MetaTags } from '@redwoodjs/web'
 
 import ContainersLayout from 'src/layouts/ContainersLayout'
 import CustomersLayout from 'src/layouts/CustomersLayout'
@@ -16,15 +16,6 @@ import SitesPage from 'src/pages/Site/SitesPage'
 import WorkersPage from 'src/pages/Worker/WorkersPage'
 
 const ConfigPage = () => {
-  const QUERY = gql`
-    query FindEquipmentById($id: Int!) {
-      equipment: equipment(id: $id) {
-        id
-      }
-    }
-  `
-  const query = useQuery(QUERY)
-  console.log(query)
   return (
     <>
       <MetaTags title="Config" description="Config page" />

@@ -25,6 +25,7 @@ export const schema = gql`
   }
 
   input CreateTaskInput {
+    id: Int!
     plannedAt: DateTime!
     workerId: Int!
     customerId: Int!

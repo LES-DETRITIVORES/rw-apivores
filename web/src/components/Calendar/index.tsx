@@ -1,244 +1,365 @@
-import { useCallback, useMemo, useState } from 'react'
+/* This example requires Tailwind CSS v2.0+ */
+import { Fragment, useEffect, useState } from 'react'
 
-import { CalendarIcon } from '@heroicons/react/outline'
-import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/solid'
-import moment from 'moment'
-import { Calendar, momentLocalizer } from 'react-big-calendar'
-import withDragAndDrop from 'react-big-calendar/lib/addons/dragAndDrop'
+import { Menu, Transition } from '@headlessui/react'
 
-import { navigate, routes } from '@redwoodjs/router'
-import { useMutation } from '@redwoodjs/web'
-import { toast } from '@redwoodjs/web/toast'
+import {
+  ChevronDownIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  DotsHorizontalIcon,
+} from '@heroicons/react/solid'
 
-import { EDIT_TASK_QUERY } from 'src/components/Task/Tasks/Tasks'
+import ViewDay from 'src/components/Calendar/viewDay'
 
-import { CalendarProps, EventProps } from '../../../interfaces'
-import MyEvent from '../Events'
+const months = [
+  {
+    name: 'January',
+    days: [
+      { date: '2021-12-27' },
+      { date: '2021-12-28' },
+      { date: '2021-12-29' },
+      { date: '2021-12-30' },
+      { date: '2021-12-31' },
+      { date: '2022-01-01', isCurrentMonth: true },
+      { date: '2022-01-02', isCurrentMonth: true },
+      { date: '2022-01-03', isCurrentMonth: true },
+      { date: '2022-01-04', isCurrentMonth: true },
+      { date: '2022-01-05', isCurrentMonth: true },
+      { date: '2022-01-06', isCurrentMonth: true },
+      { date: '2022-01-07', isCurrentMonth: true },
+      { date: '2022-01-08', isCurrentMonth: true },
+      { date: '2022-01-09', isCurrentMonth: true },
+      { date: '2022-01-10', isCurrentMonth: true },
+      { date: '2022-01-11', isCurrentMonth: true },
+      { date: '2022-01-12', isCurrentMonth: true, isToday: true },
+      { date: '2022-01-13', isCurrentMonth: true },
+      { date: '2022-01-14', isCurrentMonth: true },
+      { date: '2022-01-15', isCurrentMonth: true },
+      { date: '2022-01-16', isCurrentMonth: true },
+      { date: '2022-01-17', isCurrentMonth: true },
+      { date: '2022-01-18', isCurrentMonth: true },
+      { date: '2022-01-19', isCurrentMonth: true },
+      { date: '2022-01-20', isCurrentMonth: true },
+      { date: '2022-01-21', isCurrentMonth: true },
+      { date: '2022-01-22', isCurrentMonth: true },
+      { date: '2022-01-23', isCurrentMonth: true },
+      { date: '2022-01-24', isCurrentMonth: true },
+      { date: '2022-01-25', isCurrentMonth: true },
+      { date: '2022-01-26', isCurrentMonth: true },
+      { date: '2022-01-27', isCurrentMonth: true },
+      { date: '2022-01-28', isCurrentMonth: true },
+      { date: '2022-01-29', isCurrentMonth: true },
+      { date: '2022-01-30', isCurrentMonth: true },
+      { date: '2022-01-31', isCurrentMonth: true },
+      { date: '2022-02-01' },
+      { date: '2022-02-02' },
+      { date: '2022-02-03' },
+      { date: '2022-02-04' },
+      { date: '2022-02-05' },
+      { date: '2022-02-06' },
+    ],
+  },
+  // More months...
+]
 
-const Calenda = ({ tasks }: CalendarProps) => {
-  const formatDate = (startTime: string) => {
-    const time = new Date(startTime)
-    const date = new Date(time.setHours(time.getHours()))
-    return date
-  }
-  const UPDATE_TASK_MUTATION = gql`
-    mutation UpdateTaskMutation($id: Int!, $input: UpdateTaskInput!) {
-      updateTask(id: $id, input: $input) {
-        id
-        start
-        end
-      }
-    }
-  `
-  const [updateTask] = useMutation(UPDATE_TASK_MUTATION, {
-    onCompleted: () => {
-      toast.success('Task updated')
-      navigate(routes.tasks())
-    },
-    //onQueryUpdated: () => {},
-    onError: (error) => {
-      toast.error(error.message)
-    },
-    refetchQueries: [{ query: EDIT_TASK_QUERY }],
-    awaitRefetchQueries: true,
-  })
-  //console.log(data.data?.task)
-  const localize = momentLocalizer(moment)
-  const DnDCalendar = withDragAndDrop(Calendar)
-  const onSave = (
-    input: {
-      id: number
-      start: string
-      end: string
-    },
-    id: number
-  ) => {
-    const castInput = Object.assign(input, {
-      id: input.id,
-      start: formatDate(input.start || ''),
-      end: formatDate(input.end || ''),
-    })
-    updateTask({ variables: { id, input: castInput } }).then((r) =>
-      console.log(r)
-    )
-  }
-  // fonctionne bien avec des données en dur mais pas avec les données de la base
-  const lycos = tasks.map((task) => {
-    return {
-      id: task?.id,
-      title: task.worker?.name,
-      serviceName: task.service?.name,
-      customerName: task.customer?.name,
-      siteName: task.site?.name,
-      containerName: task.container?.name,
-      materialName: task.material?.name,
-      workerName: task.worker?.name,
-      start: task?.start,
-      end: task?.end,
-    }
-  })
-  const [events, setEvents] = useState(lycos)
-  const [draggedEvent, setDraggedEvent] = useState()
-  const [counters, setCounters] = useState(lycos)
-  const moveEvent = useCallback(
-    ({
-      event,
-      start,
-      end,
-      resourceId,
-      isAllDay: droppedOnAllDaySlot = false,
-    }) => {
-      const { allDay } = event
-      if (!allDay && droppedOnAllDaySlot) {
-        event.allDay = true
-      }
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      setEvents((prev) => {
-        const existing = prev.find((ev) => ev.id === event.id) ?? {}
-        const filtered = prev.filter((ev) => ev.id !== event.id)
-        return [...filtered, { ...existing, start, end, resourceId, allDay }]
-      })
-      const id = event.id
-      onSave({ id, start, end }, id)
-    },
-    [setEvents]
-  )
+function classNames(...classes: string[]) {
+  return classes.filter(Boolean).join(' ')
+}
 
-  const customOnDragOver = useCallback(
-    (dragEvent: DragEvent) => {
-      if (draggedEvent !== 'undroppable') {
-        dragEvent.preventDefault()
-      }
-    },
-    [draggedEvent]
-  )
-  const newEvent = useCallback(() => {
-    setEvents((prev) => {
-      navigate(routes.newTask())
-      return [...prev]
-    })
-  }, [setEvents])
-  const formatName = (name: string, count: any) => `${name} ID ${count}`
-
-  const onDropFromOutside = useCallback(
-    ({ start, end, allDay: isAllDay }) => {
-      if (draggedEvent === 'undroppable') {
-        setDraggedEvent(null)
-        return
-      }
-
-      const { name } = draggedEvent
-      const lycos = {
-        title: formatName(name, counters[name]),
-        start,
-        end,
-        isAllDay,
-      }
-      setDraggedEvent(null)
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      newEvent(lycos)
-    },
-    [draggedEvent, counters, setDraggedEvent, setCounters, newEvent]
-  )
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const handleSelectEvent = useCallback((event) => {
-    navigate(routes.editTask({ id: event.id }))
-  }, [])
-  const resizeEvent = useCallback(
-    ({ event, start, end }: EventProps) => {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      setEvents((prev) => {
-        const existing = prev.find((ev) => ev.id === event.id) ?? {}
-        const filtered = prev.filter((ev) => ev.id !== event.id)
-        return [...filtered, { ...existing, start, end }]
-      })
-      const id = event.id
-      onSave({ id, start, end }, id)
-    },
-    [setEvents]
-  )
-  const eventPropGetter = useCallback(
-    (event, start: string, end: string, isSelected: boolean) => ({
-      ...(isSelected && {
-        style: {
-          className: '!bg-red-500',
-        },
-      }),
-    }),
-    []
-  )
-  const dayPropGetter = useCallback(
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    (date: Date) => ({
-      /*...(moment(date).day() === 1 && {
-        className: '!bg-sky-500/50',
-      }),
-      ...(moment(date).day() === 2 && {
-        className: '!bg-green-500/50',
-      }),
-      ...(moment(date).day() === 3 && {
-        className: '!bg-yellow-500/50',
-      }),
-      ...(moment(date).day() === 4 && {
-        className: '!bg-purple-500/50',
-      }),
-      ...(moment(date).day() === 5 && {
-        className: '!bg-blue-500/50',
-      }),*/
-    }),
-    []
-  )
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps,@typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  const components = useMemo(() => ({
-    event: MyEvent,
-    defaultDate: new Date(),
-  }))
+export default function Calenda() {
   return (
-    <>
-      <DnDCalendar
-        localizer={localize}
-        the={true}
-        events={events}
-        startAccessor="start"
-        endAccessor="end"
-        views={['month', 'work_week', 'day']}
-        selectable={true}
-        onDropFromOutside={onDropFromOutside}
-        onDragOver={customOnDragOver}
-        onEventDrop={moveEvent}
-        onEventResize={resizeEvent}
-        eventPropGetter={eventPropGetter}
-        onSelectEvent={handleSelectEvent}
-        resizable
-        onSelectSlot={newEvent}
-        messages={{
-          next: <ArrowRightIcon className="w-5 h-5" />,
-          previous: <ArrowLeftIcon className="w-5 h-5" />,
-          today: <CalendarIcon className="w-5 h-5" />,
-          month: 'Mois',
-          week: 'Semaine',
-          day: 'Jour',
-          showColors: 'Afficher les couleurs',
-          showMore: (total) => `${total} tâches`,
-          showMoreTooltip: (total) => `+${total} tâches`,
-          prev: <ArrowLeftIcon className="w-5 h-5" />,
-          work_week: 'Semaine de travail',
-        }}
-        defaultDate={moment().toDate()}
-        showMultiDayTimes={true}
-        showAllEvents={false}
-        dayPropGetter={dayPropGetter}
-        components={components}
-        popup={true}
-        toolbar={true}
-      />
-    </>
+    <div>
+      <ViewDay />
+      <header className="relative z-20 flex items-center justify-between border-b border-gray-200 py-4 px-6">
+        <h1 className="text-lg font-semibold text-gray-900">
+          <time dateTime="2022">2022</time>
+        </h1>
+        <div className="flex items-center">
+          <div className="flex items-center rounded-md shadow-sm md:items-stretch">
+            <button
+              type="button"
+              className="flex items-center justify-center rounded-l-md border border-r-0 border-gray-300 bg-white py-2 pl-3 pr-4 text-gray-400 hover:text-gray-500 focus:relative md:w-9 md:px-2 md:hover:bg-gray-50"
+            >
+              <span className="sr-only">Previous month</span>
+              <ChevronLeftIcon className="h-5 w-5" aria-hidden="true" />
+            </button>
+            <button
+              type="button"
+              className="hidden border-t border-b border-gray-300 bg-white px-3.5 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900 focus:relative md:block"
+            >
+              Today
+            </button>
+            <span className="relative -mx-px h-5 w-px bg-gray-300 md:hidden" />
+            <button
+              type="button"
+              className="flex items-center justify-center rounded-r-md border border-l-0 border-gray-300 bg-white py-2 pl-4 pr-3 text-gray-400 hover:text-gray-500 focus:relative md:w-9 md:px-2 md:hover:bg-gray-50"
+            >
+              <span className="sr-only">Next month</span>
+              <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />
+            </button>
+          </div>
+          <div className="hidden md:ml-4 md:flex md:items-center">
+            <Menu as="div" className="relative">
+              <Menu.Button
+                type="button"
+                className="flex items-center rounded-md border border-gray-300 bg-white py-2 pl-3 pr-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50"
+              >
+                Year view
+                <ChevronDownIcon
+                  className="ml-2 h-5 w-5 text-gray-400"
+                  aria-hidden="true"
+                />
+              </Menu.Button>
+
+              <Transition
+                as={Fragment}
+                enter="transition ease-out duration-100"
+                enterFrom="transform opacity-0 scale-95"
+                enterTo="transform opacity-100 scale-100"
+                leave="transition ease-in duration-75"
+                leaveFrom="transform opacity-100 scale-100"
+                leaveTo="transform opacity-0 scale-95"
+              >
+                <Menu.Items className="focus:outline-none absolute right-0 mt-3 w-36 origin-top-right overflow-hidden rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5">
+                  <div className="py-1">
+                    <Menu.Item>
+                      {({ active }) => (
+                        <>
+                          <a
+                            href="#"
+                            className={classNames(
+                              active
+                                ? 'bg-gray-100 text-gray-900'
+                                : 'text-gray-700',
+                              'block px-4 py-2 text-sm'
+                            )}
+                          >
+                            Day view
+                          </a>
+                        </>
+                      )}
+                    </Menu.Item>
+                    <Menu.Item>
+                      {({ active }) => (
+                        <a
+                          href="#"
+                          className={classNames(
+                            active
+                              ? 'bg-gray-100 text-gray-900'
+                              : 'text-gray-700',
+                            'block px-4 py-2 text-sm'
+                          )}
+                        >
+                          Week view
+                        </a>
+                      )}
+                    </Menu.Item>
+                    <Menu.Item>
+                      {({ active }) => (
+                        <a
+                          href="#"
+                          className={classNames(
+                            active
+                              ? 'bg-gray-100 text-gray-900'
+                              : 'text-gray-700',
+                            'block px-4 py-2 text-sm'
+                          )}
+                        >
+                          Month view
+                        </a>
+                      )}
+                    </Menu.Item>
+                    <Menu.Item>
+                      {({ active }) => (
+                        <a
+                          href="#"
+                          className={classNames(
+                            active
+                              ? 'bg-gray-100 text-gray-900'
+                              : 'text-gray-700',
+                            'block px-4 py-2 text-sm'
+                          )}
+                        >
+                          Year view
+                        </a>
+                      )}
+                    </Menu.Item>
+                  </div>
+                </Menu.Items>
+              </Transition>
+            </Menu>
+            <div className="ml-6 h-6 w-px bg-gray-300" />
+            <button
+              type="button"
+              className="focus:outline-none ml-6 rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            >
+              Add event
+            </button>
+          </div>
+          <Menu as="div" className="relative ml-6 md:hidden">
+            <Menu.Button className="-mx-2 flex items-center rounded-full border border-transparent p-2 text-gray-400 hover:text-gray-500">
+              <span className="sr-only">Open menu</span>
+              <DotsHorizontalIcon className="h-5 w-5" aria-hidden="true" />
+            </Menu.Button>
+
+            <Transition
+              as={Fragment}
+              enter="transition ease-out duration-100"
+              enterFrom="transform opacity-0 scale-95"
+              enterTo="transform opacity-100 scale-100"
+              leave="transition ease-in duration-75"
+              leaveFrom="transform opacity-100 scale-100"
+              leaveTo="transform opacity-0 scale-95"
+            >
+              <Menu.Items className="focus:outline-none absolute right-0 mt-3 w-36 origin-top-right divide-y divide-gray-100 overflow-hidden rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5">
+                <div className="py-1">
+                  <Menu.Item>
+                    {({ active }) => (
+                      <a
+                        href="#"
+                        className={classNames(
+                          active
+                            ? 'bg-gray-100 text-gray-900'
+                            : 'text-gray-700',
+                          'block px-4 py-2 text-sm'
+                        )}
+                      >
+                        Create event
+                      </a>
+                    )}
+                  </Menu.Item>
+                </div>
+                <div className="py-1">
+                  <Menu.Item>
+                    {({ active }) => (
+                      <a
+                        href="#"
+                        className={classNames(
+                          active
+                            ? 'bg-gray-100 text-gray-900'
+                            : 'text-gray-700',
+                          'block px-4 py-2 text-sm'
+                        )}
+                      >
+                        Go to today
+                      </a>
+                    )}
+                  </Menu.Item>
+                </div>
+                <div className="py-1">
+                  <Menu.Item>
+                    {({ active }) => (
+                      <a
+                        href="#"
+                        className={classNames(
+                          active
+                            ? 'bg-gray-100 text-gray-900'
+                            : 'text-gray-700',
+                          'block px-4 py-2 text-sm'
+                        )}
+                      >
+                        Day view
+                      </a>
+                    )}
+                  </Menu.Item>
+                  <Menu.Item>
+                    {({ active }) => (
+                      <a
+                        href="#"
+                        className={classNames(
+                          active
+                            ? 'bg-gray-100 text-gray-900'
+                            : 'text-gray-700',
+                          'block px-4 py-2 text-sm'
+                        )}
+                      >
+                        Week view
+                      </a>
+                    )}
+                  </Menu.Item>
+                  <Menu.Item>
+                    {({ active }) => (
+                      <a
+                        href="#"
+                        className={classNames(
+                          active
+                            ? 'bg-gray-100 text-gray-900'
+                            : 'text-gray-700',
+                          'block px-4 py-2 text-sm'
+                        )}
+                      >
+                        Month view
+                      </a>
+                    )}
+                  </Menu.Item>
+                  <Menu.Item>
+                    {({ active }) => (
+                      <a
+                        href="#"
+                        className={classNames(
+                          active
+                            ? 'bg-gray-100 text-gray-900'
+                            : 'text-gray-700',
+                          'block px-4 py-2 text-sm'
+                        )}
+                      >
+                        Year view
+                      </a>
+                    )}
+                  </Menu.Item>
+                </div>
+              </Menu.Items>
+            </Transition>
+          </Menu>
+        </div>
+      </header>
+      <div className="bg-white">
+        <div className="mx-auto grid max-w-3xl grid-cols-1 gap-x-8 gap-y-16 px-4 py-16 sm:grid-cols-2 sm:px-6 xl:max-w-none xl:grid-cols-3 xl:px-8 2xl:grid-cols-4">
+          {months.map((month) => (
+            <section key={month.name} className="text-center">
+              <h2 className="font-semibold text-gray-900">{month.name}</h2>
+              <div className="mt-6 grid grid-cols-7 text-xs leading-6 text-gray-500">
+                <div>M</div>
+                <div>T</div>
+                <div>W</div>
+                <div>T</div>
+                <div>F</div>
+                <div>S</div>
+                <div>S</div>
+              </div>
+              <div className="isolate mt-2 grid grid-cols-7 gap-px rounded-lg bg-gray-200 text-sm shadow ring-1 ring-gray-200">
+                {month.days.map((day, dayIdx) => (
+                  <button
+                    key={day.date}
+                    type="button"
+                    className={classNames(
+                      day.isCurrentMonth
+                        ? 'bg-white text-gray-900'
+                        : 'bg-gray-50 text-gray-400',
+                      dayIdx === 0 && 'rounded-tl-lg',
+                      dayIdx === 6 && 'rounded-tr-lg',
+                      dayIdx === month.days.length - 7 && 'rounded-bl-lg',
+                      dayIdx === month.days.length - 1 && 'rounded-br-lg',
+                      'py-1.5 hover:bg-gray-100 focus:z-10'
+                    )}
+                  >
+                    <time
+                      dateTime={day.date}
+                      className={classNames(
+                        day.isToday && 'bg-indigo-600 font-semibold text-white',
+                        'mx-auto flex h-7 w-7 items-center justify-center rounded-full'
+                      )}
+                    >
+                      {day.date.split('-').pop().replace(/^0/, '')}
+                    </time>
+                  </button>
+                ))}
+              </div>
+            </section>
+          ))}
+        </div>
+      </div>
+    </div>
   )
 }
-export default Calenda

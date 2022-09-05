@@ -23,10 +23,21 @@
   },
   "packageManager": "yarn@3.2.1",
   "dependencies": {
+    "@fullcalendar/core": "^5.11.3",
+    "@fullcalendar/daygrid": "^5.11.3",
+    "@fullcalendar/interaction": "^5.11.3",
+    "@fullcalendar/list": "^5.11.3",
+    "@fullcalendar/react": "^5.11.2",
+    "@fullcalendar/timegrid": "^5.11.3",
     "@headlessui/react": "latest",
     "@heroicons/react": "^1.0.6",
     "@mobiscroll/react-lite": "^4.10.9",
+    "dayjs": "^1.11.5",
+    "fullcalendar": "^5.11.3",
     "moment": "^2.29.4",
-    "react-big-calendar": "^1.5.0"
+    "react-big-calendar": "^1.5.0",
+    "react-dnd": "^16.0.1",
+    "react-dnd-html5-backend": "^16.0.1",
+    "react-dropzone": "^14.2.2"
   }
 }
