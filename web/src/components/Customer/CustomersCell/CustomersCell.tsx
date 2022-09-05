@@ -10,6 +10,8 @@ export const QUERY = gql`
     customers {
       id
       name
+      role
+      type
     }
   }
 `

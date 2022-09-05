@@ -30,6 +30,8 @@ interface Props {
   onSave: (data, id) => void
   id: number
   name: string
+  role: string
+  type: string
 }
 
 const CustomersList = ({ customers }) => {
@@ -60,6 +62,8 @@ const CustomersList = ({ customers }) => {
           <tr>
             <th>Id</th>
             <th>Name</th>
+            <th>Role</th>
+            <th>Type</th>
             <th>&nbsp;</th>
           </tr>
         </thead>
@@ -68,6 +72,8 @@ const CustomersList = ({ customers }) => {
             <tr key={customer.id}>
               <td>{truncate(customer.id)}</td>
               <td>{truncate(customer.name)}</td>
+              <td>{truncate(customer.role)}</td>
+              <td>{truncate(customer.type)}</td>
               <td>
                 <nav className="rw-table-actions">
                   <Link

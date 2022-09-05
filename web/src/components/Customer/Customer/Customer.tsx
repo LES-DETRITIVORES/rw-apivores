@@ -47,6 +47,10 @@ const Customer = ({ customer }) => {
               <th>Name</th>
               <td>{customer.name}</td>
             </tr>
+            <tr>
+              <th>Role</th>
+              <td>{customer.role}</td>
+            </tr>
           </tbody>
         </table>
       </div>

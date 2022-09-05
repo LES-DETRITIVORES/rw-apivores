@@ -52,6 +52,7 @@ export interface CalendarProps {
       }
       customer: {
         name: string
+        role: string
       }
       site: {
         name: string

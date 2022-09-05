@@ -6,6 +6,7 @@ import {
   Submit,
   TextField,
 } from '@redwoodjs/forms'
+
 import { RWGqlError } from '../../../../interfaces'
 
 interface Props {
@@ -14,6 +15,7 @@ interface Props {
   customer: {
     id: number
     name: string
+    role: string
   }
   loading: boolean
 }
@@ -44,6 +46,22 @@ const CustomerForm = (props: Props) => {
         <TextField
           name="name"
           defaultValue={props.customer?.name}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ required: true }}
+        />
+
+        <Label
+          name="role"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Role
+        </Label>
+
+        <TextField
+          name="role"
+          defaultValue={props.customer?.role}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
           validation={{ required: true }}
