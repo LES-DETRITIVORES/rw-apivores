@@ -10,8 +10,6 @@ import { navigate, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
-import { EDIT_TASK_QUERY } from 'src/components/Task/Tasks/Tasks'
-
 import MyEvent from '../Events'
 
 interface Props {
@@ -56,6 +54,24 @@ const Calenda = ({ tasks }: Props) => {
     const date = new Date(time.setHours(time.getHours()))
     return date
   }
+  const EDIT_TASK_QUERY = gql`
+    query EditTaskById($id: Int!) {
+      task: task(id: $id) {
+        id
+        plannedAt
+        start
+        end
+        title
+        workerId
+        customerId
+        siteId
+        containerId
+        materialId
+        serviceId
+      }
+    }
+  `
+
   const UPDATE_TASK_MUTATION = gql`
     mutation UpdateTaskMutation($id: Int!, $input: UpdateTaskInput!) {
       updateTask(id: $id, input: $input) {
