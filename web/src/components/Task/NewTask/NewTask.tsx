@@ -33,7 +33,11 @@ const NewTask = () => {
     siteId: number | any
   }
   const onSave = (input: Inputs) => {
+    // generate id for new task
+
+    const id = 1
     const castInput = Object.assign(input, {
+      // id: id,
       id: parseInt(input.id),
       workerId: parseInt(input.workerId),
       customerId: parseInt(input.customerId),

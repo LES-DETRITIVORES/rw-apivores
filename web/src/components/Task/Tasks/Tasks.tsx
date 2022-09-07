@@ -6,7 +6,6 @@ import { toast } from '@redwoodjs/web/toast'
 
 import Calenda from 'src/components/Calendar'
 import { QUERY } from 'src/components/Task/TasksCell'
-import { confirmated, convertedDay, timeTag } from 'src/utils/other'
 
 const DELETE_TASK_MUTATION = gql`
   mutation DeleteTaskMutation($id: Int!) {
@@ -61,6 +60,40 @@ interface Props {
   ]
 }
 
+export const GET_ALL_TABLE_DATA = gql`
+  query GetAllTableData {
+    tasks {
+      id
+      plannedAt
+      workerId
+      customerId
+      siteId
+      containerId
+      serviceId
+      materialId
+      worker {
+        name
+      }
+      customer {
+        name
+      }
+      site {
+        name
+      }
+      service {
+        name
+      }
+      container {
+        name
+      }
+      material {
+        name
+      }
+      start
+      end
+    }
+  }
+`
 export const EDIT_TASK_QUERY = gql`
   query EditTaskById($id: Int!) {
     task: task(id: $id) {
@@ -94,12 +127,53 @@ const TasksList = ({ tasks }: Props) => {
     awaitRefetchQueries: true,
   })
   const onDeleteClick = (id: number) => {
-    if (confirmated('task', 'delete', id)) {
+    if (confirm('Are you sure you want to delete task ' + id + '?')) {
       deleteTask({ variables: { id } }).then((r) => console.log(r))
     }
   }
+
+  const timeTag = (datetime: string) => {
+    const date = new Date(datetime)
+    const day = date.toLocaleDateString()
+    const month = date.toLocaleString('default', {
+      month: 'short',
+    })
+    const year = date.getFullYear()
+    return (
+      datetime && (
+        <time dateTime={datetime} title={datetime}>
+          {day + ' ' + month + ' ' + year}
+        </time>
+      )
+    )
+  }
+
+  const convertedDay = (dateTime: number | string | Date, from: boolean) => {
+    const date = new Date(dateTime)
+    const time = from
+      ? date.getDay() +
+        '/' +
+        date.getMonth() +
+        '/' +
+        date.getFullYear() +
+        ' à ' +
+        date.getHours() +
+        ':' +
+        date.getMinutes()
+      : date.getDay() +
+        '/' +
+        date.getMonth() +
+        '/' +
+        date.getFullYear() +
+        ' de ' +
+        date.getHours() +
+        ':' +
+        date.getMinutes()
+    return time
+  }
   return (
     <div className="rw-table-wrapper-responsive space-y-2">
+      <Calenda tasks={tasks} />
       <div className={'rw-segment'}>
         <table className="rw-table">
           <thead>

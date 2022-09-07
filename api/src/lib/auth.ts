@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { AuthenticationError, ForbiddenError } from '@redwoodjs/graphql-server'
 
 import { db } from './db'

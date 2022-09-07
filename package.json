@@ -8,7 +8,7 @@
     ]
   },
   "devDependencies": {
-    "@redwoodjs/core": "2.2.1"
+    "@redwoodjs/core": "2.2.3"
   },
   "eslintConfig": {
     "extends": "@redwoodjs/eslint-config",
@@ -32,9 +32,11 @@
     "@headlessui/react": "latest",
     "@heroicons/react": "^1.0.6",
     "@mobiscroll/react-lite": "^4.10.9",
+    "clsx": "^1.2.1",
     "dayjs": "^1.11.5",
     "fullcalendar": "^5.11.3",
     "moment": "^2.29.4",
+    "react-beautiful-dnd": "^13.1.1",
     "react-big-calendar": "^1.5.0",
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",
