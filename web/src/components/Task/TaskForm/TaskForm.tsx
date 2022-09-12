@@ -86,7 +86,7 @@ const TaskForm = (props: Props) => {
 
         <DatetimeLocalField
           name="start"
-          defaultValue={startTime(props.task?.start)}
+          defaultValue={formatDatetime(props.task?.start)}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
           validation={{ required: true }}
@@ -111,7 +111,7 @@ const TaskForm = (props: Props) => {
 
         <DatetimeLocalField
           name="end"
-          defaultValue={startTime(props.task?.end)}
+          defaultValue={formatDatetime(props.task?.end)}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
           validation={{ required: true }}

@@ -1,5 +1,5 @@
 .rw-scaffold {
-  @apply bg-white text-gray-600 max-w-7xl m-auto;
+  @apply text-gray-600 max-w-7xl m-auto;
 }
 
 hr {
@@ -57,11 +57,11 @@ hr {
 }
 
 .rw-segment-header {
-  @apply bg-gray-200 text-gray-700 py-3 px-4;
+  @apply bg-gray-50 text-gray-700 py-3 px-4;
 }
 
 .rw-segment-main {
-  @apply bg-gray-100 p-4;
+  @apply bg-white p-4;
 }
 
 .rw-link {

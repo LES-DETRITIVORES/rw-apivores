@@ -12,6 +12,7 @@ export const QUERY = gql`
     customer: customer(id: $id) {
       id
       name
+      role
     }
   }
 `
@@ -20,6 +21,7 @@ const UPDATE_CUSTOMER_MUTATION = gql`
     updateCustomer(id: $id, input: $input) {
       id
       name
+      role
     }
   }
 `
@@ -57,10 +59,9 @@ export const Success = ({ customer }: CellSuccessProps<EditCustomerById>) => {
       </header>
       <div className="rw-segment-main">
         <CustomerForm
-          customer={customer}
+          //customer={customer as any}
           onSave={onSave}
           error={error}
-          loading={loading}
         />
       </div>
     </div>

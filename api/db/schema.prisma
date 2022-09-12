@@ -15,6 +15,7 @@ model Customer {
   id         Int       @id @default(autoincrement())
   name       String
   role       String    @default("customer")
+  type       String    @default("individual")
   Task       Task[]
   Mission    Mission[]
   Client     Client[]

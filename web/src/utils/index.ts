@@ -1,6 +1,6 @@
 import humanize from 'humanize-string'
 
-export const formatDatetime = (value: string) => {
+export const formatDatetime = (value: string): any => {
   if (value) {
     return value.replace(/:\d{2}\.\d{3}\w/, '')
   }

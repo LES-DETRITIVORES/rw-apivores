@@ -17,14 +17,14 @@ interface Props {
   onSave: (data, id) => void
   error: RWGqlError | null
   mission?: {
-    id: number
-    start: string
-    end: string
-    status: string
-    workerId: number
-    customerId: number
+    id?: number
+    start?: string
+    end?: string
+    status?: string
+    workerId?: number
+    customerId?: number
   }
-  loading: boolean
+  loading?: boolean
 }
 
 const MissionForm = (props: Props) => {

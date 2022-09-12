@@ -31,7 +31,7 @@ type Props = {
   id: number
   name: string
   role: string
-  type: string
+  type: string | null
 }
 
 const CustomersList = ({ customers }) => {

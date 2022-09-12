@@ -10,10 +10,12 @@ export const schema = gql`
   }
 
   input CreateEquipmentInput {
+    id: Int!
     name: String!
   }
 
   input UpdateEquipmentInput {
+    id: Int!
     name: String
   }
 

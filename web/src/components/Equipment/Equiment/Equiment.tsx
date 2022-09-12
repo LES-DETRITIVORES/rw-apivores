@@ -45,8 +45,8 @@ const EquimentList = ({ equiment }) => {
   }
 
   interface Props {
-    id: number
-    name: string
+    id?: number
+    name?: string
   }
 
   return (

@@ -15,13 +15,13 @@ const DELETE_WORKER_MUTATION = gql`
 `
 
 interface Props {
-  error: RWGqlError | null
-  onSave: (data, id) => void
-  worker: {
-    name: string
-    id: number
+  error?: RWGqlError | null
+  onSave?: (data, id) => void
+  worker?: {
+    name?: string
+    id?: number
   }
-  loading: boolean
+  loading?: boolean
 }
 
 const Worker = ({ worker }: Props) => {

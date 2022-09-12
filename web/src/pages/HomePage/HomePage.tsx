@@ -1,7 +1,3 @@
-import { useState } from 'react'
-
-import dayjs from 'dayjs'
-
 import { MetaTags } from '@redwoodjs/web'
 const HomePage = () => {
   return (

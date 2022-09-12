@@ -14,11 +14,11 @@ interface Props {
   error: RWGqlError | null
   onSave: (data, id) => void
   container?: {
-    id: number
-    name: string
-    type: string
+    id?: number
+    name?: string
+    type?: string
   }
-  loading: boolean
+  loading?: boolean
 }
 
 const types = [

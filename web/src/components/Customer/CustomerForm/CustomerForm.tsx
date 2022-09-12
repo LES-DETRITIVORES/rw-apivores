@@ -12,12 +12,12 @@ import { RWGqlError } from '../../../../interfaces'
 interface Props {
   error: RWGqlError | null
   onSave: (data, id) => void
-  customer: {
+  customer?: {
     id: number
     name: string
     role: string
   }
-  loading: boolean
+  loading?: boolean
 }
 
 const CustomerForm = (props: Props) => {

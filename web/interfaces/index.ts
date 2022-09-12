@@ -20,19 +20,19 @@ export interface RWGqlError {
   networkError: Error | ServerParseError | ServerError | null
 }
 export interface SiteProps {
-  site: {
-    id: number
-    name: string
-    type: string
-    commercial: string
-    active: boolean
-    contact: string
-    siret: string
-    mail: string
-    phone: string
-    billingAddress: string
-    typeofPass: string
-    checkSiret: (siret: string) => Promise<boolean>
+  site?: {
+    id?: number
+    name?: string
+    type?: string
+    commercial?: string
+    active?: boolean
+    contact?: string
+    siret?: string
+    mail?: string
+    phone?: string
+    billingAddress?: string
+    typeofPass?: string
+    checkSiret?: (siret: string) => Promise<boolean>
   }
 }
 export interface CalendarProps {
