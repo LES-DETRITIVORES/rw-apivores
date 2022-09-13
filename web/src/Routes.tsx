@@ -9,6 +9,8 @@
 
 import { Route, Router, Set } from '@redwoodjs/router'
 
+import UploadersLayout from 'src/layouts/UploadersLayout'
+
 import ClientsLayout from 'src/layouts/ClientsLayout'
 import ContainersLayout from 'src/layouts/ContainersLayout'
 import CustomersLayout from 'src/layouts/CustomersLayout'
@@ -25,6 +27,12 @@ import ConfigPage from './pages/Config/ConfigPage'
 const Routes = () => {
   return (
     <Router>
+      <Set wrap={UploadersLayout}>
+        <Route path="/uploaders/new" page={UploaderNewUploaderPage} name="newUploader" />
+        <Route path="/uploaders/{id:Int}/edit" page={UploaderEditUploaderPage} name="editUploader" />
+        <Route path="/uploaders/{id:Int}" page={UploaderUploaderPage} name="uploader" />
+        <Route path="/uploaders" page={UploaderUploadersPage} name="uploaders" />
+      </Set>
       <Set wrap={ClientsLayout}>
         <Route path="/clients/new" page={ClientNewClientPage} name="newClient" />
         <Route path="/clients/{id:Int}/edit" page={ClientEditClientPage} name="editClient" />

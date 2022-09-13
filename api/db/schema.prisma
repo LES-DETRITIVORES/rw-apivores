@@ -88,6 +88,16 @@ model Invoce {
   Client     Client[]
 }
 
+model Uploader {
+  id        Int    @id @default(autoincrement())
+  name      String
+  type      String
+  size      String
+  extension String
+  path      String
+  url       String
+}
+
 model Task {
   id          Int       @id @default(autoincrement())
   plannedAt   DateTime

@@ -1,4 +1,5 @@
 import { MetaTags } from '@redwoodjs/web'
+import Command from 'src/components/Command'
 const HomePage = () => {
   return (
     <>
@@ -8,6 +9,7 @@ const HomePage = () => {
         alt="John Travolta"
         className="my-auto mx-auto rounded-xl mt-20"
       />
+      <Command />
     </>
   )
 }

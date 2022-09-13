@@ -33,8 +33,10 @@
     "@heroicons/react": "^1.0.6",
     "@mobiscroll/react-lite": "^4.10.9",
     "@themesberg/tailwind-datepicker": "^1.1.0",
+    "@types/filestack-react": "^4.0.0",
     "clsx": "^1.2.1",
     "dayjs": "^1.11.5",
+    "filestack-react": "^4.0.1",
     "fullcalendar": "^5.11.3",
     "moment": "^2.29.4",
     "react-beautiful-dnd": "^13.1.1",
@@ -43,6 +45,7 @@
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",
     "react-dropzone": "^14.2.2",
+    "styled-components": "^5.3.5",
     "tw-elements": "^1.0.0-alpha12"
   }
 }

@@ -5,6 +5,25 @@
 hr {
   @apply max-w-7xl m-auto hidden;
 }
+.fsp-modal__sidebar {
+  @apply hidden;
+}
+.fsp-picker--inline .fsp-modal {
+  @apply !bg-white
+}
+.fsp-header {
+  @apply !hidden
+}
+.fsp-modal__body {
+  @apply !bg-white !border-none;
+  width: calc(100% - 0px) !important;
+}
+.fsp-drop-area:focus {
+  @apply focus:!shadow-none;
+}
+.fsp-drop-area {
+  @apply rounded-lg;
+}
 
 .rw-scaffold h1,
 .rw-scaffold h2 {
