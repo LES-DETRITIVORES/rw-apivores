@@ -14,25 +14,25 @@ import {
 
 import { RWGqlError } from '../../../../interfaces'
 interface UploaderFormProps {
-  onSave: (input: CreateUploaderInput, id: number) => void
+  onSave?: (input: CreateUploaderInput, id: number) => void
   error?: RWGqlError
   loading?: boolean
   mimetype?: string
   filename?: string
   size?: number
-  originalFile: {
-    type: string
+  originalFile?: {
+    type?: string
   }
-  handle: string
-  url: string
+  handle?: string
+  url?: string
   uploader?: {
-    id: number
-    name: string
-    type: string
-    size: number
-    extension: string
-    path: string
-    url: string
+    id?: number
+    name?: string
+    type?: string
+    size?: number
+    extension?: string
+    path?: string
+    url?: string
   }
 }
 const UploaderForm = (props: UploaderFormProps) => {
