@@ -3,6 +3,7 @@ import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import { QUERY } from 'src/components/Customer/CustomersCell'
+import { confirmated } from 'src/utils/other'
 
 import { RWGqlError } from '../../../../interfaces'
 
@@ -24,15 +25,13 @@ const truncate = (text) => {
   return output
 }
 
-const checkboxInputTag = (checked) => {
-  return <input type="checkbox" checked={checked} disabled />
-}
-
-interface Props {
+type Props = {
   error: RWGqlError | null
   onSave: (data, id) => void
   id: number
   name: string
+  role: string
+  type: string | null
 }
 
 const CustomersList = ({ customers }) => {
@@ -50,9 +49,9 @@ const CustomersList = ({ customers }) => {
     awaitRefetchQueries: true,
   })
 
-  const onDeleteClick = (id) => {
-    if (confirm('Are you sure you want to delete customer ' + id + '?')) {
-      deleteCustomer({ variables: { id } })
+  const onDeleteClick = (id: number) => {
+    if (confirmated('customer', 'delete', id)) {
+      deleteCustomer({ variables: { id } }).then((r) => console.log(r))
     }
   }
 
@@ -63,6 +62,8 @@ const CustomersList = ({ customers }) => {
           <tr>
             <th>Id</th>
             <th>Name</th>
+            <th>Role</th>
+            <th>Type</th>
             <th>&nbsp;</th>
           </tr>
         </thead>
@@ -71,6 +72,8 @@ const CustomersList = ({ customers }) => {
             <tr key={customer.id}>
               <td>{truncate(customer.id)}</td>
               <td>{truncate(customer.name)}</td>
+              <td>{truncate(customer.role)}</td>
+              <td>{truncate(customer.type)}</td>
               <td>
                 <nav className="rw-table-actions">
                   <Link

@@ -8,7 +8,7 @@
     ]
   },
   "devDependencies": {
-    "@redwoodjs/core": "2.0.0"
+    "@redwoodjs/core": "2.2.3"
   },
   "engines": {
     "node": ">=14.19 <=16.x",
@@ -19,10 +19,29 @@
   },
   "packageManager": "yarn@3.2.1",
   "dependencies": {
+    "@fullcalendar/core": "^5.11.3",
+    "@fullcalendar/daygrid": "^5.11.3",
+    "@fullcalendar/interaction": "^5.11.3",
+    "@fullcalendar/list": "^5.11.3",
+    "@fullcalendar/react": "^5.11.2",
+    "@fullcalendar/timegrid": "^5.11.3",
     "@headlessui/react": "latest",
     "@heroicons/react": "^1.0.6",
     "@mobiscroll/react-lite": "^4.10.9",
-    "moment": "^2.29.3",
-    "react-big-calendar": "^0.40.2"
+    "@themesberg/tailwind-datepicker": "^1.1.0",
+    "@types/filestack-react": "^4.0.0",
+    "clsx": "^1.2.1",
+    "dayjs": "^1.11.5",
+    "filestack-react": "^4.0.1",
+    "fullcalendar": "^5.11.3",
+    "moment": "^2.29.4",
+    "react-beautiful-dnd": "^13.1.1",
+    "react-big-calendar": "^1.5.0",
+    "react-date-picker": "^8.4.0",
+    "react-dnd": "^16.0.1",
+    "react-dnd-html5-backend": "^16.0.1",
+    "react-dropzone": "^14.2.2",
+    "styled-components": "^5.3.5",
+    "tw-elements": "^1.0.0-alpha12"
   }
 }

@@ -9,6 +9,8 @@ export const QUERY = gql`
     customer: customer(id: $id) {
       id
       name
+      role
+      type
     }
   }
 `

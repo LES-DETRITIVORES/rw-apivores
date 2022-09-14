@@ -1,8 +1,10 @@
+import { ReactNode } from 'react'
+
 import { Link, routes } from '@redwoodjs/router'
 import { Toaster } from '@redwoodjs/web/toast'
 
 type CustomerLayoutProps = {
-  children: React.ReactNode
+  children: ReactNode
 }
 
 const CustomersLayout = ({ children }: CustomerLayoutProps) => {

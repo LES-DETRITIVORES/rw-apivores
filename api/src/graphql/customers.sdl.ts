@@ -2,7 +2,9 @@ export const schema = gql`
   type Customer {
     id: Int!
     name: String!
+    role: String!
     tasks: [Task]!
+    type: String!
   }
 
   type Query {

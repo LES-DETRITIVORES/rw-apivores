@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { AuthenticationError, ForbiddenError } from '@redwoodjs/graphql-server'
 
 import { db } from './db'
@@ -49,16 +50,13 @@ type AllowedRoles = string | string[] | undefined
  * @returns {boolean} - Returns true if the currentUser is logged in and assigned one of the given roles,
  * or when no roles are provided to check against. Otherwise returns false.
  */
-interface Props {
-  currentUser: {
-    roles: string[]
-  }
-}
 export const hasRole = (roles: AllowedRoles): boolean => {
   if (!isAuthenticated()) {
     return false
   }
 
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   const currentUserRoles = context.currentUser?.roles
 
   if (typeof roles === 'string') {
@@ -70,13 +68,14 @@ export const hasRole = (roles: AllowedRoles): boolean => {
       return currentUserRoles?.some((allowedRole) => roles === allowedRole)
     }
   }
-
   if (Array.isArray(roles)) {
     if (Array.isArray(currentUserRoles)) {
       // roles to check is an array, currentUser.roles is an array
       return currentUserRoles?.some((allowedRole) =>
         roles.includes(allowedRole)
       )
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
     } else if (typeof context.currentUser.roles === 'string') {
       // roles to check is an array, currentUser.roles is a string
       return roles.some(

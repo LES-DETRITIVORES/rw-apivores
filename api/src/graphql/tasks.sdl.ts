@@ -25,6 +25,7 @@ export const schema = gql`
   }
 
   input CreateTaskInput {
+    id: Int!
     plannedAt: DateTime!
     workerId: Int!
     customerId: Int!
@@ -52,7 +53,7 @@ export const schema = gql`
   }
 
   type Mutation {
-    createTask(input: CreateTaskInput!): Task! @requireAuth
+    createTask(id: Int!, input: CreateTaskInput!): Task! @requireAuth
     updateTask(id: Int!, input: UpdateTaskInput!): Task! @requireAuth
     deleteTask(id: Int!): Task! @requireAuth
   }

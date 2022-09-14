@@ -10,6 +10,7 @@ export const QUERY = gql`
     containers {
       id
       name
+      type
     }
   }
 `

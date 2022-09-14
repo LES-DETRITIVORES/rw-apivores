@@ -11,7 +11,7 @@ import { RWGqlError } from '../../../../interfaces'
 interface Props {
   error: RWGqlError | null
   onSave: (data, id) => void
-  service: {
+  service?: {
     id: number
     name: string
   }

@@ -1,8 +1,9 @@
-import humanize from 'humanize-string'
-
 import { Link, navigate, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
+
+import { confirmated } from 'src/utils/other'
+
 import { RWGqlError } from '../../../../interfaces'
 
 const DELETE_WORKER_MUTATION = gql`
@@ -13,47 +14,14 @@ const DELETE_WORKER_MUTATION = gql`
   }
 `
 
-const formatEnum = (values: string | string[] | null | undefined) => {
-  if (values) {
-    if (Array.isArray(values)) {
-      const humanizedValues = values.map((value) => humanize(value))
-      return humanizedValues.join(', ')
-    } else {
-      return humanize(values as string)
-    }
-  }
-}
-
-const jsonDisplay = (obj) => {
-  return (
-    <pre>
-      <code>{JSON.stringify(obj, null, 2)}</code>
-    </pre>
-  )
-}
-
-const timeTag = (datetime) => {
-  return (
-    datetime && (
-      <time dateTime={datetime} title={datetime}>
-        {new Date(datetime).toUTCString()}
-      </time>
-    )
-  )
-}
-
-const checkboxInputTag = (checked) => {
-  return <input type="checkbox" checked={checked} disabled />
-}
-
 interface Props {
-  error: RWGqlError | null
-  onSave: (data, id) => void
-  worker: {
-    name: string
-    id: number
+  error?: RWGqlError | null
+  onSave?: (data, id) => void
+  worker?: {
+    name?: string
+    id?: number
   }
-  loading: boolean
+  loading?: boolean
 }
 
 const Worker = ({ worker }: Props) => {
@@ -67,9 +35,9 @@ const Worker = ({ worker }: Props) => {
     },
   })
 
-  const onDeleteClick = (id) => {
-    if (confirm('Are you sure you want to delete worker ' + id + '?')) {
-      deleteWorker({ variables: { id } })
+  const onDeleteClick = (id: number) => {
+    if (confirmated('worker', 'delete', id)) {
+      deleteWorker({ variables: { id } }).then((r) => console.log(r))
     }
   }
 

@@ -5,6 +5,7 @@ import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import { QUERY } from 'src/components/Container/ContainersCell'
+import { confirmated } from 'src/utils/other'
 
 const DELETE_CONTAINER_MUTATION = gql`
   mutation DeleteContainerMutation($id: Int!) {
@@ -73,9 +74,9 @@ const ContainersList = ({ containers }) => {
     awaitRefetchQueries: true,
   })
 
-  const onDeleteClick = (id) => {
-    if (confirm('Are you sure you want to delete container ' + id + '?')) {
-      deleteContainer({ variables: { id } })
+  const onDeleteClick = (id: number) => {
+    if (confirmated('container', 'delete', id)) {
+      deleteContainer({ variables: { id } }).then((r) => console.log(r))
     }
   }
 

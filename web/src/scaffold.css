@@ -1,9 +1,28 @@
 .rw-scaffold {
-  @apply bg-white text-gray-600 max-w-7xl m-auto;
+  @apply text-gray-600 max-w-7xl m-auto;
 }
 
 hr {
   @apply max-w-7xl m-auto hidden;
+}
+.fsp-modal__sidebar {
+  @apply hidden;
+}
+.fsp-picker--inline .fsp-modal {
+  @apply !bg-white
+}
+.fsp-header {
+  @apply !hidden
+}
+.fsp-modal__body {
+  @apply !bg-white !border-none;
+  width: calc(100% - 0px) !important;
+}
+.fsp-drop-area:focus {
+  @apply focus:!shadow-none;
+}
+.fsp-drop-area {
+  @apply rounded-lg;
 }
 
 .rw-scaffold h1,
@@ -57,11 +76,11 @@ hr {
 }
 
 .rw-segment-header {
-  @apply bg-gray-200 text-gray-700 py-3 px-4;
+  @apply bg-gray-50 text-gray-700 py-3 px-4;
 }
 
 .rw-segment-main {
-  @apply bg-gray-100 p-4;
+  @apply bg-white p-4;
 }
 
 .rw-link {

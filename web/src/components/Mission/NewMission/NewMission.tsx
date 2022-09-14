@@ -12,13 +12,13 @@ const CREATE_MISSION_MUTATION = gql`
   }
 `
 interface Props {
-  mission: {
-    id: number
-    status: string
-    start: string
-    end: string
-    workerId: number
-    customerId: number
+  mission?: {
+    id?: number
+    status?: string
+    start?: string
+    end?: string
+    workerId?: number
+    customerId?: number
   }
 }
 interface PropsInput {

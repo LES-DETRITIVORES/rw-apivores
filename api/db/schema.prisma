@@ -12,34 +12,36 @@ generator client {
 // to create migrations for them and apply to your dev DB.
 
 model Customer {
-  id      Int       @id @default(autoincrement())
-  name    String
-  tasks   Task[]
-  missions Mission[]
-  clients  Client[]
+  id         Int       @id @default(autoincrement())
+  name       String
+  role       String    @default("customer")
+  type       String    @default("individual")
+  Task       Task[]
+  Mission    Mission[]
+  Client     Client[]
 }
 
 model Site {
-  id    Int    @id @default(autoincrement())
-  name    String
-  type    String
-  commercial    String
-  active    Boolean  @default(false)
-  contact    String
-  siret    String
-  mail    String
-  phone    String
-  billingAddress    String
-  typeofPass    String
-  tasks    Task[]
+  id             Int     @id @default(autoincrement())
+  name           String
+  type           String
+  commercial     String
+  active         Boolean @default(false)
+  contact        String
+  siret          String
+  mail           String
+  phone          String
+  billingAddress String
+  typeofPass     String
+  tasks          Task[]
 }
-
 model Container {
   id    Int    @id @default(autoincrement())
   name  String
+  barcode String
+  type  String
   tasks Task[]
 }
-
 model Material {
   id    Int    @id @default(autoincrement())
   name  String
@@ -65,6 +67,37 @@ model Equipment {
   //tasks Task[]
 }
 
+model Invoce {
+  id         Int      @id @default(autoincrement())
+  invoiceId  String
+  reference  String
+  period     String
+  date       String
+  client     String
+  site       String
+  canceled   Boolean @default(false)
+  paid       String
+  amountHT   Float
+  amountTTC  Float
+  collectHT  String
+  treatHT    String
+  cleanHT    String
+  otherHT    String
+  otherLines String
+  Mission    Mission[]
+  Client     Client[]
+}
+
+model Uploader {
+  id        Int    @id @default(autoincrement())
+  name      String
+  type      String
+  size      String
+  extension String
+  path      String
+  url       String
+}
+
 model Task {
   id          Int       @id @default(autoincrement())
   plannedAt   DateTime
@@ -88,11 +121,11 @@ model Task {
 model User {
   id                  Int       @id @default(autoincrement())
   email               String    @unique
-  hashedPassword      String       // <─┐
-  salt                String      // <─┼─ add these lines
-  resetToken          String?    // <─┤
-  resetTokenExpiresAt DateTime? // <─┘
-  userId              Int      // <─┐²
+  hashedPassword      String // <─┐
+  salt                String //  ┤
+  resetToken          String? // <─┤
+  resetTokenExpiresAt DateTime? //    ┤
+  userId              Int //   <─┘
 }
 
 model Mission {
@@ -104,6 +137,8 @@ model Mission {
   customerId Int
   Worker     Worker?  @relation(fields: [workerId], references: [id])
   workerId   Int?
+  invoce     Invoce?  @relation(fields: [invoceId], references: [id])
+  invoceId   Int?
   Client     Client[]
 }
 
@@ -114,6 +149,7 @@ model Client {
   missionId  Int
   customer   Customer @relation(fields: [customerId], references: [id])
   customerId Int
+  invoce     Invoce   @relation(fields: [invoceId], references: [id])
+  invoceId   Int
   checked    Boolean  @default(false)
 }
-
