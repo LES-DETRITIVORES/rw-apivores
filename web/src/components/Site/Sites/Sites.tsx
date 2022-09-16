@@ -13,9 +13,9 @@ const DELETE_SITE_MUTATION = gql`
   }
 `
 
-const MAX_STRING_LENGTH = 150
+const MAX_STRING_LENGTH = 15014
 
-const truncate = (text) => {
+const truncate = (text: string) => {
   let output = text
   if (text && text.length > MAX_STRING_LENGTH) {
     output = output.substring(0, MAX_STRING_LENGTH) + '...'
@@ -23,7 +23,7 @@ const truncate = (text) => {
   return output
 }
 
-const SitesList = ({ sites }) => {
+const SitesList = ({ sites }) => {0
   const [deleteSite] = useMutation(DELETE_SITE_MUTATION, {
     onCompleted: () => {
       toast.success('Site deleted')

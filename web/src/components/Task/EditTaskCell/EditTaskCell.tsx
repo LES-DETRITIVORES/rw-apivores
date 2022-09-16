@@ -8,7 +8,7 @@ import { toast } from '@redwoodjs/web/toast'
 import TaskForm from 'src/components/Task/TaskForm'
 
 export const QUERY = gql`
-  query EditTaskById($id: Int!) {
+  query EditsTaskById($id: Int!) {
     task: task(id: $id) {
       id
       plannedAt
@@ -25,7 +25,7 @@ export const QUERY = gql`
   }
 `
 const UPDATE_TASK_MUTATION = gql`
-  mutation UpdateTaskMutation($id: Int!, $input: UpdateTaskInput!) {
+  mutation UpdatesTaskMutation($id: Int!, $input: UpdateTaskInput!) {
     updateTask(id: $id, input: $input) {
       id
       plannedAt
