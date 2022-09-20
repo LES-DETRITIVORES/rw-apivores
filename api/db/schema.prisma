@@ -63,6 +63,7 @@ model Worker {
 
 model Equipment {
   id     Int    @id @default(autoincrement())
+  name   String
   status String
   //tasks Task[]
 }

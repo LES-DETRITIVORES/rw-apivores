@@ -32,10 +32,20 @@ export const schema = gql`
     url: String
   }
 
+  input UploadFileInput {
+    name: String!
+    type: String!
+    size: String!
+    extension: String!
+    path: String!
+    url: String!
+  }
+
   type Mutation {
     createUploader(input: CreateUploaderInput!): Uploader! @requireAuth
     updateUploader(id: Int!, input: UpdateUploaderInput!): Uploader!
       @requireAuth
     deleteUploader(id: Int!): Uploader! @requireAuth
+    uploadFile(input: UploadFileInput!): Uploader! @requireAuth
   }
 `

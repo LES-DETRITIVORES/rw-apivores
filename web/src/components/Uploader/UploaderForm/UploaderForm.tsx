@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 import { CreateUploaderInput } from 'api/types/graphql'
 import { PickerInline } from 'filestack-react'
+import * as filestack from 'filestack-js'
 
 import {
   Form,
@@ -35,14 +36,36 @@ interface UploaderFormProps {
     url?: string
   }
 }
+interface Propsed {
+  mimetype?: string
+  filename?: string
+  size?: number
+  originalFile?: {
+    name?: string
+    size: number
+    type?: string
+  }
+  handle?: string
+  url?: string
+  uploadId?: string
+}
 const UploaderForm = (props: UploaderFormProps) => {
-  const [file, setFile] = useState(null)
+  const [file, setFile] = useState<Propsed>(null)
+  const [readFile, setReadFile] = useState(null)
   const onSubmit = (data) => {
     props.onSave(data, props?.uploader?.id)
   }
 
   const onFileUpload = (response) => {
     setFile(response.filesUploaded[0])
+  }
+
+  const onFileRead = () => {
+      const filestackClient = filestack.init('AGBXGuQXkT9WeHJDIdfEzz')
+      filestackClient.metadata(file.uploadId).then((result) => {
+        setReadFile(result)
+        console.log(result)
+      })
   }
 
   return (
@@ -174,6 +197,22 @@ const UploaderForm = (props: UploaderFormProps) => {
           onSuccess={onFileUpload}
         />
 
+        <div className="rw-button-group">
+          <button
+            type="button"
+            onClick={onFileRead}
+            className="rw-button rw-button-red"
+          >
+            Read File
+          </button>
+        </div>
+
+        {readFile && (
+          <div>
+            <h2>File Content</h2>
+            <pre>{readFile}</pre>
+          </div>
+        )}
         <div className="rw-button-group">
           <Submit disabled={props.loading} className="rw-button rw-button-blue">
             Save

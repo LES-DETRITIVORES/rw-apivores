@@ -14,7 +14,7 @@
  */
 
 body {
-  @apply bg-green-50
+  @apply bg-green-100
 }
 .react-date-picker__wrapper {
   @apply !border-none;

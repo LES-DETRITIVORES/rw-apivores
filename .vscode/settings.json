@@ -7,5 +7,14 @@
   },
   "[prisma]": {
     "editor.formatOnSave": true
-  }
+  },
+  "sqltools.connections": [
+    {
+      "previewLimit": 50,
+      "driver": "SQLite",
+      "name": "Database",
+      "database": "${workspaceFolder:rw-appivores}/api/db/dev.db"
+    }
+  ],
+  "sqltools.useNodeRuntime": true
 }
