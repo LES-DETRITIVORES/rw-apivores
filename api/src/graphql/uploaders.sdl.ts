@@ -41,11 +41,13 @@ export const schema = gql`
     url: String!
   }
 
+  scalar Upload
+
   type Mutation {
     createUploader(input: CreateUploaderInput!): Uploader! @requireAuth
     updateUploader(id: Int!, input: UpdateUploaderInput!): Uploader!
       @requireAuth
     deleteUploader(id: Int!): Uploader! @requireAuth
-    uploadFile(input: UploadFileInput!): Uploader! @requireAuth
+    singleUpload(file: Upload!): Boolean @skipAuth
   }
 `

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { CreateUploaderInput } from 'api/types/graphql'
 import { PickerInline } from 'filestack-react'
@@ -14,6 +14,7 @@ import {
 } from '@redwoodjs/forms'
 
 import { RWGqlError } from '../../../../interfaces'
+import { useMutation } from '@redwoodjs/web'
 interface UploaderFormProps {
   onSave?: (input: CreateUploaderInput, id: number) => void
   error?: RWGqlError
@@ -48,26 +49,48 @@ interface Propsed {
   handle?: string
   url?: string
   uploadId?: string
+  file?: {
+    mimetype?: string
+    filename?: string
+    size?: number
+    originalFile?: {
+      name?: string
+      size: number
+      type?: string
+
+      handle?: string
+      url?: string
+    }
+  }
 }
+
 const UploaderForm = (props: UploaderFormProps) => {
   const [file, setFile] = useState<Propsed>(null)
-  const [readFile, setReadFile] = useState(null)
   const onSubmit = (data) => {
     props.onSave(data, props?.uploader?.id)
   }
+  const UPLOAD_FILE = gql`
+    mutation singleUpload($file: Upload!) {
+      singleUpload(file: $file) {
+        mimetype
+        filename
+        size
+        originalFile {
+          name
+          size
+          type
+        }
+        handle
+        url
+      }
+    }
+  `
 
-  const onFileUpload = (response) => {
-    setFile(response.filesUploaded[0])
-  }
-
-  const onFileRead = () => {
-      const filestackClient = filestack.init('AGBXGuQXkT9WeHJDIdfEzz')
-      filestackClient.metadata(file.uploadId).then((result) => {
-        setReadFile(result)
-        console.log(result)
-      })
-  }
-
+  const [uploadFile] = useMutation(UPLOAD_FILE, {
+    onCompleted: ({ singleUpload }) => {
+      setFile(singleUpload)
+    },
+  })
   return (
     <div className="rw-form-wrapper">
       <Form onSubmit={onSubmit} error={props.error}>
@@ -192,27 +215,7 @@ const UploaderForm = (props: UploaderFormProps) => {
         />
 
         <FieldError name="url" className="rw-field-error" />
-        <PickerInline
-          apikey={'AGBXGuQXkT9WeHJDIdfEzz'}
-          onSuccess={onFileUpload}
-        />
-
-        <div className="rw-button-group">
-          <button
-            type="button"
-            onClick={onFileRead}
-            className="rw-button rw-button-red"
-          >
-            Read File
-          </button>
-        </div>
-
-        {readFile && (
-          <div>
-            <h2>File Content</h2>
-            <pre>{readFile}</pre>
-          </div>
-        )}
+        <input type="file" onChange={(e) => uploadFile({ variables: { file: e.target.files[0] } })} />
         <div className="rw-button-group">
           <Submit disabled={props.loading} className="rw-button rw-button-blue">
             Save
@@ -220,7 +223,7 @@ const UploaderForm = (props: UploaderFormProps) => {
         </div>
       </Form>
     </div>
-  )
+    )
 }
 
 export default UploaderForm
