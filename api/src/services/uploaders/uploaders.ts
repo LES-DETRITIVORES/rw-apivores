@@ -52,7 +52,5 @@ export const singleUpload: MutationResolvers['singleUpload'] = (
   file
 ) => {
   uploadFile(file)
-  return db.uploader.create({
-    data: file,
-  })
+  return true // temporary fix
 }
