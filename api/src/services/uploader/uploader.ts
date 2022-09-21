@@ -3,7 +3,7 @@ import multer from 'multer'
 import express from 'express';
 import serverless from 'serverless-http'
 
-export const upload = multer({
+const upload = multer({
   dest: 'uploads/',
   limits: {
     fileSize: 5242880,
@@ -39,4 +39,4 @@ export const upload = multer({
   })
 
 
-module.exports.handler = serverless(app)
+  export const handler = serverless(app)
