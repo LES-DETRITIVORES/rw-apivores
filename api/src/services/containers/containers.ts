@@ -1,7 +1,7 @@
 import type {
-  ContainerResolvers,
-  MutationResolvers,
   QueryResolvers,
+  MutationResolvers,
+  ContainerRelationResolvers,
 } from 'types/graphql'
 
 import { db } from 'src/lib/db'
@@ -42,7 +42,8 @@ export const deleteContainer: MutationResolvers['deleteContainer'] = ({
   })
 }
 
-export const Container: ContainerResolvers = {
-  tasks: (_obj, { root }) =>
-    db.container.findUnique({ where: { id: root.id } }).tasks(),
+export const Container: ContainerRelationResolvers = {
+  tasks: (_obj, { root }) => {
+    return db.container.findUnique({ where: { id: root?.id } }).tasks()
+  },
 }

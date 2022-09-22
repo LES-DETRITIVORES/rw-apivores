@@ -4,6 +4,8 @@ import { toast } from '@redwoodjs/web/toast'
 
 import ContainerForm from 'src/components/Container/ContainerForm'
 
+import type { CreateContainerInput } from 'types/graphql'
+
 const CREATE_CONTAINER_MUTATION = gql`
   mutation CreateContainerMutation($input: CreateContainerInput!) {
     createContainer(input: $input) {
@@ -26,7 +28,7 @@ const NewContainer = () => {
     }
   )
 
-  const onSave = (input) => {
+  const onSave = (input: CreateContainerInput) => {
     createContainer({ variables: { input } })
   }
 

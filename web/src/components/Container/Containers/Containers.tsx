@@ -5,7 +5,8 @@ import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import { QUERY } from 'src/components/Container/ContainersCell'
-import { confirmated } from 'src/utils/other'
+
+import type { DeleteContainerMutationVariables, FindContainers } from 'types/graphql'
 
 const DELETE_CONTAINER_MUTATION = gql`
   mutation DeleteContainerMutation($id: Int!) {
@@ -28,19 +29,20 @@ const formatEnum = (values: string | string[] | null | undefined) => {
   }
 }
 
-const truncate = (text) => {
-  let output = text
-  if (text && text.length > MAX_STRING_LENGTH) {
-    output = output.substring(0, MAX_STRING_LENGTH) + '...'
+const truncate = (value: string | number) => {
+  const output = value?.toString()
+  if (output?.length > MAX_STRING_LENGTH) {
+    return output.substring(0, MAX_STRING_LENGTH) + '...'
   }
-  return output
+  return output ?? ''
 }
 
-const jsonTruncate = (obj) => {
+
+const jsonTruncate = (obj: unknown) => {
   return truncate(JSON.stringify(obj, null, 2))
 }
 
-const timeTag = (datetime) => {
+const timeTag = (datetime?: string) => {
   return (
     datetime && (
       <time dateTime={datetime} title={datetime}>
@@ -50,16 +52,11 @@ const timeTag = (datetime) => {
   )
 }
 
-const checkboxInputTag = (checked) => {
+const checkboxInputTag = (checked: boolean) => {
   return <input type="checkbox" checked={checked} disabled />
 }
 
-interface Props {
-  id: number
-  name: string
-}
-
-const ContainersList = ({ containers }) => {
+const ContainersList = ({ containers }: FindContainers) => {
   const [deleteContainer] = useMutation(DELETE_CONTAINER_MUTATION, {
     onCompleted: () => {
       toast.success('Container deleted')
@@ -74,9 +71,9 @@ const ContainersList = ({ containers }) => {
     awaitRefetchQueries: true,
   })
 
-  const onDeleteClick = (id: number) => {
-    if (confirmated('container', 'delete', id)) {
-      deleteContainer({ variables: { id } }).then((r) => console.log(r))
+  const onDeleteClick = (id: DeleteContainerMutationVariables['id']) => {
+    if (confirm('Are you sure you want to delete container ' + id + '?')) {
+      deleteContainer({ variables: { id } })
     }
   }
 
@@ -87,14 +84,18 @@ const ContainersList = ({ containers }) => {
           <tr>
             <th>Id</th>
             <th>Name</th>
+            <th>Barcode</th>
+            <th>Type</th>
             <th>&nbsp;</th>
           </tr>
         </thead>
         <tbody>
-          {containers.map((container: Props) => (
+          {containers.map((container) => (
             <tr key={container.id}>
               <td>{truncate(container.id)}</td>
               <td>{truncate(container.name)}</td>
+              <td>{truncate(container.barcode)}</td>
+              <td>{truncate(container.type)}</td>
               <td>
                 <nav className="rw-table-actions">
                   <Link

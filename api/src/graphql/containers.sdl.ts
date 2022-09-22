@@ -2,8 +2,9 @@ export const schema = gql`
   type Container {
     id: Int!
     name: String!
-    tasks: [Task]!
+    barcode: String!
     type: String!
+    tasks: [Task]!
   }
 
   type Query {
@@ -13,10 +14,14 @@ export const schema = gql`
 
   input CreateContainerInput {
     name: String!
+    barcode: String!
+    type: String!
   }
 
   input UpdateContainerInput {
     name: String
+    barcode: String
+    type: String
   }
 
   type Mutation {

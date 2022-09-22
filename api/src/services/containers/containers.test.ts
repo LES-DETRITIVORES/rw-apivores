@@ -1,5 +1,13 @@
-import { container, containers, createContainer, deleteContainer, updateContainer } from "./containers";
-import type { StandardScenario } from "./containers.scenarios";
+import type { Container } from '@prisma/client'
+
+import {
+  containers,
+  container,
+  createContainer,
+  updateContainer,
+  deleteContainer,
+} from './containers'
+import type { StandardScenario } from './containers.scenarios'
 
 // Generated boilerplate tests do not account for all circumstances
 // and can fail without adjustments, e.g. Float and DateTime types.
@@ -22,14 +30,18 @@ describe('containers', () => {
 
   scenario('creates a container', async () => {
     const result = await createContainer({
-      input: { name: 'String' },
+      input: { name: 'String', barcode: 'String', type: 'String' },
     })
 
     expect(result.name).toEqual('String')
+    expect(result.barcode).toEqual('String')
+    expect(result.type).toEqual('String')
   })
 
   scenario('updates a container', async (scenario: StandardScenario) => {
-    const original = await container({ id: scenario.container.one.id })
+    const original = (await container({
+      id: scenario.container.one.id,
+    })) as Container
     const result = await updateContainer({
       id: original.id,
       input: { name: 'String2' },
@@ -39,7 +51,9 @@ describe('containers', () => {
   })
 
   scenario('deletes a container', async (scenario: StandardScenario) => {
-    const original = await deleteContainer({ id: scenario.container.one.id })
+    const original = (await deleteContainer({
+      id: scenario.container.one.id,
+    })) as Container
     const result = await container({ id: original.id })
 
     expect(result).toEqual(null)

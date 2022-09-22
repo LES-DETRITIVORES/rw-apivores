@@ -14,6 +14,7 @@ export const schema = gql`
 
   input CreateCustomerInput {
     name: String!
+    role: String!
   }
 
   input UpdateCustomerInput {
