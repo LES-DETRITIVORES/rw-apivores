@@ -9,6 +9,8 @@
 
 import { Route, Router, Set } from '@redwoodjs/router'
 
+import EquipementsLayout from 'src/layouts/EquipementsLayout'
+
 import UploadersLayout from 'src/layouts/UploadersLayout'
 
 import ClientsLayout from 'src/layouts/ClientsLayout'
@@ -27,6 +29,12 @@ import ConfigPage from './pages/Config/ConfigPage'
 const Routes = () => {
   return (
     <Router>
+      <Set wrap={EquipementsLayout}>
+        <Route path="/equipements/new" page={EquipementNewEquipementPage} name="newEquipement" />
+        <Route path="/equipements/{id:Int}/edit" page={EquipementEditEquipementPage} name="editEquipement" />
+        <Route path="/equipements/{id:Int}" page={EquipementEquipementPage} name="equipement" />
+        <Route path="/equipements" page={EquipementEquipementsPage} name="equipements" />
+      </Set>
       <Set wrap={UploadersLayout}>
         <Route path="/uploaders/new" page={UploaderNewUploaderPage} name="newUploader" />
         <Route path="/uploaders/{id:Int}/edit" page={UploaderEditUploaderPage} name="editUploader" />
@@ -56,12 +64,6 @@ const Routes = () => {
         <Route path="/tasks/{id:Int}/edit" page={TaskEditTaskPage} name="editTask" />
         <Route path="/tasks/{id:Int}" page={TaskTaskPage} name="task" />
         <Route path="/tasks" page={TaskTasksPage} name="tasks" />
-      </Set>
-      <Set wrap={EquimentLayout}>
-        <Route path="/equiment/new" page={EquipmentNewEquipmentPage} name="newEquipment" />
-        <Route path="/equiment/{id:Int}/edit" page={EquipmentEditEquipmentPage} name="editEquipment" />
-        <Route path="/equiment/{id:Int}" page={EquipmentEquipmentPage} name="equipment" />
-        <Route path="/equiment" page={EquipmentEquimentPage} name="equiment" />
       </Set>
       <Set wrap={WorkersLayout}>
         <Route path="/workers/new" page={WorkerNewWorkerPage} name="newWorker" />

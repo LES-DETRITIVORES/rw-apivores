@@ -61,7 +61,7 @@ model Worker {
   Mission Mission[]
 }
 
-model Equipment {
+model Equipement {
   id     Int    @id @default(autoincrement())
   name   String
   status String

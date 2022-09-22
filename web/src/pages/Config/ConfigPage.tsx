@@ -2,18 +2,18 @@ import { MetaTags } from '@redwoodjs/web'
 
 import ContainersLayout from 'src/layouts/ContainersLayout'
 import CustomersLayout from 'src/layouts/CustomersLayout'
-import EquipmentLayout from 'src/layouts/EquimentLayout'
+import EquipementsLayout from 'src/layouts/EquipementsLayout/EquipementsLayout'
 import MaterialsLayout from 'src/layouts/MaterialsLayout'
 import ServicesLayout from 'src/layouts/ServicesLayout'
 import SitesLayout from 'src/layouts/SitesLayout'
 import WorkersLayout from 'src/layouts/WorkersLayout'
 import ContainersPage from 'src/pages/Container/ContainersPage'
 import CustomersPage from 'src/pages/Customer/CustomersPage'
-import EquipmentPage from 'src/pages/Equipment/EquipmentPage/EquipmentPage'
 import MaterialsPage from 'src/pages/Material/MaterialsPage'
 import ServicesPage from 'src/pages/Service/ServicesPage'
 import SitesPage from 'src/pages/Site/SitesPage'
 import WorkersPage from 'src/pages/Worker/WorkersPage'
+import EquipementsPage from '../Equipement/EquipementsPage/EquipementsPage'
 
 const ConfigPage = () => {
   return (
@@ -39,10 +39,9 @@ const ConfigPage = () => {
         <ServicesPage />
       </ServicesLayout>
       <hr />
-      <EquipmentLayout>
-        <EquipmentPage />
-      </EquipmentLayout>
-      <hr />
+      <EquipementsLayout>
+        <EquipementsPage />
+      </EquipementsLayout>
       <WorkersLayout>
         <WorkersPage />
       </WorkersLayout>
