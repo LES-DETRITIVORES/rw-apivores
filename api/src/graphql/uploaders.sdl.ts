@@ -1,12 +1,10 @@
 export const schema = gql`
   type Uploader {
     id: Int!
-    name: String!
-    type: String!
-    size: String!
-    extension: String!
-    path: String!
-    url: String!
+    fileName: String!
+    fileUrl: String!
+    fileType: String!
+    createdAt: DateTime!
   }
 
   type Query {
@@ -15,39 +13,23 @@ export const schema = gql`
   }
 
   input CreateUploaderInput {
-    name: String!
-    type: String!
-    size: String!
-    extension: String!
-    path: String!
-    url: String!
+    fileName: String!
+    fileUrl: String!
+    fileType: String!
+    createdAt: DateTime!
   }
 
   input UpdateUploaderInput {
-    name: String
-    type: String
-    size: String
-    extension: String
-    path: String
-    url: String
+    fileName: String
+    fileUrl: String
+    fileType: String
+    createdAt: DateTime
   }
-
-  input UploadFileInput {
-    name: String!
-    type: String!
-    size: String!
-    extension: String!
-    path: String!
-    url: String!
-  }
-
-  scalar Upload
 
   type Mutation {
     createUploader(input: CreateUploaderInput!): Uploader! @requireAuth
     updateUploader(id: Int!, input: UpdateUploaderInput!): Uploader!
       @requireAuth
     deleteUploader(id: Int!): Uploader! @requireAuth
-    singleUpload(file: Upload!): Boolean @skipAuth
   }
 `

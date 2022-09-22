@@ -8,12 +8,10 @@ export const QUERY = gql`
   query FindUploaderById($id: Int!) {
     uploader: uploader(id: $id) {
       id
-      name
-      type
-      size
-      extension
-      path
-      url
+      fileName
+      fileUrl
+      fileType
+      createdAt
     }
   }
 `
@@ -23,7 +21,7 @@ export const Loading = () => <div>Loading...</div>
 export const Empty = () => <div>Uploader not found</div>
 
 export const Failure = ({ error }: CellFailureProps) => (
-  <div className="rw-cell-error">{error.message}</div>
+  <div className="rw-cell-error">{error?.message}</div>
 )
 
 export const Success = ({ uploader }: CellSuccessProps<FindUploaderById>) => {

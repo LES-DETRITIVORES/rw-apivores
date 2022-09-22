@@ -12,13 +12,13 @@ generator client {
 // to create migrations for them and apply to your dev DB.
 
 model Customer {
-  id         Int       @id @default(autoincrement())
-  name       String
-  role       String    @default("customer")
-  type       String    @default("individual")
-  Task       Task[]
-  Mission    Mission[]
-  Client     Client[]
+  id      Int       @id @default(autoincrement())
+  name    String
+  role    String    @default("customer")
+  type    String    @default("individual")
+  Task    Task[]
+  Mission Mission[]
+  Client  Client[]
 }
 
 model Site {
@@ -35,13 +35,15 @@ model Site {
   typeofPass     String
   tasks          Task[]
 }
+
 model Container {
-  id    Int    @id @default(autoincrement())
-  name  String
+  id      Int    @id @default(autoincrement())
+  name    String
   barcode String
-  type  String
-  tasks Task[]
+  type    String
+  tasks   Task[]
 }
+
 model Material {
   id    Int    @id @default(autoincrement())
   name  String
@@ -69,14 +71,14 @@ model Equipement {
 }
 
 model Invoce {
-  id         Int      @id @default(autoincrement())
+  id         Int       @id @default(autoincrement())
   invoiceId  String
   reference  String
   period     String
   date       String
   client     String
   site       String
-  canceled   Boolean @default(false)
+  canceled   Boolean   @default(false)
   paid       String
   amountHT   Float
   amountTTC  Float
@@ -91,17 +93,15 @@ model Invoce {
 
 model Uploader {
   id        Int    @id @default(autoincrement())
-  name      String
-  type      String
-  size      String
-  extension String
-  path      String
-  url       String
+  fileName  String
+  fileUrl   String
+  fileType  String
+  createdAt String
 }
 
 model Task {
   id          Int       @id @default(autoincrement())
-  plannedAt   DateTime
+  plannedAt   DateTime  @default(now())
   worker      Worker    @relation(fields: [workerId], references: [id])
   workerId    Int
   customer    Customer  @relation(fields: [customerId], references: [id])
@@ -116,7 +116,7 @@ model Task {
   serviceId   Int
   start       DateTime  @default(now())
   end         DateTime  @default(now())
-  title       String    @default("")
+  title       String
 }
 
 model User {

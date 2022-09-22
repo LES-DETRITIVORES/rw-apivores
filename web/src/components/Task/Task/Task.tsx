@@ -1,10 +1,10 @@
-import { Link, navigate, routes } from '@redwoodjs/router'
+import humanize from 'humanize-string'
+
+import { Link, routes, navigate } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
-import { confirmated, timeTag } from 'src/utils/other'
-
-import { TaskProps } from '../../../../interfaces'
+import type { DeleteTaskMutationVariables, FindTaskById } from 'types/graphql'
 
 const DELETE_TASK_MUTATION = gql`
   mutation DeleteTaskMutation($id: Int!) {
@@ -14,7 +14,44 @@ const DELETE_TASK_MUTATION = gql`
   }
 `
 
-const Task = ({ task }: TaskProps) => {
+const formatEnum = (values: string | string[] | null | undefined) => {
+  if (values) {
+    if (Array.isArray(values)) {
+      const humanizedValues = values.map((value) => humanize(value))
+      return humanizedValues.join(', ')
+    } else {
+      return humanize(values as string)
+    }
+  }
+}
+
+const jsonDisplay = (obj: unknown) => {
+  return (
+    <pre>
+      <code>{JSON.stringify(obj, null, 2)}</code>
+    </pre>
+  )
+}
+
+const timeTag = (datetime?: string) => {
+  return (
+    datetime && (
+      <time dateTime={datetime} title={datetime}>
+        {new Date(datetime).toUTCString()}
+      </time>
+    )
+  )
+}
+
+const checkboxInputTag = (checked: boolean) => {
+  return <input type="checkbox" checked={checked} disabled />
+}
+
+interface Props {
+  task: NonNullable<FindTaskById['task']>
+}
+
+const Task = ({ task }: Props) => {
   const [deleteTask] = useMutation(DELETE_TASK_MUTATION, {
     onCompleted: () => {
       toast.success('Task deleted')
@@ -25,15 +62,14 @@ const Task = ({ task }: TaskProps) => {
     },
   })
 
-  const onDeleteClick = (id: number) => {
-    if (confirmated('task', 'delete', id)) {
-      deleteTask({ variables: { id } }).then((r) => console.log(r))
+  const onDeleteClick = (id: DeleteTaskMutationVariables['id']) => {
+    if (confirm('Are you sure you want to delete task ' + id + '?')) {
+      deleteTask({ variables: { id } })
     }
   }
-  // console.log(task)
+
   return (
     <>
-      {/*jsonDisplay(task)*/}
       <div className="rw-segment">
         <header className="rw-segment-header">
           <h2 className="rw-heading rw-heading-secondary">
@@ -45,42 +81,36 @@ const Task = ({ task }: TaskProps) => {
             <tr>
               <th>Id</th>
               <td>{task.id}</td>
-            </tr>
-            <tr>
+            </tr><tr>
               <th>Planned at</th>
               <td>{timeTag(task.plannedAt)}</td>
-            </tr>
-            <tr>
+            </tr><tr>
               <th>Worker id</th>
               <td>{task.workerId}</td>
-            </tr>
-            <tr>
+            </tr><tr>
               <th>Customer id</th>
               <td>{task.customerId}</td>
-            </tr>
-            <tr>
+            </tr><tr>
               <th>Site id</th>
               <td>{task.siteId}</td>
-            </tr>
-            <tr>
+            </tr><tr>
               <th>Container id</th>
               <td>{task.containerId}</td>
-            </tr>
-            <tr>
+            </tr><tr>
               <th>Material id</th>
               <td>{task.materialId}</td>
-            </tr>
-            <tr>
+            </tr><tr>
               <th>Service id</th>
               <td>{task.serviceId}</td>
-            </tr>
-            <tr>
+            </tr><tr>
               <th>Start</th>
               <td>{timeTag(task.start)}</td>
-            </tr>
-            <tr>
+            </tr><tr>
               <th>End</th>
               <td>{timeTag(task.end)}</td>
+            </tr><tr>
+              <th>Title</th>
+              <td>{task.title}</td>
             </tr>
           </tbody>
         </table>

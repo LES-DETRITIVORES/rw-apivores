@@ -4,6 +4,8 @@ import { toast } from '@redwoodjs/web/toast'
 
 import UploaderForm from 'src/components/Uploader/UploaderForm'
 
+import type { CreateUploaderInput } from 'types/graphql'
+
 const CREATE_UPLOADER_MUTATION = gql`
   mutation CreateUploaderMutation($input: CreateUploaderInput!) {
     createUploader(input: $input) {
@@ -13,17 +15,20 @@ const CREATE_UPLOADER_MUTATION = gql`
 `
 
 const NewUploader = () => {
-  const [createUploader, { loading, error }] = useMutation(CREATE_UPLOADER_MUTATION, {
-    onCompleted: () => {
-      toast.success('Uploader created')
-      navigate(routes.uploaders())
-    },
-    onError: (error) => {
-      toast.error(error.message)
-    },
-  })
+  const [createUploader, { loading, error }] = useMutation(
+    CREATE_UPLOADER_MUTATION,
+    {
+      onCompleted: () => {
+        toast.success('Uploader created')
+        navigate(routes.uploaders())
+      },
+      onError: (error) => {
+        toast.error(error.message)
+      },
+    }
+  )
 
-  const onSave = (input) => {
+  const onSave = (input: CreateUploaderInput) => {
     createUploader({ variables: { input } })
   }
 

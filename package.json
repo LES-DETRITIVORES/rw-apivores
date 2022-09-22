@@ -48,6 +48,8 @@
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",
     "react-dropzone": "^14.2.2",
+    "react-images-upload": "^1.2.8",
+    "react-use-file-upload": "^0.9.5",
     "serverless-http": "^3.0.2",
     "socket.io": "^4.5.2",
     "styled-components": "^5.3.5",

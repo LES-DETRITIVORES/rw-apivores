@@ -6,6 +6,8 @@ import { toast } from '@redwoodjs/web/toast'
 
 import { QUERY } from 'src/components/Uploader/UploadersCell'
 
+import type { DeleteUploaderMutationVariables, FindUploaders } from 'types/graphql'
+
 const DELETE_UPLOADER_MUTATION = gql`
   mutation DeleteUploaderMutation($id: Int!) {
     deleteUploader(id: $id) {
@@ -27,19 +29,20 @@ const formatEnum = (values: string | string[] | null | undefined) => {
   }
 }
 
-const truncate = (text) => {
-  let output = text
-  if (text && text.length > MAX_STRING_LENGTH) {
-    output = output.substring(0, MAX_STRING_LENGTH) + '...'
+const truncate = (value: string | number) => {
+  const output = value?.toString()
+  if (output?.length > MAX_STRING_LENGTH) {
+    return output.substring(0, MAX_STRING_LENGTH) + '...'
   }
-  return output
+  return output ?? ''
 }
 
-const jsonTruncate = (obj) => {
+
+const jsonTruncate = (obj: unknown) => {
   return truncate(JSON.stringify(obj, null, 2))
 }
 
-const timeTag = (datetime) => {
+const timeTag = (datetime?: string) => {
   return (
     datetime && (
       <time dateTime={datetime} title={datetime}>
@@ -49,11 +52,11 @@ const timeTag = (datetime) => {
   )
 }
 
-const checkboxInputTag = (checked) => {
+const checkboxInputTag = (checked: boolean) => {
   return <input type="checkbox" checked={checked} disabled />
 }
 
-const UploadersList = ({ uploaders }) => {
+const UploadersList = ({ uploaders }: FindUploaders) => {
   const [deleteUploader] = useMutation(DELETE_UPLOADER_MUTATION, {
     onCompleted: () => {
       toast.success('Uploader deleted')
@@ -68,7 +71,7 @@ const UploadersList = ({ uploaders }) => {
     awaitRefetchQueries: true,
   })
 
-  const onDeleteClick = (id) => {
+  const onDeleteClick = (id: DeleteUploaderMutationVariables['id']) => {
     if (confirm('Are you sure you want to delete uploader ' + id + '?')) {
       deleteUploader({ variables: { id } })
     }
@@ -80,12 +83,10 @@ const UploadersList = ({ uploaders }) => {
         <thead>
           <tr>
             <th>Id</th>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Size</th>
-            <th>Extension</th>
-            <th>Path</th>
-            <th>Url</th>
+            <th>File name</th>
+            <th>File url</th>
+            <th>File type</th>
+            <th>Created at</th>
             <th>&nbsp;</th>
           </tr>
         </thead>
@@ -93,12 +94,10 @@ const UploadersList = ({ uploaders }) => {
           {uploaders.map((uploader) => (
             <tr key={uploader.id}>
               <td>{truncate(uploader.id)}</td>
-              <td>{truncate(uploader.name)}</td>
-              <td>{truncate(uploader.type)}</td>
-              <td>{truncate(uploader.size)}</td>
-              <td>{truncate(uploader.extension)}</td>
-              <td>{truncate(uploader.path)}</td>
-              <td>{truncate(uploader.url)}</td>
+              <td>{truncate(uploader.fileName)}</td>
+              <td>{truncate(uploader.fileUrl)}</td>
+              <td>{truncate(uploader.fileType)}</td>
+              <td>{truncate(uploader.createdAt)}</td>
               <td>
                 <nav className="rw-table-actions">
                   <Link

@@ -1,7 +1,7 @@
 import type {
-  MutationResolvers,
   QueryResolvers,
-  TaskResolvers,
+  MutationResolvers,
+  TaskRelationResolvers,
 } from 'types/graphql'
 
 import { db } from 'src/lib/db'
@@ -16,12 +16,9 @@ export const task: QueryResolvers['task'] = ({ id }) => {
   })
 }
 
-export const createTask: MutationResolvers['createTask'] = ({ id, input }) => {
+export const createTask: MutationResolvers['createTask'] = ({ input }) => {
   return db.task.create({
     data: input,
-    where: {
-      id,
-    },
   })
 }
 
@@ -38,17 +35,23 @@ export const deleteTask: MutationResolvers['deleteTask'] = ({ id }) => {
   })
 }
 
-export const Task: TaskResolvers = {
-  worker: (_obj, { root }) =>
-    db.task.findUnique({ where: { id: root.id } }).worker(),
-  customer: (_obj, { root }) =>
-    db.task.findUnique({ where: { id: root.id } }).customer(),
-  site: (_obj, { root }) =>
-    db.task.findUnique({ where: { id: root.id } }).site(),
-  container: (_obj, { root }) =>
-    db.task.findUnique({ where: { id: root.id } }).container(),
-  material: (_obj, { root }) =>
-    db.task.findUnique({ where: { id: root.id } }).material(),
-  service: (_obj, { root }) =>
-    db.task.findUnique({ where: { id: root.id } }).service(),
+export const Task: TaskRelationResolvers = {
+  worker: (_obj, { root }) => {
+    return db.task.findUnique({ where: { id: root?.id } }).worker()
+  },
+  customer: (_obj, { root }) => {
+    return db.task.findUnique({ where: { id: root?.id } }).customer()
+  },
+  site: (_obj, { root }) => {
+    return db.task.findUnique({ where: { id: root?.id } }).site()
+  },
+  container: (_obj, { root }) => {
+    return db.task.findUnique({ where: { id: root?.id } }).container()
+  },
+  material: (_obj, { root }) => {
+    return db.task.findUnique({ where: { id: root?.id } }).material()
+  },
+  service: (_obj, { root }) => {
+    return db.task.findUnique({ where: { id: root?.id } }).service()
+  },
 }

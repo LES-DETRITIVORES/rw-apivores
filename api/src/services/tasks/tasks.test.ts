@@ -1,5 +1,7 @@
-import { createTask, deleteTask, task, tasks } from "./tasks";
-import type { StandardScenario } from "./tasks.scenarios";
+import type { Task } from '@prisma/client'
+
+import { tasks, task, createTask, updateTask, deleteTask } from './tasks'
+import type { StandardScenario } from './tasks.scenarios'
 
 // Generated boilerplate tests do not account for all circumstances
 // and can fail without adjustments, e.g. Float and DateTime types.
@@ -23,17 +25,20 @@ describe('tasks', () => {
   scenario('creates a task', async (scenario: StandardScenario) => {
     const result = await createTask({
       input: {
-        plannedAt: '2022-06-21T12:11:41Z',
+        plannedAt: '2022-09-22T09:11:31Z',
         workerId: scenario.task.two.workerId,
         customerId: scenario.task.two.customerId,
         siteId: scenario.task.two.siteId,
         containerId: scenario.task.two.containerId,
         materialId: scenario.task.two.materialId,
         serviceId: scenario.task.two.serviceId,
+        start: '2022-09-22T09:11:31Z',
+        end: '2022-09-22T09:11:31Z',
+        title: 'hello',
       },
     })
 
-    expect(result.plannedAt).toEqual('2022-06-21T12:11:41Z')
+    expect(result.plannedAt).toEqual('2022-09-22T09:11:31Z')
     expect(result.workerId).toEqual(scenario.task.two.workerId)
     expect(result.customerId).toEqual(scenario.task.two.customerId)
     expect(result.siteId).toEqual(scenario.task.two.siteId)
@@ -42,18 +47,18 @@ describe('tasks', () => {
     expect(result.serviceId).toEqual(scenario.task.two.serviceId)
   })
 
-  /*scenario('updates a task', async (scenario: StandardScenario) => {
-    //const original = await task({ id: scenario.task.one.id })
-      const result = await updateTask({
+  scenario('updates a task', async (scenario: StandardScenario) => {
+    const original = (await task({ id: scenario.task.one.id })) as Task
+    const result = await updateTask({
       id: original.id,
-      input: { plannedAt: '2022-06-22T12:11:41Z' },
+      input: { plannedAt: '2022-09-23T09:11:31Z' },
     })
 
-    expect(result.plannedAt).toEqual('2022-06-22T12:11:41Z')
-  })*/
+    expect(result.plannedAt).toEqual('2022-09-23T09:11:31Z')
+  })
 
   scenario('deletes a task', async (scenario: StandardScenario) => {
-    const original = await deleteTask({ id: scenario.task.one.id })
+    const original = (await deleteTask({ id: scenario.task.one.id })) as Task
     const result = await task({ id: original.id })
 
     expect(result).toEqual(null)

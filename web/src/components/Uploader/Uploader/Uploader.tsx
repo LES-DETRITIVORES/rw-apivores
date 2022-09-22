@@ -4,6 +4,8 @@ import { Link, routes, navigate } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
+import type { DeleteUploaderMutationVariables, FindUploaderById } from 'types/graphql'
+
 const DELETE_UPLOADER_MUTATION = gql`
   mutation DeleteUploaderMutation($id: Int!) {
     deleteUploader(id: $id) {
@@ -23,7 +25,7 @@ const formatEnum = (values: string | string[] | null | undefined) => {
   }
 }
 
-const jsonDisplay = (obj) => {
+const jsonDisplay = (obj: unknown) => {
   return (
     <pre>
       <code>{JSON.stringify(obj, null, 2)}</code>
@@ -31,7 +33,7 @@ const jsonDisplay = (obj) => {
   )
 }
 
-const timeTag = (datetime) => {
+const timeTag = (datetime?: string) => {
   return (
     datetime && (
       <time dateTime={datetime} title={datetime}>
@@ -41,11 +43,15 @@ const timeTag = (datetime) => {
   )
 }
 
-const checkboxInputTag = (checked) => {
+const checkboxInputTag = (checked: boolean) => {
   return <input type="checkbox" checked={checked} disabled />
 }
 
-const Uploader = ({ uploader }) => {
+interface Props {
+  uploader: NonNullable<FindUploaderById['uploader']>
+}
+
+const Uploader = ({ uploader }: Props) => {
   const [deleteUploader] = useMutation(DELETE_UPLOADER_MUTATION, {
     onCompleted: () => {
       toast.success('Uploader deleted')
@@ -56,7 +62,7 @@ const Uploader = ({ uploader }) => {
     },
   })
 
-  const onDeleteClick = (id) => {
+  const onDeleteClick = (id: DeleteUploaderMutationVariables['id']) => {
     if (confirm('Are you sure you want to delete uploader ' + id + '?')) {
       deleteUploader({ variables: { id } })
     }
@@ -75,30 +81,18 @@ const Uploader = ({ uploader }) => {
             <tr>
               <th>Id</th>
               <td>{uploader.id}</td>
-            </tr>
-            <tr>
-              <th>Name</th>
-              <td>{uploader.name}</td>
-            </tr>
-            <tr>
-              <th>Type</th>
-              <td>{uploader.type}</td>
-            </tr>
-            <tr>
-              <th>Size</th>
-              <td>{uploader.size}</td>
-            </tr>
-            <tr>
-              <th>Extension</th>
-              <td>{uploader.extension}</td>
-            </tr>
-            <tr>
-              <th>Path</th>
-              <td>{uploader.path}</td>
-            </tr>
-            <tr>
-              <th>Url</th>
-              <td>{uploader.url}</td>
+            </tr><tr>
+              <th>File name</th>
+              <td>{uploader.fileName}</td>
+            </tr><tr>
+              <th>File url</th>
+              <td>{uploader.fileUrl}</td>
+            </tr><tr>
+              <th>File type</th>
+              <td>{uploader.fileType}</td>
+            </tr><tr>
+              <th>Created at</th>
+              <td>{uploader.createdAt}</td>
             </tr>
           </tbody>
         </table>

@@ -1,3 +1,5 @@
+import type { Uploader } from '@prisma/client'
+
 import {
   uploaders,
   uploader,
@@ -29,35 +31,35 @@ describe('uploaders', () => {
   scenario('creates a uploader', async () => {
     const result = await createUploader({
       input: {
-        name: 'String',
-        type: 'String',
-        size: 'String',
-        extension: 'String',
-        path: 'String',
-        url: 'String',
+        fileName: 'String',
+        fileUrl: 'String',
+        fileType: 'String',
+        createdAt: 'DateTime',
       },
     })
 
-    expect(result.name).toEqual('String')
-    expect(result.type).toEqual('String')
-    expect(result.size).toEqual('String')
-    expect(result.extension).toEqual('String')
-    expect(result.path).toEqual('String')
-    expect(result.url).toEqual('String')
+    expect(result.fileName).toEqual('String')
+    expect(result.fileUrl).toEqual('String')
+    expect(result.fileType).toEqual('String')
+    expect(result.createdAt).toEqual('DateTime')
   })
 
   scenario('updates a uploader', async (scenario: StandardScenario) => {
-    const original = await uploader({ id: scenario.uploader.one.id })
+    const original = (await uploader({
+      id: scenario.uploader.one.id,
+    })) as Uploader
     const result = await updateUploader({
       id: original.id,
-      input: { name: 'String2' },
+      input: { fileName: 'String2' },
     })
 
-    expect(result.name).toEqual('String2')
+    expect(result.fileName).toEqual('String2')
   })
 
   scenario('deletes a uploader', async (scenario: StandardScenario) => {
-    const original = await deleteUploader({ id: scenario.uploader.one.id })
+    const original = (await deleteUploader({
+      id: scenario.uploader.one.id,
+    })) as Uploader
     const result = await uploader({ id: original.id })
 
     expect(result).toEqual(null)

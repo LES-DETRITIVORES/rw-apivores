@@ -1,7 +1,7 @@
 import UploaderCell from 'src/components/Uploader/UploaderCell'
 
 type UploaderPageProps = {
-  id?: number
+  id: number
 }
 
 const UploaderPage = ({ id }: UploaderPageProps) => {

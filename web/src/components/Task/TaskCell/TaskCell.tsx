@@ -1,6 +1,6 @@
 import type { FindTaskById } from 'types/graphql'
 
-import type { CellFailureProps, CellSuccessProps } from '@redwoodjs/web'
+import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 
 import Task from 'src/components/Task/Task'
 
@@ -17,6 +17,7 @@ export const QUERY = gql`
       serviceId
       start
       end
+      title
     }
   }
 `
@@ -26,11 +27,9 @@ export const Loading = () => <div>Loading...</div>
 export const Empty = () => <div>Task not found</div>
 
 export const Failure = ({ error }: CellFailureProps) => (
-  <div className="rw-cell-error">{error.message}</div>
+  <div className="rw-cell-error">{error?.message}</div>
 )
 
 export const Success = ({ task }: CellSuccessProps<FindTaskById>) => {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  return <Task task={task} loading={false} />
+  return <Task task={task} />
 }

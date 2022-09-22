@@ -1,49 +1,43 @@
 import {
-  DatetimeLocalField,
-  FieldError,
   Form,
   FormError,
+  FieldError,
   Label,
+  DatetimeLocalField,
   NumberField,
+  TextField,
   Submit,
 } from '@redwoodjs/forms'
 
-import { formatDatetime } from 'src/utils'
+import type { EditTaskById, UpdateTaskInput } from 'types/graphql'
+import type { RWGqlError } from '@redwoodjs/forms'
 
-import { RWGqlError } from '../../../../interfaces'
 
-//import Combo from 'src/components/Combobox'
 
-interface Props {
-  error: RWGqlError | null
-  onSave: (data, id) => void
-  task?: {
-    id?: number
-    start?: string
-    end?: string
-    plannedAt?: string
-    workerId?: number
-    customerId?: number
-    siteId?: number
-    containerId?: number
-    materialId?: number
-    serviceId?: number
-    title?: string
+const formatDatetime = (value) => {
+  if (value) {
+    return value.replace(/:\d{2}\.\d{3}\w/, '')
   }
-  loading?: boolean
 }
 
-const TaskForm = (props: Props) => {
-  const onSubmit = (data) => {
+
+type FormTask = NonNullable<EditTaskById['task']>
+
+interface TaskFormProps {
+  task?: EditTaskById['task']
+  onSave: (data: UpdateTaskInput, id?: FormTask['id']) => void
+  error: RWGqlError
+  loading: boolean
+}
+
+const TaskForm = (props: TaskFormProps) => {
+  const onSubmit = (data: FormTask) => {
     props.onSave(data, props?.task?.id)
   }
-  const startTime = (dateTime: string): string => {
-    const date = new Date(dateTime)
-    return date as any
-  }
+
   return (
     <div className="rw-form-wrapper">
-      <Form onSubmit={onSubmit} error={props.error}>
+      <Form<FormTask> onSubmit={onSubmit} error={props.error}>
         <FormError
           error={props.error}
           wrapperClassName="rw-form-error-wrapper"
@@ -69,19 +63,12 @@ const TaskForm = (props: Props) => {
 
         <FieldError name="plannedAt" className="rw-field-error" />
 
-        <FormError
-          error={props.error}
-          wrapperClassName="rw-form-error-wrapper"
-          titleClassName="rw-form-error-title"
-          listClassName="rw-form-error-list"
-        />
-
         <Label
           name="start"
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          Start
+          Started at
         </Label>
 
         <DatetimeLocalField
@@ -94,19 +81,12 @@ const TaskForm = (props: Props) => {
 
         <FieldError name="start" className="rw-field-error" />
 
-        <FormError
-          error={props.error}
-          wrapperClassName="rw-form-error-wrapper"
-          titleClassName="rw-form-error-title"
-          listClassName="rw-form-error-list"
-        />
-
         <Label
           name="end"
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          End
+          Ended at
         </Label>
 
         <DatetimeLocalField
@@ -118,7 +98,6 @@ const TaskForm = (props: Props) => {
         />
 
         <FieldError name="end" className="rw-field-error" />
-
         <Label
           name="workerId"
           className="rw-label"
@@ -126,13 +105,7 @@ const TaskForm = (props: Props) => {
         >
           Worker id
         </Label>
-        {/*
-          <Combo
-            data={data as any}
-            query={query}
-            onChange={(event) => setQuery(event.target.value)}
-            setQuery={() => setQuery('')}
-          /> */}
+
         <NumberField
           name="workerId"
           defaultValue={props.task?.workerId}
@@ -232,6 +205,24 @@ const TaskForm = (props: Props) => {
         />
 
         <FieldError name="serviceId" className="rw-field-error" />
+
+        <Label
+          name="title"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Title
+        </Label>
+
+        <TextField
+          name="title"
+          defaultValue={props.task?.title}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ required: true }}
+        />
+
+        <FieldError name="title" className="rw-field-error" />
 
         <div className="rw-button-group">
           <Submit disabled={props.loading} className="rw-button rw-button-blue">

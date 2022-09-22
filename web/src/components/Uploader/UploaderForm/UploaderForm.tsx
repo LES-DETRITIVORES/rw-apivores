@@ -1,9 +1,3 @@
-import { useEffect, useState } from 'react'
-
-import { CreateUploaderInput } from 'api/types/graphql'
-import { PickerInline } from 'filestack-react'
-import * as filestack from 'filestack-js'
-
 import {
   Form,
   FormError,
@@ -11,89 +5,47 @@ import {
   Label,
   TextField,
   Submit,
+  DateField,
 } from '@redwoodjs/forms'
 
-import { RWGqlError } from '../../../../interfaces'
-import { useMutation } from '@redwoodjs/web'
+import type { EditUploaderById, UpdateUploaderInput } from 'types/graphql'
+import type { RWGqlError } from '@redwoodjs/forms'
+import { useEffect, useState } from 'react'
+import ImageUploader from 'react-images-upload'
+import styled from 'styled-components'
+type FormUploader = NonNullable<EditUploaderById['uploader']>
+
 interface UploaderFormProps {
-  onSave?: (input: CreateUploaderInput, id: number) => void
+  uploader?: EditUploaderById['uploader']
+  onSave?: (data: UpdateUploaderInput, id?: FormUploader['id']) => void
   error?: RWGqlError
   loading?: boolean
-  mimetype?: string
-  filename?: string
-  size?: number
-  originalFile?: {
-    type?: string
-  }
-  handle?: string
-  url?: string
-  uploader?: {
-    id?: number
-    name?: string
-    type?: string
-    size?: number
-    extension?: string
-    path?: string
-    url?: string
-  }
-}
-interface Propsed {
-  mimetype?: string
-  filename?: string
-  size?: number
-  originalFile?: {
-    name?: string
-    size: number
-    type?: string
-  }
-  handle?: string
-  url?: string
-  uploadId?: string
-  file?: {
-    mimetype?: string
-    filename?: string
-    size?: number
-    originalFile?: {
-      name?: string
-      size: number
-      type?: string
-
-      handle?: string
-      url?: string
-    }
-  }
 }
 
 const UploaderForm = (props: UploaderFormProps) => {
-  const [file, setFile] = useState<Propsed>(null)
-  const onSubmit = (data) => {
-    props.onSave(data, props?.uploader?.id)
-  }
-  const UPLOAD_FILE = gql`
-    mutation singleUpload($file: Upload!) {
-      singleUpload(file: $file) {
-        mimetype
-        filename
-        size
-        originalFile {
-          name
-          size
-          type
-        }
-        handle
-        url
-      }
-    }
-  `
+  const [uploadedPictures, setUploadedPictures] = useState([] as any)
+    const {
+      createFormData,
+    } = useFileUpload()
 
-  const [uploadFile] = useMutation(UPLOAD_FILE, {
-    onCompleted: ({ singleUpload }) => {
-      setFile(singleUpload)
-    },
-  })
+  const onSubmit = (data: FormUploader) => {
+
+    const formData = createFormData(uploadedPictures, data)
+
+    props.onSave?.({
+      ...data,
+      picture: formData,
+    }, props.uploader?.id)
+
+  }
+
+  const onDrop = (picture) => {
+    setUploadedPictures([...uploadedPictures, picture])
+  }
+
   return (
     <div className="rw-form-wrapper">
-      <Form onSubmit={onSubmit} error={props.error}>
+      <Form<FormUploader> onSubmit={onSubmit} error={props.error}>
         <FormError
           error={props.error}
           wrapperClassName="rw-form-error-wrapper"
@@ -102,120 +54,86 @@ const UploaderForm = (props: UploaderFormProps) => {
         />
 
         <Label
-          name="name"
+          name="fileName"
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          Name
+          File name
         </Label>
 
         <TextField
-          name="name"
-          //defaultValue={props.uploader?.name}
-          value={file?.filename}
-          defaultValue={file?.filename || props.uploader?.name}
+          name="fileName"
+          defaultValue={props.uploader?.fileName}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
           validation={{ required: true }}
         />
 
-        <FieldError name="name" className="rw-field-error" />
+        <FieldError name="fileName" className="rw-field-error" />
+12
+        <Label
+          name="fileUrl"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          File url
+        </Label>
+
+        <TextField
+          name="fileUrl"
+          defaultValue={props.uploader?.fileUrl}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ required: true }}
+        />
+
+        <FieldError name="fileUrl" className="rw-field-error" />
 
         <Label
-          name="type"
+          name="fileType"
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          Type
+          File type
         </Label>
 
         <TextField
-          name="type"
-          value={file?.mimetype}
-          defaultValue={file?.mimetype || props.uploader?.type}
+          name="fileType"
+          defaultValue={props.uploader?.fileType}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
           validation={{ required: true }}
         />
 
-        <FieldError name="type" className="rw-field-error" />
+        <FieldError name="fileType" className="rw-field-error" />
 
         <Label
-          name="size"
+          name="createdAt"
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          Size
+          Created at
         </Label>
 
-        <TextField
-          name="size"
-          value={file?.size}
-          defaultValue={file?.size || props.uploader?.size}
+        <DateField
+          name="createdAt"
+          defaultValue={props.uploader?.createdAt}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
           validation={{ required: true }}
         />
 
-        <FieldError name="size" className="rw-field-error" />
+        <FieldError name="createdAt" className="rw-field-error" />
 
-        <Label
-          name="extension"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Extension
-        </Label>
-
-        <TextField
-          name="extension"
-          value={file?.originalFile?.type}
-          defaultValue={file?.originalFile?.type || props.uploader?.extension}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
+        <ImageUploader
+          withIcon={true}
+          withPreview={false}
+          buttonText="Choose images"
+          onChange={(image) => onDrop(image)}
+          imgExtension={['.csv']}
+          maxFileSize={99999999999}
         />
 
-        <FieldError name="extension" className="rw-field-error" />
-
-        <Label
-          name="path"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Path
-        </Label>
-
-        <TextField
-          name="path"
-          value={file?.handle}
-          defaultValue={file?.handle || props.uploader?.path}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
-        />
-
-        <FieldError name="path" className="rw-field-error" />
-
-        <Label
-          name="url"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Url
-        </Label>
-
-        <TextField
-          name="url"
-          value={file?.url}
-          defaultValue={file?.url || props.uploader?.url}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
-        />
-
-        <FieldError name="url" className="rw-field-error" />
-        <input type="file" onChange={(e) => uploadFile({ variables: { file: e.target.files[0] } })} />
         <div className="rw-button-group">
           <Submit disabled={props.loading} className="rw-button rw-button-blue">
             Save
@@ -223,7 +141,11 @@ const UploaderForm = (props: UploaderFormProps) => {
         </div>
       </Form>
     </div>
-    )
+  )
 }
 
 export default UploaderForm
+function useFileUpload(): { files: any; fileNames: any; fileTypes: any; totalSize: any; totalSizeInBytes: any; handleDragDropEvent: any; clearAllFiles: any; createFormData: any; setFiles: any; removeFile: any } {
+  throw new Error('Function not implemented.')
+}
+

@@ -1,28 +1,25 @@
-import type { Prisma } from '@prisma/client'
+import type { Prisma, Uploader } from '@prisma/client'
+import type { ScenarioData } from '@redwoodjs/testing/api'
 
 export const standard = defineScenario<Prisma.UploaderCreateArgs>({
   uploader: {
     one: {
       data: {
-        name: 'String',
-        type: 'String',
-        size: 'String',
-        extension: 'String',
-        path: 'String',
-        url: 'String',
+        fileName: 'String',
+        fileUrl: 'String',
+        fileType: 'String',
+        createdAt: '2021-05-31T20:00:00Z',
       },
     },
     two: {
       data: {
-        name: 'String',
-        type: 'String',
-        size: 'String',
-        extension: 'String',
-        path: 'String',
-        url: 'String',
+        fileName: 'String',
+        fileUrl: 'String',
+        fileType: 'String',
+        createdAt: '2021-05-31T20:00:00Z',
       },
     },
   },
 })
 
-export type StandardScenario = typeof standard
+export type StandardScenario = ScenarioData<Uploader, 'uploader'>
