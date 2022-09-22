@@ -7448,6 +7448,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@upload-io/upload-api-client-upload-js@npm:^2.7.0":
+  version: 2.7.0
+  resolution: "@upload-io/upload-api-client-upload-js@npm:2.7.0"
+  checksum: fde389aa6ae58a71bd182d5ad5e3c97dd5b9a3e0c451f50285af238ef0ef4ca4eeef6715b88af1020ec1fff6a664324c5f0d23c13dfa0c0749e7eebd9d778394
+  languageName: node
+  linkType: hard
+
 "@webassemblyjs/ast@npm:1.11.1":
   version: 1.11.1
   resolution: "@webassemblyjs/ast@npm:1.11.1"
@@ -10316,6 +10323,13 @@ __metadata:
     isobject: ^3.0.0
     static-extend: ^0.1.1
   checksum: d44f4afc7a3e48dba4c2d3fada5f781a1adeeff371b875c3b578bc33815c6c29d5d06483c2abfd43a32d35b104b27b67bfa39c2e8a422fa858068bd756cfbd42
+  languageName: node
+  linkType: hard
+
+"classnames@npm:^2.2.6":
+  version: 2.3.2
+  resolution: "classnames@npm:2.3.2"
+  checksum: cd50ead57b4f97436aaa9f9885c6926323efc7c2bea8e3d4eb10e4e972aa6a1cfca1c7a0e06f8a199ca7498d4339e30bb6002e589e61c9f21248cbf3e8b0b18d
   languageName: node
   linkType: hard
 
@@ -20984,7 +20998,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"preact@npm:^10.0.0, preact@npm:^10.0.5":
+"preact@npm:^10.0.0, preact@npm:^10.0.5, preact@npm:^10.6.5":
   version: 10.11.0
   resolution: "preact@npm:10.11.0"
   checksum: 8aa7bcfc829277fab29c1a6140cfa76ff7d225df89e857b4dfcc617e882b73ded611274696260093b321010d911afa4e9a240b304a801a801a521ccf5cec3b9b
@@ -21160,6 +21174,13 @@ __metadata:
   version: 0.11.10
   resolution: "process@npm:0.11.10"
   checksum: 40c3ce4b7e6d4b8c3355479df77aeed46f81b279818ccdc500124e6a5ab882c0cc81ff7ea16384873a95a74c4570b01b120f287abbdd4c877931460eca6084b3
+  languageName: node
+  linkType: hard
+
+"progress-smoother@npm:^1.3.0":
+  version: 1.3.0
+  resolution: "progress-smoother@npm:1.3.0"
+  checksum: 03190563c61bb051bf6ea441aaa4cc6d89d7ea23a2ef59bc720d2936619cd20c4253f3af12c6fcf737769fddabe57c83728c3692f983c3e04693f1d1935c7bf6
   languageName: node
   linkType: hard
 
@@ -21917,6 +21938,17 @@ __metadata:
     shallowequal: ^1.1.0
     throttle-debounce: ^3.0.1
   checksum: e6b336bbc1e9de78de5c7177afd398f6ea14c4284af698475f08d34389e9307cbc36c0125a61b158e026f182ae4dd17b13c28683bbc1a371792bccd1e51cccff
+  languageName: node
+  linkType: hard
+
+"react-uploader@npm:^2.0.0-alpha.3":
+  version: 2.0.0-alpha.3
+  resolution: "react-uploader@npm:2.0.0-alpha.3"
+  dependencies:
+    uploader: ^2.0.0-alpha.3
+  peerDependencies:
+    react: ">=16.3.0"
+  checksum: fd7746ee2495baa4b5755db4e2aecf460e34ff9b7a4e36d9f2dc1fa26e599e4549ea81071ec95f28fa295f5ed46244bdfeb1fcb7ffdbc1c74fd55e938af75062
   languageName: node
   linkType: hard
 
@@ -22684,6 +22716,7 @@ __metadata:
     react-dnd-html5-backend: ^16.0.1
     react-dropzone: ^14.2.2
     react-images-upload: ^1.2.8
+    react-uploader: ^2.0.0-alpha.3
     react-use-file-upload: ^0.9.5
     serverless-http: ^3.0.2
     socket.io: ^4.5.2
@@ -25458,6 +25491,27 @@ __metadata:
   version: 1.2.2
   resolution: "update-input-width@npm:1.2.2"
   checksum: 082468292d8e59a7aaa5668346f6a0b0d73bce7f7f177c3d54eace9bc71e05754a1d07c474fe220ebd551b4cdc2216c5b007e308f006e24cd1f5504e8a054e99
+  languageName: node
+  linkType: hard
+
+"upload-js@npm:^2.0.0-alpha.6":
+  version: 2.0.0-alpha.6
+  resolution: "upload-js@npm:2.0.0-alpha.6"
+  dependencies:
+    "@upload-io/upload-api-client-upload-js": ^2.7.0
+    progress-smoother: ^1.3.0
+  checksum: 21857d8e6af151cce28a903516d634c92638b01f086b8ba00429e233a19061cb4d0b8db5d36401d88faa08186e2a478f87a61e23bcc171fa33996143c4efb888
+  languageName: node
+  linkType: hard
+
+"uploader@npm:^2.0.0-alpha.3":
+  version: 2.0.0-alpha.3
+  resolution: "uploader@npm:2.0.0-alpha.3"
+  dependencies:
+    classnames: ^2.2.6
+    preact: ^10.6.5
+    upload-js: ^2.0.0-alpha.6
+  checksum: 894d9edf76116dda91c5ebe0cb4fef4b78feea40b39fbe4b709f2ae9b28c793eebad652530b6ce628599de87a07a4f627d08d76ad6c515c7e9d9bd0e570d9b71
   languageName: node
   linkType: hard
 

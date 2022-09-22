@@ -9,10 +9,9 @@ import {
 } from '@redwoodjs/forms'
 
 import type { EditUploaderById, UpdateUploaderInput } from 'types/graphql'
-import type { RWGqlError } from '@redwoodjs/forms'
-import { useEffect, useState } from 'react'
-import ImageUploader from 'react-images-upload'
-import styled from 'styled-components'
+import {  useState } from 'react'
+import { RWGqlError } from 'interfaces'
+
 type FormUploader = NonNullable<EditUploaderById['uploader']>
 
 interface UploaderFormProps {
@@ -23,36 +22,45 @@ interface UploaderFormProps {
 }
 
 const UploaderForm = (props: UploaderFormProps) => {
-  const [uploadedPictures, setUploadedPictures] = useState([] as any)
-    const {
-      createFormData,
-    } = useFileUpload()
 
-  const onSubmit = (data: FormUploader) => {
-
-    const formData = createFormData(uploadedPictures, data)
-
-    props.onSave?.({
-      ...data,
-      picture: formData,
-    }, props.uploader?.id)
+  const onSubmit = async (data: FormUploader) => {
+    props.onSave?.(data, props.uploader?.id)
+        const formData = new FormData()
+        formData.append('file', preview.data)
+        const response = await fetch('http://localhost:5000/uploads', {
+          method: 'POST',
+          body: formData,
+        })
+        const responsedData = response.json()
+        console.log(responsedData)
+        if (response) setStatus(response.statusText)
 
   }
 
-  const onDrop = (picture) => {
-    setUploadedPictures([...uploadedPictures, picture])
-  }
+  const [preview, setPreview] = useState({
+    preview: '',
+    data: ''
+  })
+
+  const [status, setStatus] = useState('')
+
+    const handleFileChange = (e) => {
+      const img = {
+        preview: URL.createObjectURL(e.target.files[0]),
+        data: e.target.files[0],
+      }
+      setPreview(img)
+    }
 
   return (
     <div className="rw-form-wrapper">
-      <Form<FormUploader> onSubmit={onSubmit} error={props.error}>
+      <Form onSubmit={onSubmit} error={props.error}>
         <FormError
           error={props.error}
           wrapperClassName="rw-form-error-wrapper"
           titleClassName="rw-form-error-title"
           listClassName="rw-form-error-list"
         />
-
         <Label
           name="fileName"
           className="rw-label"
@@ -60,7 +68,6 @@ const UploaderForm = (props: UploaderFormProps) => {
         >
           File name
         </Label>
-
         <TextField
           name="fileName"
           defaultValue={props.uploader?.fileName}
@@ -68,9 +75,8 @@ const UploaderForm = (props: UploaderFormProps) => {
           errorClassName="rw-input rw-input-error"
           validation={{ required: true }}
         />
-
         <FieldError name="fileName" className="rw-field-error" />
-12
+        12
         <Label
           name="fileUrl"
           className="rw-label"
@@ -78,7 +84,6 @@ const UploaderForm = (props: UploaderFormProps) => {
         >
           File url
         </Label>
-
         <TextField
           name="fileUrl"
           defaultValue={props.uploader?.fileUrl}
@@ -86,9 +91,7 @@ const UploaderForm = (props: UploaderFormProps) => {
           errorClassName="rw-input rw-input-error"
           validation={{ required: true }}
         />
-
         <FieldError name="fileUrl" className="rw-field-error" />
-
         <Label
           name="fileType"
           className="rw-label"
@@ -96,7 +99,6 @@ const UploaderForm = (props: UploaderFormProps) => {
         >
           File type
         </Label>
-
         <TextField
           name="fileType"
           defaultValue={props.uploader?.fileType}
@@ -104,9 +106,7 @@ const UploaderForm = (props: UploaderFormProps) => {
           errorClassName="rw-input rw-input-error"
           validation={{ required: true }}
         />
-
         <FieldError name="fileType" className="rw-field-error" />
-
         <Label
           name="createdAt"
           className="rw-label"
@@ -114,7 +114,6 @@ const UploaderForm = (props: UploaderFormProps) => {
         >
           Created at
         </Label>
-
         <DateField
           name="createdAt"
           defaultValue={props.uploader?.createdAt}
@@ -122,18 +121,15 @@ const UploaderForm = (props: UploaderFormProps) => {
           errorClassName="rw-input rw-input-error"
           validation={{ required: true }}
         />
-
         <FieldError name="createdAt" className="rw-field-error" />
-
-        <ImageUploader
-          withIcon={true}
-          withPreview={false}
-          buttonText="Choose images"
-          onChange={(image) => onDrop(image)}
-          imgExtension={['.csv']}
-          maxFileSize={99999999999}
-        />
-
+        {preview.preview && (
+          <>
+            <img src={preview.preview} alt="preview" />
+          </>
+        )}
+        <hr></hr>
+        <input type="file" name="file" onChange={handleFileChange}></input>
+        {status && <h4>{status}</h4>}
         <div className="rw-button-group">
           <Submit disabled={props.loading} className="rw-button rw-button-blue">
             Save
@@ -145,7 +141,3 @@ const UploaderForm = (props: UploaderFormProps) => {
 }
 
 export default UploaderForm
-function useFileUpload(): { files: any; fileNames: any; fileTypes: any; totalSize: any; totalSizeInBytes: any; handleDragDropEvent: any; clearAllFiles: any; createFormData: any; setFiles: any; removeFile: any } {
-  throw new Error('Function not implemented.')
-}
-
