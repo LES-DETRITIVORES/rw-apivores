@@ -2,10 +2,9 @@ import { navigate, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 import { useState } from 'react'
-
 import UploaderForm from 'src/components/Uploader/UploaderForm'
 // @ts-ignore
-import type { CreateUploaderInput } from 'types/graphql'
+import type { CreateUploaderInput, EditUploaderById } from 'types/graphql'
 
 const CREATE_UPLOADER_MUTATION = gql`
   mutation CreateUploaderMutation($input: CreateUploaderInput!) {
@@ -14,7 +13,17 @@ const CREATE_UPLOADER_MUTATION = gql`
     }
   }
 `
-
+export const QUERY = gql`
+  query EditUploaderById($id: Int!) {
+    uploader: uploader(id: $id) {
+      id
+      fileName
+      fileUrl
+      fileType
+      createdAt
+    }
+  }
+`
 const NewUploader = () => {
   const [createUploader, { loading, error }] = useMutation(
     CREATE_UPLOADER_MUTATION,
@@ -33,16 +42,17 @@ const NewUploader = () => {
     data: '',
   })
   const [status, setStatus] = useState('')
-  const onSave = async (input: CreateUploaderInput) => {
+
+  const onSave = async (
+    input: CreateUploaderInput,
+    id?: EditUploaderById['uploader']['id']
+  ) => {
     const formData = new FormData()
     formData.append('file', preview.data)
-    const response = await fetch(
-      `http://localhost:5000/uploads?id=${input.id}`,
-      {
-        method: 'POST',
-        body: formData,
-      }
-    )
+    const response = await fetch(`http://localhost:5000/uploads?id=${id}`, {
+      method: 'POST',
+      body: formData,
+    })
     const responsedData = response.json()
     console.log(responsedData)
     if (response) setStatus(response.statusText)
