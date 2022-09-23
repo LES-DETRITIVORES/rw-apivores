@@ -1,10 +1,10 @@
 import { navigate, routes } from '@redwoodjs/router'
-import { useMutation, useQuery } from '@redwoodjs/web'
+import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 import { useState } from 'react'
 
 import UploaderForm from 'src/components/Uploader/UploaderForm'
-
+// @ts-ignore
 import type { CreateUploaderInput } from 'types/graphql'
 
 const CREATE_UPLOADER_MUTATION = gql`
