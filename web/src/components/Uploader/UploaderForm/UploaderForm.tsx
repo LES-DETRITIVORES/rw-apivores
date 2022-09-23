@@ -9,7 +9,7 @@ import {
 } from '@redwoodjs/forms'
 
 import type { EditUploaderById, UpdateUploaderInput } from 'types/graphql'
-import {  useState } from 'react'
+import { useState } from 'react'
 import { RWGqlError } from 'interfaces'
 
 type FormUploader = NonNullable<EditUploaderById['uploader']>
@@ -22,35 +22,36 @@ interface UploaderFormProps {
 }
 
 const UploaderForm = (props: UploaderFormProps) => {
-
   const onSubmit = async (data: FormUploader) => {
     props.onSave?.(data, props.uploader?.id)
-        const formData = new FormData()
-        formData.append('file', preview.data)
-        const response = await fetch('http://localhost:5000/uploads', {
-          method: 'POST',
-          body: formData,
-        })
-        const responsedData = response.json()
-        console.log(responsedData)
-        if (response) setStatus(response.statusText)
 
+    const formData = new FormData()
+    formData.append('file', preview.data)
+    const response = await fetch(
+      `http://localhost:5000/uploads?id=${props.uploader?.id}`,
+      {
+        method: 'POST',
+        body: formData,
+      }
+    )
+    const responsedData = response.json()
+    console.log(responsedData)
+    if (response) setStatus(response.statusText)
   }
-
   const [preview, setPreview] = useState({
     preview: '',
-    data: ''
+    data: '',
   })
 
   const [status, setStatus] = useState('')
 
-    const handleFileChange = (e) => {
-      const img = {
-        preview: URL.createObjectURL(e.target.files[0]),
-        data: e.target.files[0],
-      }
-      setPreview(img)
+  const handleFileChange = (e) => {
+    const img = {
+      preview: URL.createObjectURL(e.target.files[0]),
+      data: e.target.files[0],
     }
+    setPreview(img)
+  }
 
   return (
     <div className="rw-form-wrapper">
