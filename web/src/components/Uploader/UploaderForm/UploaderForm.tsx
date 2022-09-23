@@ -8,6 +8,7 @@ import {
   DateField,
 } from '@redwoodjs/forms'
 
+// @ts-ignore
 import type { EditUploaderById, UpdateUploaderInput } from 'types/graphql'
 import { useState } from 'react'
 import { RWGqlError } from 'interfaces'
@@ -19,38 +20,15 @@ interface UploaderFormProps {
   onSave?: (data: UpdateUploaderInput, id?: FormUploader['id']) => void
   error?: RWGqlError
   loading?: boolean
+  status?: string
+  handleFileChange?: (e: any) => void
+  preview?: string
+  data?: string
 }
 
 const UploaderForm = (props: UploaderFormProps) => {
   const onSubmit = async (data: FormUploader) => {
     props.onSave?.(data, props.uploader?.id)
-
-    const formData = new FormData()
-    formData.append('file', preview.data)
-    const response = await fetch(
-      `http://localhost:5000/uploads?id=${props.uploader?.id}`,
-      {
-        method: 'POST',
-        body: formData,
-      }
-    )
-    const responsedData = response.json()
-    console.log(responsedData)
-    if (response) setStatus(response.statusText)
-  }
-  const [preview, setPreview] = useState({
-    preview: '',
-    data: '',
-  })
-
-  const [status, setStatus] = useState('')
-
-  const handleFileChange = (e) => {
-    const img = {
-      preview: URL.createObjectURL(e.target.files[0]),
-      data: e.target.files[0],
-    }
-    setPreview(img)
   }
 
   return (
@@ -123,14 +101,18 @@ const UploaderForm = (props: UploaderFormProps) => {
           validation={{ required: true }}
         />
         <FieldError name="createdAt" className="rw-field-error" />
-        {preview.preview && (
+        {props.preview && (
           <>
-            <img src={preview.preview} alt="preview" />
+            <img src={props.preview} alt="preview" />
           </>
         )}
         <hr></hr>
-        <input type="file" name="file" onChange={handleFileChange}></input>
-        {status && <h4>{status}</h4>}
+        <input
+          type="file"
+          name="file"
+          onChange={props.handleFileChange}
+        ></input>
+        {props.status && <h4>{props.status}</h4>}
         <div className="rw-button-group">
           <Submit disabled={props.loading} className="rw-button rw-button-blue">
             Save
