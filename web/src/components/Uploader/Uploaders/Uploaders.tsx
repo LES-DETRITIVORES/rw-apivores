@@ -6,7 +6,13 @@ import { toast } from '@redwoodjs/web/toast'
 
 import { QUERY } from 'src/components/Uploader/UploadersCell'
 
-import type { DeleteUploaderMutationVariables, FindUploaders } from 'types/graphql'
+// @ts-ignore
+import type {
+  DeleteUploaderMutationVariables,
+  FindUploaders,
+} from 'types/graphql'
+
+import { useEffect, useState } from 'react'
 
 const DELETE_UPLOADER_MUTATION = gql`
   mutation DeleteUploaderMutation($id: Int!) {
@@ -36,7 +42,6 @@ const truncate = (value: string | number) => {
   }
   return output ?? ''
 }
-
 
 const jsonTruncate = (obj: unknown) => {
   return truncate(JSON.stringify(obj, null, 2))
@@ -77,6 +82,19 @@ const UploadersList = ({ uploaders }: FindUploaders) => {
     }
   }
 
+  const [readFile, setReadFile] = useState({
+    preview: '',
+    data: '',
+  })
+  useEffect(() => {
+    fetch('http://localhost:5000/read')
+      .then((response) => response.json())
+      .then((data) => {
+        setReadFile(data)
+        console.log(data)
+      })
+  }, [])
+
   return (
     <div className="rw-segment rw-table-wrapper-responsive">
       <table className="rw-table">
@@ -98,6 +116,7 @@ const UploadersList = ({ uploaders }: FindUploaders) => {
               <td>{truncate(uploader.fileUrl)}</td>
               <td>{truncate(uploader.fileType)}</td>
               <td>{truncate(uploader.createdAt)}</td>
+              <td>{readFile.toString()}</td>
               <td>
                 <nav className="rw-table-actions">
                   <Link
