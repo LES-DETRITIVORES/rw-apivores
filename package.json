@@ -1,4 +1,5 @@
 {
+  "name": "rw-planivores",
   "private": true,
   "workspaces": {
     "packages": [
@@ -8,7 +9,9 @@
     ]
   },
   "devDependencies": {
-    "@redwoodjs/core": "3.0.1"
+    "@redwoodjs/core": "3.0.1",
+    "@semantic-release/github": "^8.0.6",
+    "semantic-release": "^19.0.5"
   },
   "scripts": {
     "start": "concurrently \"cd backend && yarn dev && cd ..\" \"yarn rw dev\""
@@ -19,6 +22,11 @@
   },
   "prisma": {
     "seed": "yarn rw exec seed"
+  },
+  "release": {
+    "branches": [
+      "main"
+    ]
   },
   "packageManager": "yarn@3.2.1",
   "dependencies": {
