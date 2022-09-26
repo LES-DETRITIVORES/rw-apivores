@@ -1,62 +1,20 @@
-import express, { Request, Response, Express } from 'express'
+import express, { Express } from 'express'
 import cors from 'cors'
-import multer, { diskStorage, StorageEngine } from 'multer'
-import fs from 'fs'
-import csv from 'csvtojson'
+import multer from 'multer'
+import uploadRequest from './requests/upload.request'
+import readRequest from './requests/read.request'
+import convertRequest from './requests/convert.request'
+import storage from './storage/disk'
 
 const app: Express = express()
 const port: number = 5000
-
-const storage: StorageEngine = diskStorage({
-  destination: (req: Request, file: Express.Multer.File, cb) => {
-    cb(null, './src/uploads/')
-    req.body.file = file
-    console.log(file)
-  },
-  filename: (req: Request, file: Express.Multer.File, cb) => {
-    cb(null, file.originalname)
-    req.body.file = file
-  },
-})
 
 const upload = multer({ storage: storage })
 
 app.use(cors())
 
-app.post('/uploads', upload.single('file'), (req: Request, res: Response) => {
-  res.setHeader('Access-Control-Allow-Origin', '*')
-  const { id } = req.query
-  fs.renameSync(
-    `./src/uploads/${req?.body?.file?.originalname}`,
-    `./src/uploads/upload-${id}.${
-      req?.body?.file?.mimetype === 'text/csv' ? 'pdf' : 'csv'
-    }`
-  )
-  res.status(200).send({ message: 'File uploaded successfully' })
-  console.log(req.file)
-})
-
-app.get('/read', (req: Request, res: Response) => {
-  res.setHeader('Access-Control-Allow-Origin', '*')
-  const { id } = req.query
-  fs.readFile(`./src/uploads/upload-${id}.json`, 'utf8', (err, data) => {
-    if (err) {
-      res.status(500).send({ message: `Error reading file - ${err}` })
-      return
-    }
-    res.status(200).send({ data: JSON.parse(data) })
-  })
-})
-
-app.get('/convert', (req: Request, res: Response) => {
-  res.setHeader('Access-Control-Allow-Origin', '*')
-  const { id } = req.query
-  csv()
-    .fromFile(`./src/uploads/upload-${id}.csv`)
-    .then((data: any) => {
-      res.status(200).send(data)
-      fs.writeFileSync(`./src/uploads/upload-${id}.json`, JSON.stringify(data))
-    })
-})
+app.post('/uploads', upload.single('file'), uploadRequest)
+app.get('/read', readRequest)
+app.get('/convert', convertRequest)
 
 app.listen(port, () => console.log(`API listening at ${port}`))
