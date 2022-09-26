@@ -82,9 +82,13 @@ const UploadersList = ({ uploaders }: FindUploaders) => {
     }
   }
 
-  type Preview = {
-    preview: string
-    data: string
+  type Data = {
+    data?: [
+      {
+        John: string
+        Doe: string
+      }
+    ]
   }
   type UploaderProps = {
     id: number
@@ -93,14 +97,11 @@ const UploadersList = ({ uploaders }: FindUploaders) => {
     fileType: string
     createdAt: string
   }
-  const [readFile, setReadFile] = useState<Preview>({
-    preview: '',
-    data: '',
-  })
-  const id = uploaders.map((uploader) => uploader.id)
+  const [readFile, setReadFile] = useState<Data>([{}] as any)
+  const id = uploaders.map((uploader: UploaderProps) => uploader.id)
   console.log(id)
   useEffect(() => {
-    fetch(`http://localhost:5000/read?id=${uploaders.id}`)
+    fetch(`http://localhost:5000/read?id=${id}`)
       .then((response) => response.json())
       .then((data) => {
         setReadFile(data)
@@ -129,7 +130,12 @@ const UploadersList = ({ uploaders }: FindUploaders) => {
               <td>{truncate(uploader.fileUrl)}</td>
               <td>{truncate(uploader.fileType)}</td>
               <td>{truncate(uploader.createdAt)}</td>
-              <td>{readFile.toString()}</td>
+              {readFile?.data?.map((item) => (
+                <>
+                  <td>{item.John}</td>
+                  <td>{item.Doe}</td>
+                </>
+              ))}
               <td>
                 <nav className="rw-table-actions">
                   <Link

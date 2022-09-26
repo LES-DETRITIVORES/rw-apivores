@@ -10,7 +10,7 @@ import {
 
 // @ts-ignore
 import type { EditUploaderById, UpdateUploaderInput } from 'types/graphql'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { RWGqlError } from 'interfaces'
 
 type FormUploader = NonNullable<EditUploaderById['uploader']>
@@ -27,9 +27,27 @@ interface UploaderFormProps {
 }
 
 const UploaderForm = (props: UploaderFormProps) => {
+  type Data = {
+    data?: [
+      {
+        John: string
+        Doe: string
+      }
+    ]
+  }
+  const [preview, setPreview] = useState<Data>([{}] as any)
   const onSubmit = async (data: FormUploader) => {
     props.onSave?.(data, props.uploader?.id)
   }
+  useEffect(() => {
+    fetch(`http://localhost:5000/read?id=${props.uploader?.id}`, {
+      method: 'GET',
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setPreview(data)
+      })
+  }, [props.uploader?.id])
 
   return (
     <div className="rw-form-wrapper">
@@ -101,12 +119,12 @@ const UploaderForm = (props: UploaderFormProps) => {
           validation={{ required: true }}
         />
         <FieldError name="createdAt" className="rw-field-error" />
-        {props.preview && (
+        {preview?.data?.map((item) => (
           <>
-            <img src={props.preview} alt="preview" />
+            <td>{item.John}</td>
+            <td>{item.Doe}</td>
           </>
-        )}
-        <hr></hr>
+        ))}
         <input
           type="file"
           name="file"
