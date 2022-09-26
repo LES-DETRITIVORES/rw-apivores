@@ -82,12 +82,25 @@ const UploadersList = ({ uploaders }: FindUploaders) => {
     }
   }
 
-  const [readFile, setReadFile] = useState({
+  type Preview = {
+    preview: string
+    data: string
+  }
+  type UploaderProps = {
+    id: number
+    fileName: string
+    fileUrl: string
+    fileType: string
+    createdAt: string
+  }
+  const [readFile, setReadFile] = useState<Preview>({
     preview: '',
     data: '',
   })
+  const id = uploaders.map((uploader) => uploader.id)
+  console.log(id)
   useEffect(() => {
-    fetch('http://localhost:5000/read')
+    fetch(`http://localhost:5000/read?id=${uploaders.id}`)
       .then((response) => response.json())
       .then((data) => {
         setReadFile(data)
@@ -109,7 +122,7 @@ const UploadersList = ({ uploaders }: FindUploaders) => {
           </tr>
         </thead>
         <tbody>
-          {uploaders.map((uploader) => (
+          {uploaders.map((uploader: UploaderProps) => (
             <tr key={uploader.id}>
               <td>{truncate(uploader.id)}</td>
               <td>{truncate(uploader.fileName)}</td>
