@@ -27,25 +27,25 @@ app.post('/uploads', upload.single('file'), (req: Request, res: Response) => {
   res.setHeader('Access-Control-Allow-Origin', '*')
   const { id } = req.query
   fs.renameSync(
-    `./src/uploads/${req.body.file.originalname}`,
+    `./src/uploads/${req?.body?.file?.originalname}`,
     `./src/uploads/upload-${id}.${
-      req.body.file.mimetype === 'text/csv' ? 'csv' : 'pdf'
+      req?.body?.file?.mimetype === 'text/csv' ? 'pdf' : 'csv'
     }`
   )
   res.status(200).send({ message: 'File uploaded successfully' })
   console.log(req.file)
 })
 
-app.get('/read', upload.single('file'), (req: Request, res: Response) => {
+app.get('/read', (req: Request, res: Response) => {
   res.setHeader('Access-Control-Allow-Origin', '*')
   const { id } = req.query
-  fs.readFileSync(
-    `./src/uploads/upload-${id}.${
-      req.body.file.mimetype === 'text/csv' ? 'csv' : 'pdf'
-    }`,
-    'utf8'
-  )
-  res.status(200).send({ message: 'File read successfully' })
+  fs.readFile(`./src/uploads/upload-${id}.json`, 'utf8', (err, data) => {
+    if (err) {
+      res.status(500).send({ message: `Error reading file - ${err}` })
+      return
+    }
+    res.status(200).send({ data: JSON.parse(data) })
+  })
 })
 
 app.get('/convert', (req: Request, res: Response) => {
