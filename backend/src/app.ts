@@ -26,31 +26,26 @@ app.use(cors())
 app.post('/uploads', upload.single('file'), (req: Request, res: Response) => {
   res.setHeader('Access-Control-Allow-Origin', '*')
   const { id } = req.query
+  fs.renameSync(
+    `./src/uploads/${req.body.file.originalname}`,
+    `./src/uploads/upload-${id}.${
+      req.body.file.mimetype === 'text/csv' ? 'csv' : 'pdf'
+    }`
+  )
   res.status(200).send({ message: 'File uploaded successfully' })
-  if (req.body.file.mimetype === 'application/pdf') {
-    fs.renameSync(
-      `./src/uploads/${req.body.file.originalname}`,
-      `./src/uploads/upload-${id}.pdf`
-    )
-  } else if (req.body.file.mimetype === 'text/csv') {
-    fs.renameSync(
-      `./src/uploads/${req.body.file.originalname}`,
-      `./src/uploads/upload-${id}.csv`
-    )
-  }
   console.log(req.file)
 })
+
 app.get('/read', upload.single('file'), (req: Request, res: Response) => {
   res.setHeader('Access-Control-Allow-Origin', '*')
   const { id } = req.query
-
-  if (req.body.file.mimetype === 'application/pdf') {
-    fs.readFileSync(`./src/uploads/upload-${id}.pdf`)
-    res.status(200).send({ message: 'File read successfully' })
-  } else if (req.body.file.mimetype === 'text/csv') {
-    fs.readFileSync(`./src/uploads/upload-${id}.csv`)
-    res.status(200).send({ message: 'File read successfully' })
-  }
+  fs.readFileSync(
+    `./src/uploads/upload-${id}.${
+      req.body.file.mimetype === 'text/csv' ? 'csv' : 'pdf'
+    }`,
+    'utf8'
+  )
+  res.status(200).send({ message: 'File read successfully' })
 })
 
 app.get('/convert', (req: Request, res: Response) => {
@@ -63,4 +58,5 @@ app.get('/convert', (req: Request, res: Response) => {
       fs.writeFileSync(`./src/uploads/upload-${id}.json`, JSON.stringify(data))
     })
 })
+
 app.listen(port, () => console.log(`API listening at ${port}`))
