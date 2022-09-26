@@ -4,7 +4,7 @@ import multer from 'multer'
 import uploadRequest from './requests/upload.request'
 import readRequest from './requests/read.request'
 import convertRequest from './requests/convert.request'
-import storage from './storage/disk'
+import storage from './utils/disk'
 
 const app: Express = express()
 const port: number = 5000
