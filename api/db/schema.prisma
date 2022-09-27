@@ -18,7 +18,7 @@ model Customer {
   type    String    @default("individual")
   Task    Task[]
   Mission Mission[]
-  Client  Client[]
+  //Customer Customer[]
 }
 
 model Site {
@@ -61,6 +61,7 @@ model Worker {
   name    String
   tasks   Task[]
   Mission Mission[]
+  //Customer Customer[]
 }
 
 model Equipement {
@@ -88,7 +89,6 @@ model Invoce {
   otherHT    String
   otherLines String
   Mission    Mission[]
-  Client     Client[]
 }
 
 model Uploader {
@@ -100,23 +100,25 @@ model Uploader {
 }
 
 model Task {
-  id          Int       @id @default(autoincrement())
-  plannedAt   DateTime  @default(now())
-  worker      Worker    @relation(fields: [workerId], references: [id])
-  workerId    Int
-  customer    Customer  @relation(fields: [customerId], references: [id])
-  customerId  Int
-  site        Site      @relation(fields: [siteId], references: [id])
-  siteId      Int
-  container   Container @relation(fields: [containerId], references: [id])
-  containerId Int
-  material    Material  @relation(fields: [materialId], references: [id])
-  materialId  Int
-  service     Service   @relation(fields: [serviceId], references: [id])
-  serviceId   Int
-  start       DateTime  @default(now())
-  end         DateTime  @default(now())
-  title       String
+  id          Int        @id @default(autoincrement())
+  plannedAt   DateTime
+  worker      Worker?    @relation(fields: [workerId], references: [id])
+  workerId    Int?
+  customer    Customer?  @relation(fields: [customerId], references: [id])
+  customerId  Int?
+  site        Site?      @relation(fields: [siteId], references: [id])
+  siteId      Int?
+  container   Container? @relation(fields: [containerId], references: [id])
+  containerId Int?
+  material    Material?  @relation(fields: [materialId], references: [id])
+  materialId  Int?
+  service     Service?   @relation(fields: [serviceId], references: [id])
+  serviceId   Int?
+  start       DateTime
+  end         DateTime
+  title       String?
+
+  //@@unique([workerId, customerId, siteId, containerId, materialId, serviceId])
 }
 
 model User {
@@ -140,17 +142,4 @@ model Mission {
   workerId   Int?
   invoce     Invoce?  @relation(fields: [invoceId], references: [id])
   invoceId   Int?
-  Client     Client[]
-}
-
-model Client {
-  id         Int      @id @default(autoincrement())
-  name       String   @default("")
-  mission    Mission  @relation(fields: [missionId], references: [id])
-  missionId  Int
-  customer   Customer @relation(fields: [customerId], references: [id])
-  customerId Int
-  invoce     Invoce   @relation(fields: [invoceId], references: [id])
-  invoceId   Int
-  checked    Boolean  @default(false)
 }

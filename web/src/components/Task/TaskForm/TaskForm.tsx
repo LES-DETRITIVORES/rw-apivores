@@ -12,14 +12,11 @@ import {
 import type { EditTaskById, UpdateTaskInput } from 'types/graphql'
 import type { RWGqlError } from '@redwoodjs/forms'
 
-
-
 const formatDatetime = (value) => {
   if (value) {
     return value.replace(/:\d{2}\.\d{3}\w/, '')
   }
 }
-
 
 type FormTask = NonNullable<EditTaskById['task']>
 

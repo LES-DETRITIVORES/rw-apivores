@@ -14,19 +14,17 @@ const CREATE_TASK_MUTATION = gql`
   }
 `
 
+// fix foreign key constraint redwoodjs/redwood#3038
 const NewTask = () => {
-  const [createTask, { loading, error }] = useMutation(
-    CREATE_TASK_MUTATION,
-    {
-      onCompleted: () => {
-        toast.success('Task created')
-        navigate(routes.tasks())
-      },
-      onError: (error) => {
-        toast.error(error.message)
-      },
-    }
-  )
+  const [createTask, { loading, error }] = useMutation(CREATE_TASK_MUTATION, {
+    onCompleted: () => {
+      toast.success('Task created')
+      navigate(routes.tasks())
+    },
+    onError: (error) => {
+      toast.error(error.message)
+    },
+  })
 
   const onSave = (input: CreateTaskInput) => {
     createTask({ variables: { input } })
