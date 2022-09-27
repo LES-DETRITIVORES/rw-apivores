@@ -3,7 +3,7 @@ import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import { QUERY } from 'src/components/Worker/WorkersCell'
-import { confirmated } from 'src/utils/other'
+import { Utils } from 'src/utils'
 
 import { RWGqlError } from '../../../../interfaces'
 
@@ -14,20 +14,9 @@ const DELETE_WORKER_MUTATION = gql`
     }
   }
 `
-
-const MAX_STRING_LENGTH = 150
-
-const truncate = (text) => {
-  let output = text
-  if (text && text.length > MAX_STRING_LENGTH) {
-    output = output.substring(0, MAX_STRING_LENGTH) + '...'
-  }
-  return output
-}
-
 interface Props {
   error: RWGqlError | null
-  onSave: (data, id) => void
+  onSave: (data: any, id: string) => void
 
   name: string
   id: number
@@ -50,8 +39,9 @@ const WorkersList = ({ workers }) => {
     awaitRefetchQueries: true,
   })
 
+  const utils = new Utils()
   const onDeleteClick = (id: number) => {
-    if (confirmated('worker', 'delete', id)) {
+    if (utils.isConfirm('worker', 'delete', id)) {
       deleteWorker({ variables: { id } }).then((r) => console.log(r))
     }
   }
@@ -69,8 +59,8 @@ const WorkersList = ({ workers }) => {
         <tbody>
           {workers.map((worker: Props) => (
             <tr key={worker.id}>
-              <td>{truncate(worker.id)}</td>
-              <td>{truncate(worker.name)}</td>
+              <td>{utils.truncateString(worker.id)}</td>
+              <td>{utils.truncateString(worker.name)}</td>
               <td>
                 <nav className="rw-table-actions">
                   <Link

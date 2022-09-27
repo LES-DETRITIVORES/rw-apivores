@@ -3,7 +3,7 @@ import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import { QUERY } from 'src/components/Material/MaterialsCell'
-import { confirmated } from 'src/utils/other'
+import { Utils } from 'src/utils'
 
 const DELETE_MATERIAL_MUTATION = gql`
   mutation DeleteMaterialMutation($id: Int!) {
@@ -12,16 +12,6 @@ const DELETE_MATERIAL_MUTATION = gql`
     }
   }
 `
-
-const MAX_STRING_LENGTH = 150
-
-const truncate = (text) => {
-  let output = text
-  if (text && text.length > MAX_STRING_LENGTH) {
-    output = output.substring(0, MAX_STRING_LENGTH) + '...'
-  }
-  return output
-}
 
 interface Props {
   id: number
@@ -43,8 +33,9 @@ const MaterialsList = ({ materials }) => {
     awaitRefetchQueries: true,
   })
 
+  const utils = new Utils()
   const onDeleteClick = (id: number) => {
-    if (confirmated('material', 'delete', id)) {
+    if (utils.isConfirm('material', 'delete', id)) {
       deleteMaterial({ variables: { id } }).then((r) => console.log(r))
     }
   }
@@ -62,8 +53,8 @@ const MaterialsList = ({ materials }) => {
         <tbody>
           {materials.map((material: Props) => (
             <tr key={material.id}>
-              <td>{truncate(material.id)}</td>
-              <td>{truncate(material.name)}</td>
+              <td>{utils.truncateString(material.id)}</td>
+              <td>{utils.truncateString(material.name)}</td>
               <td>
                 <nav className="rw-table-actions">
                   <Link

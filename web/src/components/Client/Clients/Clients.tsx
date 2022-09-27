@@ -3,7 +3,7 @@ import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import { QUERY } from 'src/components/Client/ClientsCell'
-import { checkboxInputTag, confirmated } from 'src/utils/other'
+import { Utils } from 'src/utils'
 
 const DELETE_CLIENT_MUTATION = gql`
   mutation DeleteClientMutation($id: Int!) {
@@ -12,16 +12,6 @@ const DELETE_CLIENT_MUTATION = gql`
     }
   }
 `
-
-const MAX_STRING_LENGTH = 150
-
-const truncate = (text) => {
-  let output = text
-  if (text && text.length > MAX_STRING_LENGTH) {
-    output = output.substring(0, MAX_STRING_LENGTH) + '...'
-  }
-  return output
-}
 
 const ClientsList = ({ clients }) => {
   const [deleteClient] = useMutation(DELETE_CLIENT_MUTATION, {
@@ -38,8 +28,9 @@ const ClientsList = ({ clients }) => {
     awaitRefetchQueries: true,
   })
 
+  const utils = new Utils()
   const onDeleteClick = (id: number) => {
-    if (confirmated('client', 'delete', id)) {
+    if (utils.isConfirm('client', 'delete', id)) {
       deleteClient({ variables: { id } }).then((r) => console.log(r))
     }
   }
@@ -60,11 +51,11 @@ const ClientsList = ({ clients }) => {
         <tbody>
           {clients.map((client) => (
             <tr key={client.id}>
-              <td>{truncate(client.id)}</td>
-              <td>{truncate(client.name)}</td>
-              <td>{truncate(client.missionId)}</td>
-              <td>{truncate(client.customerId)}</td>
-              <td>{checkboxInputTag(client.checked)}</td>
+              <td>{utils.truncateString(client.id)}</td>
+              <td>{utils.truncateString(client.name)}</td>
+              <td>{utils.truncateString(client.missionId)}</td>
+              <td>{utils.truncateString(client.customerId)}</td>
+              <td>{utils.checkboxInput(client.checked)}</td>
               <td>
                 <nav className="rw-table-actions">
                   <Link

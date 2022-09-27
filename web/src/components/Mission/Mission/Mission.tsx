@@ -1,7 +1,7 @@
 import { Link, navigate, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
-import { confirmated, timeTag } from 'src/utils/other'
+import { Utils } from 'src/utils'
 
 const DELETE_MISSION_MUTATION = gql`
   mutation DeleteMissionMutation($id: Int!) {
@@ -33,8 +33,9 @@ const Mission = ({ mission }: Props) => {
     },
   })
 
+  const utils = new Utils()
   const onDeleteClick = (id: number) => {
-    if (confirmated('mission', 'delete', id)) {
+    if (utils.isConfirm('mission', 'delete', id)) {
       deleteMission({ variables: { id } }).then((r) => console.log(r))
     }
   }
@@ -59,11 +60,11 @@ const Mission = ({ mission }: Props) => {
             </tr>
             <tr>
               <th>Start</th>
-              <td>{timeTag(mission.start)}</td>
+              <td>{utils.timeTag(mission.start)}</td>
             </tr>
             <tr>
               <th>End</th>
-              <td>{timeTag(mission.end)}</td>
+              <td>{utils.timeTag(mission.end)}</td>
             </tr>
             <tr>
               <th>Worker id</th>

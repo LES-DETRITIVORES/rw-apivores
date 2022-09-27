@@ -8,8 +8,7 @@ import {
   Submit,
   TextField,
 } from '@redwoodjs/forms'
-
-import { formatDatetime } from 'src/utils'
+import { Utils } from 'src/utils'
 
 import { RWGqlError } from '../../../../interfaces'
 
@@ -31,6 +30,7 @@ const MissionForm = (props: Props) => {
   const onSubmit = (data) => {
     props.onSave(data, props?.mission?.id)
   }
+  const utils = new Utils()
   return (
     <div className="rw-form-wrapper">
       <Form onSubmit={onSubmit} error={props.error}>
@@ -51,7 +51,7 @@ const MissionForm = (props: Props) => {
 
         <DatetimeLocalField
           name="start"
-          defaultValue={formatDatetime(props.mission?.start)}
+          defaultValue={utils.formatDateTime(props.mission?.start)}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
           validation={{ required: true }}
@@ -76,7 +76,7 @@ const MissionForm = (props: Props) => {
 
         <DatetimeLocalField
           name="end"
-          defaultValue={formatDatetime(props.mission?.end)}
+          defaultValue={utils.formatDateTime(props.mission?.end)}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
           validation={{ required: true }}

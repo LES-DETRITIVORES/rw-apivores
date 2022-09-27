@@ -1,8 +1,7 @@
 import { Link, navigate, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
-
-import { confirmated } from 'src/utils/other'
+import { Utils } from 'src/utils'
 
 import { RWGqlError } from '../../../../interfaces'
 
@@ -16,7 +15,7 @@ const DELETE_WORKER_MUTATION = gql`
 
 interface Props {
   error?: RWGqlError | null
-  onSave?: (data, id) => void
+  onSave?: (data: any, id: string) => void
   worker?: {
     name?: string
     id?: number
@@ -35,8 +34,9 @@ const Worker = ({ worker }: Props) => {
     },
   })
 
+  const utils = new Utils()
   const onDeleteClick = (id: number) => {
-    if (confirmated('worker', 'delete', id)) {
+    if (utils.isConfirm('worker', 'delete', id)) {
       deleteWorker({ variables: { id } }).then((r) => console.log(r))
     }
   }

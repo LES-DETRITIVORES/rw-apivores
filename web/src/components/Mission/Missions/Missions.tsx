@@ -3,7 +3,7 @@ import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import { QUERY } from 'src/components/Mission/MissionsCell'
-import { confirmated, timeTag } from 'src/utils/other'
+import { Utils } from 'src/utils'
 
 const DELETE_MISSION_MUTATION = gql`
   mutation DeleteMissionMutation($id: Int!) {
@@ -12,16 +12,6 @@ const DELETE_MISSION_MUTATION = gql`
     }
   }
 `
-
-const MAX_STRING_LENGTH = 150
-
-const truncate = (text) => {
-  let output = text
-  if (text && text.length > MAX_STRING_LENGTH) {
-    output = output.substring(0, MAX_STRING_LENGTH) + '...'
-  }
-  return output
-}
 
 const MissionsList = ({ missions }) => {
   const [deleteMission] = useMutation(DELETE_MISSION_MUTATION, {
@@ -38,8 +28,9 @@ const MissionsList = ({ missions }) => {
     awaitRefetchQueries: true,
   })
 
+  const utils = new Utils()
   const onDeleteClick = (id: number) => {
-    if (confirmated('mission', 'delete', id)) {
+    if (utils.isConfirm('mission', 'delete', id)) {
       deleteMission({ variables: { id } })
     }
   }
@@ -68,12 +59,12 @@ const MissionsList = ({ missions }) => {
         <tbody>
           {missions.map((mission: Props) => (
             <tr key={mission.id}>
-              <td>{truncate(mission.id)}</td>
-              <td>{truncate(mission.status)}</td>
-              <td>{timeTag(mission.start)}</td>
-              <td>{timeTag(mission.end)}</td>
-              <td>{truncate(mission.workerId)}</td>
-              <td>{truncate(mission.customerId)}</td>
+              <td>{utils.truncateString(mission.id)}</td>
+              <td>{utils.truncateString(mission.status)}</td>
+              <td>{utils.timeTag(mission.start)}</td>
+              <td>{utils.timeTag(mission.end)}</td>
+              <td>{utils.truncateString(mission.workerId)}</td>
+              <td>{utils.truncateString(mission.customerId)}</td>
               <td>
                 <nav className="rw-table-actions">
                   <Link

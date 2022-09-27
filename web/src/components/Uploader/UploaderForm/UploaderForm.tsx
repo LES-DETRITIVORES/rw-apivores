@@ -5,13 +5,14 @@ import {
   Label,
   TextField,
   Submit,
-  DateField,
+  DatetimeLocalField,
 } from '@redwoodjs/forms'
 
 // @ts-ignore
 import type { EditUploaderById, UpdateUploaderInput } from 'types/graphql'
 import { useEffect, useState } from 'react'
 import { RWGqlError } from 'interfaces'
+import { Utils } from 'src/utils'
 
 type FormUploader = NonNullable<EditUploaderById['uploader']>
 
@@ -27,6 +28,7 @@ interface UploaderFormProps {
 }
 
 const UploaderForm = (props: UploaderFormProps) => {
+  const utils = new Utils()
   type Data = {
     data?: [
       {
@@ -111,9 +113,9 @@ const UploaderForm = (props: UploaderFormProps) => {
         >
           Created at
         </Label>
-        <DateField
+        <DatetimeLocalField
           name="createdAt"
-          defaultValue={props.uploader?.createdAt}
+          defaultValue={utils.formatDateTime(props.uploader?.createdAt)}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
           validation={{ required: true }}

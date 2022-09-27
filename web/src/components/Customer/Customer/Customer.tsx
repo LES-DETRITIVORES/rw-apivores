@@ -1,8 +1,7 @@
 import { Link, navigate, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
-
-import { confirmated } from 'src/utils/other'
+import { Utils } from 'src/utils'
 
 const DELETE_CUSTOMER_MUTATION = gql`
   mutation DeleteCustomerMutation($id: Int!) {
@@ -23,8 +22,9 @@ const Customer = ({ customer }) => {
     },
   })
 
+  const utils = new Utils()
   const onDeleteClick = (id: number) => {
-    if (confirmated('customer', 'delete', id)) {
+    if (utils.isConfirm('customer', 'delete', id)) {
       deleteCustomer({ variables: { id } }).then((r) => console.log(r))
     }
   }

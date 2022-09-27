@@ -3,7 +3,7 @@ import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import { QUERY } from 'src/components/Site/SitesCell'
-import { checkboxInputTag, confirmated } from 'src/utils/other'
+import { Utils } from 'src/utils'
 
 const DELETE_SITE_MUTATION = gql`
   mutation DeleteSiteMutation($id: Int!) {
@@ -13,17 +13,8 @@ const DELETE_SITE_MUTATION = gql`
   }
 `
 
-const MAX_STRING_LENGTH = 15014
-
-const truncate = (text: string) => {
-  let output = text
-  if (text && text.length > MAX_STRING_LENGTH) {
-    output = output.substring(0, MAX_STRING_LENGTH) + '...'
-  }
-  return output
-}
-
-const SitesList = ({ sites }) => {0
+const SitesList = ({ sites }) => {
+  0
   const [deleteSite] = useMutation(DELETE_SITE_MUTATION, {
     onCompleted: () => {
       toast.success('Site deleted')
@@ -38,8 +29,9 @@ const SitesList = ({ sites }) => {0
     awaitRefetchQueries: true,
   })
 
+  const utils = new Utils()
   const onDeleteClick = (id: number) => {
-    if (confirmated('site', 'delete', id)) {
+    if (utils.isConfirm('site', 'delete', id)) {
       deleteSite({ variables: { id } }).then((r) => console.log(r))
     }
   }
@@ -66,17 +58,17 @@ const SitesList = ({ sites }) => {0
         <tbody>
           {sites.map((site) => (
             <tr key={site.id}>
-              <td>{truncate(site.id)}</td>
-              <td>{truncate(site.name)}</td>
-              <td>{truncate(site.type)}</td>
-              <td>{truncate(site.commercial)}</td>
-              <td>{checkboxInputTag(site.active)}</td>
-              <td>{truncate(site.contact)}</td>
-              <td>{truncate(site.siret)}</td>
-              <td>{truncate(site.mail)}</td>
-              <td>{truncate(site.phone)}</td>
-              <td>{truncate(site.billingAddress)}</td>
-              <td>{truncate(site.typeofPass)}</td>
+              <td>{utils.truncateString(site.id)}</td>
+              <td>{utils.truncateString(site.name)}</td>
+              <td>{utils.truncateString(site.type)}</td>
+              <td>{utils.truncateString(site.commercial)}</td>
+              <td>{utils.checkboxInput(site.active)}</td>
+              <td>{utils.truncateString(site.contact)}</td>
+              <td>{utils.truncateString(site.siret)}</td>
+              <td>{utils.truncateString(site.mail)}</td>
+              <td>{utils.truncateString(site.phone)}</td>
+              <td>{utils.truncateString(site.billingAddress)}</td>
+              <td>{utils.truncateString(site.typeofPass)}</td>
               <td>
                 <nav className="rw-table-actions">
                   <Link

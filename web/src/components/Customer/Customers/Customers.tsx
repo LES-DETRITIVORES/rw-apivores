@@ -3,7 +3,7 @@ import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import { QUERY } from 'src/components/Customer/CustomersCell'
-import { confirmated } from 'src/utils/other'
+import { Utils } from 'src/utils'
 
 import { RWGqlError } from '../../../../interfaces'
 
@@ -15,19 +15,9 @@ const DELETE_CUSTOMER_MUTATION = gql`
   }
 `
 
-const MAX_STRING_LENGTH = 150
-
-const truncate = (text) => {
-  let output = text
-  if (text && text.length > MAX_STRING_LENGTH) {
-    output = output.substring(0, MAX_STRING_LENGTH) + '...'
-  }
-  return output
-}
-
 type Props = {
   error: RWGqlError | null
-  onSave: (data, id) => void
+  onSave: (data: any, id: string) => void
   id: number
   name: string
   role: string
@@ -49,8 +39,10 @@ const CustomersList = ({ customers }) => {
     awaitRefetchQueries: true,
   })
 
+  const utils = new Utils()
+
   const onDeleteClick = (id: number) => {
-    if (confirmated('customer', 'delete', id)) {
+    if (utils.isConfirm('customer', 'delete', id)) {
       deleteCustomer({ variables: { id } }).then((r) => console.log(r))
     }
   }
@@ -70,10 +62,10 @@ const CustomersList = ({ customers }) => {
         <tbody>
           {customers.map((customer: Props) => (
             <tr key={customer.id}>
-              <td>{truncate(customer.id)}</td>
-              <td>{truncate(customer.name)}</td>
-              <td>{truncate(customer.role)}</td>
-              <td>{truncate(customer.type)}</td>
+              <td>{utils.truncateString(customer.id)}</td>
+              <td>{utils.truncateString(customer.name)}</td>
+              <td>{utils.truncateString(customer.role)}</td>
+              <td>{utils.truncateString(customer.type)}</td>
               <td>
                 <nav className="rw-table-actions">
                   <Link

@@ -1,8 +1,8 @@
 import { Link, routes, navigate } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
+import { Utils } from 'src/utils'
 
-import { checkboxInputTag, confirmated } from 'src/utils/other'
 import { SiteProps } from '../../../../interfaces'
 
 const DELETE_SITE_MUTATION = gql`
@@ -23,8 +23,10 @@ const Site = ({ site }: SiteProps) => {
     },
   })
 
+  const utils = new Utils()
+
   const onDeleteClick = (id: number) => {
-    if (confirmated('site', 'delete', id)) {
+    if (utils.isConfirm('site', 'delete', id)) {
       deleteSite({ variables: { id } }).then((r) => console.log(r))
     }
   }
@@ -57,7 +59,7 @@ const Site = ({ site }: SiteProps) => {
             </tr>
             <tr>
               <th>Active</th>
-              <td>{checkboxInputTag(site.active)}</td>
+              <td>{utils.checkboxInput(site.active)}</td>
             </tr>
             <tr>
               <th>Contact</th>

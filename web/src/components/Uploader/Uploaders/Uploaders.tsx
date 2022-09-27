@@ -13,6 +13,7 @@ import type {
 } from 'types/graphql'
 
 import { useEffect, useState } from 'react'
+import { Utils } from 'src/utils'
 
 const DELETE_UPLOADER_MUTATION = gql`
   mutation DeleteUploaderMutation($id: Int!) {
@@ -21,45 +22,6 @@ const DELETE_UPLOADER_MUTATION = gql`
     }
   }
 `
-
-const MAX_STRING_LENGTH = 150
-
-const formatEnum = (values: string | string[] | null | undefined) => {
-  if (values) {
-    if (Array.isArray(values)) {
-      const humanizedValues = values.map((value) => humanize(value))
-      return humanizedValues.join(', ')
-    } else {
-      return humanize(values as string)
-    }
-  }
-}
-
-const truncate = (value: string | number) => {
-  const output = value?.toString()
-  if (output?.length > MAX_STRING_LENGTH) {
-    return output.substring(0, MAX_STRING_LENGTH) + '...'
-  }
-  return output ?? ''
-}
-
-const jsonTruncate = (obj: unknown) => {
-  return truncate(JSON.stringify(obj, null, 2))
-}
-
-const timeTag = (datetime?: string) => {
-  return (
-    datetime && (
-      <time dateTime={datetime} title={datetime}>
-        {new Date(datetime).toUTCString()}
-      </time>
-    )
-  )
-}
-
-const checkboxInputTag = (checked: boolean) => {
-  return <input type="checkbox" checked={checked} disabled />
-}
 
 const UploadersList = ({ uploaders }: FindUploaders) => {
   const [deleteUploader] = useMutation(DELETE_UPLOADER_MUTATION, {
@@ -109,6 +71,8 @@ const UploadersList = ({ uploaders }: FindUploaders) => {
       })
   }, [])
 
+  const utils = new Utils()
+
   return (
     <div className="rw-segment rw-table-wrapper-responsive">
       <table className="rw-table">
@@ -125,11 +89,11 @@ const UploadersList = ({ uploaders }: FindUploaders) => {
         <tbody>
           {uploaders.map((uploader: UploaderProps) => (
             <tr key={uploader.id}>
-              <td>{truncate(uploader.id)}</td>
-              <td>{truncate(uploader.fileName)}</td>
-              <td>{truncate(uploader.fileUrl)}</td>
-              <td>{truncate(uploader.fileType)}</td>
-              <td>{truncate(uploader.createdAt)}</td>
+              <td>{utils.truncateString(uploader.id)}</td>
+              <td>{utils.truncateString(uploader.fileName)}</td>
+              <td>{utils.truncateString(uploader.fileUrl)}</td>
+              <td>{utils.truncateString(uploader.fileType)}</td>
+              <td>{utils.truncateString(uploader.createdAt)}</td>
               {readFile?.data?.map((item) => (
                 <>
                   <td>{item.John}</td>

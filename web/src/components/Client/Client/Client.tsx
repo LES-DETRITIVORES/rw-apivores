@@ -1,8 +1,7 @@
 import { Link, routes, navigate } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
-
-import { checkboxInputTag, confirmated } from 'src/utils/other'
+import { Utils } from 'src/utils'
 
 const DELETE_CLIENT_MUTATION = gql`
   mutation DeleteClientMutation($id: Int!) {
@@ -23,8 +22,10 @@ const Client = ({ client }) => {
     },
   })
 
+  const utils = new Utils()
+
   const onDeleteClick = (id: number) => {
-    if (confirmated('client', 'delete', id)) {
+    if (utils.isConfirm('client', 'delete', id)) {
       deleteClient({ variables: { id } }).then((r) => console.log(r))
     }
   }
@@ -57,7 +58,7 @@ const Client = ({ client }) => {
             </tr>
             <tr>
               <th>Checked</th>
-              <td>{checkboxInputTag(client.checked)}</td>
+              <td>{utils.checkboxInput(client.checked)}</td>
             </tr>
           </tbody>
         </table>
