@@ -24,7 +24,7 @@ export const QUERY = gql`
     }
   }
 `
-const UPDATE_TASK_MUTATION = gql`
+export const UPDATE_TASK_MUTATION = gql`
   mutation UpdateTaskMutation($id: Int!, $input: UpdateTaskInput!) {
     updateTask(id: $id, input: $input) {
       id
@@ -49,30 +49,26 @@ export const Failure = ({ error }: CellFailureProps) => (
 )
 
 export const Success = ({ task }: CellSuccessProps<EditTaskById>) => {
-  const [updateTask, { loading, error }] = useMutation(
-    UPDATE_TASK_MUTATION,
-    {
-      onCompleted: () => {
-        toast.success('Task updated')
-        navigate(routes.tasks())
-      },
-      onError: (error) => {
-        toast.error(error.message)
-      },
-    }
-  )
+  const [updateTask, { loading, error }] = useMutation(UPDATE_TASK_MUTATION, {
+    onCompleted: () => {
+      toast.success('Task updated')
+      navigate(routes.tasks())
+    },
+    onError: (error) => {
+      toast.error(error.message)
+    },
+  })
 
-  const onSave = (
-    input: UpdateTaskInput,
-    id: EditTaskById['task']['id']
-  ) => {
+  const onSave = (input: UpdateTaskInput, id: EditTaskById['task']['id']) => {
     updateTask({ variables: { id, input } })
   }
 
   return (
     <div className="rw-segment">
       <header className="rw-segment-header">
-        <h2 className="rw-heading rw-heading-secondary">Edit Task {task?.id}</h2>
+        <h2 className="rw-heading rw-heading-secondary">
+          Edit Task {task?.id}
+        </h2>
       </header>
       <div className="rw-segment-main">
         <TaskForm task={task} onSave={onSave} error={error} loading={loading} />

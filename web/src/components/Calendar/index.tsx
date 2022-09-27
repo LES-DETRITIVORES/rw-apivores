@@ -10,6 +10,7 @@ import { navigate, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
+import { QUERY, UPDATE_TASK_MUTATION } from 'src/components/Task/EditTaskCell'
 import MyEvent from '../Events'
 
 interface Props {
@@ -54,33 +55,6 @@ const Calenda = ({ tasks }: Props) => {
     const date = new Date(time.setHours(time.getHours()))
     return date
   }
-  const EDIT_TASK_QUERY = gql`
-    query EditTaskById($id: Int!) {
-      task: task(id: $id) {
-        id
-        plannedAt
-        start
-        end
-        title
-        workerId
-        customerId
-        siteId
-        containerId
-        materialId
-        serviceId
-      }
-    }
-  `
-
-  const UPDATE_TASK_MUTATION = gql`
-    mutation UpdateTaskMutation($id: Int!, $input: UpdateTaskInput!) {
-      updateTask(id: $id, input: $input) {
-        id
-        start
-        end
-      }
-    }
-  `
   const [updateTask] = useMutation(UPDATE_TASK_MUTATION, {
     onCompleted: () => {
       toast.success('Task updated')
@@ -90,7 +64,7 @@ const Calenda = ({ tasks }: Props) => {
     onError: (error) => {
       toast.error(error.message)
     },
-    refetchQueries: [{ query: EDIT_TASK_QUERY }],
+    refetchQueries: [{ query: QUERY }],
     awaitRefetchQueries: true,
   })
   //console.log(data.data?.task)

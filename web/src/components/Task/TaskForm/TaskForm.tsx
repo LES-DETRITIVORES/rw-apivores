@@ -10,6 +10,7 @@ import {
 } from '@redwoodjs/forms'
 
 import type { EditTaskById, UpdateTaskInput } from 'types/graphql'
+// @ts-ignore
 import type { RWGqlError } from '@redwoodjs/forms'
 
 const formatDatetime = (value) => {
@@ -34,7 +35,7 @@ const TaskForm = (props: TaskFormProps) => {
 
   return (
     <div className="rw-form-wrapper">
-      <Form<FormTask> onSubmit={onSubmit} error={props.error}>
+      <Form onSubmit={onSubmit} error={props.error}>
         <FormError
           error={props.error}
           wrapperClassName="rw-form-error-wrapper"
