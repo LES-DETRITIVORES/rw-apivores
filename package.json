@@ -1,5 +1,4 @@
 {
-  "name": "rw-planivores",
   "private": true,
   "workspaces": {
     "packages": [
@@ -9,12 +8,11 @@
     ]
   },
   "devDependencies": {
-    "@redwoodjs/core": "3.0.1",
-    "@semantic-release/github": "^8.0.6",
-    "semantic-release": "^19.0.5"
+    "@redwoodjs/core": "3.0.3"
   },
-  "scripts": {
-    "start": "concurrently \"cd backend && yarn dev && cd ..\" \"yarn rw dev\""
+  "eslintConfig": {
+    "extends": "@redwoodjs/eslint-config",
+    "root": true
   },
   "engines": {
     "node": ">=14.19 <=16.x",
@@ -23,32 +21,5 @@
   "prisma": {
     "seed": "yarn rw exec seed"
   },
-  "release": {
-    "branches": [
-      "main"
-    ]
-  },
-  "packageManager": "yarn@3.2.1",
-  "dependencies": {
-    "@fullcalendar/core": "^5.11.3",
-    "@fullcalendar/daygrid": "^5.11.3",
-    "@fullcalendar/interaction": "^5.11.3",
-    "@fullcalendar/list": "^5.11.3",
-    "@fullcalendar/react": "^5.11.2",
-    "@fullcalendar/timegrid": "^5.11.3",
-    "@headlessui/react": "latest",
-    "@heroicons/react": "^1.0.6",
-    "@mobiscroll/react-lite": "^4.10.9",
-    "clsx": "^1.2.1",
-    "concurrently": "^7.4.0",
-    "dayjs": "^1.11.5",
-    "fullcalendar": "^5.11.3",
-    "moment": "^2.29.4",
-    "react-beautiful-dnd": "^13.1.1",
-    "react-big-calendar": "^1.5.0",
-    "react-date-picker": "^9.0.0",
-    "react-dnd": "^16.0.1",
-    "react-dnd-html5-backend": "^16.0.1",
-    "react-dropzone": "^14.2.2"
-  }
+  "packageManager": "yarn@3.2.3"
 }
