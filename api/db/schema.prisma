@@ -8,20 +8,11 @@ generator client {
   binaryTargets = "native"
 }
 
-// Define your own datamodels here and run `yarn redwood prisma migrate dev`
-// to create migrations for them and apply to your dev DB.
-// TODO: Please remove the following example:
-model UserExample {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
-}
-
 model Exploitation {
   id                    Int     @id @default(autoincrement())
   tourneeId             Int
   immatriculation       String
-  chauffeur             String
+  agent                 String
   date                  DateTime
   type                  String
   clientId              Int
@@ -39,35 +30,78 @@ model Exploitation {
   photos                String
 }
 
+model Usager {
+  id                    Int     @id @default(autoincrement())
+  nom                   String
+  type                  String
+  siret                 String
+  tiers                 String
+  contact               String
+  adresse               String
+  email                 String
+  telephone             String
+  reference             String
+  note                  String
+  actif                 Boolean
+}
+
 model Site {
   id                    Int     @id @default(autoincrement())
-  type                  String
-  actif                 Boolean
-  siret                 String
-  codeFacture           String
-  nomFacture            String
-  contactFacture        String
-  adresseFacture        String
-  emailFacture          String
-  telephoneFacture      String
-  mentionFacture        String
-  index                 Int
-  designation           String
+  usager                String
+  ordre                 Int
+  nom                   String
   adresse               String
   adresse2              String
   codePostal            String
-  villeSite             String
-  etage                 Int
-  ascenseur             Boolean
-  acces                 String
+  ville                 String
   latitude              String
   longitude             String
+  etage                 Int
+  ascenseur             Boolean
+  note                  String
+  actif                 Boolean
 }
 
-model tarif {
+model Contact {
+  id        Int     @id @default(autoincrement())
+  prenom    String
+  nom       String
+}
+
+model Tarif {
   id                    Int     @id @default(autoincrement())
   date                  DateTime
   site                  String
   prestation            String
   prix                  Float
+}
+
+model Agent {
+  id      Int     @id @default(autoincrement())
+  prenom  String
+  nom     String
+  actif   Boolean
+}
+
+model Vehicule {
+  id              Int     @id @default(autoincrement())
+  nom             String
+  immatriculation String
+  identifiant     String
+  couleur         String
+  icone           String
+  actif           Boolean
+  ordre           Int
+}
+
+model Materiel {
+  id        Int     @id @default(autoincrement())
+  nom       String
+  poids     Int
+  actif     Boolean
+}
+
+model Matiere {
+  id        Int     @id @default(autoincrement())
+  nom       String
 }
