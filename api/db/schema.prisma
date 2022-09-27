@@ -16,3 +16,58 @@ model UserExample {
   email String  @unique
   name  String?
 }
+
+model Exploitation {
+  id                    Int     @id @default(autoincrement())
+  tourneeId             Int
+  immatriculation       String
+  chauffeur             String
+  date                  DateTime
+  type                  String
+  clientId              Int
+  client                String
+  site                  String
+  nbContenant           Int
+  typeContenant         String
+  matiere               String
+  poids                 Int
+  qualite3              Int
+  qualite2              Int
+  qualite1              Int
+  commentairesRDV       String
+  commentairesContenu   String
+  photos                String
+}
+
+model Site {
+  id                    Int     @id @default(autoincrement())
+  type                  String
+  actif                 Boolean
+  siret                 String
+  codeFacture           String
+  nomFacture            String
+  contactFacture        String
+  adresseFacture        String
+  emailFacture          String
+  telephoneFacture      String
+  mentionFacture        String
+  index                 Int
+  designation           String
+  adresse               String
+  adresse2              String
+  codePostal            String
+  villeSite             String
+  etage                 Int
+  ascenseur             Boolean
+  acces                 String
+  latitude              String
+  longitude             String
+}
+
+model tarif {
+  id                    Int     @id @default(autoincrement())
+  date                  DateTime
+  site                  String
+  prestation            String
+  prix                  Float
+}
