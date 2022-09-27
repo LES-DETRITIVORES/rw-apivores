@@ -13,38 +13,39 @@ import { toast } from '@redwoodjs/web/toast'
 import { QUERY, UPDATE_TASK_MUTATION } from 'src/components/Task/EditTaskCell'
 import MyEvent from '../Events'
 
-interface Props {
+type Props = {
   tasks: [
     {
+      __typename?: 'Task'
       id: number
       plannedAt: string
       workerId: number
       customerId: number
       siteId: number
       containerId: number
-      serviceId: number
-      equipmentId: number
       materialId: number
-      worker: {
-        name: string
-      }
-      customer: {
-        name: string
-      }
-      site: {
-        name: string
-      }
-      service: {
-        name: string
-      }
-      container: {
-        name: string
-      }
-      material: {
-        name: string
-      }
+      serviceId: number
       start: string
       end: string
+      title: string
+      worker?: {
+        name?: string
+      }
+      customer?: {
+        name?: string
+      }
+      site?: {
+        name?: string
+      }
+      service?: {
+        name?: string
+      }
+      container?: {
+        name?: string
+      }
+      material?: {
+        name?: string
+      }
     }
   ]
 }
@@ -83,7 +84,6 @@ const Calenda = ({ tasks }: Props) => {
       console.log(r)
     )
   }
-  // fonctionne bien avec des données en dur mais pas avec les données de la base
   const lycos = tasks.map((task) => {
     return {
       id: task?.id,
@@ -254,8 +254,8 @@ const Calenda = ({ tasks }: Props) => {
           week: 'Semaine',
           day: 'Jour',
           showColors: 'Afficher les couleurs',
-          showMore: (total) => `${total} tâches`,
-          showMoreTooltip: (total) => `+${total} tâches`,
+          showMore: (total: number) => `${total} tâches`,
+          showMoreTooltip: (total: number) => `+${total} tâches`,
           prev: <ArrowLeftIcon className="w-5 h-5" />,
           work_week: 'Semaine de travail',
         }}
