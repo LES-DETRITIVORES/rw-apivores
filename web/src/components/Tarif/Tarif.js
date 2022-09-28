@@ -7,7 +7,6 @@ const formattedDate = (datetime) => {
 const Tarif = ({ tarif }) => {
   return (
     <div>
-      <h2>{'Fiche Tarif'}</h2>
       <p>{formattedDate(tarif.date)}</p>
       <p>{tarif.prestation}</p>
       <p>{tarif.prix}</p>
