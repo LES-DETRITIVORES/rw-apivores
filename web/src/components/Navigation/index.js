@@ -1,10 +1,25 @@
 import { Disclosure } from '@headlessui/react'
-import { classNames } from 'src/utils/classNames'
-import { MenuAlt2Icon, MenuIcon, SearchIcon } from '@heroicons/react/outline'
+import {
+  CalendarIcon,
+  CubeIcon,
+  DatabaseIcon,
+  DocumentIcon,
+  DocumentTextIcon,
+  FlagIcon,
+  FolderIcon,
+  MenuAlt2Icon,
+  MenuIcon,
+  PaperAirplaneIcon,
+  PresentationChartLineIcon,
+  ScaleIcon,
+  SearchIcon,
+  TemplateIcon,
+  TruckIcon,
+  UserIcon,
+} from '@heroicons/react/outline'
 import { Menu, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
 import { ChevronDownIcon } from '@heroicons/react/solid'
-import { EditInactiveIcon, EditActiveIcon } from '../Icons'
 const Navigation = () => {
   const user = {
     name: 'Tom Cook',
@@ -24,21 +39,36 @@ const Navigation = () => {
           name: 'Contenants',
           href: '#',
           current: true,
-          icon: '',
+          icon: (
+            <CubeIcon
+              className="mr-2 h-5 w-5 text-current"
+              aria-hidden="true"
+            />
+          ),
         },
         {
           id: 2,
           name: 'Véhicules',
           href: '#',
           current: true,
-          icon: '',
+          icon: (
+            <TruckIcon
+              className="mr-2 h-5 w-5 text-current"
+              aria-hidden="true"
+            />
+          ),
         },
         {
           id: 3,
           name: 'Matières collectées',
           href: '#',
           current: true,
-          icon: '',
+          icon: (
+            <PresentationChartLineIcon
+              className="mr-2 h-5 w-5 text-current"
+              aria-hidden="true"
+            />
+          ),
         },
       ],
     },
@@ -54,42 +84,72 @@ const Navigation = () => {
           name: 'Liste des partenaires',
           href: '#',
           current: true,
-          icon: '',
+          icon: (
+            <FlagIcon
+              className="mr-2 h-5 w-5 text-current"
+              aria-hidden="true"
+            />
+          ),
         },
         {
           id: 2,
           name: 'Gestion des contacts',
           href: '#',
           current: true,
-          icon: '',
+          icon: (
+            <UserIcon
+              className="mr-2 h-5 w-5 text-current"
+              aria-hidden="true"
+            />
+          ),
         },
         {
           id: 3,
           name: 'Données et export',
           href: '#',
           current: true,
-          icon: '',
+          icon: (
+            <DatabaseIcon
+              className="mr-2 h-5 w-5 text-current"
+              aria-hidden="true"
+            />
+          ),
         },
         {
           id: 4,
           name: 'Facturation',
           href: '#',
           current: true,
-          icon: '',
+          icon: (
+            <DocumentIcon
+              className="mr-2 h-5 w-5 text-current"
+              aria-hidden="true"
+            />
+          ),
         },
         {
           id: 5,
           name: 'Types de partenaires',
           href: '#',
           current: true,
-          icon: '',
+          icon: (
+            <DocumentTextIcon
+              className="mr-2 h-5 w-5 text-current"
+              aria-hidden="true"
+            />
+          ),
         },
         {
           id: 6,
           name: 'Extranet',
           href: '#',
           current: true,
-          icon: '',
+          icon: (
+            <FolderIcon
+              className="mr-2 h-5 w-5 text-current"
+              aria-hidden="true"
+            />
+          ),
           dropdown: [
             {
               id: 1,
@@ -121,17 +181,49 @@ const Navigation = () => {
           name: 'Calendrier hebdomadaire',
           href: '#',
           current: true,
-          icon: '',
+          icon: (
+            <CalendarIcon
+              className="mr-2 h-5 w-5 text-current"
+              aria-hidden="true"
+            />
+          ),
         },
         {
           id: 2,
           name: 'Planification journalière',
           href: '#',
           current: true,
-          icon: '',
+          icon: (
+            <TemplateIcon
+              className="mr-2 h-5 w-5 text-current"
+              aria-hidden="true"
+            />
+          ),
         },
-        { id: 3, name: 'Suivi de tournée', href: '#', current: true, icon: '' },
-        { id: 4, name: 'Pesée', href: '#', current: true, icon: '' },
+        {
+          id: 3,
+          name: 'Suivi de tournée',
+          href: '#',
+          current: true,
+          icon: (
+            <PaperAirplaneIcon
+              className="mr-2 h-5 w-5 text-current"
+              aria-hidden="true"
+            />
+          ),
+        },
+        {
+          id: 4,
+          name: 'Pesée',
+          href: '#',
+          current: true,
+          icon: (
+            <ScaleIcon
+              className="mr-2 h-5 w-5 text-current"
+              aria-hidden="true"
+            />
+          ),
+        },
       ],
     },
   ]
@@ -266,17 +358,7 @@ const Navigation = () => {
                                             : 'text-gray-900'
                                         } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                                       >
-                                        {active ? (
-                                          <EditActiveIcon
-                                            className="mr-2 h-5 w-5 text-green-400"
-                                            aria-hidden="true"
-                                          />
-                                        ) : (
-                                          <EditInactiveIcon
-                                            className="mr-2 h-5 w-5 text-green-400"
-                                            aria-hidden="true"
-                                          />
-                                        )}
+                                        {active ? item.icon : item.icon}
                                         {item.name}
                                       </button>
                                     )}
@@ -353,17 +435,7 @@ const Navigation = () => {
                                     : 'text-gray-900'
                                 } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                               >
-                                {active ? (
-                                  <EditActiveIcon
-                                    className="mr-2 h-5 w-5 text-green-400"
-                                    aria-hidden="true"
-                                  />
-                                ) : (
-                                  <EditInactiveIcon
-                                    className="mr-2 h-5 w-5 text-green-400"
-                                    aria-hidden="true"
-                                  />
-                                )}
+                                {active ? item.icon : item.icon}
                                 {item.name}
                               </button>
                             )}
