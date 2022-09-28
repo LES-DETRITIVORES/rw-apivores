@@ -6,12 +6,13 @@ import {
 } from '@heroicons/react/outline'
 import { Link } from '@redwoodjs/router'
 const Vehicule = ({ vehicule, show, deleted, edit }) => {
+  let icone
   switch (vehicule.icone) {
     case 'truck':
-      vehicule.icone = <TruckIcon className="w-6 h-6 text-gray-400" />
+      icone = <TruckIcon className="w-6 h-6 text-gray-400" />
       break
     case 'biking':
-      vehicule.icone = (
+      icone = (
         <svg
           version="1.1"
           xmlns="http://www.w3.org/2000/svg"
@@ -73,7 +74,7 @@ const Vehicule = ({ vehicule, show, deleted, edit }) => {
           </span>
         </td>
         <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-          {vehicule.icone}
+          {icone}
         </td>
         <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
           <input type="checkbox" checked={vehicule.actif} disabled />

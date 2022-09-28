@@ -1,10 +1,12 @@
 import { formattedDate } from 'src/utils/formattedDate'
 import { Link } from '@redwoodjs/router'
+
 import {
   EyeIcon,
   PencilAltIcon,
   MinusCircleIcon,
 } from '@heroicons/react/outline'
+
 const Tournee = ({ tournee, edit, show, deleted }) => {
   return (
     <>
