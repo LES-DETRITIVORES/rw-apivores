@@ -13,7 +13,7 @@ model Exploitation {
   tourneeId             Int
   immatriculation       String
   agent                 String
-  date                  DateTime
+  date                  DateTime @default(now())
   type                  String
   clientId              Int
   client                String
@@ -42,12 +42,15 @@ model Usager {
   telephone             String
   reference             String
   note                  String
+  sites                 Site[]
+  contacts              Contact[]
   actif                 Boolean
 }
 
 model Site {
   id                    Int     @id @default(autoincrement())
-  usager                String
+  usager                Usager  @relation(fields: [usagerId], references: [id])
+  usagerId              Int
   ordre                 Int
   nom                   String
   adresse               String
@@ -59,12 +62,15 @@ model Site {
   etage                 Int
   ascenseur             Boolean
   note                  String
+  tarifs                Tarif[]
   actif                 Boolean
 }
 
 model Contact {
   id          Int     @id @default(autoincrement())
-  usager      String
+  usager      Usager  @relation(fields: [usagerId], references: [id])
+  usagerId    Int
+  ordre       Int
   prenom      String
   nom         String
   email       String
@@ -88,11 +94,13 @@ model Inventaire {
  
 model Tarif {
   id                    Int     @id @default(autoincrement())
-  date                  DateTime
-  site                  String
+  date                  DateTime @default(now())
+  site                  Site    @relation(fields: [siteId], references: [id])
+  siteId                Int
   prestation            String
   prix                  Float
   passage               Boolean
+  bac                   Boolean
   actif                 Boolean
 }
 
