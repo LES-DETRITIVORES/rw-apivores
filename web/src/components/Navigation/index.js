@@ -4,10 +4,7 @@ import { MenuAlt2Icon, MenuIcon, SearchIcon } from '@heroicons/react/outline'
 import { Menu, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
 import { ChevronDownIcon } from '@heroicons/react/solid'
-import {
-  EditInactiveIcon,
-  EditActiveIcon,
-} from '../Icons'
+import { EditInactiveIcon, EditActiveIcon } from '../Icons'
 const Navigation = () => {
   const user = {
     name: 'Tom Cook',
@@ -27,14 +24,14 @@ const Navigation = () => {
           name: 'Contenants',
           href: '#',
           current: true,
-          icon: ''
+          icon: '',
         },
         {
           id: 2,
           name: 'Véhicules',
           href: '#',
           current: true,
-          icon: ''
+          icon: '',
         },
         {
           id: 3,
@@ -78,7 +75,7 @@ const Navigation = () => {
           name: 'Facturation',
           href: '#',
           current: true,
-          icon: ''
+          icon: '',
         },
         {
           id: 5,
@@ -103,7 +100,7 @@ const Navigation = () => {
             },
             {
               id: 2,
-              name: "Documents extranet",
+              name: 'Documents extranet',
               href: '#',
               current: true,
               icon: '',
@@ -113,13 +110,30 @@ const Navigation = () => {
       ],
     },
     {
-      id: 3, name: 'Tournées', href: '#', current: false, icon: '',
+      id: 3,
+      name: 'Tournées',
+      href: '#',
+      current: false,
+      icon: '',
       dropdown: [
-        { id: 1, name: 'Calendrier hebdomadaire', href: '#', current: true, icon: '' },
-        { id: 2, name: 'Planification journalière', href: '#', current: true, icon: '' },
+        {
+          id: 1,
+          name: 'Calendrier hebdomadaire',
+          href: '#',
+          current: true,
+          icon: '',
+        },
+        {
+          id: 2,
+          name: 'Planification journalière',
+          href: '#',
+          current: true,
+          icon: '',
+        },
         { id: 3, name: 'Suivi de tournée', href: '#', current: true, icon: '' },
         { id: 4, name: 'Pesée', href: '#', current: true, icon: '' },
-    ] },
+      ],
+    },
   ]
 
   console.log(navigation)
@@ -242,36 +256,34 @@ const Navigation = () => {
                           <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                             <div className="px-1 py-1">
                               {item.dropdown.map((item) => {
-                                return(
-
-                              <Menu.Item key={item.id}>
-                                {({ active }) => (
-                                  <button
-                                    className={`${
-                                      active
-                                        ? 'bg-green-500 text-white'
-                                        : 'text-gray-900'
-                                    } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
-                                  >
-                                    {active ? (
-                                      <EditActiveIcon
-                                        className="mr-2 h-5 w-5 text-green-400"
-                                        aria-hidden="true"
-                                      />
-                                    ) : (
-                                      <EditInactiveIcon
-                                        className="mr-2 h-5 w-5 text-green-400"
-                                        aria-hidden="true"
-                                      />
+                                return (
+                                  <Menu.Item key={item.id}>
+                                    {({ active }) => (
+                                      <button
+                                        className={`${
+                                          active
+                                            ? 'bg-green-500 text-white'
+                                            : 'text-gray-900'
+                                        } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                                      >
+                                        {active ? (
+                                          <EditActiveIcon
+                                            className="mr-2 h-5 w-5 text-green-400"
+                                            aria-hidden="true"
+                                          />
+                                        ) : (
+                                          <EditInactiveIcon
+                                            className="mr-2 h-5 w-5 text-green-400"
+                                            aria-hidden="true"
+                                          />
+                                        )}
+                                        {item.name}
+                                      </button>
                                     )}
-                                    {item.name}
-                                  </button>
-                                )}
-                              </Menu.Item>
+                                  </Menu.Item>
                                 )
                               })}
                             </div>
-
                           </Menu.Items>
                         </Transition>
                       </Menu>
