@@ -2778,12 +2778,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@heroicons/react@npm:^2.0.11":
-  version: 2.0.11
-  resolution: "@heroicons/react@npm:2.0.11"
+"@heroicons/react@npm:^1.0.4":
+  version: 1.0.6
+  resolution: "@heroicons/react@npm:1.0.6"
   peerDependencies:
     react: ">= 16"
-  checksum: 08de055980fbcdcb9c2509ab751064eec11ec02a40e535d368c4bae0fa28b502d6b0c0eb1237652b213fbe543f5ccca461707a4756c34131ff2232ceb6bb5fe7
+  checksum: 04d77c604be6a9d3373e2cf773ef0f3e9fa02b52ed85260c440e629682dc3045935090811dda0423fa9bb2d5f8090cdbdda54c901dd3598c9bad691d0abce3d6
   languageName: node
   linkType: hard
 
@@ -5484,6 +5484,17 @@ __metadata:
   dependencies:
     defer-to-connect: ^1.0.1
   checksum: 0594140e027ce4e98970c6d176457fcbff80900b1b3101ac0d08628ca6d21d70e0b94c6aaada94d4f76c1423fcc7195af83da145ce0fd556fc0595ca74a17b8b
+  languageName: node
+  linkType: hard
+
+"@tailwindcss/forms@npm:^0.5.3":
+  version: 0.5.3
+  resolution: "@tailwindcss/forms@npm:0.5.3"
+  dependencies:
+    mini-svg-data-uri: ^1.2.3
+  peerDependencies:
+    tailwindcss: ">=3.0.0 || >= 3.0.0-alpha.1"
+  checksum: 4881c1d5a9aeaa2eea453dd60a5b7c6671a11f0d74f6075d052a3b4f2d8c7e1f1a42f74fe52421da4c13b19018ab883199f528cd41e6fdb249ed638d3f04cd94
   languageName: node
   linkType: hard
 
@@ -17227,6 +17238,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"mini-svg-data-uri@npm:^1.2.3":
+  version: 1.4.4
+  resolution: "mini-svg-data-uri@npm:1.4.4"
+  bin:
+    mini-svg-data-uri: cli.js
+  checksum: 24545fa30b5a45449241bf19c25b8bc37594b63ec06401b3d563bd1c2e8a6abb7c18741f8b354e0064baa63c291be214154bf3a66f201ae71dfab3cc1a5e3191
+  languageName: node
+  linkType: hard
+
 "minimalistic-assert@npm:^1.0.0, minimalistic-assert@npm:^1.0.1":
   version: 1.0.1
   resolution: "minimalistic-assert@npm:1.0.1"
@@ -20789,8 +20809,9 @@ __metadata:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@headlessui/react": ^1.7.2
-    "@heroicons/react": ^2.0.11
+    "@heroicons/react": ^1.0.4
     "@redwoodjs/core": 3.0.3
+    "@tailwindcss/forms": ^0.5.3
     highcharts: ^10.2.1
     highcharts-react-official: ^3.1.0
     prettier-plugin-tailwindcss: ^0.1.13
