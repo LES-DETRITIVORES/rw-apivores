@@ -321,12 +321,14 @@ const Navigation = () => {
                 className="relative inline-block text-left"
               >
                 <div>
-                  <Menu.Button className="inline-flex w-full justify-center rounded-md bg-black bg-opacity-20 px-2 py-2 text-left text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
-                    {item.name}
-                    <ChevronDownIcon
-                      className="ml-2 -mr-1 h-5 w-5 text-green-200 hover:text-green-100"
-                      aria-hidden="true"
-                    />
+                  <Menu.Button className="inline-flex w-full rounded-md bg-green-800 px-2 py-2 text-sm font-medium text-white hover:bg-green-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+                    <div className="flex items-end justify-end px-5 text-right">
+                      <span>{item.name}</span>
+                      <ChevronDownIcon
+                        className="ml-2 -mr-1 h-5 w-5 text-green-200 hover:text-green-100"
+                        aria-hidden="true"
+                      />
+                    </div>
                   </Menu.Button>
                 </div>
                 <Transition
@@ -338,7 +340,7 @@ const Navigation = () => {
                   leaveFrom="transform opacity-100 scale-100"
                   leaveTo="transform opacity-0 scale-95"
                 >
-                  <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                  <Menu.Items className="absolute left-10 z-50 mt-2 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                     <div className="px-1 py-1">
                       {item.dropdown.map((item) => {
                         return (
