@@ -12,7 +12,17 @@
 import Tarif from './Tarif'
 
 export const generated = () => {
-  return <Tarif />
+  return <Tarif
+    tarif={{
+      id: 1,
+      date: '2022-09-28T12:34:56Z',
+      prestation: 'Collecte biodéchets',
+      prix: 30.00,
+      passage: true,
+      bac: false,
+      actif: true,
+    }}
+  />
 }
 
 export default {
