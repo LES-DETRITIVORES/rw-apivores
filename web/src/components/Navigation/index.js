@@ -259,7 +259,7 @@ const Navigation = () => {
         <div className="">
           <div className="flex items-center justify-between py-4 sm:px-4 md:justify-start md:space-x-10">
             <div className="flex justify-start px-4 md:px-32 lg:w-0 lg:flex-1">
-              <a href="#">
+              <Link to="/">
                 <svg
                   className="w-auto h-8 sm:h-10"
                   fill="currentColor"
@@ -303,7 +303,7 @@ const Navigation = () => {
                   <polygon points="0 40.85 0 39.43 20.3 36.13 19.39 37.69 0 40.85"></polygon>
                   <path d="M102.1,68.69l-.19-1.48,66.17-10.94v.22a1.6,1.6,0,0,1-1.36,1.58Z"></path>
                 </svg>
-              </a>
+              </Link>
             </div>
             <div className="items-center justify-end hidden px-32 md:flex md:flex-1 lg:w-0">
               <div className="flex items-center justify-center px-5">
