@@ -389,7 +389,7 @@ const Navigation = () => {
         </div>
       </div>
 
-      <Disclosure.Panel className="md:hidden ">
+      <Disclosure.Panel className="md:hidden">
         <div className="flex w-full flex-col space-y-1 px-2 pt-2 pb-3 sm:px-3">
           {navigation.map((item) => {
             return (
@@ -399,7 +399,7 @@ const Navigation = () => {
                 className="relative inline-block text-left"
               >
                 <div>
-                  <Menu.Button className="inline-flex w-full rounded-md bg-green-800 px-2 py-2 text-sm font-medium text-white hover:bg-green-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+                  <Menu.Button className="inline-flex w-full rounded-md bg-green-800 px-2 py-4 text-sm font-medium text-white hover:bg-green-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
                     <div className="flex items-end justify-end px-5 text-right">
                       <span>{item.name}</span>
                       <ChevronDownIcon
@@ -445,7 +445,7 @@ const Navigation = () => {
             )
           })}
         </div>
-        <div className="border-t border-gray-700 pt-4 pb-3">
+        <div className="bg-green-800 pt-4 pb-3">
           <div className="flex items-center px-5">
             <div className="flex-shrink-0">
               <img
@@ -466,7 +466,7 @@ const Navigation = () => {
                 key={item.name}
                 as="a"
                 href={item.href}
-                className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
+                className="block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-green-800 hover:text-white"
               >
                 {item.name}
               </Disclosure.Button>
