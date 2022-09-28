@@ -1,5 +1,11 @@
-import { TruckIcon, BikingIcon } from '@heroicons/react/outline'
-const Vehicule = ({ vehicule }) => {
+import {
+  TruckIcon,
+  EyeIcon,
+  MinusCircleIcon,
+  PencilAltIcon,
+} from '@heroicons/react/outline'
+import { Link } from '@redwoodjs/router'
+const Vehicule = ({ vehicule, show, deleted, edit }) => {
   switch (vehicule.icone) {
     case 'truck':
       vehicule.icone = <TruckIcon className="w-6 h-6 text-gray-400" />
@@ -47,7 +53,7 @@ const Vehicule = ({ vehicule }) => {
     <>
       <tr
         key={vehicule.id}
-        className={vehicule.id % 1 === 0 ? 'bg-white' : 'bg-gray-50'}
+        className={vehicule.id % 2 === 0 ? 'bg-white' : 'bg-gray-50'}
       >
         <td className="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
           {vehicule.ordre}
@@ -72,6 +78,26 @@ const Vehicule = ({ vehicule }) => {
         <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
           <input type="checkbox" checked={vehicule.actif} disabled />
         </td>
+        <div className="inline-flex space-x-0">
+          <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
+            <Link to={edit} className="text-indigo-600 hover:text-indigo-900">
+              <PencilAltIcon className="w-5 h-5" />
+            </Link>
+          </td>
+          <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
+            <Link to={show} className="text-indigo-600 hover:text-indigo-900">
+              <EyeIcon className="w-5 h-5" />
+            </Link>
+          </td>
+          <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
+            <Link
+              to={deleted}
+              className="text-indigo-600 hover:text-indigo-900"
+            >
+              <MinusCircleIcon className="w-5 h-5" />
+            </Link>
+          </td>
+        </div>
       </tr>
     </>
   )
