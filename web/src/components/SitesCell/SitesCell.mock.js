@@ -1,0 +1,37 @@
+// Define your own mock data here:
+export const standard = () => ({
+  sites: [
+    {
+      id: 1,
+      ordre: 1,
+      usager: '081 Mairie de Pessac',
+      nom: '081-1 Ecole primaire Briand Pessac',
+      adresse: '20 avenue Roger Cohé',
+      adresse2: '',
+      codePostal: '33600',
+      ville: 'Pessac',
+      note: 'Si besoin 06 28 84 02 95',
+      latitude: '44.8073235',
+      longitude: '-0.6322060',
+      etage: 0,
+      ascenseur: false,
+      actif: true,
+    },
+    {
+      id: 2,
+      ordre: 2,
+      usager: '081 Mairie de Pessac',
+      nom: '081-2 Ecole élémentaire Magonty Pessac',
+      adresse: '12 rue Romainville',
+      adresse2: '',
+      codePostal: '33600',
+      ville: 'Pessac',
+      note: 'Si besoin 07 78 39 21 76',
+      latitude: '44.7930412',
+      longitude: '-0.7050591',
+      etage: 0,
+      ascenseur: false,
+      actif: true,
+    },
+  ],
+})
