@@ -24,5 +24,5 @@ export const Failure = ({ error }) => (
 )
 
 export const Success = ({ vehicule }) => {
-  return <Vehicule vehicule={vehicule} />
+  return (vehicule.nom + " (" + vehicule.immatriculation + ")")
 }

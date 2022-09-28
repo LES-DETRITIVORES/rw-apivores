@@ -1,5 +1,6 @@
 import { formattedDate } from 'src/utils/formattedDate'
 import { Link } from '@redwoodjs/router'
+import VehiculeCell from 'src/components/VehiculeCell'
 
 import {
   EyeIcon,
@@ -21,7 +22,7 @@ const Tournee = ({ tournee, edit, show, deleted }) => {
           {tournee.heure}
         </td>
         <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-          {tournee.vehicule}
+          <VehiculeCell vehicule={tournee.vehicule}/>
         </td>
         <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
           {tournee.agents}
