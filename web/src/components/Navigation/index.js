@@ -1,4 +1,4 @@
-import { Disclosure } from '@headlessui/react'
+import { Disclosure, Menu, Transition } from '@headlessui/react'
 import {
   CalendarIcon,
   CubeIcon,
@@ -16,21 +16,22 @@ import {
   TemplateIcon,
   TruckIcon,
   UserIcon,
+  ChevronRightIcon,
+  HomeIcon,
 } from '@heroicons/react/outline'
-import { Menu, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
 import { ChevronDownIcon } from '@heroicons/react/solid'
-import { HomeIcon } from '@heroicons/react/solid'
+import { Link, navigate, router, routes } from '@redwoodjs/router'
 const Navigation = () => {
-  const pages = [
-    { name: 'Projects', href: '#', current: false },
-    { name: 'Project Nero', href: '#', current: true },
-  ]
   const user = {
     name: 'Tom Cook',
     imageUrl:
       'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
   }
+  const pages = [
+    { name: 'Projects', href: '#', current: false },
+    { name: 'Project Nero', href: '#', current: true },
+  ]
   const navigation = [
     {
       id: 1,
@@ -99,7 +100,7 @@ const Navigation = () => {
         {
           id: 2,
           name: 'Gestion des contacts',
-          href: '#',
+          href: routes.contact(),
           current: true,
           icon: (
             <UserIcon
@@ -329,7 +330,7 @@ const Navigation = () => {
                           key={item.id}
                           className="relative inline-block text-left"
                         >
-                          <div>
+                          <Link to={item.href}>
                             <Menu.Button className="inline-flex justify-center w-full px-6 py-4 text-sm font-medium text-white bg-black rounded-md bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
                               {item.name}
                               <ChevronDownIcon
@@ -337,7 +338,7 @@ const Navigation = () => {
                                 aria-hidden="true"
                               />
                             </Menu.Button>
-                          </div>
+                          </Link>
                           <Transition
                             as={Fragment}
                             enter="transition ease-out duration-100"
@@ -512,15 +513,10 @@ const Navigation = () => {
           {pages.map((page) => (
             <li key={page.name}>
               <div className="flex items-center">
-                <svg
-                  className="flex-shrink-0 w-5 h-5 text-gray-300"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
+                <ChevronRightIcon
+                  className="flex-shrink-0 w-5 h-5 text-gray-400"
                   aria-hidden="true"
-                >
-                  <path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z" />
-                </svg>
+                />
                 <a
                   href={page.href}
                   className="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700"
