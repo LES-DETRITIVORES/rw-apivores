@@ -87,9 +87,9 @@ model Inventaire {
   id        Int     @id @default(autoincrement())
   site      String
   materiel  String
-  matiere   String  
   quantite  Int
   note      String
+  actif     Boolean
 }
  
 model Tarif {
