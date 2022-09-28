@@ -249,6 +249,10 @@ const Navigation = () => {
     { name: 'Settings', href: '#' },
     { name: 'Sign out', href: '#' },
   ]
+
+  if (pageName === '') {
+    pages.pop()
+  }
   return (
     <>
       <Disclosure as="div" className="relative">
