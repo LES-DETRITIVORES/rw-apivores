@@ -28,10 +28,6 @@ const Navigation = () => {
     imageUrl:
       'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
   }
-  const pages = [
-    { name: 'Projects', href: '#', current: false },
-    { name: 'Project Nero', href: '#', current: true },
-  ]
   const navigation = [
     {
       id: 1,
@@ -233,18 +229,37 @@ const Navigation = () => {
       ],
     },
   ]
+  const pageName = window.location.pathname
+    .split('/')
+    .pop()
+    .replace(/^\w/, (c) => c.toUpperCase())
+  const dropdownName = navigation
+    .filter((item) => item.dropdown)
+    .map((item) => item.dropdown)
+    .flat()
+    .filter((item) => item.href === window.location.pathname)
+    .map((item) => item.name)
+    .toString()
+  const pages = [
+    { name: dropdownName, href: '#', current: false },
+    { name: pageName, href: '#', current: true },
+  ]
   const userNavigation = [
     { name: 'Your Profile', href: '#' },
     { name: 'Settings', href: '#' },
     { name: 'Sign out', href: '#' },
   ]
+
+  if (pageName === '') {
+    pages.pop()
+  }
   return (
     <>
       <Disclosure as="div" className="relative">
         <div className="">
           <div className="flex items-center justify-between py-4 sm:px-4 md:justify-start md:space-x-10">
             <div className="flex justify-start px-4 md:px-32 lg:w-0 lg:flex-1">
-              <a href="#">
+              <Link to="/">
                 <svg
                   className="w-auto h-8 sm:h-10"
                   fill="currentColor"
@@ -288,7 +303,7 @@ const Navigation = () => {
                   <polygon points="0 40.85 0 39.43 20.3 36.13 19.39 37.69 0 40.85"></polygon>
                   <path d="M102.1,68.69l-.19-1.48,66.17-10.94v.22a1.6,1.6,0,0,1-1.36,1.58Z"></path>
                 </svg>
-              </a>
+              </Link>
             </div>
             <div className="items-center justify-end hidden px-32 md:flex md:flex-1 lg:w-0">
               <div className="flex items-center justify-center px-5">
