@@ -2,8 +2,8 @@
 export const standard = () => ({
   agent: {
     id: 1,
-    nom: 'Jean',
-    prenom: 'Dupont',
+    nom: 'Zine-Eddine',
+    prenom: '',
     actif: true,
   },
 })

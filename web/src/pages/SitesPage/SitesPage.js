@@ -1,6 +1,7 @@
 import { MetaTags } from '@redwoodjs/web'
 import Navigation from 'src/components/Navigation'
 import SitesCell from 'src/components/SitesCell/SitesCell'
+
 const SitesPage = () => {
   return (
     <>

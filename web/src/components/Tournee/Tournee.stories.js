@@ -19,9 +19,7 @@ export const generated = () => {
         date: '2022-09-28T06:00:00Z',
         heure: '2022-09-28T06:00:00Z',
         vehicule: 'Camion Blanc (GE-810-AM)',
-        agent1: 'Zine-Eddine',
-        agent2: 'Alien',
-        agent3: '',
+        agents: ['Zine-Eddine', 'Alien']
       }
     }
   />

@@ -1,5 +1,6 @@
 import Tarif from 'src/components/Tarif'
 import Table from '../Table'
+
 export const QUERY = gql`
   query TarifsQuery {
     tarifs {
@@ -32,6 +33,13 @@ export const Success = ({ tarifs }) => {
               scope="col"
               className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
             >
+              Date
+            </th>
+
+            <th
+              scope="col"
+              className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
+            >
               Prestation
             </th>
             <th
@@ -57,12 +65,6 @@ export const Success = ({ tarifs }) => {
               className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
             >
               Actif
-            </th>
-            <th
-              scope="col"
-              className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
-            >
-              Date
             </th>
             <th
               scope="col"
