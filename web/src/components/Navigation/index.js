@@ -21,7 +21,7 @@ import {
 } from '@heroicons/react/outline'
 import { Fragment } from 'react'
 import { ChevronDownIcon } from '@heroicons/react/solid'
-import { Link, navigate, router, routes } from '@redwoodjs/router'
+import { Link } from '@redwoodjs/router'
 const Navigation = () => {
   const user = {
     name: 'Tom Cook',
@@ -496,17 +496,17 @@ const Navigation = () => {
           </div>
         </Disclosure.Panel>
       </Disclosure>
-      <nav className="flex px-4 py-2 md:px-32" aria-label="Breadcrumb">
+      <nav className="flex px-4 py-4 md:px-32" aria-label="Breadcrumb">
         <ol role="list" className="flex items-center space-x-4">
           <li>
             <div>
-              <a href="#" className="text-gray-400 hover:text-gray-500">
+              <Link to="/" className="text-gray-400 hover:text-gray-500">
                 <HomeIcon
                   className="flex-shrink-0 w-5 h-5"
                   aria-hidden="true"
                 />
                 <span className="sr-only">Home</span>
-              </a>
+              </Link>
             </div>
           </li>
           {pages.map((page) => (
