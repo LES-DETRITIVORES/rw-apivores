@@ -12,7 +12,22 @@
 import Contact from './Contact'
 
 export const generated = () => {
-  return <Contact />
+  return <Contact 
+    contact={{
+      id: '1',
+      ordre: '1',
+      prenom: 'John',
+      nom: 'Doe',
+      email: 'john@doe.co',
+      motdepasse: 'azaerazez',
+      telephone1: '06 12 12 12 12',
+      telephone2: '05 12 12 12 12',
+      remarque: 'super contact',
+      fonction: 'grand chef décideur',
+      extranet: true,
+      actif: true,
+    }}
+  />
 }
 
 export default {
