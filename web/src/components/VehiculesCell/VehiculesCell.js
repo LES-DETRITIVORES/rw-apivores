@@ -1,6 +1,7 @@
 import Vehicule from 'src/components/Vehicule'
 import Table from '../Table'
 import { routes } from '@redwoodjs/router'
+
 export const QUERY = gql`
   query VehiculesQuery {
     vehicules {

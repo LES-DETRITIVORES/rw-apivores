@@ -1,4 +1,5 @@
 import Tournee from 'src/components/Tournee'
+import Table from '../Table'
 
 export const QUERY = gql`
   query TourneesQuery {
@@ -44,24 +45,9 @@ export const Success = ({ tournees }) => {
               scope="col"
               className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
             >
-              Agent 1
+              Agents
             </th>
-            <th
-              scope="col"
-              className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
-            >
-              Agent 2
-            </th>
-            <th
-              scope="col"
-              className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
-            >
-              Agent 3
-            </th>
-            <th
-              scope="col"
-              className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
-            >
+            <th>
               Actions
             </th>
           </tr>
