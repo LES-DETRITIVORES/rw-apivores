@@ -28,10 +28,6 @@ const Navigation = () => {
     imageUrl:
       'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
   }
-  const pages = [
-    { name: 'Projects', href: '#', current: false },
-    { name: 'Project Nero', href: '#', current: true },
-  ]
   const navigation = [
     {
       id: 1,
@@ -232,6 +228,21 @@ const Navigation = () => {
         },
       ],
     },
+  ]
+  const pageName = window.location.pathname
+    .split('/')
+    .pop()
+    .replace(/^\w/, (c) => c.toUpperCase())
+  const dropdownName = navigation
+    .filter((item) => item.dropdown)
+    .map((item) => item.dropdown)
+    .flat()
+    .filter((item) => item.href === window.location.pathname)
+    .map((item) => item.name)
+    .toString()
+  const pages = [
+    { name: dropdownName, href: '#', current: false },
+    { name: pageName, href: '#', current: true },
   ]
   const userNavigation = [
     { name: 'Your Profile', href: '#' },
