@@ -34,7 +34,6 @@ model Usager {
   id                    Int     @id @default(autoincrement())
   nom                   String
   type                  String
-  siret                 String
   tiers                 String
   contact               String
   adresse               String
