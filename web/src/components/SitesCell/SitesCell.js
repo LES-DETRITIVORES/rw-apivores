@@ -4,6 +4,19 @@ export const QUERY = gql`
   query SitesQuery {
     sites {
       id
+      ordre
+      usager
+      nom
+      adresse
+      adresse2
+      codePostal
+      ville
+      note
+      latitude
+      longitude
+      etage
+      ascenseur
+      actif
     }
   }
 `

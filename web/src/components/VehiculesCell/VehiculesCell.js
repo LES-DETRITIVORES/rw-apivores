@@ -6,6 +6,13 @@ export const QUERY = gql`
   query VehiculesQuery {
     vehicules {
       id
+      ordre
+      nom
+      immatriculation
+      identifiant
+      couleur
+      icone
+      actif
     }
   }
 `

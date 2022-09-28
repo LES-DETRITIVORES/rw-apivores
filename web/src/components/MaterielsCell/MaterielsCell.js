@@ -5,6 +5,8 @@ export const QUERY = gql`
   query MaterielsQuery {
     materiels {
       id
+      nom
+      actif
     }
   }
 `

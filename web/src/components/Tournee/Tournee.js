@@ -24,13 +24,7 @@ const Tournee = ({ tournee, edit, show, deleted }) => {
           {tournee.vehicule}
         </td>
         <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-          {tournee.agent1}
-        </td>
-        <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-          {tournee.agent2}
-        </td>
-        <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-          {tournee.agent3}
+          {tournee.agents}
         </td>
         <div className="inline-flex space-x-0">
           <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">

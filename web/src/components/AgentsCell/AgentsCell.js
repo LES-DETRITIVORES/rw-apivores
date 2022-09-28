@@ -4,6 +4,9 @@ export const QUERY = gql`
   query AgentsQuery {
     agents {
       id
+      prenom
+      nom
+      actif
     }
   }
 `

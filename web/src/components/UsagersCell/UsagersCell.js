@@ -4,6 +4,19 @@ export const QUERY = gql`
   query UsagersQuery {
     usagers {
       id
+      nom
+      type
+      tiers
+      adresse
+      adresse2
+      codePostal
+      ville
+      contact
+      email
+      telephone1
+      telephone2
+      note
+      actif
     }
   }
 `
