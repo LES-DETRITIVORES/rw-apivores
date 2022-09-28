@@ -1,5 +1,6 @@
 import Vehicule from 'src/components/Vehicule'
 import Table from '../Table'
+import { routes } from '@redwoodjs/router'
 export const QUERY = gql`
   query VehiculesQuery {
     vehicules {
@@ -63,6 +64,23 @@ export const Success = ({ vehicules }) => {
               className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
             >
               Actif
+            </th>
+            <th
+              scope="col"
+              className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
+            >
+              Actions
+            </th>
+            <th scope="col" className="relative py-3 px-9">
+              <button
+                type="button"
+                onClick={() => {
+                  navigate(routes.newVehicule())
+                }}
+                className="rounded-lg bg-indigo-800 px-2.5 py-2.5 text-sm font-normal text-white hover:bg-indigo-900"
+              >
+                Nouveau véhicule
+              </button>
             </th>
           </tr>
         }
