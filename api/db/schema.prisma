@@ -63,17 +63,37 @@ model Site {
 }
 
 model Contact {
-  id        Int     @id @default(autoincrement())
-  prenom    String
-  nom       String
+  id          Int     @id @default(autoincrement())
+  usager      String
+  prenom      String
+  nom         String
+  email       String
+  motdepasse  String
+  telephone1  String
+  telephone2  String
+  remarque    String
+  fonction    String
+  extranet    Boolean
+  actif       Boolean
 }
 
+model Inventaire {
+  id        Int     @id @default(autoincrement())
+  site      String
+  materiel  String
+  matiere   String  
+  quantite  Int
+  note      String
+}
+ 
 model Tarif {
   id                    Int     @id @default(autoincrement())
   date                  DateTime
   site                  String
   prestation            String
   prix                  Float
+  passage               Boolean
+  actif                 Boolean
 }
 
 model Agent {
@@ -90,8 +110,8 @@ model Vehicule {
   identifiant     String
   couleur         String
   icone           String
-  actif           Boolean
   ordre           Int
+  actif           Boolean
 }
 
 model Materiel {
@@ -104,4 +124,5 @@ model Materiel {
 model Matiere {
   id        Int     @id @default(autoincrement())
   nom       String
+  actif     Boolean
 }
