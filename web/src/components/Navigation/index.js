@@ -41,7 +41,7 @@ const Navigation = () => {
           current: true,
           icon: (
             <CubeIcon
-              className="mr-2 h-5 w-5 text-current"
+              className="w-5 h-5 mr-2 text-current"
               aria-hidden="true"
             />
           ),
@@ -53,7 +53,7 @@ const Navigation = () => {
           current: true,
           icon: (
             <TruckIcon
-              className="mr-2 h-5 w-5 text-current"
+              className="w-5 h-5 mr-2 text-current"
               aria-hidden="true"
             />
           ),
@@ -65,7 +65,7 @@ const Navigation = () => {
           current: true,
           icon: (
             <PresentationChartLineIcon
-              className="mr-2 h-5 w-5 text-current"
+              className="w-5 h-5 mr-2 text-current"
               aria-hidden="true"
             />
           ),
@@ -86,7 +86,7 @@ const Navigation = () => {
           current: true,
           icon: (
             <FlagIcon
-              className="mr-2 h-5 w-5 text-current"
+              className="w-5 h-5 mr-2 text-current"
               aria-hidden="true"
             />
           ),
@@ -98,7 +98,7 @@ const Navigation = () => {
           current: true,
           icon: (
             <UserIcon
-              className="mr-2 h-5 w-5 text-current"
+              className="w-5 h-5 mr-2 text-current"
               aria-hidden="true"
             />
           ),
@@ -110,7 +110,7 @@ const Navigation = () => {
           current: true,
           icon: (
             <DatabaseIcon
-              className="mr-2 h-5 w-5 text-current"
+              className="w-5 h-5 mr-2 text-current"
               aria-hidden="true"
             />
           ),
@@ -122,7 +122,7 @@ const Navigation = () => {
           current: true,
           icon: (
             <DocumentIcon
-              className="mr-2 h-5 w-5 text-current"
+              className="w-5 h-5 mr-2 text-current"
               aria-hidden="true"
             />
           ),
@@ -134,7 +134,7 @@ const Navigation = () => {
           current: true,
           icon: (
             <DocumentTextIcon
-              className="mr-2 h-5 w-5 text-current"
+              className="w-5 h-5 mr-2 text-current"
               aria-hidden="true"
             />
           ),
@@ -146,7 +146,7 @@ const Navigation = () => {
           current: true,
           icon: (
             <FolderIcon
-              className="mr-2 h-5 w-5 text-current"
+              className="w-5 h-5 mr-2 text-current"
               aria-hidden="true"
             />
           ),
@@ -183,7 +183,7 @@ const Navigation = () => {
           current: true,
           icon: (
             <CalendarIcon
-              className="mr-2 h-5 w-5 text-current"
+              className="w-5 h-5 mr-2 text-current"
               aria-hidden="true"
             />
           ),
@@ -195,7 +195,7 @@ const Navigation = () => {
           current: true,
           icon: (
             <TemplateIcon
-              className="mr-2 h-5 w-5 text-current"
+              className="w-5 h-5 mr-2 text-current"
               aria-hidden="true"
             />
           ),
@@ -207,7 +207,7 @@ const Navigation = () => {
           current: true,
           icon: (
             <PaperAirplaneIcon
-              className="mr-2 h-5 w-5 text-current"
+              className="w-5 h-5 mr-2 text-current"
               aria-hidden="true"
             />
           ),
@@ -219,7 +219,7 @@ const Navigation = () => {
           current: true,
           icon: (
             <ScaleIcon
-              className="mr-2 h-5 w-5 text-current"
+              className="w-5 h-5 mr-2 text-current"
               aria-hidden="true"
             />
           ),
@@ -235,11 +235,11 @@ const Navigation = () => {
   return (
     <Disclosure as="div" className="relative">
       <div className="">
-        <div className="flex items-center justify-between py-4 px-4 px-4 sm:px-4 sm:px-4 md:justify-start md:space-x-10">
+        <div className="flex items-center justify-between px-4 py-4 sm:px-4 md:justify-start md:space-x-10">
           <div className="flex justify-start lg:w-0 lg:flex-1">
             <a href="#">
               <svg
-                className="h-8 w-auto sm:h-10"
+                className="w-auto h-8 sm:h-10"
                 fill="currentColor"
                 viewBox="0 0 173.35 111.2"
                 xmlns="http://www.w3.org/2000/svg"
@@ -283,11 +283,11 @@ const Navigation = () => {
               </svg>
             </a>
           </div>
-          <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
+          <div className="items-center justify-end hidden md:flex md:flex-1 lg:w-0">
             <div className="flex items-center justify-center px-5">
               <div className="flex-shrink-0">
                 <img
-                  className="h-10 w-10 rounded-full"
+                  className="w-10 h-10 rounded-full"
                   src={user.imageUrl}
                   alt=""
                 />
@@ -299,19 +299,19 @@ const Navigation = () => {
               </div>
             </div>
           </div>
-          <div className="-mr-2 flex md:hidden">
+          <div className="flex -mr-2 md:hidden">
             {/* Mobile menu button */}
-            <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:text-black focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-green-800">
+            <Disclosure.Button className="inline-flex items-center justify-center p-2 text-gray-400 rounded-md hover:text-black focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-green-800">
               <span className="sr-only">Open main menu</span>
               {open ? (
-                <MenuIcon className="block h-6 w-6" aria-hidden="true" />
+                <MenuIcon className="block w-6 h-6" aria-hidden="true" />
               ) : (
-                <MenuAlt2Icon className="block h-6 w-6" aria-hidden="true" />
+                <MenuAlt2Icon className="block w-6 h-6" aria-hidden="true" />
               )}
             </Disclosure.Button>
           </div>
         </div>
-        <div className="hidden bg-green-800 py-3 md:block">
+        <div className="hidden py-3 bg-green-800 md:block">
           <div className="flex items-center justify-between px-32">
             <div className="hidden md:block">
               <div className="items-baseline space-x-4">
@@ -324,10 +324,10 @@ const Navigation = () => {
                         className="relative inline-block text-left"
                       >
                         <div>
-                          <Menu.Button className="inline-flex w-full justify-center rounded-md bg-black bg-opacity-20 px-6 py-4 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+                          <Menu.Button className="inline-flex justify-center w-full px-6 py-4 text-sm font-medium text-white bg-black rounded-md bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
                             {item.name}
                             <ChevronDownIcon
-                              className="ml-2 -mr-1 h-5 w-5 text-green-200 hover:text-green-100"
+                              className="w-5 h-5 ml-2 -mr-1 text-green-200 hover:text-green-100"
                               aria-hidden="true"
                             />
                           </Menu.Button>
@@ -341,7 +341,7 @@ const Navigation = () => {
                           leaveFrom="transform opacity-100 scale-100"
                           leaveTo="transform opacity-0 scale-95"
                         >
-                          <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                          <Menu.Items className="absolute right-0 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                             <div className="px-1 py-1">
                               {item.dropdown.map((item) => {
                                 return (
@@ -375,12 +375,12 @@ const Navigation = () => {
                 type="text"
                 name="search"
                 id="search"
-                className="block w-full rounded-md border-gray-300 pr-10 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                className="block w-full pr-10 border-gray-300 rounded-md focus:outline-none focus:ring-transparent sm:text-sm"
                 placeholder="Rechercher"
               />
-              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+              <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                 <SearchIcon
-                  className="h-5 w-5 text-gray-400"
+                  className="w-5 h-5 text-gray-400"
                   aria-hidden="true"
                 />
               </div>
@@ -390,7 +390,7 @@ const Navigation = () => {
       </div>
 
       <Disclosure.Panel className="md:hidden">
-        <div className="flex w-full flex-col space-y-1 px-2 pt-2 pb-3 sm:px-3">
+        <div className="flex flex-col w-full px-2 pt-2 pb-3 space-y-1 sm:px-3">
           {navigation.map((item) => {
             return (
               <Menu
@@ -399,11 +399,11 @@ const Navigation = () => {
                 className="relative inline-block text-left"
               >
                 <div>
-                  <Menu.Button className="inline-flex w-full rounded-md bg-green-800 px-2 py-4 text-sm font-medium text-white hover:bg-green-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+                  <Menu.Button className="inline-flex w-full px-2 py-4 text-sm font-medium text-white bg-green-800 rounded-md hover:bg-green-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
                     <div className="flex items-end justify-end px-5 text-right">
                       <span>{item.name}</span>
                       <ChevronDownIcon
-                        className="ml-2 -mr-1 h-5 w-5 text-green-200 hover:text-green-100"
+                        className="w-5 h-5 ml-2 -mr-1 text-green-200 hover:text-green-100"
                         aria-hidden="true"
                       />
                     </div>
@@ -418,7 +418,7 @@ const Navigation = () => {
                   leaveFrom="transform opacity-100 scale-100"
                   leaveTo="transform opacity-0 scale-95"
                 >
-                  <Menu.Items className="absolute left-10 z-50 mt-2 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                  <Menu.Items className="absolute z-50 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg left-10 ring-1 ring-black ring-opacity-5 focus:outline-none">
                     <div className="px-1 py-1">
                       {item.dropdown.map((item) => {
                         return (
@@ -445,11 +445,11 @@ const Navigation = () => {
             )
           })}
         </div>
-        <div className="bg-green-800 pt-4 pb-3">
+        <div className="pt-4 pb-3 bg-green-800">
           <div className="flex items-center px-5">
             <div className="flex-shrink-0">
               <img
-                className="h-10 w-10 rounded-full"
+                className="w-10 h-10 rounded-full"
                 src={user.imageUrl}
                 alt=""
               />
@@ -460,13 +460,13 @@ const Navigation = () => {
               </div>
             </div>
           </div>
-          <div className="mt-3 space-y-1 px-2">
+          <div className="px-2 mt-3 space-y-1">
             {userNavigation.map((item) => (
               <Disclosure.Button
                 key={item.name}
                 as="a"
                 href={item.href}
-                className="block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-green-800 hover:text-white"
+                className="block px-3 py-2 text-base font-medium text-white rounded-md hover:bg-green-800 hover:text-white"
               >
                 {item.name}
               </Disclosure.Button>
