@@ -227,10 +227,6 @@ const Navigation = () => {
       ],
     },
   ]
-
-  console.log(navigation)
-  // dropdown by navigation id
-
   const userNavigation = [
     { name: 'Your Profile', href: '#' },
     { name: 'Settings', href: '#' },
