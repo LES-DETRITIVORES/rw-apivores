@@ -312,23 +312,68 @@ const Navigation = () => {
       </div>
 
       <Disclosure.Panel className="md:hidden ">
-        <div className="space-y-1 px-2 pt-2 pb-3 sm:px-3">
-          {navigation.map((item) => (
-            <Disclosure.Button
-              key={item.name}
-              as="a"
-              href={item.href}
-              className={classNames(
-                item.current
-                  ? 'bg-green-900 text-white'
-                  : 'text-black hover:bg-green-800 hover:text-white',
-                'block rounded-md px-3 py-2 text-base font-medium'
-              )}
-              aria-current={item.current ? 'page' : undefined}
-            >
-              {item.name}
-            </Disclosure.Button>
-          ))}
+        <div className="flex w-full flex-col space-y-1 px-2 pt-2 pb-3 sm:px-3">
+          {navigation.map((item) => {
+            return (
+              <Menu
+                as="div"
+                key={item.id}
+                className="relative inline-block text-left"
+              >
+                <div>
+                  <Menu.Button className="inline-flex w-full justify-center rounded-md bg-black bg-opacity-20 px-2 py-2 text-left text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+                    {item.name}
+                    <ChevronDownIcon
+                      className="ml-2 -mr-1 h-5 w-5 text-green-200 hover:text-green-100"
+                      aria-hidden="true"
+                    />
+                  </Menu.Button>
+                </div>
+                <Transition
+                  as={Fragment}
+                  enter="transition ease-out duration-100"
+                  enterFrom="transform opacity-0 scale-95"
+                  enterTo="transform opacity-100 scale-100"
+                  leave="transition ease-in duration-75"
+                  leaveFrom="transform opacity-100 scale-100"
+                  leaveTo="transform opacity-0 scale-95"
+                >
+                  <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    <div className="px-1 py-1">
+                      {item.dropdown.map((item) => {
+                        return (
+                          <Menu.Item key={item.id}>
+                            {({ active }) => (
+                              <button
+                                className={`${
+                                  active
+                                    ? 'bg-green-500 text-white'
+                                    : 'text-gray-900'
+                                } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                              >
+                                {active ? (
+                                  <EditActiveIcon
+                                    className="mr-2 h-5 w-5 text-green-400"
+                                    aria-hidden="true"
+                                  />
+                                ) : (
+                                  <EditInactiveIcon
+                                    className="mr-2 h-5 w-5 text-green-400"
+                                    aria-hidden="true"
+                                  />
+                                )}
+                                {item.name}
+                              </button>
+                            )}
+                          </Menu.Item>
+                        )
+                      })}
+                    </div>
+                  </Menu.Items>
+                </Transition>
+              </Menu>
+            )
+          })}
         </div>
         <div className="border-t border-gray-700 pt-4 pb-3">
           <div className="flex items-center px-5">
