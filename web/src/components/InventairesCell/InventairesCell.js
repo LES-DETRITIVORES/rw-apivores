@@ -1,5 +1,5 @@
 import Inventaire from 'src/components/Inventaire'
-
+import Table from '../Table'
 export const QUERY = gql`
   query InventairesQuery {
     inventaires {
@@ -19,9 +19,45 @@ export const Failure = ({ error }) => (
 export const Success = ({ inventaires }) => {
   return (
     <>
-      {inventaires.map((item) => (
-        <Inventaire key={item.id} inventaire={item} />
-      ))}
+      <Table
+        parent={
+          <tr>
+            <th
+              scope="col"
+              className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
+            >
+              Date
+            </th>
+            <th
+              scope="col"
+              className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
+            >
+              Materiel
+            </th>
+            <th
+              scope="col"
+              className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
+            >
+              Site
+            </th>
+            <th
+              scope="col"
+              className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
+            >
+              Quantité
+            </th>
+            <th
+              scope="col"
+              className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
+            >
+              Note
+            </th>
+          </tr>
+        }
+        data={inventaires.map((item) => (
+          <Inventaire key={item.id} inventaire={item} />
+        ))}
+      />
     </>
   )
 }

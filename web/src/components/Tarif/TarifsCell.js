@@ -1,15 +1,10 @@
-import Tarif from 'src/components/Tarif'
-import Table from '../Table'
+import Matiere from 'src/components/Matiere'
+import Tarif from './Tarif'
+
 export const QUERY = gql`
-  query TarifsQuery {
-    tarifs {
+  query MatieresQuery {
+    matieres {
       id
-      date
-      prestation
-      prix
-      passage
-      bac
-      actif
     }
   }
 `
@@ -22,7 +17,7 @@ export const Failure = ({ error }) => (
   <div style={{ color: 'red' }}>Error: {error?.message}</div>
 )
 
-export const Success = ({ tarifs }) => {
+export const Success = ({ tarif }) => {
   return (
     <>
       <Table
@@ -66,7 +61,7 @@ export const Success = ({ tarifs }) => {
             </th>
           </tr>
         }
-        data={tarifs.map((item) => (
+        data={tarif.map((item) => (
           <Tarif key={item.id} tarif={item} />
         ))}
       />

@@ -1,16 +1,15 @@
 import { Link, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
+import AgentsCell from 'src/components/AgentsCell/AgentsCell'
 import Navigation from 'src/components/Navigation'
-import TarifsCell from 'src/components/TarifsCell/TarifsCell'
-const TarifPage = () => {
+const AgentPage = () => {
   return (
     <>
-      <MetaTags title="Tarif" description="Tarif page" />
-
+      <MetaTags title="Agent" description="Agent page" />
       <Navigation />
-      <TarifsCell />
+      <AgentsCell />
     </>
   )
 }
 
-export default TarifPage
+export default AgentPage

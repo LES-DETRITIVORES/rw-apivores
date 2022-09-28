@@ -55,7 +55,7 @@ const Navigation = () => {
         {
           id: 2,
           name: 'Véhicules',
-          href: '#',
+          href: '/vehicules',
           current: true,
           icon: (
             <TruckIcon
@@ -67,7 +67,7 @@ const Navigation = () => {
         {
           id: 3,
           name: 'Matières collectées',
-          href: '#',
+          href: '/matieres',
           current: true,
           icon: (
             <PresentationChartLineIcon
@@ -100,7 +100,7 @@ const Navigation = () => {
         {
           id: 2,
           name: 'Gestion des contacts',
-          href: routes.contact(),
+          href: '/partenaires/contacts',
           current: true,
           icon: (
             <UserIcon
@@ -330,15 +330,13 @@ const Navigation = () => {
                           key={item.id}
                           className="relative inline-block text-left"
                         >
-                          <Link to={item.href}>
-                            <Menu.Button className="inline-flex justify-center w-full px-6 py-4 text-sm font-medium text-white bg-black rounded-md bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
-                              {item.name}
-                              <ChevronDownIcon
-                                className="w-5 h-5 ml-2 -mr-1 text-green-200 hover:text-green-100"
-                                aria-hidden="true"
-                              />
-                            </Menu.Button>
-                          </Link>
+                          <Menu.Button className="inline-flex justify-center w-full px-6 py-4 text-sm font-medium text-white bg-black rounded-md bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+                            {item.name}
+                            <ChevronDownIcon
+                              className="w-5 h-5 ml-2 -mr-1 text-green-200 hover:text-green-100"
+                              aria-hidden="true"
+                            />
+                          </Menu.Button>
                           <Transition
                             as={Fragment}
                             enter="transition ease-out duration-100"
@@ -354,16 +352,17 @@ const Navigation = () => {
                                   return (
                                     <Menu.Item key={item.id}>
                                       {({ active }) => (
-                                        <button
+                                        <Link
                                           className={`${
                                             active
                                               ? 'bg-green-500 text-white'
                                               : 'text-gray-900'
                                           } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                                          to={item.href}
                                         >
                                           {active ? item.icon : item.icon}
                                           {item.name}
-                                        </button>
+                                        </Link>
                                       )}
                                     </Menu.Item>
                                   )

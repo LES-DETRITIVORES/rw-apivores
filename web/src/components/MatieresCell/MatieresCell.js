@@ -1,5 +1,5 @@
 import Matiere from 'src/components/Matiere'
-
+import Table from '../Table'
 export const QUERY = gql`
   query MatieresQuery {
     matieres {
@@ -19,9 +19,33 @@ export const Failure = ({ error }) => (
 export const Success = ({ matieres }) => {
   return (
     <>
-      {matieres.map((item) => (
-        <Matiere key={item.id} matiere={item} />
-      ))}
+      <Table
+        parent={
+          <tr>
+            <th
+              scope="col"
+              className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
+            >
+              Id
+            </th>
+            <th
+              scope="col"
+              className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
+            >
+              Nom
+            </th>
+            <th
+              scope="col"
+              className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
+            >
+              Actif
+            </th>
+          </tr>
+        }
+        data={matieres.map((item) => (
+          <Matiere key={item.id} matiere={item} />
+        ))}
+      />
     </>
   )
 }
