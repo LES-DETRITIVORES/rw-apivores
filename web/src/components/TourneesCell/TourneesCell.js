@@ -5,6 +5,10 @@ export const QUERY = gql`
   query TourneesQuery {
     tournees {
       id
+      date
+      heure
+      vehicule
+      agents
     }
   }
 `

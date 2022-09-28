@@ -5,6 +5,7 @@ import {
   PencilAltIcon,
 } from '@heroicons/react/outline'
 import { Link } from '@redwoodjs/router'
+
 const Vehicule = ({ vehicule, show, deleted, edit }) => {
   let icone
   switch (vehicule.icone) {

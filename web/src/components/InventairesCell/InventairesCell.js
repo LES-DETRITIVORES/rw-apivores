@@ -4,6 +4,11 @@ export const QUERY = gql`
   query InventairesQuery {
     inventaires {
       id
+      date
+      materiel
+      site
+      quantite
+      note
     }
   }
 `

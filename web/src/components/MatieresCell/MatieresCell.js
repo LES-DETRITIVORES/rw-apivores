@@ -4,6 +4,8 @@ export const QUERY = gql`
   query MatieresQuery {
     matieres {
       id
+      nom
+      actif
     }
   }
 `
