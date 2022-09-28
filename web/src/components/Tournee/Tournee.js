@@ -1,14 +1,57 @@
-const Tournee = ({ tournee }) => {
+import { formattedDate } from 'src/utils/formattedDate'
+import { Link } from '@redwoodjs/router'
+import {
+  EyeIcon,
+  PencilAltIcon,
+  MinusCircleIcon,
+} from '@heroicons/react/outline'
+const Tournee = ({ tournee, edit, show, deleted }) => {
   return (
-    <div>
-      <p>{tournee.id}</p>
-      <p>{tournee.date}</p>
-      <p>{tournee.heure}</p>
-      <p>{tournee.vehicule}</p>
-      <p>{tournee.agent1}</p>
-      <p>{tournee.agent2}</p>
-      <p>{tournee.agent3}</p>
-    </div>
+    <>
+      <tr
+        key={tournee.id}
+        className={tournee.id % 2 === 0 ? 'bg-white' : 'bg-gray-50'}
+      >
+        <td className="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
+          {formattedDate(tournee.date)}
+        </td>
+        <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
+          {tournee.heure}
+        </td>
+        <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
+          {tournee.vehicule}
+        </td>
+        <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
+          {tournee.agent1}
+        </td>
+        <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
+          {tournee.agent2}
+        </td>
+        <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
+          {tournee.agent3}
+        </td>
+        <div className="inline-flex space-x-0">
+          <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
+            <Link to={edit} className="text-indigo-600 hover:text-indigo-900">
+              <PencilAltIcon className="w-5 h-5" />
+            </Link>
+          </td>
+          <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
+            <Link to={show} className="text-indigo-600 hover:text-indigo-900">
+              <EyeIcon className="w-5 h-5" />
+            </Link>
+          </td>
+          <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
+            <Link
+              to={deleted}
+              className="text-indigo-600 hover:text-indigo-900"
+            >
+              <MinusCircleIcon className="w-5 h-5" />
+            </Link>
+          </td>
+        </div>
+      </tr>
+    </>
   )
 }
 
