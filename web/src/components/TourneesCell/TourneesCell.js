@@ -6,7 +6,6 @@ export const QUERY = gql`
     tournees {
       id
       date
-      heure
       vehicule
       agents
     }

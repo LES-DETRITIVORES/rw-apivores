@@ -30,6 +30,13 @@ model Exploitation {
   photos                String
 }
 
+model Tournee {
+  id                    Int       @id @default(autoincrement())
+  date                  DateTime  @default(now())
+  vehicule              Vehicule?
+  agents                Agent[]
+}
+
 model Usager {
   id                    Int     @id @default(autoincrement())
   nom                   String
@@ -104,10 +111,12 @@ model Tarif {
 }
 
 model Agent {
-  id      Int     @id @default(autoincrement())
-  prenom  String
-  nom     String
-  actif   Boolean
+  id        Int     @id @default(autoincrement())
+  prenom    String
+  nom       String
+  actif     Boolean
+  tournee   Tournee?    @relation(fields: [tourneeId], references: [id])
+  tourneeId Int?
 }
 
 model Vehicule {
@@ -119,6 +128,8 @@ model Vehicule {
   icone           String
   ordre           Int
   actif           Boolean
+  tournee         Tournee?    @relation(fields: [tourneeId], references: [id])
+  tourneeId       Int?        @unique
 }
 
 model Materiel {

@@ -17,7 +17,6 @@ export const generated = () => {
       {
         id: 1,
         date: '2022-09-28T06:00:00Z',
-        heure: '2022-09-28T06:00:00Z',
         vehicule: 1,
         agents: ['Zine-Eddine', 'Alien']
       }

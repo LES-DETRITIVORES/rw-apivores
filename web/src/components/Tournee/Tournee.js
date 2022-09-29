@@ -19,7 +19,7 @@ const Tournee = ({ tournee, edit, show, deleted }) => {
           {formattedDate(tournee.date)}
         </td>
         <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-          {tournee.heure}
+          {tournee.date}
         </td>
         <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
           <VehiculeCell vehicule={tournee.vehicule}/>
