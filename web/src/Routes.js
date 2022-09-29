@@ -9,11 +9,19 @@
 
 import { Set, Router, Route } from '@redwoodjs/router'
 
+import MaterielsLayout from 'src/layouts/MaterielsLayout'
+
 import MatieresLayout from 'src/layouts/MatieresLayout'
 
 const Routes = () => {
   return (
     <Router>
+      <Set wrap={MaterielsLayout}>
+        <Route path="/materiels/new" page={MaterielNewMaterielPage} name="newMateriel" />
+        <Route path="/materiels/{id:Int}/edit" page={MaterielEditMaterielPage} name="editMateriel" />
+        <Route path="/materiels/{id:Int}" page={MaterielMaterielPage} name="materiel" />
+        <Route path="/materiels" page={MaterielMaterielsPage} name="materiels" />
+      </Set>
       <Set wrap={MatieresLayout}>
         <Route path="/matieres/new" page={MatiereNewMatierePage} name="newMatiere" />
         <Route path="/matieres/{id:Int}/edit" page={MatiereEditMatierePage} name="editMatiere" />
