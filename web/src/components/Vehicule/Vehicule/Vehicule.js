@@ -97,12 +97,7 @@ const Vehicule = ({ vehicule }) => {
             </tr>
             <tr>
               <th>Couleur</th>
-              <td>
-                <span
-                  className={`h-2 w-2 rounded-full bg-[${vehicule.couleur}]`}
-                />
-                {vehicule.couleur}
-              </td>
+              <td>{vehicule.couleur}</td>
             </tr>
             <tr>
               <th>Icone</th>

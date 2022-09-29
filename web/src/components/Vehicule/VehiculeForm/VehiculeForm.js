@@ -8,11 +8,15 @@ import {
   CheckboxField,
   Submit,
 } from '@redwoodjs/forms'
-import { ColorPicker, useColor } from 'react-color-palette'
+import { TwitterPicker } from 'react-color'
 
 const VehiculeForm = (props) => {
   const onSubmit = (data) => {
     props.onSave(data, props?.vehicule?.id)
+  }
+
+  const onChangeColor = (color) => {
+    console.log(color)
   }
   return (
     <div className="rw-form-wrapper">
@@ -96,6 +100,12 @@ const VehiculeForm = (props) => {
               className="mt-2 block w-full rounded-md border-gray-300 focus:border-green-700  focus:ring-green-700 sm:text-sm"
               errorClassName="sm:text-sm mt-2 block w-full rounded-md border-red-300  focus:border-red-500 focus:ring-red-500"
               validation={{ required: true }}
+            />
+            <TwitterPicker
+              color={props?.vehicule?.couleur}
+              onChange={onChangeColor}
+              disableAlpha={true}
+              input="hex"
             />
 
             <FieldError name="couleur" className="rw-field-error" />

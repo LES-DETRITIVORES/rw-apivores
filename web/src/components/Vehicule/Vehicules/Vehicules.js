@@ -104,7 +104,14 @@ const VehiculesList = ({ vehicules }) => {
               <td>{truncate(vehicule.nom)}</td>
               <td>{truncate(vehicule.immatriculation)}</td>
               <td>{truncate(vehicule.identifiant)}</td>
-              <td>{truncate(vehicule.couleur)}</td>
+              <td className="inline-flex items-center space-x-4">
+                <div
+                  className={`mr-3 h-3 w-3 rounded-full bg-[${truncate(
+                    vehicule.couleur
+                  )}]`}
+                />
+                {truncate(vehicule.couleur)}
+              </td>
               <td>{truncate(vehicule.icone)}</td>
               <td>{truncate(vehicule.ordre)}</td>
               <td>{checkboxInputTag(vehicule.actif)}</td>
