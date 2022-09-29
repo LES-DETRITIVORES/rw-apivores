@@ -254,11 +254,19 @@ const Navigation = () => {
     pages.pop()
   }
 
-  const isEdit = pageName.includes('Edit')
-  const isNew = pageName.includes('New')
-  if (isEdit || isNew) {
+  const isEdit = window.location.pathname.includes('edit')
+  const isNew = window.location.pathname.includes('new')
+
+  if (isEdit) {
     pages.pop()
+    pages.push({ name: 'Modifier', href: '#', current: true })
   }
+
+  if (isNew) {
+    pages.pop()
+    pages.push({ name: 'Ajouter', href: '#', current: true })
+  }
+
   return (
     <>
       <Disclosure as="div" className="relative">
