@@ -77,8 +77,28 @@ const Prestation = ({ prestation }) => {
               <td>{prestation.id}</td>
             </tr>
             <tr>
-              <th>Nom</th>
-              <td>{prestation.nom}</td>
+              <th>Site</th>
+              <td>{prestation.site}</td>
+            </tr>
+            <tr>
+              <th>Matiere</th>
+              <td>{prestation.matiere}</td>
+            </tr>
+            <tr>
+              <th>Date</th>
+              <td>{timeTag(prestation.date)}</td>
+            </tr>
+            <tr>
+              <th>Operation</th>
+              <td>{prestation.operation}</td>
+            </tr>
+            <tr>
+              <th>Prix</th>
+              <td>{prestation.prix}</td>
+            </tr>
+            <tr>
+              <th>Forfait</th>
+              <td>{checkboxInputTag(prestation.forfait)}</td>
             </tr>
             <tr>
               <th>Actif</th>

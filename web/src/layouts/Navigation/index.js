@@ -74,8 +74,8 @@ const Navigation = () => {
         },
         {
           id: 4,
-          name: 'Prestations',
-          href: '/prestations',
+          name: 'Opérations',
+          href: '/operations',
           current: true,
           icon: (
             <PresentationChartLineIcon
@@ -88,7 +88,7 @@ const Navigation = () => {
     },
     {
       id: 2,
-      name: 'Opérations',
+      name: 'Usagers',
       href: '#',
       current: false,
       icon: '',
@@ -143,8 +143,8 @@ const Navigation = () => {
         },
         {
           id: 5,
-          name: 'Tarifs',
-          href: '/tarifs',
+          name: 'Prestations',
+          href: '/prestations',
           current: true,
           icon: (
             <DocumentTextIcon

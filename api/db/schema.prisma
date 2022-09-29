@@ -40,6 +40,14 @@ model Tournee {
   operateur3            Int
 }
 
+model Etape {
+  id                    Int       @id @default(autoincrement())
+  debut                 DateTime
+  fin                   DateTime
+  site                  Int
+  prestation            Int
+}
+
 model Usager {
   id                    Int     @id @default(autoincrement())
   nom                   String
@@ -89,18 +97,18 @@ model Site {
   actif                 Boolean
 }
  
-model Tarif {
+model Prestation {
   id                    Int     @id @default(autoincrement())
   site                  Int
   matiere               Int
   date                  DateTime
-  prestation            Int
+  operation             Int
   prix                  Float
   forfait               Boolean
   actif                 Boolean
 }
 
-model Prestation {
+model Operation {
   id      Int     @id @default(autoincrement())
   nom     String
   actif   Boolean

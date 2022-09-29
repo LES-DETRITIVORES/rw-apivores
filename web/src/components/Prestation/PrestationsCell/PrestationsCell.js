@@ -6,7 +6,12 @@ export const QUERY = gql`
   query FindPrestations {
     prestations {
       id
-      nom
+      site
+      matiere
+      date
+      operation
+      prix
+      forfait
       actif
     }
   }

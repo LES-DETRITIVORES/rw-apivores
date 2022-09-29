@@ -80,7 +80,12 @@ const PrestationsList = ({ prestations }) => {
         <thead>
           <tr>
             <th>Id</th>
-            <th>Nom</th>
+            <th>Site</th>
+            <th>Matiere</th>
+            <th>Date</th>
+            <th>Operation</th>
+            <th>Prix</th>
+            <th>Forfait</th>
             <th>Actif</th>
             <th>&nbsp;</th>
           </tr>
@@ -89,7 +94,12 @@ const PrestationsList = ({ prestations }) => {
           {prestations.map((prestation) => (
             <tr key={prestation.id}>
               <td>{truncate(prestation.id)}</td>
-              <td>{truncate(prestation.nom)}</td>
+              <td>{truncate(prestation.site)}</td>
+              <td>{truncate(prestation.matiere)}</td>
+              <td>{timeTag(prestation.date)}</td>
+              <td>{truncate(prestation.operation)}</td>
+              <td>{truncate(prestation.prix)}</td>
+              <td>{checkboxInputTag(prestation.forfait)}</td>
               <td>{checkboxInputTag(prestation.actif)}</td>
               <td>
                 <nav className="rw-table-actions">

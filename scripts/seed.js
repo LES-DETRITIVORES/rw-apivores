@@ -252,7 +252,7 @@ export default async () => {
       },
     ]
 
-    const tarifs = [
+    const prestations = [
       {
         id: 1,
         site: 1,
@@ -285,7 +285,7 @@ export default async () => {
       }
     ]
 
-    const prestations = [
+    const operations = [
       {
         id: 1,
         nom: 'Collecte',
@@ -388,13 +388,13 @@ export default async () => {
         console.log(record)
       }),
 
-      tarifs.map(async (data) => {
-        const record = await db.tarif.create({ data })
+      prestations.map(async (data) => {
+        const record = await db.prestation.create({ data })
         console.log(record)
       }),
 
-      prestations.map(async (data) => {
-        const record = await db.prestation.create({ data })
+      operations.map(async (data) => {
+        const record = await db.operation.create({ data })
         console.log(record)
       }),
 

@@ -27,10 +27,23 @@ describe('prestations', () => {
 
   scenario('creates a prestation', async () => {
     const result = await createPrestation({
-      input: { nom: 'String', actif: true },
+      input: {
+        site: 7624703,
+        matiere: 5701392,
+        date: '2022-09-29T14:10:08Z',
+        operation: 6806041,
+        prix: 1668102.4638596463,
+        forfait: true,
+        actif: true,
+      },
     })
 
-    expect(result.nom).toEqual('String')
+    expect(result.site).toEqual(7624703)
+    expect(result.matiere).toEqual(5701392)
+    expect(result.date).toEqual('2022-09-29T14:10:08Z')
+    expect(result.operation).toEqual(6806041)
+    expect(result.prix).toEqual(1668102.4638596463)
+    expect(result.forfait).toEqual(true)
     expect(result.actif).toEqual(true)
   })
 
@@ -41,10 +54,10 @@ describe('prestations', () => {
 
     const result = await updatePrestation({
       id: original.id,
-      input: { nom: 'String2' },
+      input: { site: 232390 },
     })
 
-    expect(result.nom).toEqual('String2')
+    expect(result.site).toEqual(232390)
   })
 
   scenario('deletes a prestation', async (scenario) => {

@@ -4,7 +4,12 @@ export const QUERY = gql`
   query FindPrestationById($id: Int!) {
     prestation: prestation(id: $id) {
       id
-      nom
+      site
+      matiere
+      date
+      operation
+      prix
+      forfait
       actif
     }
   }

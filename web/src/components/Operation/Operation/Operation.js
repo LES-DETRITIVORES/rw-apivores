@@ -4,9 +4,9 @@ import { Link, routes, navigate } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
-const DELETE_TARIF_MUTATION = gql`
-  mutation DeleteTarifMutation($id: Int!) {
-    deleteTarif(id: $id) {
+const DELETE_OPERATION_MUTATION = gql`
+  mutation DeleteOperationMutation($id: Int!) {
+    deleteOperation(id: $id) {
       id
     }
   }
@@ -45,11 +45,11 @@ const checkboxInputTag = (checked) => {
   return <input type="checkbox" checked={checked} disabled />
 }
 
-const Tarif = ({ tarif }) => {
-  const [deleteTarif] = useMutation(DELETE_TARIF_MUTATION, {
+const Operation = ({ operation }) => {
+  const [deleteOperation] = useMutation(DELETE_OPERATION_MUTATION, {
     onCompleted: () => {
-      toast.success('Tarif deleted')
-      navigate(routes.tarifs())
+      toast.success('Operation deleted')
+      navigate(routes.operations())
     },
     onError: (error) => {
       toast.error(error.message)
@@ -57,8 +57,8 @@ const Tarif = ({ tarif }) => {
   })
 
   const onDeleteClick = (id) => {
-    if (confirm('Are you sure you want to delete tarif ' + id + '?')) {
-      deleteTarif({ variables: { id } })
+    if (confirm('Are you sure you want to delete operation ' + id + '?')) {
+      deleteOperation({ variables: { id } })
     }
   }
 
@@ -67,49 +67,29 @@ const Tarif = ({ tarif }) => {
       <div className="rw-segment">
         <header className="rw-segment-header">
           <h2 className="rw-heading rw-heading-secondary">
-            Tarif {tarif.id} Detail
+            Operation {operation.id} Detail
           </h2>
         </header>
         <table className="rw-table">
           <tbody>
             <tr>
               <th>Id</th>
-              <td>{tarif.id}</td>
+              <td>{operation.id}</td>
             </tr>
             <tr>
-              <th>Site</th>
-              <td>{tarif.site}</td>
-            </tr>
-            <tr>
-              <th>Matiere</th>
-              <td>{tarif.matiere}</td>
-            </tr>
-            <tr>
-              <th>Date</th>
-              <td>{timeTag(tarif.date)}</td>
-            </tr>
-            <tr>
-              <th>Prestation</th>
-              <td>{tarif.prestation}</td>
-            </tr>
-            <tr>
-              <th>Prix</th>
-              <td>{tarif.prix}</td>
-            </tr>
-            <tr>
-              <th>Forfait</th>
-              <td>{checkboxInputTag(tarif.forfait)}</td>
+              <th>Nom</th>
+              <td>{operation.nom}</td>
             </tr>
             <tr>
               <th>Actif</th>
-              <td>{checkboxInputTag(tarif.actif)}</td>
+              <td>{checkboxInputTag(operation.actif)}</td>
             </tr>
           </tbody>
         </table>
       </div>
       <nav className="rw-button-group">
         <Link
-          to={routes.editTarif({ id: tarif.id })}
+          to={routes.editOperation({ id: operation.id })}
           className="rw-button rw-button-blue"
         >
           Edit
@@ -117,7 +97,7 @@ const Tarif = ({ tarif }) => {
         <button
           type="button"
           className="rw-button rw-button-red"
-          onClick={() => onDeleteClick(tarif.id)}
+          onClick={() => onDeleteClick(operation.id)}
         >
           Delete
         </button>
@@ -126,4 +106,4 @@ const Tarif = ({ tarif }) => {
   )
 }
 
-export default Tarif
+export default Operation
