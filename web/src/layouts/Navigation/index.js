@@ -74,8 +74,8 @@ const Navigation = () => {
         },
         {
           id: 4,
-          name: 'Opérations',
-          href: '/operations',
+          name: 'Services',
+          href: '/services',
           current: true,
           icon: (
             <PresentationChartLineIcon
