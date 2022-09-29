@@ -24,133 +24,143 @@ const VehiculeForm = (props) => {
           listClassName="rw-form-error-list"
         />
 
-        <Label
-          name="nom"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Nom
-        </Label>
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-6">
+          <div className="col-span-2 sm:col-span-2">
+            <Label
+              name="nom"
+              className="rw-label"
+              errorClassName="rw-label rw-label-error"
+            >
+              Nom
+            </Label>
 
-        <TextField
-          name="nom"
-          defaultValue={props.vehicule?.nom}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
-        />
+            <TextField
+              name="nom"
+              defaultValue={props.vehicule?.nom}
+              className="mt-2 block w-full rounded-md border-gray-300 focus:border-green-700  focus:ring-green-700 sm:text-sm"
+              errorClassName="sm:text-sm mt-2 block w-full rounded-md border-red-300  focus:border-red-500 focus:ring-red-500"
+              validation={{ required: true }}
+            />
 
-        <FieldError name="nom" className="rw-field-error" />
+            <FieldError name="nom" className="rw-field-error" />
 
-        <Label
-          name="immatriculation"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Immatriculation
-        </Label>
+            <Label
+              name="immatriculation"
+              className="rw-label"
+              errorClassName="rw-label rw-label-error"
+            >
+              Immatriculation
+            </Label>
 
-        <TextField
-          name="immatriculation"
-          defaultValue={props.vehicule?.immatriculation}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
-        />
+            <TextField
+              name="immatriculation"
+              defaultValue={props.vehicule?.immatriculation}
+              className="mt-2 block w-full rounded-md border-gray-300 focus:border-green-700  focus:ring-green-700 sm:text-sm"
+              errorClassName="sm:text-sm mt-2 block w-full rounded-md border-red-300  focus:border-red-500 focus:ring-red-500"
+              validation={{ required: true }}
+            />
 
-        <FieldError name="immatriculation" className="rw-field-error" />
+            <FieldError name="immatriculation" className="rw-field-error" />
+          </div>
 
-        <Label
-          name="identifiant"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Identifiant
-        </Label>
+          <div className="col-span-2 sm:col-span-2">
+            <Label
+              name="identifiant"
+              className="rw-label"
+              errorClassName="rw-label rw-label-error"
+            >
+              Identifiant
+            </Label>
 
-        <TextField
-          name="identifiant"
-          defaultValue={props.vehicule?.identifiant}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
-        />
+            <TextField
+              name="identifiant"
+              defaultValue={props.vehicule?.identifiant}
+              className="mt-2 block w-full rounded-md border-gray-300 focus:border-green-700  focus:ring-green-700 sm:text-sm"
+              errorClassName="sm:text-sm mt-2 block w-full rounded-md border-red-300  focus:border-red-500 focus:ring-red-500"
+              validation={{ required: true }}
+            />
 
-        <FieldError name="identifiant" className="rw-field-error" />
+            <FieldError name="identifiant" className="rw-field-error" />
 
-        <Label
-          name="couleur"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Couleur
-        </Label>
+            <Label
+              name="couleur"
+              className="rw-label"
+              errorClassName="rw-label rw-label-error"
+            >
+              Couleur
+            </Label>
 
-        <TextField
-          name="couleur"
-          defaultValue={props.vehicule?.couleur}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
-        />
+            <TextField
+              name="couleur"
+              defaultValue={props.vehicule?.couleur}
+              className="mt-2 block w-full rounded-md border-gray-300 focus:border-green-700  focus:ring-green-700 sm:text-sm"
+              errorClassName="sm:text-sm mt-2 block w-full rounded-md border-red-300  focus:border-red-500 focus:ring-red-500"
+              validation={{ required: true }}
+            />
 
-        <FieldError name="couleur" className="rw-field-error" />
+            <FieldError name="couleur" className="rw-field-error" />
+          </div>
+          <div className="col-span-2 sm:col-span-2">
+            <Label
+              name="icone"
+              className="rw-label"
+              errorClassName="rw-label rw-label-error"
+            >
+              Icone
+            </Label>
 
-        <Label
-          name="icone"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Icone
-        </Label>
+            <TextField
+              name="icone"
+              defaultValue={props.vehicule?.icone}
+              className="mt-2 block w-full rounded-md border-gray-300 focus:border-green-700  focus:ring-green-700 sm:text-sm"
+              errorClassName="sm:text-sm mt-2 block w-full rounded-md border-red-300  focus:border-red-500 focus:ring-red-500"
+              validation={{ required: true }}
+            />
 
-        <TextField
-          name="icone"
-          defaultValue={props.vehicule?.icone}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
-        />
+            <FieldError name="icone" className="rw-field-error" />
 
-        <FieldError name="icone" className="rw-field-error" />
+            <Label
+              name="ordre"
+              className="rw-label"
+              errorClassName="rw-label rw-label-error"
+            >
+              Ordre
+            </Label>
 
-        <Label
-          name="ordre"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Ordre
-        </Label>
+            <NumberField
+              name="ordre"
+              defaultValue={props.vehicule?.ordre}
+              className="mt-2 block w-full rounded-md border-gray-300 focus:border-green-700  focus:ring-green-700 sm:text-sm"
+              errorClassName="sm:text-sm mt-2 block w-full rounded-md border-red-300  focus:border-red-500 focus:ring-red-500"
+              validation={{ required: true }}
+            />
 
-        <NumberField
-          name="ordre"
-          defaultValue={props.vehicule?.ordre}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
-        />
+            <FieldError name="ordre" className="rw-field-error" />
+          </div>
+          <div className="col-span-1 sm:col-span-1">
+            <Label
+              name="actif"
+              className="rw-label"
+              errorClassName="rw-label rw-label-error"
+            >
+              Actif
+            </Label>
 
-        <FieldError name="ordre" className="rw-field-error" />
+            <CheckboxField
+              name="actif"
+              defaultChecked={props.vehicule?.actif}
+              className="h-4 w-4 rounded border-gray-300 text-green-600 focus:ring-green-700"
+              errorClassName="focus:ring-red-500 h-4 w-4 text-red-600 border-red-300 rounded"
+            />
 
-        <Label
-          name="actif"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Actif
-        </Label>
-
-        <CheckboxField
-          name="actif"
-          defaultChecked={props.vehicule?.actif}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-        />
-
-        <FieldError name="actif" className="rw-field-error" />
-
+            <FieldError name="actif" className="rw-field-error" />
+          </div>
+        </div>
         <div className="rw-button-group">
-          <Submit disabled={props.loading} className="rw-button rw-button-blue">
+          <Submit
+            disabled={props.loading}
+            className="inline-flex items-center rounded-md border border-transparent bg-green-800 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-green-900 focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-offset-2"
+          >
             Save
           </Submit>
         </div>

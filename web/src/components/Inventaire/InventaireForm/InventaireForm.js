@@ -33,8 +33,8 @@ const InventaireForm = (props) => {
         <NumberField
           name="site"
           defaultValue={props.inventaire?.site}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
+          className="mt-2 block w-full rounded-md border-gray-300 focus:border-green-700  focus:ring-green-700 sm:text-sm"
+          errorClassName="sm:text-sm mt-2 block w-full rounded-md border-red-300  focus:border-red-500 focus:ring-red-500"
           validation={{ required: true }}
         />
 
@@ -51,8 +51,8 @@ const InventaireForm = (props) => {
         <NumberField
           name="materiel"
           defaultValue={props.inventaire?.materiel}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
+          className="mt-2 block w-full rounded-md border-gray-300 focus:border-green-700  focus:ring-green-700 sm:text-sm"
+          errorClassName="sm:text-sm mt-2 block w-full rounded-md border-red-300  focus:border-red-500 focus:ring-red-500"
           validation={{ required: true }}
         />
 
@@ -63,21 +63,24 @@ const InventaireForm = (props) => {
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          Quantite
+          Quantité
         </Label>
 
         <NumberField
           name="quantite"
           defaultValue={props.inventaire?.quantite}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
+          className="mt-2 block w-full rounded-md border-gray-300 focus:border-green-700  focus:ring-green-700 sm:text-sm"
+          errorClassName="sm:text-sm mt-2 block w-full rounded-md border-red-300  focus:border-red-500 focus:ring-red-500"
           validation={{ required: true }}
         />
 
         <FieldError name="quantite" className="rw-field-error" />
 
         <div className="rw-button-group">
-          <Submit disabled={props.loading} className="rw-button rw-button-blue">
+          <Submit
+            disabled={props.loading}
+            className="inline-flex items-center rounded-md border border-transparent bg-green-800 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-green-900 focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-offset-2"
+          >
             Save
           </Submit>
         </div>

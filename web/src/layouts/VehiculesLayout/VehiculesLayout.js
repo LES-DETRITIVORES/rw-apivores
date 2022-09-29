@@ -23,9 +23,6 @@ const VehiculesLayout = ({ children }) => {
               New Vehicule
             </button>
           </Link>
-          <Link to={routes.newVehicule()} className="rw-button rw-button-green">
-            <div className="rw-button-icon">+</div> New Vehicule
-          </Link>
         </header>
         <main className="rw-main">{children}</main>
       </div>

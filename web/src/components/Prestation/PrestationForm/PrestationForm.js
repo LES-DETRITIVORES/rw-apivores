@@ -30,168 +30,177 @@ const PrestationForm = (props) => {
           titleClassName="rw-form-error-title"
           listClassName="rw-form-error-list"
         />
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-6">
+          <div className="col-span-2 sm:col-span-2">
+            <Label
+              name="site"
+              className="rw-label"
+              errorClassName="rw-label rw-label-error"
+            >
+              Site
+            </Label>
 
-        <Label
-          name="site"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Site
-        </Label>
+            <NumberField
+              name="site"
+              defaultValue={props.prestation?.site}
+              className="mt-2 block w-full rounded-md border-gray-300 focus:border-green-700  focus:ring-green-700 sm:text-sm"
+              errorClassName="sm:text-sm mt-2 block w-full rounded-md border-red-300  focus:border-red-500 focus:ring-red-500"
+              validation={{ required: true }}
+            />
 
-        <NumberField
-          name="site"
-          defaultValue={props.prestation?.site}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
-        />
+            <FieldError name="site" className="rw-field-error" />
 
-        <FieldError name="site" className="rw-field-error" />
+            <Label
+              name="date"
+              className="rw-label"
+              errorClassName="rw-label rw-label-error"
+            >
+              Date
+            </Label>
 
-        <Label
-          name="date"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Date
-        </Label>
+            <DatetimeLocalField
+              name="date"
+              defaultValue={formatDatetime(props.prestation?.date)}
+              className="mt-2 block w-full rounded-md border-gray-300 focus:border-green-700  focus:ring-green-700 sm:text-sm"
+              errorClassName="sm:text-sm mt-2 block w-full rounded-md border-red-300  focus:border-red-500 focus:ring-red-500"
+              validation={{ required: true }}
+            />
 
-        <DatetimeLocalField
-          name="date"
-          defaultValue={formatDatetime(props.prestation?.date)}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
-        />
+            <FieldError name="date" className="rw-field-error" />
+          </div>
+          <div className="col-span-2 sm:col-span-2">
+            <Label
+              name="matiere"
+              className="rw-label"
+              errorClassName="rw-label rw-label-error"
+            >
+              Matiere
+            </Label>
 
-        <FieldError name="date" className="rw-field-error" />
+            <NumberField
+              name="matiere"
+              defaultValue={props.prestation?.matiere}
+              className="mt-2 block w-full rounded-md border-gray-300 focus:border-green-700  focus:ring-green-700 sm:text-sm"
+              errorClassName="sm:text-sm mt-2 block w-full rounded-md border-red-300  focus:border-red-500 focus:ring-red-500"
+              validation={{ required: true }}
+            />
 
-        <Label
-          name="matiere"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Matiere
-        </Label>
+            <FieldError name="matiere" className="rw-field-error" />
 
-        <NumberField
-          name="matiere"
-          defaultValue={props.prestation?.matiere}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
-        />
+            <Label
+              name="prestation"
+              className="rw-label"
+              errorClassName="rw-label rw-label-error"
+            >
+              Prestation
+            </Label>
 
-        <FieldError name="matiere" className="rw-field-error" />
+            <TextField
+              name="prestation"
+              defaultValue={props.prestation?.prestation}
+              className="mt-2 block w-full rounded-md border-gray-300 focus:border-green-700  focus:ring-green-700 sm:text-sm"
+              errorClassName="sm:text-sm mt-2 block w-full rounded-md border-red-300  focus:border-red-500 focus:ring-red-500"
+              validation={{ required: true }}
+            />
 
-        <Label
-          name="prestation"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Prestation
-        </Label>
+            <FieldError name="prestation" className="rw-field-error" />
+          </div>
+          <div className="col-span-2 sm:col-span-2">
+            <Label
+              name="tarif"
+              className="rw-label"
+              errorClassName="rw-label rw-label-error"
+            >
+              Tarif
+            </Label>
 
-        <TextField
-          name="prestation"
-          defaultValue={props.prestation?.prestation}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
-        />
+            <TextField
+              name="tarif"
+              defaultValue={props.prestation?.tarif}
+              className="mt-2 block w-full rounded-md border-gray-300 focus:border-green-700  focus:ring-green-700 sm:text-sm"
+              errorClassName="sm:text-sm mt-2 block w-full rounded-md border-red-300  focus:border-red-500 focus:ring-red-500"
+              validation={{ valueAsNumber: true, required: true }}
+            />
 
-        <FieldError name="prestation" className="rw-field-error" />
+            <FieldError name="tarif" className="rw-field-error" />
 
-        <Label
-          name="tarif"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Tarif
-        </Label>
+            <Label
+              name="quantite"
+              className="rw-label"
+              errorClassName="rw-label rw-label-error"
+            >
+              Quantite
+            </Label>
 
-        <TextField
-          name="tarif"
-          defaultValue={props.prestation?.tarif}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          validation={{ valueAsNumber: true, required: true }}
-        />
+            <TextField
+              name="quantite"
+              defaultValue={props.prestation?.quantite}
+              className="mt-2 block w-full rounded-md border-gray-300 focus:border-green-700  focus:ring-green-700 sm:text-sm"
+              errorClassName="sm:text-sm mt-2 block w-full rounded-md border-red-300  focus:border-red-500 focus:ring-red-500"
+              validation={{ valueAsNumber: true, required: true }}
+            />
 
-        <FieldError name="tarif" className="rw-field-error" />
+            <FieldError name="quantite" className="rw-field-error" />
+          </div>
+          <div className="col-span-2 sm:col-span-2">
+            <Label
+              name="passage"
+              className="rw-label"
+              errorClassName="rw-label rw-label-error"
+            >
+              Passage
+            </Label>
 
-        <Label
-          name="quantite"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Quantite
-        </Label>
+            <CheckboxField
+              name="passage"
+              defaultChecked={props.prestation?.passage}
+              className="h-4 w-4 rounded border-gray-300 text-green-600 focus:ring-green-700"
+              errorClassName="focus:ring-red-500 h-4 w-4 text-red-600 border-red-300 rounded"
+            />
 
-        <TextField
-          name="quantite"
-          defaultValue={props.prestation?.quantite}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          validation={{ valueAsNumber: true, required: true }}
-        />
+            <FieldError name="passage" className="rw-field-error" />
 
-        <FieldError name="quantite" className="rw-field-error" />
+            <Label
+              name="bac"
+              className="rw-label"
+              errorClassName="rw-label rw-label-error"
+            >
+              Bac
+            </Label>
 
-        <Label
-          name="passage"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Passage
-        </Label>
+            <CheckboxField
+              name="bac"
+              defaultChecked={props.prestation?.bac}
+              className="h-4 w-4 rounded border-gray-300 text-green-600 focus:ring-green-700"
+              errorClassName="focus:ring-red-500 h-4 w-4 text-red-600 border-red-300 rounded"
+            />
 
-        <CheckboxField
-          name="passage"
-          defaultChecked={props.prestation?.passage}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-        />
+            <FieldError name="bac" className="rw-field-error" />
+          </div>
+          <div className="col-span-2 sm:col-span-2">
+            <Label
+              name="actif"
+              className="rw-label"
+              errorClassName="rw-label rw-label-error"
+            >
+              Actif
+            </Label>
 
-        <FieldError name="passage" className="rw-field-error" />
+            <CheckboxField
+              name="actif"
+              defaultChecked={props.prestation?.actif}
+              className="h-4 w-4 rounded border-gray-300 text-green-600 focus:ring-green-700"
+              errorClassName="focus:ring-red-500 h-4 w-4 text-red-600 border-red-300 rounded"
+            />
 
-        <Label
-          name="bac"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Bac
-        </Label>
-
-        <CheckboxField
-          name="bac"
-          defaultChecked={props.prestation?.bac}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-        />
-
-        <FieldError name="bac" className="rw-field-error" />
-
-        <Label
-          name="actif"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Actif
-        </Label>
-
-        <CheckboxField
-          name="actif"
-          defaultChecked={props.prestation?.actif}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-        />
-
-        <FieldError name="actif" className="rw-field-error" />
-
+            <FieldError name="actif" className="rw-field-error" />
+          </div>
+        </div>
         <div className="rw-button-group">
-          <Submit disabled={props.loading} className="rw-button rw-button-blue">
+          <Submit
+            disabled={props.loading}
+            className="inline-flex items-center rounded-md border border-transparent bg-green-800 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-green-900 focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-offset-2"
+          >
             Save
           </Submit>
         </div>
