@@ -23,45 +23,25 @@ const SiteForm = (props) => {
           titleClassName="rw-form-error-title"
           listClassName="rw-form-error-list"
         />
-
-<<<<<<< HEAD
         <div className="grid grid-cols-1 flex-col gap-6 md:grid-cols-6">
           <div className="col-span-2 sm:col-span-2">
             <Label
-              name="usagerId"
+              name="usager"
               className="rw-label"
               errorClassName="rw-label rw-label-error"
             >
-              Usager id
+              Usager
             </Label>
 
             <NumberField
-              name="usagerId"
-              defaultValue={props.site?.usagerId}
+              name="usager"
+              defaultValue={props.site?.usager}
               className="mt-2 block w-full rounded-md border-gray-300 focus:border-green-700  focus:ring-green-700 sm:text-sm"
               errorClassName="sm:text-sm mt-2 block w-full rounded-md border-red-300  focus:border-red-500 focus:ring-red-500"
+              validation={{ required: true }}
             />
 
-            <FieldError name="usagerId" className="rw-field-error" />
-=======
-        <Label
-          name="usager"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Usager
-        </Label>
-
-        <NumberField
-          name="usager"
-          defaultValue={props.site?.usager}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
-        />
-
-        <FieldError name="usager" className="rw-field-error" />
->>>>>>> a19af17b86d24a23a4986c1116bff1505bf5d1f0
+            <FieldError name="usager" className="rw-field-error" />
 
             <Label
               name="ordre"

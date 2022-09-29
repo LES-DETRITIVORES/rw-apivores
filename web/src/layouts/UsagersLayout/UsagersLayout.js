@@ -1,6 +1,6 @@
 import { Link, routes } from '@redwoodjs/router'
 import { Toaster } from '@redwoodjs/web/toast'
-import Navigation from 'src/components/Navigation'
+import Navigation from '../Navigation'
 import { PlusIcon } from '@heroicons/react/outline'
 const UsagersLayout = ({ children }) => {
   return (
