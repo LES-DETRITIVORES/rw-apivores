@@ -50,14 +50,7 @@ const timeTag = (datetime) => {
 }
 
 const checkboxInputTag = (checked) => {
-  return (
-    <input
-      className='className="h-4 w-4 rounded border-gray-300 text-green-600 focus:ring-green-700'
-      type="checkbox"
-      checked={checked}
-      disabled
-    />
-  )
+  return <input type="checkbox" checked={checked} disabled />
 }
 
 const VehiculesList = ({ vehicules }) => {
@@ -87,12 +80,12 @@ const VehiculesList = ({ vehicules }) => {
         <thead>
           <tr>
             <th>Id</th>
+            <th>Ordre</th>
             <th>Nom</th>
             <th>Immatriculation</th>
             <th>Identifiant</th>
             <th>Couleur</th>
             <th>Icone</th>
-            <th>Ordre</th>
             <th>Actif</th>
             <th>&nbsp;</th>
           </tr>
@@ -101,12 +94,12 @@ const VehiculesList = ({ vehicules }) => {
           {vehicules.map((vehicule) => (
             <tr key={vehicule.id}>
               <td>{truncate(vehicule.id)}</td>
+              <td>{truncate(vehicule.ordre)}</td>
               <td>{truncate(vehicule.nom)}</td>
               <td>{truncate(vehicule.immatriculation)}</td>
               <td>{truncate(vehicule.identifiant)}</td>
               <td>{truncate(vehicule.couleur)}</td>
               <td>{truncate(vehicule.icone)}</td>
-              <td>{truncate(vehicule.ordre)}</td>
               <td>{checkboxInputTag(vehicule.actif)}</td>
               <td>
                 <nav className="rw-table-actions">

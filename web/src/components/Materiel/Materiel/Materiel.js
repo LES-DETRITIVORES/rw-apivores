@@ -42,14 +42,7 @@ const timeTag = (datetime) => {
 }
 
 const checkboxInputTag = (checked) => {
-  return (
-    <input
-      className='className="h-4 w-4 rounded border-gray-300 text-green-600 focus:ring-green-700'
-      type="checkbox"
-      checked={checked}
-      disabled
-    />
-  )
+  return <input type="checkbox" checked={checked} disabled />
 }
 
 const Materiel = ({ materiel }) => {

@@ -27,11 +27,11 @@ describe('materiels', () => {
 
   scenario('creates a materiel', async () => {
     const result = await createMateriel({
-      input: { nom: 'String', poids: 8862153, actif: true },
+      input: { nom: 'String', poids: 1671752, actif: true },
     })
 
     expect(result.nom).toEqual('String')
-    expect(result.poids).toEqual(8862153)
+    expect(result.poids).toEqual(1671752)
     expect(result.actif).toEqual(true)
   })
 

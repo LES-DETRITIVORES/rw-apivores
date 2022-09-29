@@ -28,22 +28,22 @@ describe('vehicules', () => {
   scenario('creates a vehicule', async () => {
     const result = await createVehicule({
       input: {
+        ordre: 5267692,
         nom: 'String',
         immatriculation: 'String',
         identifiant: 'String',
         couleur: 'String',
         icone: 'String',
-        ordre: 1613403,
         actif: true,
       },
     })
 
+    expect(result.ordre).toEqual(5267692)
     expect(result.nom).toEqual('String')
     expect(result.immatriculation).toEqual('String')
     expect(result.identifiant).toEqual('String')
     expect(result.couleur).toEqual('String')
     expect(result.icone).toEqual('String')
-    expect(result.ordre).toEqual(1613403)
     expect(result.actif).toEqual(true)
   })
 
@@ -54,10 +54,10 @@ describe('vehicules', () => {
 
     const result = await updateVehicule({
       id: original.id,
-      input: { nom: 'String2' },
+      input: { ordre: 548164 },
     })
 
-    expect(result.nom).toEqual('String2')
+    expect(result.ordre).toEqual(548164)
   })
 
   scenario('deletes a vehicule', async (scenario) => {

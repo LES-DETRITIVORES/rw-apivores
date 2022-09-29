@@ -6,12 +6,12 @@ export const QUERY = gql`
   query FindVehicules {
     vehicules {
       id
+      ordre
       nom
       immatriculation
       identifiant
       couleur
       icone
-      ordre
       actif
     }
   }

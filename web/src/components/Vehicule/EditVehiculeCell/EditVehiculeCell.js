@@ -9,12 +9,12 @@ export const QUERY = gql`
   query EditVehiculeById($id: Int!) {
     vehicule: vehicule(id: $id) {
       id
+      ordre
       nom
       immatriculation
       identifiant
       couleur
       icone
-      ordre
       actif
     }
   }
@@ -23,12 +23,12 @@ const UPDATE_VEHICULE_MUTATION = gql`
   mutation UpdateVehiculeMutation($id: Int!, $input: UpdateVehiculeInput!) {
     updateVehicule(id: $id, input: $input) {
       id
+      ordre
       nom
       immatriculation
       identifiant
       couleur
       icone
-      ordre
       actif
     }
   }

@@ -1,12 +1,12 @@
 export const schema = gql`
   type Vehicule {
     id: Int!
+    ordre: Int!
     nom: String!
     immatriculation: String!
     identifiant: String!
     couleur: String!
     icone: String!
-    ordre: Int!
     actif: Boolean!
   }
 
@@ -16,22 +16,22 @@ export const schema = gql`
   }
 
   input CreateVehiculeInput {
+    ordre: Int!
     nom: String!
     immatriculation: String!
     identifiant: String!
     couleur: String!
     icone: String!
-    ordre: Int!
     actif: Boolean!
   }
 
   input UpdateVehiculeInput {
+    ordre: Int
     nom: String
     immatriculation: String
     identifiant: String
     couleur: String
     icone: String
-    ordre: Int
     actif: Boolean
   }
 

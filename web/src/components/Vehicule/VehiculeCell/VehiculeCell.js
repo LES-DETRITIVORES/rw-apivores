@@ -4,12 +4,12 @@ export const QUERY = gql`
   query FindVehiculeById($id: Int!) {
     vehicule: vehicule(id: $id) {
       id
+      ordre
       nom
       immatriculation
       identifiant
       couleur
       icone
-      ordre
       actif
     }
   }
