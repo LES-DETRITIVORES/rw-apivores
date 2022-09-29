@@ -8,12 +8,12 @@ import {
   CheckboxField,
   Submit,
 } from '@redwoodjs/forms'
+import { ColorPicker, useColor } from 'react-color-palette'
 
 const VehiculeForm = (props) => {
   const onSubmit = (data) => {
     props.onSave(data, props?.vehicule?.id)
   }
-
   return (
     <div className="rw-form-wrapper">
       <Form onSubmit={onSubmit} error={props.error}>
