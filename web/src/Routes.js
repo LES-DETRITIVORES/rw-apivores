@@ -9,6 +9,8 @@
 
 import { Set, Router, Route } from '@redwoodjs/router'
 
+import TourneesLayout from 'src/layouts/TourneesLayout'
+
 import VehiculesLayout from 'src/layouts/VehiculesLayout'
 
 import MaterielsLayout from 'src/layouts/MaterielsLayout'
@@ -18,6 +20,12 @@ import MatieresLayout from 'src/layouts/MatieresLayout'
 const Routes = () => {
   return (
     <Router>
+      <Set wrap={TourneesLayout}>
+        <Route path="/tournees/new" page={TourneeNewTourneePage} name="newTournee" />
+        <Route path="/tournees/{id:Int}/edit" page={TourneeEditTourneePage} name="editTournee" />
+        <Route path="/tournees/{id:Int}" page={TourneeTourneePage} name="tournee" />
+        <Route path="/tournees" page={TourneeTourneesPage} name="tournees" />
+      </Set>
       <Set wrap={VehiculesLayout}>
         <Route path="/vehicules/new" page={VehiculeNewVehiculePage} name="newVehicule" />
         <Route path="/vehicules/{id:Int}/edit" page={VehiculeEditVehiculePage} name="editVehicule" />
