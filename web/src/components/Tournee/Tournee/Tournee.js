@@ -67,7 +67,7 @@ const Tournee = ({ tournee }) => {
       <div className="rw-segment">
         <header className="rw-segment-header">
           <h2 className="rw-heading rw-heading-secondary">
-            Tournee {tournee.id} Detail
+            Tournée {tournee.id} Detail
           </h2>
         </header>
         <table className="rw-table">
