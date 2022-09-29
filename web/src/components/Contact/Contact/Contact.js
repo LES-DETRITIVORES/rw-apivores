@@ -3,7 +3,6 @@ import humanize from 'humanize-string'
 import { Link, routes, navigate } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
-
 const DELETE_CONTACT_MUTATION = gql`
   mutation DeleteContactMutation($id: Int!) {
     deleteContact(id: $id) {
