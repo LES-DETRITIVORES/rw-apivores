@@ -144,3 +144,11 @@ model Matiere {
   nom       String
   actif     Boolean
 }
+
+model Test {
+  id        Int     @id @default(autoincrement())
+  nom       String
+  date      DateTime @default(now())
+  actif     Boolean
+  prix      Float
+}
