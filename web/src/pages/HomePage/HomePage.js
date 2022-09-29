@@ -7,14 +7,11 @@ const HomePage = () => {
     <>
       <MetaTags title="Home" description="Home page" />
       <Navigation />
-      <h1>HomePage</h1>
-      <p>
-        Find me in <code>./web/src/pages/HomePage/HomePage.js</code>
-      </p>
-      <p>
-        My default route is named <code>home</code>, link to me with `
-        <Link to={routes.home()}>Home</Link>`
-      </p>
+      <img
+        src={'https://i.kym-cdn.com/photos/images/newsfeed/001/042/619/4ea.jpg'}
+        alt="John Travolta"
+        className="my-auto mx-auto mt-20 rounded-xl"
+      />
     </>
   )
 }
