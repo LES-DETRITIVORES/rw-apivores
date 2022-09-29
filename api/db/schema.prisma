@@ -33,6 +33,7 @@ model Exploitation {
 model Tournee {
   id                    Int       @id @default(autoincrement())
   date                  DateTime  @default(now())
+  note                  String
   vehicule              Vehicule?
   agents                Agent[]
 }
@@ -143,12 +144,4 @@ model Matiere {
   id        Int     @id @default(autoincrement())
   nom       String
   actif     Boolean
-}
-
-model Test {
-  id        Int     @id @default(autoincrement())
-  nom       String
-  date      DateTime @default(now())
-  actif     Boolean
-  prix      Float
 }

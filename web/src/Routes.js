@@ -9,25 +9,17 @@
 
 import { Set, Router, Route } from '@redwoodjs/router'
 
-import TestsLayout from 'src/layouts/TestsLayout'
+import MatieresLayout from 'src/layouts/MatieresLayout'
 
 const Routes = () => {
   return (
     <Router>
-      <Set wrap={TestsLayout}>
-        <Route path="/tests/new" page={TestNewTestPage} name="newTest" />
-        <Route path="/tests/{id:Int}/edit" page={TestEditTestPage} name="editTest" />
-        <Route path="/tests/{id:Int}" page={TestTestPage} name="test" />
-        <Route path="/tests" page={TestTestsPage} name="tests" />
+      <Set wrap={MatieresLayout}>
+        <Route path="/matieres/new" page={MatiereNewMatierePage} name="newMatiere" />
+        <Route path="/matieres/{id:Int}/edit" page={MatiereEditMatierePage} name="editMatiere" />
+        <Route path="/matieres/{id:Int}" page={MatiereMatierePage} name="matiere" />
+        <Route path="/matieres" page={MatiereMatieresPage} name="matieres" />
       </Set>
-      <Route path="/sites" page={SitesPage} name="sites" />
-      <Route path="/inventaires" page={InventairePage} name="inventaire" />
-      <Route path="/agents" page={AgentPage} name="agent" />
-      <Route path="/vehicules" page={VehiculePage} name="vehicule" />
-      <Route path="/materiels" page={MaterielPage} name="materiel" />
-      <Route path="/matieres" page={MatierePage} name="matiere" />
-      <Route path="/tarifs" page={TarifPage} name="tarif" />
-      <Route path="/partenaires/contacts" page={ContactPage} name="contact" />
       <Route path="/" page={HomePage} name="home" />
       <Route notfound page={NotFoundPage} />
     </Router>
