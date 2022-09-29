@@ -9,7 +9,6 @@ export const QUERY = gql`
       prenom
       nom
       actif
-      tourneeId
     }
   }
 `

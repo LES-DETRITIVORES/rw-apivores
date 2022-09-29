@@ -25,21 +25,22 @@ const SiteForm = (props) => {
         />
 
         <Label
-          name="usagerId"
+          name="usager"
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          Usager id
+          Usager
         </Label>
 
         <NumberField
-          name="usagerId"
-          defaultValue={props.site?.usagerId}
+          name="usager"
+          defaultValue={props.site?.usager}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
+          validation={{ required: true }}
         />
 
-        <FieldError name="usagerId" className="rw-field-error" />
+        <FieldError name="usager" className="rw-field-error" />
 
         <Label
           name="ordre"

@@ -28,7 +28,8 @@ describe('contacts', () => {
   scenario('creates a contact', async () => {
     const result = await createContact({
       input: {
-        ordre: 5291483,
+        usager: 9015559,
+        ordre: 4465050,
         prenom: 'String',
         nom: 'String',
         email: 'String',
@@ -42,7 +43,8 @@ describe('contacts', () => {
       },
     })
 
-    expect(result.ordre).toEqual(5291483)
+    expect(result.usager).toEqual(9015559)
+    expect(result.ordre).toEqual(4465050)
     expect(result.prenom).toEqual('String')
     expect(result.nom).toEqual('String')
     expect(result.email).toEqual('String')
@@ -59,10 +61,10 @@ describe('contacts', () => {
     const original = await contact({ id: scenario.contact.one.id })
     const result = await updateContact({
       id: original.id,
-      input: { ordre: 654323 },
+      input: { usager: 2765501 },
     })
 
-    expect(result.ordre).toEqual(654323)
+    expect(result.usager).toEqual(2765501)
   })
 
   scenario('deletes a contact', async (scenario) => {

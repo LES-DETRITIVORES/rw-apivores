@@ -1,8 +1,7 @@
 export const schema = gql`
   type Contact {
     id: Int!
-    usager: Usager
-    usagerId: Int
+    usager: Int!
     ordre: Int!
     prenom: String!
     nom: String!
@@ -22,7 +21,7 @@ export const schema = gql`
   }
 
   input CreateContactInput {
-    usagerId: Int
+    usager: Int!
     ordre: Int!
     prenom: String!
     nom: String!
@@ -37,7 +36,7 @@ export const schema = gql`
   }
 
   input UpdateContactInput {
-    usagerId: Int
+    usager: Int
     ordre: Int
     prenom: String
     nom: String

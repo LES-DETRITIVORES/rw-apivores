@@ -77,8 +77,8 @@ const Contact = ({ contact }) => {
               <td>{contact.id}</td>
             </tr>
             <tr>
-              <th>Usager id</th>
-              <td>{contact.usagerId}</td>
+              <th>Usager</th>
+              <td>{contact.usager}</td>
             </tr>
             <tr>
               <th>Ordre</th>

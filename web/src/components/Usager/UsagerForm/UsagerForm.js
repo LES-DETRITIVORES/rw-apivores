@@ -42,24 +42,6 @@ const UsagerForm = (props) => {
         <FieldError name="nom" className="rw-field-error" />
 
         <Label
-          name="type"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Type
-        </Label>
-
-        <TextField
-          name="type"
-          defaultValue={props.usager?.type}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
-        />
-
-        <FieldError name="type" className="rw-field-error" />
-
-        <Label
           name="tiers"
           className="rw-label"
           errorClassName="rw-label rw-label-error"
@@ -114,6 +96,60 @@ const UsagerForm = (props) => {
         <FieldError name="adresse" className="rw-field-error" />
 
         <Label
+          name="adresse2"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Adresse2
+        </Label>
+
+        <TextField
+          name="adresse2"
+          defaultValue={props.usager?.adresse2}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ required: true }}
+        />
+
+        <FieldError name="adresse2" className="rw-field-error" />
+
+        <Label
+          name="codePostal"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Code postal
+        </Label>
+
+        <TextField
+          name="codePostal"
+          defaultValue={props.usager?.codePostal}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ required: true }}
+        />
+
+        <FieldError name="codePostal" className="rw-field-error" />
+
+        <Label
+          name="ville"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Ville
+        </Label>
+
+        <TextField
+          name="ville"
+          defaultValue={props.usager?.ville}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ required: true }}
+        />
+
+        <FieldError name="ville" className="rw-field-error" />
+
+        <Label
           name="email"
           className="rw-label"
           errorClassName="rw-label rw-label-error"
@@ -132,40 +168,40 @@ const UsagerForm = (props) => {
         <FieldError name="email" className="rw-field-error" />
 
         <Label
-          name="telephone"
+          name="telephone1"
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          Telephone
+          Telephone1
         </Label>
 
         <TextField
-          name="telephone"
-          defaultValue={props.usager?.telephone}
+          name="telephone1"
+          defaultValue={props.usager?.telephone1}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
           validation={{ required: true }}
         />
 
-        <FieldError name="telephone" className="rw-field-error" />
+        <FieldError name="telephone1" className="rw-field-error" />
 
         <Label
-          name="reference"
+          name="telephone2"
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          Reference
+          Telephone2
         </Label>
 
         <TextField
-          name="reference"
-          defaultValue={props.usager?.reference}
+          name="telephone2"
+          defaultValue={props.usager?.telephone2}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
           validation={{ required: true }}
         />
 
-        <FieldError name="reference" className="rw-field-error" />
+        <FieldError name="telephone2" className="rw-field-error" />
 
         <Label
           name="note"

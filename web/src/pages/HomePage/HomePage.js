@@ -1,6 +1,6 @@
 import { Link, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
-import Navigation from 'src/components/Navigation'
+import Navigation from 'src/layouts/Navigation'
 
 const HomePage = () => {
   return (

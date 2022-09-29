@@ -6,7 +6,7 @@ export const QUERY = gql`
   query FindContacts {
     contacts {
       id
-      usagerId
+      usager
       ordre
       prenom
       nom

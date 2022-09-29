@@ -80,7 +80,7 @@ const ContactsList = ({ contacts }) => {
         <thead>
           <tr>
             <th>Id</th>
-            <th>Usager id</th>
+            <th>Usager</th>
             <th>Ordre</th>
             <th>Prenom</th>
             <th>Nom</th>
@@ -99,7 +99,7 @@ const ContactsList = ({ contacts }) => {
           {contacts.map((contact) => (
             <tr key={contact.id}>
               <td>{truncate(contact.id)}</td>
-              <td>{truncate(contact.usagerId)}</td>
+              <td>{truncate(contact.usager)}</td>
               <td>{truncate(contact.ordre)}</td>
               <td>{truncate(contact.prenom)}</td>
               <td>{truncate(contact.nom)}</td>

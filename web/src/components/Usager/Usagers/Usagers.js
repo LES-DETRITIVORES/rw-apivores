@@ -81,13 +81,15 @@ const UsagersList = ({ usagers }) => {
           <tr>
             <th>Id</th>
             <th>Nom</th>
-            <th>Type</th>
             <th>Tiers</th>
             <th>Contact</th>
             <th>Adresse</th>
+            <th>Adresse2</th>
+            <th>Code postal</th>
+            <th>Ville</th>
             <th>Email</th>
-            <th>Telephone</th>
-            <th>Reference</th>
+            <th>Telephone1</th>
+            <th>Telephone2</th>
             <th>Note</th>
             <th>Actif</th>
             <th>&nbsp;</th>
@@ -98,13 +100,15 @@ const UsagersList = ({ usagers }) => {
             <tr key={usager.id}>
               <td>{truncate(usager.id)}</td>
               <td>{truncate(usager.nom)}</td>
-              <td>{truncate(usager.type)}</td>
               <td>{truncate(usager.tiers)}</td>
               <td>{truncate(usager.contact)}</td>
               <td>{truncate(usager.adresse)}</td>
+              <td>{truncate(usager.adresse2)}</td>
+              <td>{truncate(usager.codePostal)}</td>
+              <td>{truncate(usager.ville)}</td>
               <td>{truncate(usager.email)}</td>
-              <td>{truncate(usager.telephone)}</td>
-              <td>{truncate(usager.reference)}</td>
+              <td>{truncate(usager.telephone1)}</td>
+              <td>{truncate(usager.telephone2)}</td>
               <td>{truncate(usager.note)}</td>
               <td>{checkboxInputTag(usager.actif)}</td>
               <td>

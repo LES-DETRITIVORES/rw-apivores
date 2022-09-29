@@ -6,7 +6,7 @@ export const QUERY = gql`
   query FindSites {
     sites {
       id
-      usagerId
+      usager
       ordre
       nom
       adresse

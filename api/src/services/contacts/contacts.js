@@ -28,9 +28,3 @@ export const deleteContact = ({ id }) => {
     where: { id },
   })
 }
-
-export const Contact = {
-  usager: (_obj, { root }) => {
-    return db.contact.findUnique({ where: { id: root?.id } }).usager()
-  },
-}

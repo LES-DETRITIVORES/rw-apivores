@@ -10,13 +10,15 @@ export const QUERY = gql`
     usager: usager(id: $id) {
       id
       nom
-      type
       tiers
       contact
       adresse
+      adresse2
+      codePostal
+      ville
       email
-      telephone
-      reference
+      telephone1
+      telephone2
       note
       actif
     }
@@ -27,13 +29,15 @@ const UPDATE_USAGER_MUTATION = gql`
     updateUsager(id: $id, input: $input) {
       id
       nom
-      type
       tiers
       contact
       adresse
+      adresse2
+      codePostal
+      ville
       email
-      telephone
-      reference
+      telephone1
+      telephone2
       note
       actif
     }

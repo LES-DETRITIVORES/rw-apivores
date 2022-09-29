@@ -4,8 +4,6 @@ export const schema = gql`
     prenom: String!
     nom: String!
     actif: Boolean!
-    tournee: Tournee
-    tourneeId: Int
   }
 
   type Query {
@@ -17,14 +15,12 @@ export const schema = gql`
     prenom: String!
     nom: String!
     actif: Boolean!
-    tourneeId: Int
   }
 
   input UpdateOperateurInput {
     prenom: String
     nom: String
     actif: Boolean
-    tourneeId: Int
   }
 
   type Mutation {

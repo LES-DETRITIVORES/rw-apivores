@@ -33,7 +33,7 @@ describe('vehicules', () => {
         identifiant: 'String',
         couleur: 'String',
         icone: 'String',
-        ordre: 1644887,
+        ordre: 1613403,
         actif: true,
       },
     })
@@ -43,7 +43,7 @@ describe('vehicules', () => {
     expect(result.identifiant).toEqual('String')
     expect(result.couleur).toEqual('String')
     expect(result.icone).toEqual('String')
-    expect(result.ordre).toEqual(1644887)
+    expect(result.ordre).toEqual(1613403)
     expect(result.actif).toEqual(true)
   })
 

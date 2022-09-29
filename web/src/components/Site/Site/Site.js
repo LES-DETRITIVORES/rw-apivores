@@ -77,8 +77,8 @@ const Site = ({ site }) => {
               <td>{site.id}</td>
             </tr>
             <tr>
-              <th>Usager id</th>
-              <td>{site.usagerId}</td>
+              <th>Usager</th>
+              <td>{site.usager}</td>
             </tr>
             <tr>
               <th>Ordre</th>

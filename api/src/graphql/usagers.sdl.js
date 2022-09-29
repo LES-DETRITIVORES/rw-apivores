@@ -2,16 +2,16 @@ export const schema = gql`
   type Usager {
     id: Int!
     nom: String!
-    type: String!
     tiers: String!
     contact: String!
     adresse: String!
+    adresse2: String!
+    codePostal: String!
+    ville: String!
     email: String!
-    telephone: String!
-    reference: String!
+    telephone1: String!
+    telephone2: String!
     note: String!
-    sites: [Site]!
-    contacts: [Contact]!
     actif: Boolean!
   }
 
@@ -22,26 +22,30 @@ export const schema = gql`
 
   input CreateUsagerInput {
     nom: String!
-    type: String!
     tiers: String!
     contact: String!
     adresse: String!
+    adresse2: String!
+    codePostal: String!
+    ville: String!
     email: String!
-    telephone: String!
-    reference: String!
+    telephone1: String!
+    telephone2: String!
     note: String!
     actif: Boolean!
   }
 
   input UpdateUsagerInput {
     nom: String
-    type: String
     tiers: String
     contact: String
     adresse: String
+    adresse2: String
+    codePostal: String
+    ville: String
     email: String
-    telephone: String
-    reference: String
+    telephone1: String
+    telephone2: String
     note: String
     actif: Boolean
   }

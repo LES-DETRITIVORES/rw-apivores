@@ -9,7 +9,7 @@ export const QUERY = gql`
   query EditContactById($id: Int!) {
     contact: contact(id: $id) {
       id
-      usagerId
+      usager
       ordre
       prenom
       nom
@@ -28,7 +28,7 @@ const UPDATE_CONTACT_MUTATION = gql`
   mutation UpdateContactMutation($id: Int!, $input: UpdateContactInput!) {
     updateContact(id: $id, input: $input) {
       id
-      usagerId
+      usager
       ordre
       prenom
       nom

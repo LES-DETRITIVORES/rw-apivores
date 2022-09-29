@@ -7,13 +7,15 @@ export const QUERY = gql`
     usagers {
       id
       nom
-      type
       tiers
       contact
       adresse
+      adresse2
+      codePostal
+      ville
       email
-      telephone
-      reference
+      telephone1
+      telephone2
       note
       actif
     }

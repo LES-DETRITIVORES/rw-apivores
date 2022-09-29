@@ -9,7 +9,7 @@ export const QUERY = gql`
   query EditSiteById($id: Int!) {
     site: site(id: $id) {
       id
-      usagerId
+      usager
       ordre
       nom
       adresse
@@ -29,7 +29,7 @@ const UPDATE_SITE_MUTATION = gql`
   mutation UpdateSiteMutation($id: Int!, $input: UpdateSiteInput!) {
     updateSite(id: $id, input: $input) {
       id
-      usagerId
+      usager
       ordre
       nom
       adresse
