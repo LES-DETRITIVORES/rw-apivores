@@ -9,14 +9,7 @@ export const QUERY = gql`
   query EditPrestationById($id: Int!) {
     prestation: prestation(id: $id) {
       id
-      site
-      date
-      matiere
-      prestation
-      tarif
-      quantite
-      passage
-      bac
+      nom
       actif
     }
   }
@@ -25,14 +18,7 @@ const UPDATE_PRESTATION_MUTATION = gql`
   mutation UpdatePrestationMutation($id: Int!, $input: UpdatePrestationInput!) {
     updatePrestation(id: $id, input: $input) {
       id
-      site
-      date
-      matiere
-      prestation
-      tarif
-      quantite
-      passage
-      bac
+      nom
       actif
     }
   }

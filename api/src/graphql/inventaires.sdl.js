@@ -4,6 +4,8 @@ export const schema = gql`
     site: Int!
     materiel: Int!
     quantite: Int!
+    note: String!
+    actif: Boolean!
   }
 
   type Query {
@@ -15,12 +17,16 @@ export const schema = gql`
     site: Int!
     materiel: Int!
     quantite: Int!
+    note: String!
+    actif: Boolean!
   }
 
   input UpdateInventaireInput {
     site: Int
     materiel: Int
     quantite: Int
+    note: String
+    actif: Boolean
   }
 
   type Mutation {

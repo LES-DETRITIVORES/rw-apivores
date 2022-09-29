@@ -12,6 +12,8 @@ export const QUERY = gql`
       site
       materiel
       quantite
+      note
+      actif
     }
   }
 `
@@ -22,6 +24,8 @@ const UPDATE_INVENTAIRE_MUTATION = gql`
       site
       materiel
       quantite
+      note
+      actif
     }
   }
 `

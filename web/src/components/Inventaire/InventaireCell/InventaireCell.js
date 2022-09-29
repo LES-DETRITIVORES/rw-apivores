@@ -7,6 +7,8 @@ export const QUERY = gql`
       site
       materiel
       quantite
+      note
+      actif
     }
   }
 `

@@ -104,6 +104,248 @@ export default async () => {
       }
     ]
 
+    const sites = [
+      {
+        id: 1,
+        usager: 1,
+        ordre: 1,
+        nom: '081-1 Ecole primaire Briand Pessac',
+        adresse: '20 avenue Roger Cohé',
+        adresse2: '',
+        codePostal: '33600',
+        ville: 'Pessac',
+        note: 'Si besoin 06 28 84 02 95',
+        latitude: '44.8073235',
+        longitude: '-0.6322060',
+        etage: 0,
+        ascenseur: false,
+        actif: true,
+      },
+      {
+        id: 2,
+        usager: 1,
+        ordre: 2,
+        nom: '081-2 Ecole élémentaire Magonty Pessac',
+        adresse: '12 rue Romainville',
+        adresse2: '',
+        codePostal: '33600',
+        ville: 'Pessac',
+        note: 'Si besoin 07 78 39 21 76',
+        latitude: '44.7930412',
+        longitude: '-0.7050591',
+        etage: 0,
+        ascenseur: false,
+        actif: true,
+      },
+      {
+        id: 3,
+        usager: 2,
+        ordre: 1,
+        nom: '002-1 Magasin général',
+        adresse: '87 quai des queyries',
+        adresse2: '',
+        codePostal: '33100',
+        ville: 'Bordeaux',
+        note: '3 bacs 240L remplacés par 4x120L en juil22',
+        latitude: '44.7930412',
+        longitude: '-0.7050591',
+        etage: 0,
+        ascenseur: false,
+        actif: true,
+      },
+    ]
+
+    const operateurs = [
+      {
+        id: 1,
+        prenom: 'Zine-Eddine',
+        nom: '-',
+        actif: true,
+      },
+      {
+        id: 2,
+        prenom: 'Alien',
+        nom: '-',
+        actif: false,
+      },
+      {
+        id: 3,
+        prenom: 'Izak',
+        nom: '-',
+        actif: true,
+      },
+    ]
+
+    const inventaires = [
+      {
+        id: 1,
+        materiel: 1,
+        site: 1,
+        quantite: 2,
+        note: 'Bac tout neuf',
+        actif: true,
+      },
+      {
+        id: 2,
+        materiel: 2,
+        site: 2,
+        quantite: 1,
+        note: 'Bac vieux',
+        actif: true,
+      },
+      {
+        id: 3,
+        materiel: 3,
+        site: 3,
+        quantite: 2,
+        note: 'Bac tout vieux',
+        actif: false,
+      }
+    ]
+
+    const materiels = [
+      {
+        id: 1,
+        nom: 'Bac 120L',
+        poids: 8,
+        actif: true,
+      },
+      {
+        id: 2,
+        nom: 'Bac 240L',
+        poids: 12,
+        actif: false,
+      },
+      {
+        id: 3,
+        nom: 'Bioseau 22L',
+        poids: 2,
+        actif: true,
+      },
+    ]
+
+    const matieres = [
+      {
+        id: 1,
+        nom: 'Biodéchets',
+        actif: true,
+      },
+      {
+        id: 2,
+        nom: 'Couches',
+        actif: false,
+      },
+      {
+        id: 3,
+        nom: 'Coquilles',
+        actif: true,
+      },
+      {
+        id: 4,
+        nom: 'Sacs compostables',
+        actif: true,
+      },
+      {
+        id: 5,
+        nom: 'Bac',
+        actif: true,
+      },
+    ]
+
+    const tarifs = [
+      {
+        id: 1,
+        site: 1,
+        matiere: 1,
+        date: '2022-09-28T12:34:56Z',
+        prestation: 1,
+        prix: 30.00,
+        forfait: true,
+        actif: true,
+      },
+      {
+        id: 2,
+        site: 2,
+        matiere: 2,
+        date: '2022-08-18T12:34:56Z',
+        prestation: 3,
+        prix: 4.00,
+        forfait: false,
+        actif: true,
+      },
+      {
+        id: 3,
+        site: 1,
+        matiere: 3,
+        date: '2022-11-30T12:34:56Z',
+        prestation: 2,
+        prix: 10.00,
+        forfait: false,
+        actif: false,
+      }
+    ]
+
+    const prestations = [
+      {
+        id: 1,
+        nom: 'Collecte',
+        actif: true,
+      },
+      {
+        id: 2,
+        nom: 'Traitement',
+        actif: false,
+      },
+      {
+        id: 3,
+        nom: 'Location',
+        actif: true,
+      },
+      {
+        id: 4,
+        nom: 'Sensibilisation',
+        actif: true,
+      },
+      {
+        id: 5,
+        nom: 'Fourniture',
+        actif: true,
+      },
+    ]
+
+    const vehicules = [
+      {
+        id: 1,
+        ordre: 1,
+        nom: 'Camion vert',
+        immatriculation: 'FF-921-CP',
+        identifiant: '1',
+        couleur: '#27cd55',
+        icone: 'truck',     
+        actif: true,
+      },
+      {
+        id: 2,
+        ordre: 2,
+        nom: 'Fourgon',
+        immatriculation: 'FK-603-TN',
+        identifiant: '3',
+        couleur: '#2e86de',
+        icone: 'truck',     
+        actif: true,
+      },
+      {
+        id: 3,
+        ordre: 3,
+        nom: 'Cyclo 22L',
+        immatriculation: '',
+        identifiant: '',
+        couleur: '#20ad9c',
+        icone: 'biking',     
+        actif: false,
+      }
+    ]
+
     // Note: if using PostgreSQL, using `createMany` to insert multiple records is much faster
     // @see: https://www.prisma.io/docs/reference/api-reference/prisma-client-reference#createmany
     Promise.all(
@@ -124,7 +366,47 @@ export default async () => {
       contacts.map(async (data) => {
         const record = await db.contact.create({ data })
         console.log(record)
-      })
+      }),
+
+      sites.map(async (data) => {
+        const record = await db.site.create({ data })
+        console.log(record)
+      }),
+
+      operateurs.map(async (data) => {
+        const record = await db.operateur.create({ data })
+        console.log(record)
+      }),
+
+      materiels.map(async (data) => {
+        const record = await db.materiel.create({ data })
+        console.log(record)
+      }),
+
+      matieres.map(async (data) => {
+        const record = await db.matiere.create({ data })
+        console.log(record)
+      }),
+
+      tarifs.map(async (data) => {
+        const record = await db.tarif.create({ data })
+        console.log(record)
+      }),
+
+      prestations.map(async (data) => {
+        const record = await db.prestation.create({ data })
+        console.log(record)
+      }),
+
+      vehicules.map(async (data) => {
+        const record = await db.vehicule.create({ data })
+        console.log(record)
+      }),
+
+      inventaires.map(async (data) => {
+        const record = await db.inventaire.create({ data })
+        console.log(record)
+      }),
     )
 
     // If using dbAuth and seeding users, you'll need to add a `hashedPassword`

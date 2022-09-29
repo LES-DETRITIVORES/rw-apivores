@@ -27,12 +27,20 @@ describe('inventaires', () => {
 
   scenario('creates a inventaire', async () => {
     const result = await createInventaire({
-      input: { site: 8272524, materiel: 5523018, quantite: 3039302 },
+      input: {
+        site: 9379464,
+        materiel: 6980462,
+        quantite: 563139,
+        note: 'String',
+        actif: true,
+      },
     })
 
-    expect(result.site).toEqual(8272524)
-    expect(result.materiel).toEqual(5523018)
-    expect(result.quantite).toEqual(3039302)
+    expect(result.site).toEqual(9379464)
+    expect(result.materiel).toEqual(6980462)
+    expect(result.quantite).toEqual(563139)
+    expect(result.note).toEqual('String')
+    expect(result.actif).toEqual(true)
   })
 
   scenario('updates a inventaire', async (scenario) => {
@@ -42,10 +50,10 @@ describe('inventaires', () => {
 
     const result = await updateInventaire({
       id: original.id,
-      input: { site: 8730994 },
+      input: { site: 5341187 },
     })
 
-    expect(result.site).toEqual(8730994)
+    expect(result.site).toEqual(5341187)
   })
 
   scenario('deletes a inventaire', async (scenario) => {

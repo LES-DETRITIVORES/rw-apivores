@@ -4,11 +4,11 @@ import { Link, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
-import { QUERY } from 'src/components/Prestation/PrestationsCell'
+import { QUERY } from 'src/components/Tarif/TarifsCell'
 
-const DELETE_PRESTATION_MUTATION = gql`
-  mutation DeletePrestationMutation($id: Int!) {
-    deletePrestation(id: $id) {
+const DELETE_TARIF_MUTATION = gql`
+  mutation DeleteTarifMutation($id: Int!) {
+    deleteTarif(id: $id) {
       id
     }
   }
@@ -50,20 +50,13 @@ const timeTag = (datetime) => {
 }
 
 const checkboxInputTag = (checked) => {
-  return (
-    <input
-      className='className="h-4 w-4 rounded border-gray-300 text-green-600 focus:ring-green-700'
-      type="checkbox"
-      checked={checked}
-      disabled
-    />
-  )
+  return <input type="checkbox" checked={checked} disabled />
 }
 
-const PrestationsList = ({ prestations }) => {
-  const [deletePrestation] = useMutation(DELETE_PRESTATION_MUTATION, {
+const TarifsList = ({ tarifs }) => {
+  const [deleteTarif] = useMutation(DELETE_TARIF_MUTATION, {
     onCompleted: () => {
-      toast.success('Prestation deleted')
+      toast.success('Tarif deleted')
     },
     onError: (error) => {
       toast.error(error.message)
@@ -76,8 +69,8 @@ const PrestationsList = ({ prestations }) => {
   })
 
   const onDeleteClick = (id) => {
-    if (confirm('Are you sure you want to delete prestation ' + id + '?')) {
-      deletePrestation({ variables: { id } })
+    if (confirm('Are you sure you want to delete tarif ' + id + '?')) {
+      deleteTarif({ variables: { id } })
     }
   }
 
@@ -87,38 +80,48 @@ const PrestationsList = ({ prestations }) => {
         <thead>
           <tr>
             <th>Id</th>
-            <th>Nom</th>
+            <th>Site</th>
+            <th>Matiere</th>
+            <th>Date</th>
+            <th>Prestation</th>
+            <th>Prix</th>
+            <th>Forfait</th>
             <th>Actif</th>
             <th>&nbsp;</th>
           </tr>
         </thead>
         <tbody>
-          {prestations.map((prestation) => (
-            <tr key={prestation.id}>
-              <td>{truncate(prestation.id)}</td>
-              <td>{truncate(prestation.nom)}</td>
-              <td>{checkboxInputTag(prestation.actif)}</td>
+          {tarifs.map((tarif) => (
+            <tr key={tarif.id}>
+              <td>{truncate(tarif.id)}</td>
+              <td>{truncate(tarif.site)}</td>
+              <td>{truncate(tarif.matiere)}</td>
+              <td>{timeTag(tarif.date)}</td>
+              <td>{truncate(tarif.prestation)}</td>
+              <td>{truncate(tarif.prix)}</td>
+              <td>{checkboxInputTag(tarif.forfait)}</td>
+              <td>{checkboxInputTag(tarif.actif)}</td>
               <td>
                 <nav className="rw-table-actions">
                   <Link
-                    to={routes.prestation({ id: prestation.id })}
-                    title={'Show prestation ' + prestation.id + ' detail'}
+                    to={routes.tarif({ id: tarif.id })}
+                    title={'Show tarif ' + tarif.id + ' detail'}
                     className="rw-button rw-button-small"
                   >
                     Show
                   </Link>
                   <Link
-                    to={routes.editPrestation({ id: prestation.id })}
-                    title={'Edit prestation ' + prestation.id}
+                    to={routes.editTarif({ id: tarif.id })}
+                    title={'Edit tarif ' + tarif.id}
                     className="rw-button rw-button-small rw-button-blue"
                   >
                     Edit
                   </Link>
                   <button
                     type="button"
-                    title={'Delete prestation ' + prestation.id}
+                    title={'Delete tarif ' + tarif.id}
                     className="rw-button rw-button-small rw-button-red"
-                    onClick={() => onDeleteClick(prestation.id)}
+                    onClick={() => onDeleteClick(tarif.id)}
                   >
                     Delete
                   </button>
@@ -132,4 +135,4 @@ const PrestationsList = ({ prestations }) => {
   )
 }
 
-export default PrestationsList
+export default TarifsList

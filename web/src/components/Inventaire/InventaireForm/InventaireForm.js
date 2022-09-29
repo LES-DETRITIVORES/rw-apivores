@@ -4,6 +4,8 @@ import {
   FieldError,
   Label,
   NumberField,
+  TextField,
+  CheckboxField,
   Submit,
 } from '@redwoodjs/forms'
 
@@ -75,6 +77,41 @@ const InventaireForm = (props) => {
         />
 
         <FieldError name="quantite" className="rw-field-error" />
+
+        <Label
+          name="note"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Note
+        </Label>
+
+        <TextField
+          name="note"
+          defaultValue={props.inventaire?.note}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ required: true }}
+        />
+
+        <FieldError name="note" className="rw-field-error" />
+
+        <Label
+          name="actif"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Actif
+        </Label>
+
+        <CheckboxField
+          name="actif"
+          defaultChecked={props.inventaire?.actif}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+        />
+
+        <FieldError name="actif" className="rw-field-error" />
 
         <div className="rw-button-group">
           <Submit

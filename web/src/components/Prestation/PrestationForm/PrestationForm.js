@@ -3,18 +3,10 @@ import {
   FormError,
   FieldError,
   Label,
-  NumberField,
-  DatetimeLocalField,
   TextField,
   CheckboxField,
   Submit,
 } from '@redwoodjs/forms'
-
-const formatDatetime = (value) => {
-  if (value) {
-    return value.replace(/:\d{2}\.\d{3}\w/, '')
-  }
-}
 
 const PrestationForm = (props) => {
   const onSubmit = (data) => {
@@ -30,6 +22,44 @@ const PrestationForm = (props) => {
           titleClassName="rw-form-error-title"
           listClassName="rw-form-error-list"
         />
+<<<<<<< HEAD
+
+        <Label
+          name="nom"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Nom
+        </Label>
+
+        <TextField
+          name="nom"
+          defaultValue={props.prestation?.nom}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ required: true }}
+        />
+
+        <FieldError name="nom" className="rw-field-error" />
+
+        <Label
+          name="actif"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Actif
+        </Label>
+
+        <CheckboxField
+          name="actif"
+          defaultChecked={props.prestation?.actif}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+        />
+
+        <FieldError name="actif" className="rw-field-error" />
+
+=======
         <div className="grid grid-cols-1 gap-6 md:grid-cols-6">
           <div className="col-span-2 sm:col-span-2">
             <Label
@@ -196,6 +226,7 @@ const PrestationForm = (props) => {
             <FieldError name="actif" className="rw-field-error" />
           </div>
         </div>
+>>>>>>> 5dac5e5e75f5023129195eb23c8fae81e9994983
         <div className="rw-button-group">
           <Submit
             disabled={props.loading}
