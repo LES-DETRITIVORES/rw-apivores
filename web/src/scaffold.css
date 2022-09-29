@@ -148,7 +148,7 @@ html {
 }
 .rw-input[type='checkbox'],
 .rw-input[type='radio'] {
-  @apply ml-0 mr-1 mt-1 inline w-4;
+  @apply ml-0 mr-1 mt-1 inline w-4 rounded-md;
 }
 .rw-input:focus {
   @apply border-gray-400;
@@ -181,10 +181,10 @@ html {
 }
 .rw-table tr:nth-child(odd) td,
 .rw-table tr:nth-child(odd) th {
-  @apply bg-gray-50;
+  @apply bg-white;
 }
 .rw-table thead tr {
-  @apply bg-gray-200 text-gray-600;
+  @apply bg-gray-50 text-gray-600;
 }
 .rw-table th {
   @apply text-left font-semibold;
@@ -244,4 +244,8 @@ html {
 }
 .rw-webauthn-wrapper h2 {
   @apply mb-4 text-xl font-bold;
+}
+
+th {
+  @apply !bg-green-800 !text-white;
 }

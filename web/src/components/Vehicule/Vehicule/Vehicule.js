@@ -42,7 +42,14 @@ const timeTag = (datetime) => {
 }
 
 const checkboxInputTag = (checked) => {
-  return <input type="checkbox" checked={checked} disabled />
+  return (
+    <input
+      className='className="h-4 w-4 rounded border-gray-300 text-green-600 focus:ring-green-700'
+      type="checkbox"
+      checked={checked}
+      disabled
+    />
+  )
 }
 
 const Vehicule = ({ vehicule }) => {
@@ -90,7 +97,12 @@ const Vehicule = ({ vehicule }) => {
             </tr>
             <tr>
               <th>Couleur</th>
-              <td>{vehicule.couleur}</td>
+              <td>
+                <span
+                  className={`h-2 w-2 rounded-full bg-[${vehicule.couleur}]`}
+                />
+                {vehicule.couleur}
+              </td>
             </tr>
             <tr>
               <th>Icone</th>
