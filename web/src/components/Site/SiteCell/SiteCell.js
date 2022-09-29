@@ -4,7 +4,7 @@ export const QUERY = gql`
   query FindSiteById($id: Int!) {
     site: site(id: $id) {
       id
-      usagerId
+      usager
       ordre
       nom
       adresse

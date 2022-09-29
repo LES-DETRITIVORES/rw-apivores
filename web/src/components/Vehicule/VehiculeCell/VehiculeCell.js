@@ -11,7 +11,6 @@ export const QUERY = gql`
       icone
       ordre
       actif
-      tourneeId
     }
   }
 `

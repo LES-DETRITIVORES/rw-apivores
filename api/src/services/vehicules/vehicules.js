@@ -28,9 +28,3 @@ export const deleteVehicule = ({ id }) => {
     where: { id },
   })
 }
-
-export const Vehicule = {
-  tournee: (_obj, { root }) => {
-    return db.vehicule.findUnique({ where: { id: root?.id } }).tournee()
-  },
-}

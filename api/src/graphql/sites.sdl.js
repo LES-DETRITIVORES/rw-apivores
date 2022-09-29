@@ -1,8 +1,7 @@
 export const schema = gql`
   type Site {
     id: Int!
-    usager: Usager
-    usagerId: Int
+    usager: Int!
     ordre: Int!
     nom: String!
     adresse: String!
@@ -14,7 +13,6 @@ export const schema = gql`
     etage: Int!
     ascenseur: Boolean!
     note: String!
-    tarifs: [Tarif]!
     actif: Boolean!
   }
 
@@ -24,7 +22,7 @@ export const schema = gql`
   }
 
   input CreateSiteInput {
-    usagerId: Int
+    usager: Int!
     ordre: Int!
     nom: String!
     adresse: String!
@@ -40,7 +38,7 @@ export const schema = gql`
   }
 
   input UpdateSiteInput {
-    usagerId: Int
+    usager: Int
     ordre: Int
     nom: String
     adresse: String

@@ -28,12 +28,3 @@ export const deleteSite = ({ id }) => {
     where: { id },
   })
 }
-
-export const Site = {
-  usager: (_obj, { root }) => {
-    return db.site.findUnique({ where: { id: root?.id } }).usager()
-  },
-  tarifs: (_obj, { root }) => {
-    return db.site.findUnique({ where: { id: root?.id } }).tarifs()
-  },
-}

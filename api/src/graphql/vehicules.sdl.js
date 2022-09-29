@@ -8,8 +8,6 @@ export const schema = gql`
     icone: String!
     ordre: Int!
     actif: Boolean!
-    tournee: Tournee
-    tourneeId: Int
   }
 
   type Query {
@@ -25,7 +23,6 @@ export const schema = gql`
     icone: String!
     ordre: Int!
     actif: Boolean!
-    tourneeId: Int
   }
 
   input UpdateVehiculeInput {
@@ -36,7 +33,6 @@ export const schema = gql`
     icone: String
     ordre: Int
     actif: Boolean
-    tourneeId: Int
   }
 
   type Mutation {

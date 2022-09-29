@@ -16,7 +16,6 @@ export const QUERY = gql`
       icone
       ordre
       actif
-      tourneeId
     }
   }
 `
@@ -31,7 +30,6 @@ const UPDATE_VEHICULE_MUTATION = gql`
       icone
       ordre
       actif
-      tourneeId
     }
   }
 `

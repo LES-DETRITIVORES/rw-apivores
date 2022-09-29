@@ -28,9 +28,3 @@ export const deleteOperateur = ({ id }) => {
     where: { id },
   })
 }
-
-export const Operateur = {
-  tournee: (_obj, { root }) => {
-    return db.operateur.findUnique({ where: { id: root?.id } }).tournee()
-  },
-}

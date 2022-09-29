@@ -43,13 +43,15 @@ model Tournee {
 model Usager {
   id                    Int     @id @default(autoincrement())
   nom                   String
-  type                  String
   tiers                 String
   contact               String
   adresse               String
+  adresse2              String
+  codePostal            String
+  ville                 String
   email                 String
-  telephone             String
-  reference             String
+  telephone1            String
+  telephone2            String
   note                  String
   actif                 Boolean
 }

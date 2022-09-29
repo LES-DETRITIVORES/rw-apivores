@@ -4,7 +4,7 @@ export const QUERY = gql`
   query FindContactById($id: Int!) {
     contact: contact(id: $id) {
       id
-      usagerId
+      usager
       ordre
       prenom
       nom

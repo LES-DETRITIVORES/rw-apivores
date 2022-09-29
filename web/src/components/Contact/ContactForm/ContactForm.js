@@ -24,6 +24,7 @@ const ContactForm = (props) => {
           listClassName="rw-form-error-list"
         />
 
+<<<<<<< HEAD
         <div className="grid grid-cols-1 gap-6 md:grid-cols-6">
           <div className="col-span-2 sm:col-span-2">
             <Label
@@ -42,6 +43,25 @@ const ContactForm = (props) => {
             />
 
             <FieldError name="usagerId" className="rw-field-error" />
+=======
+        <Label
+          name="usager"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Usager
+        </Label>
+
+        <NumberField
+          name="usager"
+          defaultValue={props.contact?.usager}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ required: true }}
+        />
+
+        <FieldError name="usager" className="rw-field-error" />
+>>>>>>> a19af17b86d24a23a4986c1116bff1505bf5d1f0
 
             <Label
               name="ordre"

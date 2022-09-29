@@ -9,15 +9,15 @@
 
 import { Set, Router, Route } from '@redwoodjs/router'
 
+import PrestationsLayout from 'src/layouts/PrestationsLayout'
+
+import InventairesLayout from 'src/layouts/InventairesLayout'
+
 import ContactsLayout from 'src/layouts/ContactsLayout'
 
 import SitesLayout from 'src/layouts/SitesLayout'
 
 import UsagersLayout from 'src/layouts/UsagersLayout'
-
-import TarifsLayout from 'src/layouts/TarifsLayout'
-
-import TourneesLayout from 'src/layouts/TourneesLayout'
 
 import OperateursLayout from 'src/layouts/OperateursLayout'
 
@@ -30,6 +30,18 @@ import MatieresLayout from 'src/layouts/MatieresLayout'
 const Routes = () => {
   return (
     <Router>
+      <Set wrap={PrestationsLayout}>
+        <Route path="/prestations/new" page={PrestationNewPrestationPage} name="newPrestation" />
+        <Route path="/prestations/{id:Int}/edit" page={PrestationEditPrestationPage} name="editPrestation" />
+        <Route path="/prestations/{id:Int}" page={PrestationPrestationPage} name="prestation" />
+        <Route path="/prestations" page={PrestationPrestationsPage} name="prestations" />
+      </Set>
+      <Set wrap={InventairesLayout}>
+        <Route path="/inventaires/new" page={InventaireNewInventairePage} name="newInventaire" />
+        <Route path="/inventaires/{id:Int}/edit" page={InventaireEditInventairePage} name="editInventaire" />
+        <Route path="/inventaires/{id:Int}" page={InventaireInventairePage} name="inventaire" />
+        <Route path="/inventaires" page={InventaireInventairesPage} name="inventaires" />
+      </Set>
       <Set wrap={ContactsLayout}>
         <Route path="/contacts/new" page={ContactNewContactPage} name="newContact" />
         <Route path="/contacts/{id:Int}/edit" page={ContactEditContactPage} name="editContact" />
@@ -47,18 +59,6 @@ const Routes = () => {
         <Route path="/usagers/{id:Int}/edit" page={UsagerEditUsagerPage} name="editUsager" />
         <Route path="/usagers/{id:Int}" page={UsagerUsagerPage} name="usager" />
         <Route path="/usagers" page={UsagerUsagersPage} name="usagers" />
-      </Set>
-      <Set wrap={TarifsLayout}>
-        <Route path="/tarifs/new" page={TarifNewTarifPage} name="newTarif" />
-        <Route path="/tarifs/{id:Int}/edit" page={TarifEditTarifPage} name="editTarif" />
-        <Route path="/tarifs/{id:Int}" page={TarifTarifPage} name="tarif" />
-        <Route path="/tarifs" page={TarifTarifsPage} name="tarifs" />
-      </Set>
-      <Set wrap={TourneesLayout}>
-        <Route path="/tournees/new" page={TourneeNewTourneePage} name="newTournee" />
-        <Route path="/tournees/{id:Int}/edit" page={TourneeEditTourneePage} name="editTournee" />
-        <Route path="/tournees/{id:Int}" page={TourneeTourneePage} name="tournee" />
-        <Route path="/tournees" page={TourneeTourneesPage} name="tournees" />
       </Set>
       <Set wrap={OperateursLayout}>
         <Route path="/operateurs/new" page={OperateurNewOperateurPage} name="newOperateur" />

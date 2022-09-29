@@ -88,10 +88,6 @@ const Operateur = ({ operateur }) => {
               <th>Actif</th>
               <td>{checkboxInputTag(operateur.actif)}</td>
             </tr>
-            <tr>
-              <th>Tournee id</th>
-              <td>{operateur.tourneeId}</td>
-            </tr>
           </tbody>
         </table>
       </div>

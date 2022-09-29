@@ -104,10 +104,6 @@ const Vehicule = ({ vehicule }) => {
               <th>Actif</th>
               <td>{checkboxInputTag(vehicule.actif)}</td>
             </tr>
-            <tr>
-              <th>Tournee id</th>
-              <td>{vehicule.tourneeId}</td>
-            </tr>
           </tbody>
         </table>
       </div>

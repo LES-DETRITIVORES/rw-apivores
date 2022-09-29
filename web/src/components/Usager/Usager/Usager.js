@@ -81,10 +81,6 @@ const Usager = ({ usager }) => {
               <td>{usager.nom}</td>
             </tr>
             <tr>
-              <th>Type</th>
-              <td>{usager.type}</td>
-            </tr>
-            <tr>
               <th>Tiers</th>
               <td>{usager.tiers}</td>
             </tr>
@@ -97,16 +93,28 @@ const Usager = ({ usager }) => {
               <td>{usager.adresse}</td>
             </tr>
             <tr>
+              <th>Adresse2</th>
+              <td>{usager.adresse2}</td>
+            </tr>
+            <tr>
+              <th>Code postal</th>
+              <td>{usager.codePostal}</td>
+            </tr>
+            <tr>
+              <th>Ville</th>
+              <td>{usager.ville}</td>
+            </tr>
+            <tr>
               <th>Email</th>
               <td>{usager.email}</td>
             </tr>
             <tr>
-              <th>Telephone</th>
-              <td>{usager.telephone}</td>
+              <th>Telephone1</th>
+              <td>{usager.telephone1}</td>
             </tr>
             <tr>
-              <th>Reference</th>
-              <td>{usager.reference}</td>
+              <th>Telephone2</th>
+              <td>{usager.telephone2}</td>
             </tr>
             <tr>
               <th>Note</th>

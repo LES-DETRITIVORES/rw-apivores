@@ -12,7 +12,6 @@ export const QUERY = gql`
       prenom
       nom
       actif
-      tourneeId
     }
   }
 `
@@ -23,7 +22,6 @@ const UPDATE_OPERATEUR_MUTATION = gql`
       prenom
       nom
       actif
-      tourneeId
     }
   }
 `

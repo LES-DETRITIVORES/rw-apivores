@@ -87,7 +87,6 @@ const VehiculesList = ({ vehicules }) => {
             <th>Icone</th>
             <th>Ordre</th>
             <th>Actif</th>
-            <th>Tournee id</th>
             <th>&nbsp;</th>
           </tr>
         </thead>
@@ -102,7 +101,6 @@ const VehiculesList = ({ vehicules }) => {
               <td>{truncate(vehicule.icone)}</td>
               <td>{truncate(vehicule.ordre)}</td>
               <td>{checkboxInputTag(vehicule.actif)}</td>
-              <td>{truncate(vehicule.tourneeId)}</td>
               <td>
                 <nav className="rw-table-actions">
                   <Link

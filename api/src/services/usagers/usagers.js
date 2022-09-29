@@ -28,12 +28,3 @@ export const deleteUsager = ({ id }) => {
     where: { id },
   })
 }
-
-export const Usager = {
-  sites: (_obj, { root }) => {
-    return db.usager.findUnique({ where: { id: root?.id } }).sites()
-  },
-  contacts: (_obj, { root }) => {
-    return db.usager.findUnique({ where: { id: root?.id } }).contacts()
-  },
-}

@@ -83,7 +83,6 @@ const OperateursList = ({ operateurs }) => {
             <th>Prenom</th>
             <th>Nom</th>
             <th>Actif</th>
-            <th>Tournee id</th>
             <th>&nbsp;</th>
           </tr>
         </thead>
@@ -94,7 +93,6 @@ const OperateursList = ({ operateurs }) => {
               <td>{truncate(operateur.prenom)}</td>
               <td>{truncate(operateur.nom)}</td>
               <td>{checkboxInputTag(operateur.actif)}</td>
-              <td>{truncate(operateur.tourneeId)}</td>
               <td>
                 <nav className="rw-table-actions">
                   <Link

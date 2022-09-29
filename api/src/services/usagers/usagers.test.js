@@ -29,26 +29,30 @@ describe('usagers', () => {
     const result = await createUsager({
       input: {
         nom: 'String',
-        type: 'String',
         tiers: 'String',
         contact: 'String',
         adresse: 'String',
+        adresse2: 'String',
+        codePostal: 'String',
+        ville: 'String',
         email: 'String',
-        telephone: 'String',
-        reference: 'String',
+        telephone1: 'String',
+        telephone2: 'String',
         note: 'String',
         actif: true,
       },
     })
 
     expect(result.nom).toEqual('String')
-    expect(result.type).toEqual('String')
     expect(result.tiers).toEqual('String')
     expect(result.contact).toEqual('String')
     expect(result.adresse).toEqual('String')
+    expect(result.adresse2).toEqual('String')
+    expect(result.codePostal).toEqual('String')
+    expect(result.ville).toEqual('String')
     expect(result.email).toEqual('String')
-    expect(result.telephone).toEqual('String')
-    expect(result.reference).toEqual('String')
+    expect(result.telephone1).toEqual('String')
+    expect(result.telephone2).toEqual('String')
     expect(result.note).toEqual('String')
     expect(result.actif).toEqual(true)
   })

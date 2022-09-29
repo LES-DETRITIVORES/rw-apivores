@@ -80,7 +80,7 @@ const SitesList = ({ sites }) => {
         <thead>
           <tr>
             <th>Id</th>
-            <th>Usager id</th>
+            <th>Usager</th>
             <th>Ordre</th>
             <th>Nom</th>
             <th>Adresse</th>
@@ -100,7 +100,7 @@ const SitesList = ({ sites }) => {
           {sites.map((site) => (
             <tr key={site.id}>
               <td>{truncate(site.id)}</td>
-              <td>{truncate(site.usagerId)}</td>
+              <td>{truncate(site.usager)}</td>
               <td>{truncate(site.ordre)}</td>
               <td>{truncate(site.nom)}</td>
               <td>{truncate(site.adresse)}</td>

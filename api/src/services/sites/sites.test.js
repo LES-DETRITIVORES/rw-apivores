@@ -22,7 +22,8 @@ describe('sites', () => {
   scenario('creates a site', async () => {
     const result = await createSite({
       input: {
-        ordre: 8151291,
+        usager: 1019926,
+        ordre: 9410830,
         nom: 'String',
         adresse: 'String',
         adresse2: 'String',
@@ -30,14 +31,15 @@ describe('sites', () => {
         ville: 'String',
         latitude: 'String',
         longitude: 'String',
-        etage: 5645000,
+        etage: 6845898,
         ascenseur: true,
         note: 'String',
         actif: true,
       },
     })
 
-    expect(result.ordre).toEqual(8151291)
+    expect(result.usager).toEqual(1019926)
+    expect(result.ordre).toEqual(9410830)
     expect(result.nom).toEqual('String')
     expect(result.adresse).toEqual('String')
     expect(result.adresse2).toEqual('String')
@@ -45,7 +47,7 @@ describe('sites', () => {
     expect(result.ville).toEqual('String')
     expect(result.latitude).toEqual('String')
     expect(result.longitude).toEqual('String')
-    expect(result.etage).toEqual(5645000)
+    expect(result.etage).toEqual(6845898)
     expect(result.ascenseur).toEqual(true)
     expect(result.note).toEqual('String')
     expect(result.actif).toEqual(true)
@@ -55,10 +57,10 @@ describe('sites', () => {
     const original = await site({ id: scenario.site.one.id })
     const result = await updateSite({
       id: original.id,
-      input: { ordre: 7404301 },
+      input: { usager: 8578751 },
     })
 
-    expect(result.ordre).toEqual(7404301)
+    expect(result.usager).toEqual(8578751)
   })
 
   scenario('deletes a site', async (scenario) => {
