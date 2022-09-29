@@ -6,14 +6,7 @@ export const QUERY = gql`
   query FindPrestations {
     prestations {
       id
-      site
-      date
-      matiere
-      prestation
-      tarif
-      quantite
-      passage
-      bac
+      nom
       actif
     }
   }

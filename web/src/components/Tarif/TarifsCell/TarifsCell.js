@@ -1,15 +1,17 @@
 import { Link, routes } from '@redwoodjs/router'
 
-import Inventaires from 'src/components/Inventaire/Inventaires'
+import Tarifs from 'src/components/Tarif/Tarifs'
 
 export const QUERY = gql`
-  query FindInventaires {
-    inventaires {
+  query FindTarifs {
+    tarifs {
       id
       site
-      materiel
-      quantite
-      note
+      matiere
+      date
+      prestation
+      prix
+      forfait
       actif
     }
   }
@@ -20,8 +22,8 @@ export const Loading = () => <div>Loading...</div>
 export const Empty = () => {
   return (
     <div className="rw-text-center">
-      {'No inventaires yet. '}
-      <Link to={routes.newInventaire()} className="rw-link">
+      {'No tarifs yet. '}
+      <Link to={routes.newTarif()} className="rw-link">
         {'Create one?'}
       </Link>
     </div>
@@ -32,6 +34,6 @@ export const Failure = ({ error }) => (
   <div className="rw-cell-error">{error?.message}</div>
 )
 
-export const Success = ({ inventaires }) => {
-  return <Inventaires inventaires={inventaires} />
+export const Success = ({ tarifs }) => {
+  return <Tarifs tarifs={tarifs} />
 }

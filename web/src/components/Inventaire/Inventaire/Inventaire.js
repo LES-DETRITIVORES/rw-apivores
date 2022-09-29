@@ -88,6 +88,14 @@ const Inventaire = ({ inventaire }) => {
               <th>Quantite</th>
               <td>{inventaire.quantite}</td>
             </tr>
+            <tr>
+              <th>Note</th>
+              <td>{inventaire.note}</td>
+            </tr>
+            <tr>
+              <th>Actif</th>
+              <td>{checkboxInputTag(inventaire.actif)}</td>
+            </tr>
           </tbody>
         </table>
       </div>

@@ -36,13 +36,15 @@ CREATE TABLE "Tournee" (
 CREATE TABLE "Usager" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "nom" TEXT NOT NULL,
-    "type" TEXT NOT NULL,
     "tiers" TEXT NOT NULL,
     "contact" TEXT NOT NULL,
     "adresse" TEXT NOT NULL,
+    "adresse2" TEXT NOT NULL,
+    "codePostal" TEXT NOT NULL,
+    "ville" TEXT NOT NULL,
     "email" TEXT NOT NULL,
-    "telephone" TEXT NOT NULL,
-    "reference" TEXT NOT NULL,
+    "telephone1" TEXT NOT NULL,
+    "telephone2" TEXT NOT NULL,
     "note" TEXT NOT NULL,
     "actif" BOOLEAN NOT NULL
 );
@@ -83,16 +85,21 @@ CREATE TABLE "Site" (
 );
 
 -- CreateTable
-CREATE TABLE "Prestation" (
+CREATE TABLE "Tarif" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "site" INTEGER NOT NULL,
-    "date" DATETIME NOT NULL,
     "matiere" INTEGER NOT NULL,
-    "prestation" TEXT NOT NULL,
-    "tarif" REAL NOT NULL,
-    "quantite" REAL NOT NULL,
-    "passage" BOOLEAN NOT NULL,
-    "bac" BOOLEAN NOT NULL,
+    "date" DATETIME NOT NULL,
+    "prestation" INTEGER NOT NULL,
+    "prix" REAL NOT NULL,
+    "forfait" BOOLEAN NOT NULL,
+    "actif" BOOLEAN NOT NULL
+);
+
+-- CreateTable
+CREATE TABLE "Prestation" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "nom" TEXT NOT NULL,
     "actif" BOOLEAN NOT NULL
 );
 
@@ -109,7 +116,9 @@ CREATE TABLE "Inventaire" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "site" INTEGER NOT NULL,
     "materiel" INTEGER NOT NULL,
-    "quantite" INTEGER NOT NULL
+    "quantite" INTEGER NOT NULL,
+    "note" TEXT NOT NULL,
+    "actif" BOOLEAN NOT NULL
 );
 
 -- CreateTable
@@ -123,12 +132,12 @@ CREATE TABLE "Operateur" (
 -- CreateTable
 CREATE TABLE "Vehicule" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "ordre" INTEGER NOT NULL,
     "nom" TEXT NOT NULL,
     "immatriculation" TEXT NOT NULL,
     "identifiant" TEXT NOT NULL,
     "couleur" TEXT NOT NULL,
     "icone" TEXT NOT NULL,
-    "ordre" INTEGER NOT NULL,
     "actif" BOOLEAN NOT NULL
 );
 

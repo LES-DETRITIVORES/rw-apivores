@@ -83,6 +83,8 @@ const InventairesList = ({ inventaires }) => {
             <th>Site</th>
             <th>Materiel</th>
             <th>Quantite</th>
+            <th>Note</th>
+            <th>Actif</th>
             <th>&nbsp;</th>
           </tr>
         </thead>
@@ -93,6 +95,8 @@ const InventairesList = ({ inventaires }) => {
               <td>{truncate(inventaire.site)}</td>
               <td>{truncate(inventaire.materiel)}</td>
               <td>{truncate(inventaire.quantite)}</td>
+              <td>{truncate(inventaire.note)}</td>
+              <td>{checkboxInputTag(inventaire.actif)}</td>
               <td>
                 <nav className="rw-table-actions">
                   <Link

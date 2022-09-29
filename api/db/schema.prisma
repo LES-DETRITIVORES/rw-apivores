@@ -89,17 +89,21 @@ model Site {
   actif                 Boolean
 }
  
-model Prestation {
+model Tarif {
   id                    Int     @id @default(autoincrement())
   site                  Int
-  date                  DateTime
   matiere               Int
-  prestation            String
-  tarif                 Float
-  quantite              Float
-  passage               Boolean
-  bac                   Boolean
+  date                  DateTime
+  prestation            Int
+  prix                  Float
+  forfait               Boolean
   actif                 Boolean
+}
+
+model Prestation {
+  id      Int     @id @default(autoincrement())
+  nom     String
+  actif   Boolean
 }
 
 model Materiel {
@@ -114,6 +118,8 @@ model Inventaire {
   site          Int
   materiel      Int
   quantite      Int
+  note          String
+  actif         Boolean
 }
 
 model Operateur {
@@ -125,12 +131,12 @@ model Operateur {
 
 model Vehicule {
   id              Int     @id @default(autoincrement())
+  ordre           Int
   nom             String
   immatriculation String
   identifiant     String
   couleur         String
   icone           String
-  ordre           Int
   actif           Boolean
 }
 

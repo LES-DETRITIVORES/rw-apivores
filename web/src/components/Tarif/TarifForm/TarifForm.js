@@ -4,14 +4,21 @@ import {
   FieldError,
   Label,
   NumberField,
+  DatetimeLocalField,
   TextField,
   CheckboxField,
   Submit,
 } from '@redwoodjs/forms'
 
-const InventaireForm = (props) => {
+const formatDatetime = (value) => {
+  if (value) {
+    return value.replace(/:\d{2}\.\d{3}\w/, '')
+  }
+}
+
+const TarifForm = (props) => {
   const onSubmit = (data) => {
-    props.onSave(data, props?.inventaire?.id)
+    props.onSave(data, props?.tarif?.id)
   }
 
   return (
@@ -34,7 +41,7 @@ const InventaireForm = (props) => {
 
         <NumberField
           name="site"
-          defaultValue={props.inventaire?.site}
+          defaultValue={props.tarif?.site}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
           validation={{ required: true }}
@@ -43,58 +50,93 @@ const InventaireForm = (props) => {
         <FieldError name="site" className="rw-field-error" />
 
         <Label
-          name="materiel"
+          name="matiere"
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          Materiel
+          Matiere
         </Label>
 
         <NumberField
-          name="materiel"
-          defaultValue={props.inventaire?.materiel}
+          name="matiere"
+          defaultValue={props.tarif?.matiere}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
           validation={{ required: true }}
         />
 
-        <FieldError name="materiel" className="rw-field-error" />
+        <FieldError name="matiere" className="rw-field-error" />
 
         <Label
-          name="quantite"
+          name="date"
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          Quantite
+          Date
         </Label>
 
-        <NumberField
-          name="quantite"
-          defaultValue={props.inventaire?.quantite}
+        <DatetimeLocalField
+          name="date"
+          defaultValue={formatDatetime(props.tarif?.date)}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
           validation={{ required: true }}
         />
 
-        <FieldError name="quantite" className="rw-field-error" />
+        <FieldError name="date" className="rw-field-error" />
 
         <Label
-          name="note"
+          name="prestation"
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          Note
+          Prestation
+        </Label>
+
+        <NumberField
+          name="prestation"
+          defaultValue={props.tarif?.prestation}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ required: true }}
+        />
+
+        <FieldError name="prestation" className="rw-field-error" />
+
+        <Label
+          name="prix"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Prix
         </Label>
 
         <TextField
-          name="note"
-          defaultValue={props.inventaire?.note}
+          name="prix"
+          defaultValue={props.tarif?.prix}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
+          validation={{ valueAsNumber: true, required: true }}
         />
 
-        <FieldError name="note" className="rw-field-error" />
+        <FieldError name="prix" className="rw-field-error" />
+
+        <Label
+          name="forfait"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Forfait
+        </Label>
+
+        <CheckboxField
+          name="forfait"
+          defaultChecked={props.tarif?.forfait}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+        />
+
+        <FieldError name="forfait" className="rw-field-error" />
 
         <Label
           name="actif"
@@ -106,7 +148,7 @@ const InventaireForm = (props) => {
 
         <CheckboxField
           name="actif"
-          defaultChecked={props.inventaire?.actif}
+          defaultChecked={props.tarif?.actif}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
         />
@@ -123,4 +165,4 @@ const InventaireForm = (props) => {
   )
 }
 
-export default InventaireForm
+export default TarifForm

@@ -72,11 +72,23 @@ const Navigation = () => {
             />
           ),
         },
+        {
+          id: 4,
+          name: 'Prestations',
+          href: '/prestations',
+          current: true,
+          icon: (
+            <PresentationChartLineIcon
+              className="mr-2 h-5 w-5 text-current"
+              aria-hidden="true"
+            />
+          ),
+        },
       ],
     },
     {
       id: 2,
-      name: 'Usagers',
+      name: 'Opérations',
       href: '#',
       current: false,
       icon: '',
@@ -131,8 +143,8 @@ const Navigation = () => {
         },
         {
           id: 5,
-          name: 'Types de partenaires',
-          href: '#',
+          name: 'Tarifs',
+          href: '/tarifs',
           current: true,
           icon: (
             <DocumentTextIcon
