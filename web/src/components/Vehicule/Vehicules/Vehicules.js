@@ -5,6 +5,7 @@ import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import { QUERY } from 'src/components/Vehicule/VehiculesCell'
+import { PencilAltIcon, PencilIcon, XIcon } from '@heroicons/react/outline'
 
 const DELETE_VEHICULE_MUTATION = gql`
   mutation DeleteVehiculeMutation($id: Int!) {
@@ -50,7 +51,14 @@ const timeTag = (datetime) => {
 }
 
 const checkboxInputTag = (checked) => {
-  return <input type="checkbox" checked={checked} disabled />
+  return (
+    <input
+      className='className="h-4 w-4 rounded border-gray-300 text-green-700 focus:ring-green-700'
+      type="checkbox"
+      checked={checked}
+      disabled
+    />
+  )
 }
 
 const VehiculesList = ({ vehicules }) => {
@@ -109,28 +117,25 @@ const VehiculesList = ({ vehicules }) => {
               <td>{truncate(vehicule.icone)}</td>
               <td>{checkboxInputTag(vehicule.actif)}</td>
               <td>
-                <nav className="rw-table-actions">
+                <nav className="rw-table-actions space-x-2">
                   <Link
                     to={routes.vehicule({ id: vehicule.id })}
                     title={'Show vehicule ' + vehicule.id + ' detail'}
-                    className="rw-button rw-button-small"
                   >
-                    Show
+                    <PencilIcon className="h-5 w-5 text-green-900" />
                   </Link>
                   <Link
                     to={routes.editVehicule({ id: vehicule.id })}
                     title={'Edit vehicule ' + vehicule.id}
-                    className="rw-button rw-button-small rw-button-blue"
                   >
-                    Edit
+                    <PencilAltIcon className="h-5 w-5 text-green-900" />
                   </Link>
                   <button
                     type="button"
                     title={'Delete vehicule ' + vehicule.id}
-                    className="rw-button rw-button-small rw-button-red"
                     onClick={() => onDeleteClick(vehicule.id)}
                   >
-                    Delete
+                    <XIcon className="h-5 w-5 text-green-900" />
                   </button>
                 </nav>
               </td>

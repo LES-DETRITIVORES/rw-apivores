@@ -98,16 +98,16 @@ const Operateur = ({ operateur }) => {
           </tbody>
         </table>
       </div>
-      <nav className="rw-button-group">
+      <nav className="rw-button-group space-x-2">
         <Link
           to={routes.editOperateur({ id: operateur.id })}
-          className="rw-button rw-button-blue"
+          className="inline-flex items-center rounded border border-transparent !bg-green-800 px-3 py-2 text-xs font-medium text-white shadow-sm hover:!bg-green-900 focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-offset-2"
         >
           Edit
         </Link>
         <button
           type="button"
-          className="rw-button rw-button-red"
+          className="inline-flex items-center rounded border border-transparent bg-red-500 px-3 py-2 text-xs font-medium text-white shadow-sm hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-700 focus:ring-offset-2"
           onClick={() => onDeleteClick(operateur.id)}
         >
           Delete

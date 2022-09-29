@@ -42,8 +42,8 @@ const PrestationForm = (props) => {
         <NumberField
           name="site"
           defaultValue={props.prestation?.site}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
+          className="mt-2 block w-full rounded-md border-gray-300 focus:border-green-700  focus:ring-green-700 sm:text-sm"
+          errorClassName="sm:text-sm mt-2 block w-full rounded-md border-red-300  focus:border-red-500 focus:ring-red-500"
           validation={{ required: true }}
         />
 
@@ -60,8 +60,8 @@ const PrestationForm = (props) => {
         <NumberField
           name="matiere"
           defaultValue={props.prestation?.matiere}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
+          className="mt-2 block w-full rounded-md border-gray-300 focus:border-green-700  focus:ring-green-700 sm:text-sm"
+          errorClassName="sm:text-sm mt-2 block w-full rounded-md border-red-300  focus:border-red-500 focus:ring-red-500"
           validation={{ required: true }}
         />
 
@@ -78,8 +78,8 @@ const PrestationForm = (props) => {
         <DatetimeLocalField
           name="date"
           defaultValue={formatDatetime(props.prestation?.date)}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
+          className="mt-2 block w-full rounded-md border-gray-300 focus:border-green-700  focus:ring-green-700 sm:text-sm"
+          errorClassName="sm:text-sm mt-2 block w-full rounded-md border-red-300  focus:border-red-500 focus:ring-red-500"
           validation={{ required: true }}
         />
 
@@ -96,8 +96,8 @@ const PrestationForm = (props) => {
         <NumberField
           name="service"
           defaultValue={props.prestation?.service}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
+          className="mt-2 block w-full rounded-md border-gray-300 focus:border-green-700  focus:ring-green-700 sm:text-sm"
+          errorClassName="sm:text-sm mt-2 block w-full rounded-md border-red-300  focus:border-red-500 focus:ring-red-500"
           validation={{ required: true }}
         />
 
@@ -114,8 +114,8 @@ const PrestationForm = (props) => {
         <TextField
           name="prix"
           defaultValue={props.prestation?.prix}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
+          className="mt-2 block w-full rounded-md border-gray-300 focus:border-green-700  focus:ring-green-700 sm:text-sm"
+          errorClassName="sm:text-sm mt-2 block w-full rounded-md border-red-300  focus:border-red-500 focus:ring-red-500"
           validation={{ valueAsNumber: true, required: true }}
         />
 
@@ -132,8 +132,8 @@ const PrestationForm = (props) => {
         <CheckboxField
           name="forfait"
           defaultChecked={props.prestation?.forfait}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
+          className="h-4 w-4 rounded border-gray-300 text-green-600 focus:ring-green-700"
+          errorClassName="focus:ring-red-500 h-4 w-4 text-red-600 border-red-300 rounded"
         />
 
         <FieldError name="forfait" className="rw-field-error" />
@@ -149,14 +149,17 @@ const PrestationForm = (props) => {
         <CheckboxField
           name="actif"
           defaultChecked={props.prestation?.actif}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
+          className="h-4 w-4 rounded border-gray-300 text-green-600 focus:ring-green-700"
+          errorClassName="focus:ring-red-500 h-4 w-4 text-red-600 border-red-300 rounded"
         />
 
         <FieldError name="actif" className="rw-field-error" />
 
         <div className="rw-button-group">
-          <Submit disabled={props.loading} className="rw-button rw-button-blue">
+          <Submit
+            disabled={props.loading}
+            className="inline-flex items-center rounded-md border border-transparent bg-green-800 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-green-900 focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-offset-2"
+          >
             Save
           </Submit>
         </div>
