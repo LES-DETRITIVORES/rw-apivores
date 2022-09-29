@@ -1,6 +1,6 @@
 export const standard = defineScenario({
   tournee: {
-    one: { data: { note: 'String' } },
-    two: { data: { note: 'String' } },
+    one: { data: { date: '2022-09-29T08:13:45Z', note: 'String' } },
+    two: { data: { date: '2022-09-29T08:13:45Z', note: 'String' } },
   },
 })

@@ -12,7 +12,7 @@ model Exploitation {
   id                    Int     @id @default(autoincrement())
   tourneeId             Int
   immatriculation       String
-  operateur                 String
+  operateur             String
   date                  DateTime @default(now())
   type                  String
   clientId              Int
@@ -32,7 +32,7 @@ model Exploitation {
 
 model Tournee {
   id                    Int       @id @default(autoincrement())
-  date                  DateTime  @default(now())
+  date                  DateTime
   note                  String
   vehicule              Vehicule?
   operateurs            Operateur[]
@@ -101,7 +101,7 @@ model Inventaire {
  
 model Tarif {
   id                    Int     @id @default(autoincrement())
-  date                  DateTime @default(now())
+  date                  DateTime
   site                  Site    @relation(fields: [siteId], references: [id])
   siteId                Int
   prestation            String

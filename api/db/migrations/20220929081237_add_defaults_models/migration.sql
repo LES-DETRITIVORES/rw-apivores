@@ -24,7 +24,7 @@ CREATE TABLE "Exploitation" (
 -- CreateTable
 CREATE TABLE "Tournee" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "date" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "date" DATETIME NOT NULL,
     "note" TEXT NOT NULL
 );
 
@@ -93,7 +93,7 @@ CREATE TABLE "Inventaire" (
 -- CreateTable
 CREATE TABLE "Tarif" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "date" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "date" DATETIME NOT NULL,
     "siteId" INTEGER NOT NULL,
     "prestation" TEXT NOT NULL,
     "prix" REAL NOT NULL,

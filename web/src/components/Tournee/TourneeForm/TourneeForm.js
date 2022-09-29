@@ -3,9 +3,16 @@ import {
   FormError,
   FieldError,
   Label,
+  DatetimeLocalField,
   TextField,
   Submit,
 } from '@redwoodjs/forms'
+
+const formatDatetime = (value) => {
+  if (value) {
+    return value.replace(/:\d{2}\.\d{3}\w/, '')
+  }
+}
 
 const TourneeForm = (props) => {
   const onSubmit = (data) => {
@@ -21,6 +28,24 @@ const TourneeForm = (props) => {
           titleClassName="rw-form-error-title"
           listClassName="rw-form-error-list"
         />
+
+        <Label
+          name="date"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Date
+        </Label>
+
+        <DatetimeLocalField
+          name="date"
+          defaultValue={formatDatetime(props.tournee?.date)}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ required: true }}
+        />
+
+        <FieldError name="date" className="rw-field-error" />
 
         <Label
           name="note"

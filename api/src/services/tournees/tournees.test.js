@@ -27,9 +27,10 @@ describe('tournees', () => {
 
   scenario('creates a tournee', async () => {
     const result = await createTournee({
-      input: { note: 'String' },
+      input: { date: '2022-09-29T08:13:45Z', note: 'String' },
     })
 
+    expect(result.date).toEqual('2022-09-29T08:13:45Z')
     expect(result.note).toEqual('String')
   })
 
@@ -37,10 +38,10 @@ describe('tournees', () => {
     const original = await tournee({ id: scenario.tournee.one.id })
     const result = await updateTournee({
       id: original.id,
-      input: { note: 'String2' },
+      input: { date: '2022-09-30T08:13:45Z' },
     })
 
-    expect(result.note).toEqual('String2')
+    expect(result.date).toEqual('2022-09-30T08:13:45Z')
   })
 
   scenario('deletes a tournee', async (scenario) => {
