@@ -33,7 +33,7 @@ export const Tournee = {
   vehicule: (_obj, { root }) => {
     return db.tournee.findUnique({ where: { id: root?.id } }).vehicule()
   },
-  agents: (_obj, { root }) => {
-    return db.tournee.findUnique({ where: { id: root?.id } }).agents()
+  operateurs: (_obj, { root }) => {
+    return db.tournee.findUnique({ where: { id: root?.id } }).operateurs()
   },
 }

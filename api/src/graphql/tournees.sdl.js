@@ -4,7 +4,7 @@ export const schema = gql`
     date: DateTime!
     note: String!
     vehicule: Vehicule
-    agents: [Agent]!
+    operateurs: [Operateur]!
   }
 
   type Query {

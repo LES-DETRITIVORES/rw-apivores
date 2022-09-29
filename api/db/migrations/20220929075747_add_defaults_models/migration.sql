@@ -3,7 +3,7 @@ CREATE TABLE "Exploitation" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "tourneeId" INTEGER NOT NULL,
     "immatriculation" TEXT NOT NULL,
-    "agent" TEXT NOT NULL,
+    "operateur" TEXT NOT NULL,
     "date" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "type" TEXT NOT NULL,
     "clientId" INTEGER NOT NULL,
@@ -104,13 +104,13 @@ CREATE TABLE "Tarif" (
 );
 
 -- CreateTable
-CREATE TABLE "Agent" (
+CREATE TABLE "Operateur" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "prenom" TEXT NOT NULL,
     "nom" TEXT NOT NULL,
     "actif" BOOLEAN NOT NULL,
     "tourneeId" INTEGER,
-    CONSTRAINT "Agent_tourneeId_fkey" FOREIGN KEY ("tourneeId") REFERENCES "Tournee" ("id") ON DELETE SET NULL ON UPDATE CASCADE
+    CONSTRAINT "Operateur_tourneeId_fkey" FOREIGN KEY ("tourneeId") REFERENCES "Tournee" ("id") ON DELETE SET NULL ON UPDATE CASCADE
 );
 
 -- CreateTable
