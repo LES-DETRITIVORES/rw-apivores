@@ -2,11 +2,11 @@ export const standard = defineScenario({
   prestation: {
     one: {
       data: {
-        site: 1721722,
-        matiere: 8096708,
-        date: '2022-09-29T14:10:08Z',
-        operation: 9291126,
-        prix: 4050599.5078361477,
+        site: 7323761,
+        matiere: 998147,
+        date: '2022-09-29T14:20:55Z',
+        service: 7004570,
+        prix: 2209088.900102867,
         forfait: true,
         actif: true,
       },
@@ -14,11 +14,11 @@ export const standard = defineScenario({
 
     two: {
       data: {
-        site: 8358130,
-        matiere: 8855013,
-        date: '2022-09-29T14:10:08Z',
-        operation: 1411115,
-        prix: 9074679.835543605,
+        site: 4356869,
+        matiere: 4654468,
+        date: '2022-09-29T14:20:55Z',
+        service: 3904466,
+        prix: 6452018.140108533,
         forfait: true,
         actif: true,
       },

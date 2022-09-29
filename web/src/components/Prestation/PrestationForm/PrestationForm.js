@@ -86,22 +86,22 @@ const PrestationForm = (props) => {
         <FieldError name="date" className="rw-field-error" />
 
         <Label
-          name="operation"
+          name="service"
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          Operation
+          Service
         </Label>
 
         <NumberField
-          name="operation"
-          defaultValue={props.prestation?.operation}
+          name="service"
+          defaultValue={props.prestation?.service}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
           validation={{ required: true }}
         />
 
-        <FieldError name="operation" className="rw-field-error" />
+        <FieldError name="service" className="rw-field-error" />
 
         <Label
           name="prix"

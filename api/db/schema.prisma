@@ -102,13 +102,13 @@ model Prestation {
   site                  Int
   matiere               Int
   date                  DateTime
-  operation             Int
+  service               Int
   prix                  Float
   forfait               Boolean
   actif                 Boolean
 }
 
-model Operation {
+model Service {
   id      Int     @id @default(autoincrement())
   nom     String
   actif   Boolean

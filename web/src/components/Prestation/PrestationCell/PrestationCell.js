@@ -7,7 +7,7 @@ export const QUERY = gql`
       site
       matiere
       date
-      operation
+      service
       prix
       forfait
       actif

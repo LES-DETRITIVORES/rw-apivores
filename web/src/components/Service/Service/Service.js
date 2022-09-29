@@ -4,9 +4,9 @@ import { Link, routes, navigate } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
-const DELETE_PRESTATION_MUTATION = gql`
-  mutation DeletePrestationMutation($id: Int!) {
-    deletePrestation(id: $id) {
+const DELETE_SERVICE_MUTATION = gql`
+  mutation DeleteServiceMutation($id: Int!) {
+    deleteService(id: $id) {
       id
     }
   }
@@ -45,11 +45,11 @@ const checkboxInputTag = (checked) => {
   return <input type="checkbox" checked={checked} disabled />
 }
 
-const Prestation = ({ prestation }) => {
-  const [deletePrestation] = useMutation(DELETE_PRESTATION_MUTATION, {
+const Service = ({ service }) => {
+  const [deleteService] = useMutation(DELETE_SERVICE_MUTATION, {
     onCompleted: () => {
-      toast.success('Prestation deleted')
-      navigate(routes.prestations())
+      toast.success('Service deleted')
+      navigate(routes.services())
     },
     onError: (error) => {
       toast.error(error.message)
@@ -57,8 +57,8 @@ const Prestation = ({ prestation }) => {
   })
 
   const onDeleteClick = (id) => {
-    if (confirm('Are you sure you want to delete prestation ' + id + '?')) {
-      deletePrestation({ variables: { id } })
+    if (confirm('Are you sure you want to delete service ' + id + '?')) {
+      deleteService({ variables: { id } })
     }
   }
 
@@ -67,49 +67,29 @@ const Prestation = ({ prestation }) => {
       <div className="rw-segment">
         <header className="rw-segment-header">
           <h2 className="rw-heading rw-heading-secondary">
-            Prestation {prestation.id} Detail
+            Service {service.id} Detail
           </h2>
         </header>
         <table className="rw-table">
           <tbody>
             <tr>
               <th>Id</th>
-              <td>{prestation.id}</td>
+              <td>{service.id}</td>
             </tr>
             <tr>
-              <th>Site</th>
-              <td>{prestation.site}</td>
-            </tr>
-            <tr>
-              <th>Matiere</th>
-              <td>{prestation.matiere}</td>
-            </tr>
-            <tr>
-              <th>Date</th>
-              <td>{timeTag(prestation.date)}</td>
-            </tr>
-            <tr>
-              <th>Service</th>
-              <td>{prestation.service}</td>
-            </tr>
-            <tr>
-              <th>Prix</th>
-              <td>{prestation.prix}</td>
-            </tr>
-            <tr>
-              <th>Forfait</th>
-              <td>{checkboxInputTag(prestation.forfait)}</td>
+              <th>Nom</th>
+              <td>{service.nom}</td>
             </tr>
             <tr>
               <th>Actif</th>
-              <td>{checkboxInputTag(prestation.actif)}</td>
+              <td>{checkboxInputTag(service.actif)}</td>
             </tr>
           </tbody>
         </table>
       </div>
       <nav className="rw-button-group">
         <Link
-          to={routes.editPrestation({ id: prestation.id })}
+          to={routes.editService({ id: service.id })}
           className="rw-button rw-button-blue"
         >
           Edit
@@ -117,7 +97,7 @@ const Prestation = ({ prestation }) => {
         <button
           type="button"
           className="rw-button rw-button-red"
-          onClick={() => onDeleteClick(prestation.id)}
+          onClick={() => onDeleteClick(service.id)}
         >
           Delete
         </button>
@@ -126,4 +106,4 @@ const Prestation = ({ prestation }) => {
   )
 }
 
-export default Prestation
+export default Service

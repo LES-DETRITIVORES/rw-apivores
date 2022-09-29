@@ -258,7 +258,7 @@ export default async () => {
         site: 1,
         matiere: 1,
         date: '2022-09-28T12:34:56Z',
-        prestation: 1,
+        service: 1,
         prix: 30.00,
         forfait: true,
         actif: true,
@@ -268,7 +268,7 @@ export default async () => {
         site: 2,
         matiere: 2,
         date: '2022-08-18T12:34:56Z',
-        prestation: 3,
+        service: 3,
         prix: 4.00,
         forfait: false,
         actif: true,
@@ -278,14 +278,14 @@ export default async () => {
         site: 1,
         matiere: 3,
         date: '2022-11-30T12:34:56Z',
-        prestation: 2,
+        service: 2,
         prix: 10.00,
         forfait: false,
         actif: false,
       }
     ]
 
-    const operations = [
+    const services = [
       {
         id: 1,
         nom: 'Collecte',
@@ -393,8 +393,8 @@ export default async () => {
         console.log(record)
       }),
 
-      operations.map(async (data) => {
-        const record = await db.operation.create({ data })
+      services.map(async (data) => {
+        const record = await db.service.create({ data })
         console.log(record)
       }),
 

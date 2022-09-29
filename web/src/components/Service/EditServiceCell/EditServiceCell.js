@@ -3,32 +3,22 @@ import { navigate, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
-import PrestationForm from 'src/components/Prestation/PrestationForm'
+import ServiceForm from 'src/components/Service/ServiceForm'
 
 export const QUERY = gql`
-  query EditPrestationById($id: Int!) {
-    prestation: prestation(id: $id) {
+  query EditServiceById($id: Int!) {
+    service: service(id: $id) {
       id
-      site
-      matiere
-      date
-      service
-      prix
-      forfait
+      nom
       actif
     }
   }
 `
-const UPDATE_PRESTATION_MUTATION = gql`
-  mutation UpdatePrestationMutation($id: Int!, $input: UpdatePrestationInput!) {
-    updatePrestation(id: $id, input: $input) {
+const UPDATE_SERVICE_MUTATION = gql`
+  mutation UpdateServiceMutation($id: Int!, $input: UpdateServiceInput!) {
+    updateService(id: $id, input: $input) {
       id
-      site
-      matiere
-      date
-      service
-      prix
-      forfait
+      nom
       actif
     }
   }
@@ -40,13 +30,13 @@ export const Failure = ({ error }) => (
   <div className="rw-cell-error">{error?.message}</div>
 )
 
-export const Success = ({ prestation }) => {
-  const [updatePrestation, { loading, error }] = useMutation(
-    UPDATE_PRESTATION_MUTATION,
+export const Success = ({ service }) => {
+  const [updateService, { loading, error }] = useMutation(
+    UPDATE_SERVICE_MUTATION,
     {
       onCompleted: () => {
-        toast.success('Prestation updated')
-        navigate(routes.prestations())
+        toast.success('Service updated')
+        navigate(routes.services())
       },
       onError: (error) => {
         toast.error(error.message)
@@ -55,19 +45,19 @@ export const Success = ({ prestation }) => {
   )
 
   const onSave = (input, id) => {
-    updatePrestation({ variables: { id, input } })
+    updateService({ variables: { id, input } })
   }
 
   return (
     <div className="rw-segment">
       <header className="rw-segment-header">
         <h2 className="rw-heading rw-heading-secondary">
-          Edit Prestation {prestation?.id}
+          Edit Service {service?.id}
         </h2>
       </header>
       <div className="rw-segment-main">
-        <PrestationForm
-          prestation={prestation}
+        <ServiceForm
+          service={service}
           onSave={onSave}
           error={error}
           loading={loading}

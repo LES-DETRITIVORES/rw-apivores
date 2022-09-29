@@ -4,7 +4,7 @@ export const schema = gql`
     site: Int!
     matiere: Int!
     date: DateTime!
-    operation: Int!
+    service: Int!
     prix: Float!
     forfait: Boolean!
     actif: Boolean!
@@ -19,7 +19,7 @@ export const schema = gql`
     site: Int!
     matiere: Int!
     date: DateTime!
-    operation: Int!
+    service: Int!
     prix: Float!
     forfait: Boolean!
     actif: Boolean!
@@ -29,7 +29,7 @@ export const schema = gql`
     site: Int
     matiere: Int
     date: DateTime
-    operation: Int
+    service: Int
     prix: Float
     forfait: Boolean
     actif: Boolean

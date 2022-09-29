@@ -4,11 +4,11 @@ import { Link, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
-import { QUERY } from 'src/components/Prestation/PrestationsCell'
+import { QUERY } from 'src/components/Service/ServicesCell'
 
-const DELETE_PRESTATION_MUTATION = gql`
-  mutation DeletePrestationMutation($id: Int!) {
-    deletePrestation(id: $id) {
+const DELETE_SERVICE_MUTATION = gql`
+  mutation DeleteServiceMutation($id: Int!) {
+    deleteService(id: $id) {
       id
     }
   }
@@ -53,10 +53,10 @@ const checkboxInputTag = (checked) => {
   return <input type="checkbox" checked={checked} disabled />
 }
 
-const PrestationsList = ({ prestations }) => {
-  const [deletePrestation] = useMutation(DELETE_PRESTATION_MUTATION, {
+const ServicesList = ({ services }) => {
+  const [deleteService] = useMutation(DELETE_SERVICE_MUTATION, {
     onCompleted: () => {
-      toast.success('Prestation deleted')
+      toast.success('Service deleted')
     },
     onError: (error) => {
       toast.error(error.message)
@@ -69,8 +69,8 @@ const PrestationsList = ({ prestations }) => {
   })
 
   const onDeleteClick = (id) => {
-    if (confirm('Are you sure you want to delete prestation ' + id + '?')) {
-      deletePrestation({ variables: { id } })
+    if (confirm('Are you sure you want to delete service ' + id + '?')) {
+      deleteService({ variables: { id } })
     }
   }
 
@@ -80,48 +80,38 @@ const PrestationsList = ({ prestations }) => {
         <thead>
           <tr>
             <th>Id</th>
-            <th>Site</th>
-            <th>Matiere</th>
-            <th>Date</th>
-            <th>Service</th>
-            <th>Prix</th>
-            <th>Forfait</th>
+            <th>Nom</th>
             <th>Actif</th>
             <th>&nbsp;</th>
           </tr>
         </thead>
         <tbody>
-          {prestations.map((prestation) => (
-            <tr key={prestation.id}>
-              <td>{truncate(prestation.id)}</td>
-              <td>{truncate(prestation.site)}</td>
-              <td>{truncate(prestation.matiere)}</td>
-              <td>{timeTag(prestation.date)}</td>
-              <td>{truncate(prestation.service)}</td>
-              <td>{truncate(prestation.prix)}</td>
-              <td>{checkboxInputTag(prestation.forfait)}</td>
-              <td>{checkboxInputTag(prestation.actif)}</td>
+          {services.map((service) => (
+            <tr key={service.id}>
+              <td>{truncate(service.id)}</td>
+              <td>{truncate(service.nom)}</td>
+              <td>{checkboxInputTag(service.actif)}</td>
               <td>
                 <nav className="rw-table-actions">
                   <Link
-                    to={routes.prestation({ id: prestation.id })}
-                    title={'Show prestation ' + prestation.id + ' detail'}
+                    to={routes.service({ id: service.id })}
+                    title={'Show service ' + service.id + ' detail'}
                     className="rw-button rw-button-small"
                   >
                     Show
                   </Link>
                   <Link
-                    to={routes.editPrestation({ id: prestation.id })}
-                    title={'Edit prestation ' + prestation.id}
+                    to={routes.editService({ id: service.id })}
+                    title={'Edit service ' + service.id}
                     className="rw-button rw-button-small rw-button-blue"
                   >
                     Edit
                   </Link>
                   <button
                     type="button"
-                    title={'Delete prestation ' + prestation.id}
+                    title={'Delete service ' + service.id}
                     className="rw-button rw-button-small rw-button-red"
-                    onClick={() => onDeleteClick(prestation.id)}
+                    onClick={() => onDeleteClick(service.id)}
                   >
                     Delete
                   </button>
@@ -135,4 +125,4 @@ const PrestationsList = ({ prestations }) => {
   )
 }
 
-export default PrestationsList
+export default ServicesList

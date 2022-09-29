@@ -9,7 +9,7 @@
 
 import { Set, Router, Route } from '@redwoodjs/router'
 
-import OperationsLayout from 'src/layouts/OperationsLayout'
+import ServicesLayout from 'src/layouts/ServicesLayout'
 
 import PrestationsLayout from 'src/layouts/PrestationsLayout'
 
@@ -34,19 +34,19 @@ import MatieresLayout from 'src/layouts/MatieresLayout'
 const Routes = () => {
   return (
     <Router>
-      <Set wrap={OperationsLayout}>
-        <Route path="/operations/new" page={OperationNewOperationPage} name="newOperation" />
-        <Route path="/operations/{id:Int}/edit" page={OperationEditOperationPage} name="editOperation" />
-        <Route path="/operations/{id:Int}" page={OperationOperationPage} name="operation" />
-        <Route path="/operations" page={OperationOperationsPage} name="operations" />
-      </Set>
-      <Set wrap={PrestationsLayout}>
-        <Route path="/prestations/new" page={PrestationNewPrestationPage} name="newPrestation" />
-        <Route path="/prestations/{id:Int}/edit" page={PrestationEditPrestationPage} name="editPrestation" />
-        <Route path="/prestations/{id:Int}" page={PrestationPrestationPage} name="prestation" />
-        <Route path="/prestations" page={PrestationPrestationsPage} name="prestations" />
-      </Set>
       <Set wrap={MainLayout}>
+        <Set wrap={ServicesLayout}>
+          <Route path="/services/new" page={ServiceNewServicePage} name="newService" />
+          <Route path="/services/{id:Int}/edit" page={ServiceEditServicePage} name="editService" />
+          <Route path="/services/{id:Int}" page={ServiceServicePage} name="service" />
+          <Route path="/services" page={ServiceServicesPage} name="services" />
+        </Set>
+        <Set wrap={PrestationsLayout}>
+          <Route path="/prestations/new" page={PrestationNewPrestationPage} name="newPrestation" />
+          <Route path="/prestations/{id:Int}/edit" page={PrestationEditPrestationPage} name="editPrestation" />
+          <Route path="/prestations/{id:Int}" page={PrestationPrestationPage} name="prestation" />
+          <Route path="/prestations" page={PrestationPrestationsPage} name="prestations" />
+        </Set>
         <Set wrap={InventairesLayout}>
           <Route path="/inventaires/new" page={InventaireNewInventairePage} name="newInventaire" />
           <Route path="/inventaires/{id:Int}/edit" page={InventaireEditInventairePage} name="editInventaire" />
