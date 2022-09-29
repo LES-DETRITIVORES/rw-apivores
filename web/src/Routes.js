@@ -9,6 +9,12 @@
 
 import { Set, Router, Route } from '@redwoodjs/router'
 
+import ContactsLayout from 'src/layouts/ContactsLayout'
+
+import SitesLayout from 'src/layouts/SitesLayout'
+
+import UsagersLayout from 'src/layouts/UsagersLayout'
+
 import TarifsLayout from 'src/layouts/TarifsLayout'
 
 import TourneesLayout from 'src/layouts/TourneesLayout'
@@ -24,6 +30,24 @@ import MatieresLayout from 'src/layouts/MatieresLayout'
 const Routes = () => {
   return (
     <Router>
+      <Set wrap={ContactsLayout}>
+        <Route path="/contacts/new" page={ContactNewContactPage} name="newContact" />
+        <Route path="/contacts/{id:Int}/edit" page={ContactEditContactPage} name="editContact" />
+        <Route path="/contacts/{id:Int}" page={ContactContactPage} name="contact" />
+        <Route path="/contacts" page={ContactContactsPage} name="contacts" />
+      </Set>
+      <Set wrap={SitesLayout}>
+        <Route path="/sites/new" page={SiteNewSitePage} name="newSite" />
+        <Route path="/sites/{id:Int}/edit" page={SiteEditSitePage} name="editSite" />
+        <Route path="/sites/{id:Int}" page={SiteSitePage} name="site" />
+        <Route path="/sites" page={SiteSitesPage} name="sites" />
+      </Set>
+      <Set wrap={UsagersLayout}>
+        <Route path="/usagers/new" page={UsagerNewUsagerPage} name="newUsager" />
+        <Route path="/usagers/{id:Int}/edit" page={UsagerEditUsagerPage} name="editUsager" />
+        <Route path="/usagers/{id:Int}" page={UsagerUsagerPage} name="usager" />
+        <Route path="/usagers" page={UsagerUsagersPage} name="usagers" />
+      </Set>
       <Set wrap={TarifsLayout}>
         <Route path="/tarifs/new" page={TarifNewTarifPage} name="newTarif" />
         <Route path="/tarifs/{id:Int}/edit" page={TarifEditTarifPage} name="editTarif" />

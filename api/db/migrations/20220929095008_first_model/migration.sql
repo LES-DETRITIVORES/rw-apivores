@@ -25,7 +25,11 @@ CREATE TABLE "Exploitation" (
 CREATE TABLE "Tournee" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "date" DATETIME NOT NULL,
-    "note" TEXT NOT NULL
+    "note" TEXT NOT NULL,
+    "vehicule" INTEGER NOT NULL,
+    "operateur1" INTEGER NOT NULL,
+    "operateur2" INTEGER NOT NULL,
+    "operateur3" INTEGER NOT NULL
 );
 
 -- CreateTable
@@ -44,9 +48,26 @@ CREATE TABLE "Usager" (
 );
 
 -- CreateTable
+CREATE TABLE "Contact" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "usager" INTEGER NOT NULL,
+    "ordre" INTEGER NOT NULL,
+    "prenom" TEXT NOT NULL,
+    "nom" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
+    "motdepasse" TEXT NOT NULL,
+    "telephone1" TEXT NOT NULL,
+    "telephone2" TEXT NOT NULL,
+    "remarque" TEXT NOT NULL,
+    "fonction" TEXT NOT NULL,
+    "extranet" BOOLEAN NOT NULL,
+    "actif" BOOLEAN NOT NULL
+);
+
+-- CreateTable
 CREATE TABLE "Site" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "usagerId" INTEGER NOT NULL,
+    "usager" INTEGER NOT NULL,
     "ordre" INTEGER NOT NULL,
     "nom" TEXT NOT NULL,
     "adresse" TEXT NOT NULL,
@@ -58,73 +79,21 @@ CREATE TABLE "Site" (
     "etage" INTEGER NOT NULL,
     "ascenseur" BOOLEAN NOT NULL,
     "note" TEXT NOT NULL,
-    "actif" BOOLEAN NOT NULL,
-    CONSTRAINT "Site_usagerId_fkey" FOREIGN KEY ("usagerId") REFERENCES "Usager" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
-);
-
--- CreateTable
-CREATE TABLE "Contact" (
-    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "usagerId" INTEGER NOT NULL,
-    "ordre" INTEGER NOT NULL,
-    "prenom" TEXT NOT NULL,
-    "nom" TEXT NOT NULL,
-    "email" TEXT NOT NULL,
-    "motdepasse" TEXT NOT NULL,
-    "telephone1" TEXT NOT NULL,
-    "telephone2" TEXT NOT NULL,
-    "remarque" TEXT NOT NULL,
-    "fonction" TEXT NOT NULL,
-    "extranet" BOOLEAN NOT NULL,
-    "actif" BOOLEAN NOT NULL,
-    CONSTRAINT "Contact_usagerId_fkey" FOREIGN KEY ("usagerId") REFERENCES "Usager" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
-);
-
--- CreateTable
-CREATE TABLE "Inventaire" (
-    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "site" TEXT NOT NULL,
-    "materiel" TEXT NOT NULL,
-    "quantite" INTEGER NOT NULL,
-    "note" TEXT NOT NULL,
     "actif" BOOLEAN NOT NULL
 );
 
 -- CreateTable
-CREATE TABLE "Tarif" (
+CREATE TABLE "Prestation" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "site" INTEGER NOT NULL,
     "date" DATETIME NOT NULL,
-    "siteId" INTEGER NOT NULL,
+    "matiere" INTEGER NOT NULL,
     "prestation" TEXT NOT NULL,
-    "prix" REAL NOT NULL,
+    "tarif" REAL NOT NULL,
+    "quantite" REAL NOT NULL,
     "passage" BOOLEAN NOT NULL,
     "bac" BOOLEAN NOT NULL,
-    "actif" BOOLEAN NOT NULL,
-    CONSTRAINT "Tarif_siteId_fkey" FOREIGN KEY ("siteId") REFERENCES "Site" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
-);
-
--- CreateTable
-CREATE TABLE "Operateur" (
-    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "prenom" TEXT NOT NULL,
-    "nom" TEXT NOT NULL,
-    "actif" BOOLEAN NOT NULL,
-    "tourneeId" INTEGER,
-    CONSTRAINT "Operateur_tourneeId_fkey" FOREIGN KEY ("tourneeId") REFERENCES "Tournee" ("id") ON DELETE SET NULL ON UPDATE CASCADE
-);
-
--- CreateTable
-CREATE TABLE "Vehicule" (
-    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "nom" TEXT NOT NULL,
-    "immatriculation" TEXT NOT NULL,
-    "identifiant" TEXT NOT NULL,
-    "couleur" TEXT NOT NULL,
-    "icone" TEXT NOT NULL,
-    "ordre" INTEGER NOT NULL,
-    "actif" BOOLEAN NOT NULL,
-    "tourneeId" INTEGER,
-    CONSTRAINT "Vehicule_tourneeId_fkey" FOREIGN KEY ("tourneeId") REFERENCES "Tournee" ("id") ON DELETE SET NULL ON UPDATE CASCADE
+    "actif" BOOLEAN NOT NULL
 );
 
 -- CreateTable
@@ -136,11 +105,36 @@ CREATE TABLE "Materiel" (
 );
 
 -- CreateTable
+CREATE TABLE "Inventaire" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "site" INTEGER NOT NULL,
+    "materiel" INTEGER NOT NULL,
+    "quantite" INTEGER NOT NULL
+);
+
+-- CreateTable
+CREATE TABLE "Operateur" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "prenom" TEXT NOT NULL,
+    "nom" TEXT NOT NULL,
+    "actif" BOOLEAN NOT NULL
+);
+
+-- CreateTable
+CREATE TABLE "Vehicule" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "nom" TEXT NOT NULL,
+    "immatriculation" TEXT NOT NULL,
+    "identifiant" TEXT NOT NULL,
+    "couleur" TEXT NOT NULL,
+    "icone" TEXT NOT NULL,
+    "ordre" INTEGER NOT NULL,
+    "actif" BOOLEAN NOT NULL
+);
+
+-- CreateTable
 CREATE TABLE "Matiere" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "nom" TEXT NOT NULL,
     "actif" BOOLEAN NOT NULL
 );
-
--- CreateIndex
-CREATE UNIQUE INDEX "Vehicule_tourneeId_key" ON "Vehicule"("tourneeId");

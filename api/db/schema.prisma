@@ -34,8 +34,10 @@ model Tournee {
   id                    Int       @id @default(autoincrement())
   date                  DateTime
   note                  String
-  vehicule              Vehicule?
-  operateurs            Operateur[]
+  vehicule              Int
+  operateur1            Int
+  operateur2            Int
+  operateur3            Int
 }
 
 model Usager {
@@ -49,34 +51,12 @@ model Usager {
   telephone             String
   reference             String
   note                  String
-  sites                 Site[]
-  contacts              Contact[]
-  actif                 Boolean
-}
-
-model Site {
-  id                    Int     @id @default(autoincrement())
-  usager                Usager  @relation(fields: [usagerId], references: [id])
-  usagerId              Int
-  ordre                 Int
-  nom                   String
-  adresse               String
-  adresse2              String
-  codePostal            String
-  ville                 String
-  latitude              String
-  longitude             String
-  etage                 Int
-  ascenseur             Boolean
-  note                  String
-  tarifs                Tarif[]
   actif                 Boolean
 }
 
 model Contact {
   id          Int     @id @default(autoincrement())
-  usager      Usager  @relation(fields: [usagerId], references: [id])
-  usagerId    Int
+  usager      Int
   ordre       Int
   prenom      String
   nom         String
@@ -90,25 +70,48 @@ model Contact {
   actif       Boolean
 }
 
-model Inventaire {
-  id        Int     @id @default(autoincrement())
-  site      String
-  materiel  String
-  quantite  Int
-  note      String
-  actif     Boolean
+model Site {
+  id                    Int     @id @default(autoincrement())
+  usager                Int
+  ordre                 Int
+  nom                   String
+  adresse               String
+  adresse2              String
+  codePostal            String
+  ville                 String
+  latitude              String
+  longitude             String
+  etage                 Int
+  ascenseur             Boolean
+  note                  String
+  actif                 Boolean
 }
  
-model Tarif {
+model Prestation {
   id                    Int     @id @default(autoincrement())
+  site                  Int
   date                  DateTime
-  site                  Site    @relation(fields: [siteId], references: [id])
-  siteId                Int
+  matiere               Int
   prestation            String
-  prix                  Float
+  tarif                 Float
+  quantite              Float
   passage               Boolean
   bac                   Boolean
   actif                 Boolean
+}
+
+model Materiel {
+  id                Int     @id @default(autoincrement())
+  nom               String
+  poids             Int
+  actif             Boolean
+}
+
+model Inventaire {
+  id            Int     @id @default(autoincrement())
+  site          Int
+  materiel      Int
+  quantite      Int
 }
 
 model Operateur {
@@ -116,8 +119,6 @@ model Operateur {
   prenom    String
   nom       String
   actif     Boolean
-  tournee   Tournee?    @relation(fields: [tourneeId], references: [id])
-  tourneeId Int?
 }
 
 model Vehicule {
@@ -129,15 +130,6 @@ model Vehicule {
   icone           String
   ordre           Int
   actif           Boolean
-  tournee         Tournee?    @relation(fields: [tourneeId], references: [id])
-  tourneeId       Int?        @unique
-}
-
-model Materiel {
-  id        Int     @id @default(autoincrement())
-  nom       String
-  poids     Int
-  actif     Boolean
 }
 
 model Matiere {
