@@ -23,7 +23,7 @@ const VehiculeForm = (props) => {
           titleClassName="rw-form-error-title"
           listClassName="rw-form-error-list"
         />
-        <div className="grid grid-cols-6 flex-col gap-6">
+        <div className="grid grid-cols-1 flex-col gap-6 md:grid-cols-6">
           <div className="col-span-2 sm:col-span-2">
             <Label
               name="nom"

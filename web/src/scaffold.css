@@ -1,3 +1,7 @@
+html {
+  @apply overflow-x-hidden;
+}
+
 .rw-scaffold {
   @apply bg-white px-4 text-gray-600 md:px-32;
 }
