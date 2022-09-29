@@ -33,49 +33,49 @@ export const Success = ({ vehicules }) => {
           <tr>
             <th
               scope="col"
-              className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
+              className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
             >
               Ordre
             </th>
             <th
               scope="col"
-              className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
+              className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
             >
               Nom
             </th>
             <th
               scope="col"
-              className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
+              className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
             >
               Immatriculation
             </th>
             <th
               scope="col"
-              className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
+              className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
             >
               Identifiant
             </th>
             <th
               scope="col"
-              className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
+              className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
             >
               Couleur
             </th>
             <th
               scope="col"
-              className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
+              className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
             >
               Icône
             </th>
             <th
               scope="col"
-              className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
+              className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
             >
               Actif
             </th>
             <th
               scope="col"
-              className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
+              className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
             >
               Actions
             </th>

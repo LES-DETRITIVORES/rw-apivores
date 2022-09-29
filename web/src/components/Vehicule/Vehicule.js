@@ -10,7 +10,7 @@ const Vehicule = ({ vehicule, show, deleted, edit }) => {
   let icone
   switch (vehicule.icone) {
     case 'truck':
-      icone = <TruckIcon className="w-6 h-6 text-gray-400" />
+      icone = <TruckIcon className="h-6 w-6 text-gray-400" />
       break
     case 'biking':
       icone = (
@@ -21,7 +21,7 @@ const Vehicule = ({ vehicule, show, deleted, edit }) => {
           x="0px"
           y="0px"
           viewBox="0 0 300.25 300.25"
-          className="w-6 h-6 text-gray-400"
+          className="h-6 w-6 text-gray-400"
           xmlSpace="preserve"
         >
           <path
@@ -57,49 +57,51 @@ const Vehicule = ({ vehicule, show, deleted, edit }) => {
         key={vehicule.id}
         className={vehicule.id % 2 === 0 ? 'bg-white' : 'bg-gray-50'}
       >
-        <td className="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
+        <td className="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900">
           {vehicule.ordre}
         </td>
-        <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
+        <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-500">
           {vehicule.nom}
         </td>
-        <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
+        <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-500">
           {vehicule.immatriculation}
         </td>
-        <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
+        <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-500">
           {vehicule.identifiant}
         </td>
-        <td className="inline-flex px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
+        <td className="inline-flex whitespace-nowrap px-6 py-4 text-sm text-gray-500">
           <span className={`!text-[${vehicule.couleur}]`}>
             {vehicule.couleur}
           </span>
         </td>
-        <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
+        <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-500">
           {icone}
         </td>
-        <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
+        <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-500">
           <input type="checkbox" checked={vehicule.actif} disabled />
         </td>
         <div className="inline-flex space-x-0">
-          <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
+          <td className="whitespace-nowrap px-6 py-4 text-right text-sm font-medium">
             <Link to={edit} className="text-indigo-600 hover:text-indigo-900">
-              <PencilAltIcon className="w-5 h-5" />
+              <PencilAltIcon className="h-5 w-5" />
             </Link>
           </td>
-          <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
+          <td className="whitespace-nowrap px-6 py-4 text-right text-sm font-medium">
             <Link to={show} className="text-indigo-600 hover:text-indigo-900">
-              <EyeIcon className="w-5 h-5" />
+              <EyeIcon className="h-5 w-5" />
             </Link>
           </td>
-          <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
+          <td className="whitespace-nowrap px-6 py-4 text-right text-sm font-medium">
             <Link
               to={deleted}
               className="text-indigo-600 hover:text-indigo-900"
             >
-              <MinusCircleIcon className="w-5 h-5" />
+              <MinusCircleIcon className="h-5 w-5" />
             </Link>
           </td>
         </div>
+
+        <td className="inline-flex whitespace-nowrap px-6 py-4 text-sm text-gray-500"></td>
       </tr>
     </>
   )
