@@ -50,18 +50,6 @@ const UsagerForm = (props) => {
               Type
             </Label>
 
-<<<<<<< HEAD
-            <TextField
-              name="type"
-              defaultValue={props.usager?.type}
-              className="mt-2 block w-full rounded-md border-gray-300 focus:border-green-700  focus:ring-green-700 sm:text-sm"
-              errorClassName="sm:text-sm mt-2 block w-full rounded-md border-red-300  focus:border-red-500 focus:ring-red-500"
-              validation={{ required: true }}
-            />
-
-            <FieldError name="type" className="rw-field-error" />
-          </div>
-          <div className="col-span-2 sm:col-span-2">
             <Label
               name="tiers"
               className="rw-label"
@@ -69,25 +57,6 @@ const UsagerForm = (props) => {
             >
               Tiers
             </Label>
-
-            <TextField
-              name="tiers"
-              defaultValue={props.usager?.tiers}
-              className="mt-2 block w-full rounded-md border-gray-300 focus:border-green-700  focus:ring-green-700 sm:text-sm"
-              errorClassName="sm:text-sm mt-2 block w-full rounded-md border-red-300  focus:border-red-500 focus:ring-red-500"
-              validation={{ required: true }}
-            />
-
-            <FieldError name="tiers" className="rw-field-error" />
-=======
-        <Label
-          name="tiers"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Tiers
-        </Label>
->>>>>>> a19af17b86d24a23a4986c1116bff1505bf5d1f0
 
             <Label
               name="contact"
@@ -143,80 +112,67 @@ const UsagerForm = (props) => {
               validation={{ required: true }}
             />
 
-<<<<<<< HEAD
-            <FieldError name="email" className="rw-field-error" />
-          </div>
-          <div className="col-span-2 sm:col-span-2">
             <Label
-              name="telephone"
+              name="adresse2"
               className="rw-label"
               errorClassName="rw-label rw-label-error"
             >
-              Telephone
+              Adresse2
             </Label>
-=======
-        <Label
-          name="adresse2"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Adresse2
-        </Label>
 
-        <TextField
-          name="adresse2"
-          defaultValue={props.usager?.adresse2}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
-        />
+            <TextField
+              name="adresse2"
+              defaultValue={props.usager?.adresse2}
+              className="rw-input"
+              errorClassName="rw-input rw-input-error"
+              validation={{ required: true }}
+            />
 
-        <FieldError name="adresse2" className="rw-field-error" />
+            <FieldError name="adresse2" className="rw-field-error" />
 
-        <Label
-          name="codePostal"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Code postal
-        </Label>
+            <Label
+              name="codePostal"
+              className="rw-label"
+              errorClassName="rw-label rw-label-error"
+            >
+              Code postal
+            </Label>
 
-        <TextField
-          name="codePostal"
-          defaultValue={props.usager?.codePostal}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
-        />
+            <TextField
+              name="codePostal"
+              defaultValue={props.usager?.codePostal}
+              className="rw-input"
+              errorClassName="rw-input rw-input-error"
+              validation={{ required: true }}
+            />
 
-        <FieldError name="codePostal" className="rw-field-error" />
+            <FieldError name="codePostal" className="rw-field-error" />
 
-        <Label
-          name="ville"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Ville
-        </Label>
+            <Label
+              name="ville"
+              className="rw-label"
+              errorClassName="rw-label rw-label-error"
+            >
+              Ville
+            </Label>
 
-        <TextField
-          name="ville"
-          defaultValue={props.usager?.ville}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
-        />
+            <TextField
+              name="ville"
+              defaultValue={props.usager?.ville}
+              className="rw-input"
+              errorClassName="rw-input rw-input-error"
+              validation={{ required: true }}
+            />
 
-        <FieldError name="ville" className="rw-field-error" />
+            <FieldError name="ville" className="rw-field-error" />
 
-        <Label
-          name="email"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Email
-        </Label>
->>>>>>> a19af17b86d24a23a4986c1116bff1505bf5d1f0
+            <Label
+              name="email"
+              className="rw-label"
+              errorClassName="rw-label rw-label-error"
+            >
+              Email
+            </Label>
 
             <TextField
               name="telephone"
@@ -228,26 +184,42 @@ const UsagerForm = (props) => {
 
             <FieldError name="telephone" className="rw-field-error" />
 
-<<<<<<< HEAD
             <Label
-              name="reference"
+              name="telephone1"
               className="rw-label"
               errorClassName="rw-label rw-label-error"
             >
-              Reference
+              Telephone1
             </Label>
 
             <TextField
-              name="reference"
-              defaultValue={props.usager?.reference}
-              className="mt-2 block w-full rounded-md border-gray-300 focus:border-green-700  focus:ring-green-700 sm:text-sm"
-              errorClassName="sm:text-sm mt-2 block w-full rounded-md border-red-300  focus:border-red-500 focus:ring-red-500"
+              name="telephone1"
+              defaultValue={props.usager?.telephone1}
+              className="rw-input"
+              errorClassName="rw-input rw-input-error"
               validation={{ required: true }}
             />
 
-            <FieldError name="reference" className="rw-field-error" />
-          </div>
-          <div className="col-span-1 sm:col-span-2">
+            <FieldError name="telephone1" className="rw-field-error" />
+
+            <Label
+              name="telephone2"
+              className="rw-label"
+              errorClassName="rw-label rw-label-error"
+            >
+              Telephone2
+            </Label>
+
+            <TextField
+              name="telephone2"
+              defaultValue={props.usager?.telephone2}
+              className="rw-input"
+              errorClassName="rw-input rw-input-error"
+              validation={{ required: true }}
+            />
+
+            <FieldError name="telephone2" className="rw-field-error" />
+
             <Label
               name="note"
               className="rw-label"
@@ -259,12 +231,13 @@ const UsagerForm = (props) => {
             <TextField
               name="note"
               defaultValue={props.usager?.note}
-              className="mt-2 block w-full rounded-md border-gray-300 focus:border-green-700  focus:ring-green-700 sm:text-sm"
-              errorClassName="sm:text-sm mt-2 block w-full rounded-md border-red-300  focus:border-red-500 focus:ring-red-500"
+              className="rw-input"
+              errorClassName="rw-input rw-input-error"
               validation={{ required: true }}
             />
 
             <FieldError name="note" className="rw-field-error" />
+
             <Label
               name="actif"
               className="rw-label"
@@ -276,81 +249,11 @@ const UsagerForm = (props) => {
             <CheckboxField
               name="actif"
               defaultChecked={props.usager?.actif}
-              className="h-4 w-4 rounded border-gray-300 text-green-600 focus:ring-green-700"
-              errorClassName="focus:ring-red-500 h-4 w-4 text-red-600 border-red-300 rounded"
+              className="rw-input"
+              errorClassName="rw-input rw-input-error"
             />
-=======
-        <Label
-          name="telephone1"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Telephone1
-        </Label>
 
-        <TextField
-          name="telephone1"
-          defaultValue={props.usager?.telephone1}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
-        />
-
-        <FieldError name="telephone1" className="rw-field-error" />
-
-        <Label
-          name="telephone2"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Telephone2
-        </Label>
-
-        <TextField
-          name="telephone2"
-          defaultValue={props.usager?.telephone2}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
-        />
-
-        <FieldError name="telephone2" className="rw-field-error" />
-
-        <Label
-          name="note"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Note
-        </Label>
-
-        <TextField
-          name="note"
-          defaultValue={props.usager?.note}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
-        />
-
-        <FieldError name="note" className="rw-field-error" />
-
-        <Label
-          name="actif"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Actif
-        </Label>
-
-        <CheckboxField
-          name="actif"
-          defaultChecked={props.usager?.actif}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-        />
-
-        <FieldError name="actif" className="rw-field-error" />
->>>>>>> a19af17b86d24a23a4986c1116bff1505bf5d1f0
+            <FieldError name="actif" className="rw-field-error" />
 
             <FieldError name="actif" className="rw-field-error" />
           </div>
