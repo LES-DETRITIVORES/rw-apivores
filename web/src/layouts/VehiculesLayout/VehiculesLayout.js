@@ -6,7 +6,7 @@ const VehiculesLayout = ({ children }) => {
   return (
     <>
       <Navigation />
-      <div className="rw-scaffold">
+      <div className="rw-scaffold ">
         <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
         <header className="rw-header">
           <h1 className="rw-heading rw-heading-primary">
