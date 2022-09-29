@@ -1,0 +1,85 @@
+export const standard = defineScenario({
+  tarif: {
+    one: {
+      data: {
+        date: '2022-09-29T08:16:21Z',
+        prestation: 'String',
+        prix: 5771371.083951915,
+        passage: true,
+        bac: true,
+        actif: true,
+        site: {
+          create: {
+            ordre: 2026190,
+            nom: 'String',
+            adresse: 'String',
+            adresse2: 'String',
+            codePostal: 'String',
+            ville: 'String',
+            latitude: 'String',
+            longitude: 'String',
+            etage: 3843283,
+            ascenseur: true,
+            note: 'String',
+            actif: true,
+            usager: {
+              create: {
+                nom: 'String',
+                type: 'String',
+                tiers: 'String',
+                contact: 'String',
+                adresse: 'String',
+                email: 'String',
+                telephone: 'String',
+                reference: 'String',
+                note: 'String',
+                actif: true,
+              },
+            },
+          },
+        },
+      },
+    },
+
+    two: {
+      data: {
+        date: '2022-09-29T08:16:21Z',
+        prestation: 'String',
+        prix: 6376714.292813959,
+        passage: true,
+        bac: true,
+        actif: true,
+        site: {
+          create: {
+            ordre: 9945866,
+            nom: 'String',
+            adresse: 'String',
+            adresse2: 'String',
+            codePostal: 'String',
+            ville: 'String',
+            latitude: 'String',
+            longitude: 'String',
+            etage: 8671950,
+            ascenseur: true,
+            note: 'String',
+            actif: true,
+            usager: {
+              create: {
+                nom: 'String',
+                type: 'String',
+                tiers: 'String',
+                contact: 'String',
+                adresse: 'String',
+                email: 'String',
+                telephone: 'String',
+                reference: 'String',
+                note: 'String',
+                actif: true,
+              },
+            },
+          },
+        },
+      },
+    },
+  },
+})
