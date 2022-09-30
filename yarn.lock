@@ -1958,6 +1958,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@emotion/is-prop-valid@npm:^0.8.2":
+  version: 0.8.8
+  resolution: "@emotion/is-prop-valid@npm:0.8.8"
+  dependencies:
+    "@emotion/memoize": 0.7.4
+  checksum: f6be625f067c7fa56a12a4edaf090715616dc4fc7803c87212831f38c969350107b9709b1be54100e53153b18d9fa068eb4bf4f9ac66a37a8edf1bac9b64e279
+  languageName: node
+  linkType: hard
+
+"@emotion/memoize@npm:0.7.4":
+  version: 0.7.4
+  resolution: "@emotion/memoize@npm:0.7.4"
+  checksum: b2376548fc147b43afd1ff005a80a1a025bd7eb4fb759fdb23e96e5ff290ee8ba16628a332848d600fb91c3cdc319eee5395fa33d8875e5d5a8c4ce18cddc18e
+  languageName: node
+  linkType: hard
+
 "@envelop/core@npm:^2.5.0":
   version: 2.6.0
   resolution: "@envelop/core@npm:2.6.0"
@@ -2175,6 +2191,127 @@ __metadata:
     fastify-plugin: ^4.0.0
     uri-js: ^4.2.1
   checksum: 2f2bcfd27ba6ac3d21947c2730130462582341f193d9ff846856b7f0a04299b761faa384883c1c080bb9debcbd4350197cd6053cdef6e84b814d4cd51a3e7134
+  languageName: node
+  linkType: hard
+
+"@fullcalendar/common@npm:~5.11.2, @fullcalendar/common@npm:~5.11.3":
+  version: 5.11.3
+  resolution: "@fullcalendar/common@npm:5.11.3"
+  dependencies:
+    tslib: ^2.1.0
+  checksum: 3437775ce385bbfc18786cf9b8a9e5e1f9edafdb14f773f7835286fc38779741186ff09a43c630e84b40468274f60f22117cef7707beab64a5c579afb4d1396a
+  languageName: node
+  linkType: hard
+
+"@fullcalendar/daygrid@npm:^5.11.3, @fullcalendar/daygrid@npm:~5.11.3":
+  version: 5.11.3
+  resolution: "@fullcalendar/daygrid@npm:5.11.3"
+  dependencies:
+    "@fullcalendar/common": ~5.11.3
+    tslib: ^2.1.0
+  checksum: db790842307500311d0f92c3f036b07773783e4368582ceb3c6f5a3ba96b749eb58791290fa680efd62b988f856d50db1b34dddf353bd6c2729a15083fa24c40
+  languageName: node
+  linkType: hard
+
+"@fullcalendar/interaction@npm:^5.11.3":
+  version: 5.11.3
+  resolution: "@fullcalendar/interaction@npm:5.11.3"
+  dependencies:
+    "@fullcalendar/common": ~5.11.3
+    tslib: ^2.1.0
+  checksum: 07e59b0907678d7613d9565d7f5e5f2c86a38e0ee30a92db9571c2a2fcd6697bb3a06652b6fd977beb05a26702edb56ddf555fbe13ea0e3c20224e6dc06633eb
+  languageName: node
+  linkType: hard
+
+"@fullcalendar/list@npm:^5.11.3":
+  version: 5.11.3
+  resolution: "@fullcalendar/list@npm:5.11.3"
+  dependencies:
+    "@fullcalendar/common": ~5.11.3
+    tslib: ^2.1.0
+  checksum: 0564516208ad9413679c63f0b0de21f8a41f2bccaf7029d0fb641397768e89eeeb86ccca58380f9224449abe51f348e8797624a4dc0f798eaee8a61d5c798d37
+  languageName: node
+  linkType: hard
+
+"@fullcalendar/premium-common@npm:~5.11.3":
+  version: 5.11.3
+  resolution: "@fullcalendar/premium-common@npm:5.11.3"
+  dependencies:
+    "@fullcalendar/common": ~5.11.3
+    tslib: ^2.1.0
+  checksum: d2c0ecf320d787b32df39f4c6750922e0cfc08d9e4045fd55374f1b61e86016913ef0cff1cd4e66437e2b6266807b97ea628c361d579363b527e33129ed1470b
+  languageName: node
+  linkType: hard
+
+"@fullcalendar/react@npm:^5.11.2":
+  version: 5.11.2
+  resolution: "@fullcalendar/react@npm:5.11.2"
+  dependencies:
+    "@fullcalendar/common": ~5.11.2
+    tslib: ^2.1.0
+  peerDependencies:
+    react: ^16.7.0 || ^17 || ^18
+    react-dom: ^16.7.0 || ^17 || ^18
+  checksum: ef55c18a0167104384612d32bfbb62b64dea4e417a4e77936000beb0f65ec6592f2959f83d69377524f58f419316e39f0a10f95180e7c6dd90e2b4dfcafea70e
+  languageName: node
+  linkType: hard
+
+"@fullcalendar/resource-common@npm:~5.11.3":
+  version: 5.11.3
+  resolution: "@fullcalendar/resource-common@npm:5.11.3"
+  dependencies:
+    "@fullcalendar/common": ~5.11.3
+    "@fullcalendar/premium-common": ~5.11.3
+    tslib: ^2.1.0
+  checksum: a49c51bfed47d878e86843f9c1e845404a542d21da4e38da922f93973bf867162ae76b6e72da753f575dc573ff1fef34006af610bb0cca1c738e2c12a1b318b1
+  languageName: node
+  linkType: hard
+
+"@fullcalendar/resource-timeline@npm:^5.11.3":
+  version: 5.11.3
+  resolution: "@fullcalendar/resource-timeline@npm:5.11.3"
+  dependencies:
+    "@fullcalendar/common": ~5.11.3
+    "@fullcalendar/premium-common": ~5.11.3
+    "@fullcalendar/resource-common": ~5.11.3
+    "@fullcalendar/scrollgrid": ~5.11.3
+    "@fullcalendar/timeline": ~5.11.3
+    tslib: ^2.1.0
+  checksum: 4edae7113f590ff8d6e1dab2cf739ffdb77f116b1b2fadc060421eee2392805f0565d61f79be7a3ca25558120dd4820884f0b0858dbf4b49981c572b28d01583
+  languageName: node
+  linkType: hard
+
+"@fullcalendar/scrollgrid@npm:~5.11.3":
+  version: 5.11.3
+  resolution: "@fullcalendar/scrollgrid@npm:5.11.3"
+  dependencies:
+    "@fullcalendar/common": ~5.11.3
+    "@fullcalendar/premium-common": ~5.11.3
+    tslib: ^2.1.0
+  checksum: 5950b7b014a54c8c4c686d74bc29cf6c28999f35af1a3553cabad0c266c8423b0900f765bc70bb35a7bfae2710e9f331943649a95146693161dd67acc0515d3a
+  languageName: node
+  linkType: hard
+
+"@fullcalendar/timegrid@npm:^5.11.3":
+  version: 5.11.3
+  resolution: "@fullcalendar/timegrid@npm:5.11.3"
+  dependencies:
+    "@fullcalendar/common": ~5.11.3
+    "@fullcalendar/daygrid": ~5.11.3
+    tslib: ^2.1.0
+  checksum: d80fe783ac8ce3f51a891ba6942838eee9a8bfbf3cde564412e8855a5339ff28991c51cad32765a7ddbdf5091ebbad5e1c2262c8109bcfb34df8cc11b3e66d29
+  languageName: node
+  linkType: hard
+
+"@fullcalendar/timeline@npm:~5.11.3":
+  version: 5.11.3
+  resolution: "@fullcalendar/timeline@npm:5.11.3"
+  dependencies:
+    "@fullcalendar/common": ~5.11.3
+    "@fullcalendar/premium-common": ~5.11.3
+    "@fullcalendar/scrollgrid": ~5.11.3
+    tslib: ^2.1.0
+  checksum: 617e06aead59cf5bf63e139edfaee125a19ed47aa96b0d8d7b1bb33b75c3be6e751b1447434200ccc08498be2a1912b5d0354a61064a0616db5bad819cb556aa
   languageName: node
   linkType: hard
 
@@ -3290,6 +3427,71 @@ __metadata:
   version: 1.6.22
   resolution: "@mdx-js/util@npm:1.6.22"
   checksum: 2ee8da6afea0f42297ea31f52b1d50d228744d2895cce7cc9571b7d5ce97c7c96037c80b6dbcded9caa8099c9a994eda62980099eabe1c000aaa792816c66f10
+  languageName: node
+  linkType: hard
+
+"@motionone/animation@npm:^10.13.1":
+  version: 10.14.0
+  resolution: "@motionone/animation@npm:10.14.0"
+  dependencies:
+    "@motionone/easing": ^10.14.0
+    "@motionone/types": ^10.14.0
+    "@motionone/utils": ^10.14.0
+    tslib: ^2.3.1
+  checksum: 49a91e3b688da627dfb7a7fbe9141999f455fbd0746b965db13d413e6012ba5c87a551c9fb87c62315603297f574637f9c59cd470bf473d0ceec1ed31ea0449b
+  languageName: node
+  linkType: hard
+
+"@motionone/dom@npm:10.13.1":
+  version: 10.13.1
+  resolution: "@motionone/dom@npm:10.13.1"
+  dependencies:
+    "@motionone/animation": ^10.13.1
+    "@motionone/generators": ^10.13.1
+    "@motionone/types": ^10.13.0
+    "@motionone/utils": ^10.13.1
+    hey-listen: ^1.0.8
+    tslib: ^2.3.1
+  checksum: bfa681c1043de39b1768d6e87f6212eb7ce7e567c5fe94b14e0ce1789b822c6367e427d1b789d5cdc62baa4b6292e416a728f136e7d70808791c33c844bf461f
+  languageName: node
+  linkType: hard
+
+"@motionone/easing@npm:^10.14.0":
+  version: 10.14.0
+  resolution: "@motionone/easing@npm:10.14.0"
+  dependencies:
+    "@motionone/utils": ^10.14.0
+    tslib: ^2.3.1
+  checksum: b970000a5999375ccf94f5df29f45d8581ca624a3966aeeed8b2d20799bbb5f88197453c70312fdb425c0e411b1b233e11a9bd4bb70d84c7aa6b4ba8bf8b8b9f
+  languageName: node
+  linkType: hard
+
+"@motionone/generators@npm:^10.13.1":
+  version: 10.14.0
+  resolution: "@motionone/generators@npm:10.14.0"
+  dependencies:
+    "@motionone/types": ^10.14.0
+    "@motionone/utils": ^10.14.0
+    tslib: ^2.3.1
+  checksum: 2914d460b6e5c99871f9fb6430119845fe755ae3e7de62f8ca56f9df24872f094e170cd5392162328cba0892c8644e5f85ab1d9733d04655f0da52fb6a4dceae
+  languageName: node
+  linkType: hard
+
+"@motionone/types@npm:^10.13.0, @motionone/types@npm:^10.14.0":
+  version: 10.14.0
+  resolution: "@motionone/types@npm:10.14.0"
+  checksum: e0e0f3b0bb172b3c7cba63c269df9fabc547504cda05e212a247c8787e85f603d24112c21215302607648daffb2647bb71ee18eabb5a1021b7a0d847104f3e56
+  languageName: node
+  linkType: hard
+
+"@motionone/utils@npm:^10.13.1, @motionone/utils@npm:^10.14.0":
+  version: 10.14.0
+  resolution: "@motionone/utils@npm:10.14.0"
+  dependencies:
+    "@motionone/types": ^10.14.0
+    hey-listen: ^1.0.8
+    tslib: ^2.3.1
+  checksum: 6402616b97bd526c765998a926a7e90e686784a7269fb943efb1204fd8982ca80ccec830e7d5a96396f448bc4a8f6bb2124d26154173bfbb1d5ae66fe5eab9ff
   languageName: node
   linkType: hard
 
@@ -12896,6 +13098,36 @@ __metadata:
   languageName: node
   linkType: hard
 
+"framer-motion@npm:^7.5.0":
+  version: 7.5.0
+  resolution: "framer-motion@npm:7.5.0"
+  dependencies:
+    "@emotion/is-prop-valid": ^0.8.2
+    "@motionone/dom": 10.13.1
+    framesync: 6.1.2
+    hey-listen: ^1.0.8
+    popmotion: 11.0.5
+    style-value-types: 5.1.2
+    tslib: 2.4.0
+  peerDependencies:
+    react: ^18.0.0
+    react-dom: ^18.0.0
+  dependenciesMeta:
+    "@emotion/is-prop-valid":
+      optional: true
+  checksum: ac95020658d107d700c461dcb0a2d0061b42e87affb3e2678ee84d6f2123e1b1c6120b78777bd5b173712068fe28bad0cc8b1b93f221ee4ee6047b5c05bca29b
+  languageName: node
+  linkType: hard
+
+"framesync@npm:6.1.2":
+  version: 6.1.2
+  resolution: "framesync@npm:6.1.2"
+  dependencies:
+    tslib: 2.4.0
+  checksum: 9e7d240ddf0bbe062bc9b71ffffd889b9923ee5d9c638ed84f2fe31aaa42e25e624eaf0b28ccca1d08f5ae170b8d083a6dabe5983f5dabea6bbbe6d4a9f8d27a
+  languageName: node
+  linkType: hard
+
 "fresh@npm:0.5.2":
   version: 0.5.2
   resolution: "fresh@npm:0.5.2"
@@ -13819,6 +14051,13 @@ __metadata:
   version: 3.1.0
   resolution: "headers-polyfill@npm:3.1.0"
   checksum: 2b78659bb17ce2438e86589e665b13c2f4173b8c55783d9782a186d0700fe4917565233b051c9431e8ee287f94bdf6444c0554fd2d2025ccc0fbb0b7b13894f2
+  languageName: node
+  linkType: hard
+
+"hey-listen@npm:^1.0.8":
+  version: 1.0.8
+  resolution: "hey-listen@npm:1.0.8"
+  checksum: 38db3028b4756f3d536c0f6a92da53bad577ab649b06dddfd0a4d953f9a46bbc6a7f693c8c5b466a538d6d23dbc469260c848427f0de14198a2bbecbac37b39e
   languageName: node
   linkType: hard
 
@@ -18903,6 +19142,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"popmotion@npm:11.0.5":
+  version: 11.0.5
+  resolution: "popmotion@npm:11.0.5"
+  dependencies:
+    framesync: 6.1.2
+    hey-listen: ^1.0.8
+    style-value-types: 5.1.2
+    tslib: 2.4.0
+  checksum: b89189fbe24f3051a555aa4a86658f11046c6f818f0a2e6e5afb14575db02bc45f64fe24bc1cead1e1fe692185ba92be8b2cebc68668ba1f4b7ffa55bdb52509
+  languageName: node
+  linkType: hard
+
 "posix-character-classes@npm:^0.1.0":
   version: 0.1.1
   resolution: "posix-character-classes@npm:0.1.1"
@@ -20866,10 +21117,17 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
+    "@fullcalendar/daygrid": ^5.11.3
+    "@fullcalendar/interaction": ^5.11.3
+    "@fullcalendar/list": ^5.11.3
+    "@fullcalendar/react": ^5.11.2
+    "@fullcalendar/resource-timeline": ^5.11.3
+    "@fullcalendar/timegrid": ^5.11.3
     "@headlessui/react": ^1.7.2
     "@heroicons/react": ^1.0.4
     "@redwoodjs/core": 3.0.3
     "@tailwindcss/forms": ^0.5.3
+    framer-motion: ^7.5.0
     highcharts: ^10.2.1
     highcharts-react-official: ^3.1.0
     prettier-plugin-tailwindcss: ^0.1.13
@@ -22219,6 +22477,16 @@ __metadata:
   dependencies:
     inline-style-parser: 0.1.1
   checksum: afe9b96ba077a9068baf8887091870f50298157c0ebf5378151792cf2a2ce084fec9b34fc544da0d9f8e6c22ca0c9e23aa6f075bb8eb051aa1d64363e9987600
+  languageName: node
+  linkType: hard
+
+"style-value-types@npm:5.1.2":
+  version: 5.1.2
+  resolution: "style-value-types@npm:5.1.2"
+  dependencies:
+    hey-listen: ^1.0.8
+    tslib: 2.4.0
+  checksum: c9d82c21ead726196cdf056bfd00591800eb695c6282ef2107c27b9b917e94c91797a1810c6fbda8ac0e4a4dda1453790a91f0cbfd56ef7107c66785c6f90889
   languageName: node
   linkType: hard
 
