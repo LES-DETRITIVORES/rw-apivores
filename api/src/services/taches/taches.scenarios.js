@@ -1,0 +1,45 @@
+export const standard = defineScenario({
+  tache: {
+    one: {
+      data: {
+        debut: '2022-09-30T08:46:01Z',
+        fin: '2022-09-30T08:46:01Z',
+        prestation: 931654,
+        vehicule: 4063620,
+        operateur1: 6579553,
+        operateur2: 7032860,
+        operateur3: 6492545,
+        collecte: '2022-09-30T08:46:01Z',
+        quantite: 4614416,
+        noteCollecte: 'String',
+        pesee: '2022-09-30T08:46:01Z',
+        poids: 4407722,
+        qualite: 3279030,
+        notePesee: 'String',
+        photos: 'String',
+        terminee: true,
+      },
+    },
+
+    two: {
+      data: {
+        debut: '2022-09-30T08:46:01Z',
+        fin: '2022-09-30T08:46:01Z',
+        prestation: 5183859,
+        vehicule: 1683838,
+        operateur1: 3560645,
+        operateur2: 1522665,
+        operateur3: 4934860,
+        collecte: '2022-09-30T08:46:01Z',
+        quantite: 2673822,
+        noteCollecte: 'String',
+        pesee: '2022-09-30T08:46:01Z',
+        poids: 4861421,
+        qualite: 8458601,
+        notePesee: 'String',
+        photos: 'String',
+        terminee: true,
+      },
+    },
+  },
+})

@@ -164,8 +164,8 @@ const Navigation = () => {
         },
         {
           id: 2,
-          name: 'Semaine',
-          href: '#',
+          name: 'Tâches',
+          href: '/taches',
           current: true,
           icon: (
             <CalendarIcon
@@ -176,7 +176,7 @@ const Navigation = () => {
         },
         {
           id: 3,
-          name: 'Jour',
+          name: 'Planning',
           href: '#',
           current: true,
           icon: (

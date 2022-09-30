@@ -9,6 +9,8 @@
 
 import { Set, Router, Route } from '@redwoodjs/router'
 
+import TachesLayout from 'src/layouts/TachesLayout'
+
 import ServicesLayout from 'src/layouts/ServicesLayout'
 
 import PrestationsLayout from 'src/layouts/PrestationsLayout'
@@ -94,6 +96,12 @@ const Routes = () => {
           <Route path="/matieres/{id:Int}/edit" page={MatiereEditMatierePage} name="editMatiere" />
           <Route path="/matieres/{id:Int}" page={MatiereMatierePage} name="matiere" />
           <Route path="/matieres" page={MatiereMatieresPage} name="matieres" />
+        </Set>
+        <Set wrap={TachesLayout}>
+          <Route path="/taches/new" page={TacheNewTachePage} name="newTache" />
+          <Route path="/taches/{id:Int}/edit" page={TacheEditTachePage} name="editTache" />
+          <Route path="/taches/{id:Int}" page={TacheTachePage} name="tache" />
+          <Route path="/taches" page={TacheTachesPage} name="taches" />
         </Set>
         <Route path="/" page={HomePage} name="home" />
         <Route notfound page={NotFoundPage} />
