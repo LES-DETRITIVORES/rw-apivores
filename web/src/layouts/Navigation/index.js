@@ -177,7 +177,7 @@ const Navigation = () => {
         {
           id: 3,
           name: 'Planning',
-          href: '#',
+          href: '/planning',
           current: true,
           icon: (
             <TemplateIcon

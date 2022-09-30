@@ -103,6 +103,7 @@ const Routes = () => {
           <Route path="/taches/{id:Int}" page={TacheTachePage} name="tache" />
           <Route path="/taches" page={TacheTachesPage} name="taches" />
         </Set>
+        <Route path="/planning" page={PlanningPlanningPage} name="planning" />
         <Route path="/" page={HomePage} name="home" />
         <Route notfound page={NotFoundPage} />
       </Set>
