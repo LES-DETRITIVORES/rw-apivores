@@ -31,7 +31,7 @@ const Navigation = () => {
   const navigation = [
     {
       id: 1,
-      name: 'Gestion',
+      name: 'Logistique',
       href: '#',
       current: true,
       icon: '',
@@ -141,8 +141,17 @@ const Navigation = () => {
             />
           ),
         },
+      ],
+    },
+    {
+      id: 3,
+      name: 'Planning',
+      href: '#',
+      current: false,
+      icon: '',
+      dropdown: [
         {
-          id: 5,
+          id: 1,
           name: 'Prestations',
           href: '/prestations',
           current: true,
@@ -154,45 +163,8 @@ const Navigation = () => {
           ),
         },
         {
-          id: 6,
-          name: 'Extranet',
-          href: '#',
-          current: true,
-          icon: (
-            <FolderIcon
-              className="mr-2 h-5 w-5 text-current"
-              aria-hidden="true"
-            />
-          ),
-          dropdown: [
-            {
-              id: 1,
-              name: "Connexions à l`'extranet",
-              href: '#',
-              current: true,
-              icon: '',
-            },
-            {
-              id: 2,
-              name: 'Documents extranet',
-              href: '#',
-              current: true,
-              icon: '',
-            },
-          ],
-        },
-      ],
-    },
-    {
-      id: 3,
-      name: 'Tournées',
-      href: '#',
-      current: false,
-      icon: '',
-      dropdown: [
-        {
-          id: 1,
-          name: 'Calendrier hebdomadaire',
+          id: 2,
+          name: 'Semaine',
           href: '#',
           current: true,
           icon: (
@@ -203,8 +175,8 @@ const Navigation = () => {
           ),
         },
         {
-          id: 2,
-          name: 'Planification journalière',
+          id: 3,
+          name: 'Jour',
           href: '#',
           current: true,
           icon: (
@@ -215,8 +187,8 @@ const Navigation = () => {
           ),
         },
         {
-          id: 3,
-          name: 'Suivi de tournée',
+          id: 4,
+          name: 'Collecte',
           href: '#',
           current: true,
           icon: (
@@ -227,7 +199,7 @@ const Navigation = () => {
           ),
         },
         {
-          id: 4,
+          id: 5,
           name: 'Pesée',
           href: '#',
           current: true,

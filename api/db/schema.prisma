@@ -30,22 +30,24 @@ model Exploitation {
   photos                String
 }
 
-model Tournee {
+model Tache {
   id                    Int       @id @default(autoincrement())
-  date                  DateTime
-  note                  String
+  debut                 DateTime
+  fin                   DateTime
+  pesee                 DateTime
+  prestation            Int
   vehicule              Int
   operateur1            Int
   operateur2            Int
   operateur3            Int
-}
-
-model Etape {
-  id                    Int       @id @default(autoincrement())
-  debut                 DateTime
-  fin                   DateTime
-  site                  Int
-  prestation            Int
+  collecte              DateTime
+  quantite              Int
+  photos                String
+  noteCollecte          String
+  poids                 Int
+  qualite               Int
+  notePesee             String
+  terminee              Boolean  
 }
 
 model Usager {
@@ -101,10 +103,14 @@ model Prestation {
   id                    Int     @id @default(autoincrement())
   site                  Int
   matiere               Int
-  date                  DateTime
+  materiel              Int
+  quantite              Int
   service               Int
   prix                  Float
   forfait               Boolean
+  note                  String
+  debut                 DateTime
+  fin                   DateTime
   actif                 Boolean
 }
 
