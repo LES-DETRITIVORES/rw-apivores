@@ -249,3 +249,22 @@ html {
 th {
   @apply !bg-green-800 !text-white;
 }
+
+::-webkit-scrollbar {
+  @apply h-1 w-1 bg-gray-400/20;
+}
+::-webkit-scrollbar-button {
+  @apply hidden;
+}
+::-webkit-scrollbar-track {
+  @apply hidden;
+}
+::-webkit-scrollbar-track-piece {
+  @apply hidden;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-green-900;
+}
+::-webkit-scrollbar-corner {
+  @apply hidden;
+}

@@ -1,11 +1,9 @@
 import { Link, routes } from '@redwoodjs/router'
 import { Toaster } from '@redwoodjs/web/toast'
-import Navigation from '../Navigation'
 import { PlusIcon } from '@heroicons/react/solid'
 const OperateursLayout = ({ children }) => {
   return (
     <>
-      <Navigation />
       <div className="rw-scaffold ">
         <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
         <header className="rw-header">

@@ -52,7 +52,7 @@ const timeTag = (datetime) => {
 const checkboxInputTag = (checked) => {
   return (
     <input
-      className='className="h-4 w-4 rounded border-gray-300 text-green-600 focus:ring-green-700'
+      className='className="h-4 w-4 rounded border-gray-300 text-green-700 focus:ring-green-700'
       type="checkbox"
       checked={checked}
       disabled
@@ -105,21 +105,18 @@ const OperateursList = ({ operateurs }) => {
                   <Link
                     to={routes.operateur({ id: operateur.id })}
                     title={'Show operateur ' + operateur.id + ' detail'}
-                    className="rw-button rw-button-small"
                   >
                     Show
                   </Link>
                   <Link
                     to={routes.editOperateur({ id: operateur.id })}
                     title={'Edit operateur ' + operateur.id}
-                    className="rw-button rw-button-small rw-button-blue"
                   >
                     Edit
                   </Link>
                   <button
                     type="button"
                     title={'Delete operateur ' + operateur.id}
-                    className="rw-button rw-button-small rw-button-red"
                     onClick={() => onDeleteClick(operateur.id)}
                   >
                     Delete

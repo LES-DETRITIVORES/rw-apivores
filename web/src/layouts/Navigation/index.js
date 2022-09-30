@@ -238,6 +238,9 @@ const Navigation = () => {
     pages.pop()
   }
 
+  if (dropdownName === pageName) {
+    pages.pop()
+  }
   const isEdit = window.location.pathname.includes('edit')
   const isNew = window.location.pathname.includes('new')
 

@@ -5,6 +5,7 @@ import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import { QUERY } from 'src/components/Site/SitesCell'
+import { PencilAltIcon, PencilIcon, XIcon } from '@heroicons/react/outline'
 
 const DELETE_SITE_MUTATION = gql`
   mutation DeleteSiteMutation($id: Int!) {
@@ -50,7 +51,14 @@ const timeTag = (datetime) => {
 }
 
 const checkboxInputTag = (checked) => {
-  return <input type="checkbox" checked={checked} disabled />
+  return (
+    <input
+      className='className="h-4 w-4 rounded border-gray-300 text-green-700 focus:ring-green-700'
+      type="checkbox"
+      checked={checked}
+      disabled
+    />
+  )
 }
 
 const SitesList = ({ sites }) => {
@@ -114,28 +122,25 @@ const SitesList = ({ sites }) => {
               <td>{truncate(site.note)}</td>
               <td>{checkboxInputTag(site.actif)}</td>
               <td>
-                <nav className="rw-table-actions">
+                <nav className="rw-table-actions space-x-2">
                   <Link
                     to={routes.site({ id: site.id })}
                     title={'Show site ' + site.id + ' detail'}
-                    className="rw-button rw-button-small"
                   >
-                    Show
+                    <PencilIcon className="h-5 w-5 text-green-900" />
                   </Link>
                   <Link
                     to={routes.editSite({ id: site.id })}
                     title={'Edit site ' + site.id}
-                    className="rw-button rw-button-small rw-button-blue"
                   >
-                    Edit
+                    <PencilAltIcon className="h-5 w-5 text-green-900" />
                   </Link>
                   <button
                     type="button"
                     title={'Delete site ' + site.id}
-                    className="rw-button rw-button-small rw-button-red"
                     onClick={() => onDeleteClick(site.id)}
                   >
-                    Delete
+                    <XIcon className="h-5 w-5 text-green-900" />
                   </button>
                 </nav>
               </td>
