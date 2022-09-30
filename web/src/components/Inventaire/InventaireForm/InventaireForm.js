@@ -9,15 +9,28 @@ import {
   Submit,
 } from '@redwoodjs/forms'
 import { useQuery } from '@redwoodjs/web'
-import { QUERY } from 'src/components/Site/SitesCell'
-import { QUERYTWO } from 'src/components/Materiel/MaterielsCell'
+import { FINDALLQUERY } from 'src/components/Prestation/Prestation/Prestation'
+import { useState } from 'react'
+import Comboboxes from 'src/components/Comboboxes'
+
 const InventaireForm = (props) => {
+  const [query, setQuery] = useState('')
+  const [selected, setSelected] = useState({
+    site: null,
+    materiel: null,
+    matiere: null,
+    vehicule: null,
+    service: null,
+  })
   const onSubmit = (data) => {
     props.onSave(data, props?.inventaire?.id)
+    setSelected({
+      materiel: props.inventaire.materiel,
+      site: props.inventaire.site,
+    })
   }
 
-  const { loading, error, data } = useQuery(QUERY)
-  const { data: datas } = useQuery(QUERYTWO)
+  const { loading, error, data } = useQuery(FINDALLQUERY)
 
   if (loading) return 'Loading...'
   if (error) return `Error! ${error.message}`
@@ -27,13 +40,10 @@ const InventaireForm = (props) => {
     return acc
   }, {})
 
-  const materiel = datas?.materiels?.reduce((acc, materiel) => {
+  const materiels = data.materiels.reduce((acc, materiel) => {
     acc[materiel.id] = materiel.nom
     return acc
   }, {})
-  if (materiel === undefined) return null
-
-  if (sites === undefined) return null
 
   return (
     <div className="rw-form-wrapper">
@@ -45,38 +55,71 @@ const InventaireForm = (props) => {
           listClassName="rw-form-error-list"
         />
 
-        <Label
-          name="site"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Site
-        </Label>
-
-        <TextField
-          name="site"
-          defaultValue={sites[props.inventaire?.id]}
-          className="mt-2 block w-full rounded-md border-gray-300 focus:border-green-700  focus:ring-green-700 sm:text-sm"
-          errorClassName="sm:text-sm mt-2 block w-full rounded-md border-red-300  focus:border-red-500 focus:ring-red-500"
-          validation={{ required: true }}
+        <Comboboxes
+          selected={props.prestation?.site}
+          setSelected={(e) =>
+            setSelected({
+              site: selected,
+            })
+          }
+          query={query}
+          setQuery={setQuery}
+          filtered={
+            query === ''
+              ? data.sites?.map((site) => {
+                  return {
+                    id: site.id,
+                    name: site.nom,
+                  }
+                })
+              : data.sites
+                  ?.map((site) => {
+                    return {
+                      id: site.id,
+                      name: site.nom,
+                    }
+                  })
+                  .filter((site) => {
+                    return site.name
+                      .toLowerCase()
+                      .includes(query?.toLowerCase())
+                  })
+          }
+          label="Site"
         />
-
         <FieldError name="site" className="rw-field-error" />
 
-        <Label
-          name="materiel"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Materiel
-        </Label>
-
-        <TextField
-          name="materiel"
-          defaultValue={materiel[props.inventaire?.id]}
-          className="mt-2 block w-full rounded-md border-gray-300 focus:border-green-700  focus:ring-green-700 sm:text-sm"
-          errorClassName="sm:text-sm mt-2 block w-full rounded-md border-red-300  focus:border-red-500 focus:ring-red-500"
-          validation={{ required: true }}
+        <Comboboxes
+          selected={props.prestation?.materiel}
+          setSelected={(e) =>
+            setSelected({
+              materiel: selected,
+            })
+          }
+          query={query}
+          setQuery={setQuery}
+          filtered={
+            query === ''
+              ? data.materiels?.map((materiel) => {
+                  return {
+                    id: materiel.id,
+                    name: materiel.nom,
+                  }
+                })
+              : data.materiels
+                  ?.map((materiel) => {
+                    return {
+                      id: materiel.id,
+                      name: materiel.nom,
+                    }
+                  })
+                  .filter((materiel) => {
+                    return materiel.name
+                      .toLowerCase()
+                      .includes(query?.toLowerCase())
+                  })
+          }
+          label="Materiel"
         />
 
         <FieldError name="materiel" className="rw-field-error" />

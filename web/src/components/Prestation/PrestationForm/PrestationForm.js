@@ -8,9 +8,12 @@ import {
   CheckboxField,
   DatetimeLocalField,
   Submit,
+  SelectField,
 } from '@redwoodjs/forms'
 import { useQuery } from '@redwoodjs/web'
+import Comboboxes from 'src/components/Comboboxes'
 import { FINDALLQUERY } from '../Prestation'
+import { useState } from 'react'
 const formatDatetime = (value) => {
   if (value) {
     return value.replace(/:\d{2}\.\d{3}\w/, '')
@@ -18,39 +21,28 @@ const formatDatetime = (value) => {
 }
 
 const PrestationForm = (props) => {
-  const onSubmit = (data) => {
-    props.onSave(data, props?.prestation?.id)
-  }
-
+  const [query, setQuery] = useState('')
+  const [selected, setSelected] = useState({
+    site: null,
+    materiel: null,
+    matiere: null,
+    vehicule: null,
+    service: null,
+  })
   const { loading, error, data } = useQuery(FINDALLQUERY)
-
   if (loading) return 'Loading...'
   if (error) return `Error! ${error.message}`
 
-  const sites = data.sites.reduce((acc, site) => {
-    acc[site.id] = site.nom
-    return acc
-  }, {})
-
-  const matiere = data.matieres.reduce((acc, matiere) => {
-    acc[matiere.id] = matiere.nom
-    return acc
-  }, {})
-
-  const materiel = data.materiels?.reduce((acc, materiel) => {
-    acc[materiel.id] = materiel.nom
-    return acc
-  }, {})
-
-  const vehicule = data.vehicules?.reduce((acc, vehicule) => {
-    acc[vehicule.id] = vehicule.nom + ' ' + vehicule.immatriculation
-    return acc
-  }, {})
-
-  const service = data.services?.reduce((acc, service) => {
-    acc[service.id] = service.nom
-    return acc
-  }, {})
+  const onSubmit = (data) => {
+    props.onSave(data, props?.prestation?.id)
+    setSelected({
+      site: props.prestation?.site,
+      matiere: props.prestation?.matiere,
+      materiel: props.prestation?.materiel,
+      vehicule: props.prestation?.vehicule,
+      service: props.prestation?.service,
+    })
+  }
   return (
     <div className="rw-form-wrapper">
       <Form onSubmit={onSubmit} error={props.error}>
@@ -63,56 +55,106 @@ const PrestationForm = (props) => {
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-6">
           <div className="col-span-2 sm:col-span-2">
-            <Label
-              name="site"
-              className="rw-label"
-              errorClassName="rw-label rw-label-error"
-            >
-              Site
-            </Label>
-
-            <TextField
-              name="site"
-              defaultValue={sites[props.prestation?.id]}
-              className="mt-2 block w-full rounded-md border-gray-300 focus:border-green-700  focus:ring-green-700 sm:text-sm"
-              errorClassName="sm:text-sm mt-2 block w-full rounded-md border-red-300  focus:border-red-500 focus:ring-red-500"
-              validation={{ required: true }}
+            <Comboboxes
+              selected={props.prestation?.site}
+              setSelected={(e) =>
+                setSelected({
+                  site: selected,
+                })
+              }
+              query={query}
+              setQuery={setQuery}
+              filtered={
+                query === ''
+                  ? data.sites?.map((site) => {
+                      return {
+                        id: site.id,
+                        name: site.nom,
+                      }
+                    })
+                  : data.sites
+                      ?.map((site) => {
+                        return {
+                          id: site.id,
+                          name: site.nom,
+                        }
+                      })
+                      .filter((site) => {
+                        return site.name
+                          .toLowerCase()
+                          .includes(query?.toLowerCase())
+                      })
+              }
+              label="Site"
             />
-
             <FieldError name="site" className="rw-field-error" />
 
-            <Label
-              name="matiere"
-              className="rw-label"
-              errorClassName="rw-label rw-label-error"
-            >
-              Matiere
-            </Label>
-
-            <TextField
-              name="matiere"
-              defaultValue={matiere[props.prestation?.id]}
-              className="mt-2 block w-full rounded-md border-gray-300 focus:border-green-700  focus:ring-green-700 sm:text-sm"
-              errorClassName="sm:text-sm mt-2 block w-full rounded-md border-red-300  focus:border-red-500 focus:ring-red-500"
-              validation={{ required: true }}
+            <Comboboxes
+              selected={props.prestation?.matiere}
+              setSelected={(e) =>
+                setSelected({
+                  matiere: selected,
+                })
+              }
+              query={query}
+              setQuery={setQuery}
+              filtered={
+                query === ''
+                  ? data.matieres?.map((site) => {
+                      return {
+                        id: site.id,
+                        name: site.nom,
+                      }
+                    })
+                  : data.matieres
+                      ?.map((matiere) => {
+                        return {
+                          id: matiere.id,
+                          name: matiere.nom,
+                        }
+                      })
+                      .filter((matiere) => {
+                        return matiere.name
+                          .toLowerCase()
+                          .includes(query?.toLowerCase())
+                      })
+              }
+              label="Matière"
             />
 
             <FieldError name="matiere" className="rw-field-error" />
 
-            <Label
-              name="materiel"
-              className="rw-label"
-              errorClassName="rw-label rw-label-error"
-            >
-              Materiel
-            </Label>
-
-            <TextField
-              name="materiel"
-              defaultValue={materiel[props.prestation?.id]}
-              className="mt-2 block w-full rounded-md border-gray-300 focus:border-green-700  focus:ring-green-700 sm:text-sm"
-              errorClassName="sm:text-sm mt-2 block w-full rounded-md border-red-300  focus:border-red-500 focus:ring-red-500"
-              validation={{ required: true }}
+            <Comboboxes
+              selected={props.prestation?.materiel}
+              setSelected={(e) =>
+                setSelected({
+                  materiel: selected,
+                })
+              }
+              query={query}
+              setQuery={setQuery}
+              filtered={
+                query === ''
+                  ? data.materiels?.map((materiel) => {
+                      return {
+                        id: materiel.id,
+                        name: materiel.nom,
+                      }
+                    })
+                  : data.materiels
+                      ?.map((materiel) => {
+                        return {
+                          id: materiel.id,
+                          name: materiel.nom,
+                        }
+                      })
+                      .filter((materiel) => {
+                        return materiel.name
+                          .toLowerCase()
+                          .includes(query?.toLowerCase())
+                      })
+              }
+              label="Materiel"
             />
 
             <FieldError name="materiel" className="rw-field-error" />
@@ -135,39 +177,73 @@ const PrestationForm = (props) => {
             />
 
             <FieldError name="quantite" className="rw-field-error" />
-            <Label
-              name="service"
-              className="rw-label"
-              errorClassName="rw-label rw-label-error"
-            >
-              Service
-            </Label>
 
-            <TextField
-              name="service"
-              defaultValue={service[props.prestation?.id]}
-              className="mt-2 block w-full rounded-md border-gray-300 focus:border-green-700  focus:ring-green-700 sm:text-sm"
-              errorClassName="sm:text-sm mt-2 block w-full rounded-md border-red-300  focus:border-red-500 focus:ring-red-500"
-              validation={{ required: true }}
+            <Comboboxes
+              selected={props.prestation?.service}
+              setSelected={(e) =>
+                setSelected({
+                  service: selected,
+                })
+              }
+              query={query}
+              setQuery={setQuery}
+              filtered={
+                query === ''
+                  ? data.services?.map((service) => {
+                      return {
+                        id: service.id,
+                        name: service.nom,
+                      }
+                    })
+                  : data.services
+                      ?.map((service) => {
+                        return {
+                          id: service.id,
+                          name: service.nom,
+                        }
+                      })
+                      .filter((service) => {
+                        return service.name
+                          .toLowerCase()
+                          .includes(query?.toLowerCase())
+                      })
+              }
+              label="Services"
             />
-
             <FieldError name="service" className="rw-field-error" />
           </div>
           <div className="col-span-2 sm:col-span-2">
-            <Label
-              name="vehicule"
-              className="rw-label"
-              errorClassName="rw-label rw-label-error"
-            >
-              Vehicule
-            </Label>
-
-            <TextField
-              name="vehicule"
-              defaultValue={vehicule[props.prestation?.id]}
-              className="mt-2 block w-full rounded-md border-gray-300 focus:border-green-700  focus:ring-green-700 sm:text-sm"
-              errorClassName="sm:text-sm mt-2 block w-full rounded-md border-red-300  focus:border-red-500 focus:ring-red-500"
-              validation={{ required: true }}
+            <Comboboxes
+              selected={props.prestation?.vehicule}
+              setSelected={(e) =>
+                setSelected({
+                  service: selected,
+                })
+              }
+              query={query}
+              setQuery={setQuery}
+              filtered={
+                query === ''
+                  ? data.vehicules?.map((vehicule) => {
+                      return {
+                        id: vehicule.id,
+                        name: vehicule.nom + ' ' + vehicule.immatriculation,
+                      }
+                    })
+                  : data.vehicules
+                      ?.map((vehicule) => {
+                        return {
+                          id: vehicule.id,
+                          name: vehicule.nom + ' ' + vehicule.immatriculation,
+                        }
+                      })
+                      .filter((vehicule) => {
+                        return vehicule.name
+                          .toLowerCase()
+                          .includes(query?.toLowerCase())
+                      })
+              }
+              label="Véhicule"
             />
 
             <FieldError name="vehicule" className="rw-field-error" />
@@ -180,13 +256,18 @@ const PrestationForm = (props) => {
               Prix
             </Label>
 
-            <TextField
-              name="prix"
-              defaultValue={props.prestation?.prix}
-              className="mt-2 block w-full rounded-md border-gray-300 focus:border-green-700  focus:ring-green-700 sm:text-sm"
-              errorClassName="sm:text-sm mt-2 block w-full rounded-md border-red-300  focus:border-red-500 focus:ring-red-500"
-              validation={{ valueAsNumber: true, required: true }}
-            />
+            <div className="relative mt-1 rounded-md shadow-sm">
+              <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                <span className="text-gray-500 sm:text-sm">€</span>
+              </div>
+              <NumberField
+                name="prix"
+                defaultValue={props.prestation?.prix}
+                className="block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-green-800 focus:ring-green-800 sm:text-sm"
+                errorClassName="block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-red-500 focus:ring-red-500 sm:text-sm"
+                validation={{ required: true }}
+              />
+            </div>
 
             <FieldError name="prix" className="rw-field-error" />
           </div>
@@ -271,14 +352,17 @@ const PrestationForm = (props) => {
             >
               Frequence
             </Label>
-
-            <TextField
+            <SelectField
               name="frequence"
               defaultValue={props.prestation?.frequence}
-              className="mt-2 block w-full rounded-md border-gray-300 focus:border-green-700  focus:ring-green-700 sm:text-sm"
-              errorClassName="sm:text-sm mt-2 block w-full rounded-md border-red-300  focus:border-red-500 focus:ring-red-500"
+              className="mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-green-800 focus:outline-none focus:ring-green-700 sm:text-sm"
+              errorClassName="mt-1 block w-full rounded-md border-red-300 py-2 pl-3 pr-10 text-base focus:border-red-500 focus:outline-none focus:ring-red-500 sm:text-sm"
               validation={{ required: true }}
-            />
+            >
+              <option value="Hébdomadaire">Hébdomadaire</option>
+              <option value="Mensuel">Mensuel</option>
+              <option value="Ponctuel">Ponctuel</option>
+            </SelectField>
 
             <FieldError name="frequence" className="rw-field-error" />
 

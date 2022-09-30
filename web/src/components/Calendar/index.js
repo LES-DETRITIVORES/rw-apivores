@@ -5,7 +5,7 @@ import resourceTimelinePlugin from '@fullcalendar/resource-timeline'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import listPlugin from '@fullcalendar/list'
-const Calendar = () => {
+const Calendar = ({ initialView }) => {
   const initialEvents = [
     {
       title: 'All Day Event',
@@ -33,7 +33,7 @@ const Calendar = () => {
         timeGridPlugin,
         listPlugin,
       ]}
-      initialView="dayGridMonth"
+      initialView={initialView}
       nowIndicator={true}
       editable={true}
       initialEvents={initialEvents}

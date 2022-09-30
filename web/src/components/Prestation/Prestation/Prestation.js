@@ -3,8 +3,6 @@ import humanize from 'humanize-string'
 import { Link, routes, navigate } from '@redwoodjs/router'
 import { useMutation, useQuery } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
-import { QUERY } from 'src/components/Site/SitesCell'
-import { QUERYTWO } from 'src/components/Materiel/MaterielsCell'
 
 const DELETE_PRESTATION_MUTATION = gql`
   mutation DeletePrestationMutation($id: Int!) {

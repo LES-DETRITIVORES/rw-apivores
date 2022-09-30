@@ -3,7 +3,6 @@ import humanize from 'humanize-string'
 import { Link, routes } from '@redwoodjs/router'
 import { useMutation, useQuery } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
-
 import { QUERY } from 'src/components/Tache/TachesCell'
 import { FINDALLQUERY } from 'src/components/Prestation/Prestation'
 import { PencilAltIcon, PencilIcon, XIcon } from '@heroicons/react/outline'
@@ -100,7 +99,8 @@ const TachesList = ({ taches }) => {
 
   return (
     <>
-      <Calendar />
+      <Calendar initialView={'dayGridMonth'} />
+
       <div className="rw-segment rw-table-wrapper-responsive">
         <table className="rw-table">
           <thead>
