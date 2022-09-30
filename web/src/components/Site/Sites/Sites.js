@@ -1,12 +1,12 @@
 import humanize from 'humanize-string'
 
 import { Link, routes } from '@redwoodjs/router'
-import { useMutation } from '@redwoodjs/web'
+import { useMutation, useQuery } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import { QUERY } from 'src/components/Site/SitesCell'
 import { PencilAltIcon, PencilIcon, XIcon } from '@heroicons/react/outline'
-
+import { FINDALLQUERY } from 'src/components/Prestation/Prestation'
 const DELETE_SITE_MUTATION = gql`
   mutation DeleteSiteMutation($id: Int!) {
     deleteSite(id: $id) {
@@ -62,6 +62,13 @@ const checkboxInputTag = (checked) => {
 }
 
 const SitesList = ({ sites }) => {
+  const { loading, error, data } = useQuery(FINDALLQUERY)
+
+  const usager = data?.usagers?.reduce((acc, usager) => {
+    acc[usager.id] = usager.contact
+    return acc
+  }, {})
+
   const [deleteSite] = useMutation(DELETE_SITE_MUTATION, {
     onCompleted: () => {
       toast.success('Site deleted')
@@ -108,7 +115,7 @@ const SitesList = ({ sites }) => {
           {sites.map((site) => (
             <tr key={site.id}>
               <td>{truncate(site.id)}</td>
-              <td>{truncate(site.usager)}</td>
+              <td>{truncate(usager[site.id])}</td>
               <td>{truncate(site.ordre)}</td>
               <td>{truncate(site.nom)}</td>
               <td>{truncate(site.adresse)}</td>

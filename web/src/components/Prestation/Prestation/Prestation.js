@@ -53,6 +53,21 @@ export const FINDALLQUERY = gql`
       icone
       actif
     }
+    usagers {
+      id
+      nom
+      tiers
+      contact
+      adresse
+      adresse2
+      codePostal
+      ville
+      email
+      telephone1
+      telephone2
+      note
+      actif
+    }
   }
 `
 
