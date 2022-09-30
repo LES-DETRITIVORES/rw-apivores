@@ -388,37 +388,61 @@ export default async () => {
     const taches = [
       {
         id: 1,
+        debut: '2022-09-28T12:30:00Z',
+        fin: '2022-09-28T13:00:00Z',
         prestation: 1,
-        matiere: 1,
-        materiel: 1,
-        date: '2022-09-28T12:34:56Z',
-        service: 1,
-        prix: 30.00,
-        forfait: true,
-        actif: true,
+        vehicule: 1,
+        operateur1: 1,
+        operateur2: 0,
+        operateur3: 0,
+        collecte: '2022-09-28T12:40:00Z',
+        quantite: 3,
+        noteCollecte: 'RAS',
+        pesee: '2022-09-28T13:10:00Z',
+        poids: 45,
+        qualite: 3,
+        notePesee: 'Ca sent hyper bon',
+        photos: 'https://photos.les-detritivores.co',
+        terminee: true  
       },
       {
         id: 2,
-        site: 2,
-        matiere: 2,
-        materiel: 2,
-        date: '2022-08-18T12:34:56Z',
-        service: 3,
-        prix: 4.00,
-        forfait: false,
-        actif: true,
+        debut: '2022-09-28T14:30:00Z',
+        fin: '2022-09-28T15:30:00Z',
+        prestation: 2,
+        vehicule: 2,
+        operateur1: 2,
+        operateur2: 1,
+        operateur3: 0,
+        collecte: '2022-09-28T14:45:00Z',
+        quantite: 2,
+        noteCollecte: 'Bof',
+        pesee: '2022-09-28T16:00:00Z',
+        poids: 25,
+        qualite: 2,
+        notePesee: 'Mmmh',
+        photos: 'https://photos.les-detritivores.co',
+        terminee: true  
       },
       {
         id: 3,
-        site: 1,
-        matiere: 3,
-        materiel: 3,
-        date: '2022-11-30T12:34:56Z',
-        service: 2,
-        prix: 10.00,
-        forfait: false,
-        actif: false,
-      }
+        debut: '2022-10-10T06:30:00Z',
+        fin: '2022-10-10T07:00:00Z',
+        prestation: 3,
+        vehicule: 0,
+        operateur1: 0,
+        operateur2: 0,
+        operateur3: 0,
+        collecte: '2000-01-01T00:00:00Z',
+        quantite: 0,
+        noteCollecte: '',
+        pesee: '2000-01-01T00:00:00Z',
+        poids: 0,
+        qualite: 0,
+        notePesee: '',
+        photos: '',
+        terminee: false  
+      },
     ]
 
     // Note: if using PostgreSQL, using `createMany` to insert multiple records is much faster
@@ -480,6 +504,11 @@ export default async () => {
 
       inventaires.map(async (data) => {
         const record = await db.inventaire.create({ data })
+        console.log(record)
+      }),
+
+      taches.map(async (data) => {
+        const record = await db.tache.create({ data })
         console.log(record)
       }),
     )

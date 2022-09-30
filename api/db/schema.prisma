@@ -34,7 +34,6 @@ model Tache {
   id                    Int       @id @default(autoincrement())
   debut                 DateTime
   fin                   DateTime
-  pesee                 DateTime
   prestation            Int
   vehicule              Int
   operateur1            Int
@@ -42,11 +41,12 @@ model Tache {
   operateur3            Int
   collecte              DateTime
   quantite              Int
-  photos                String
   noteCollecte          String
+  pesee                 DateTime
   poids                 Int
   qualite               Int
   notePesee             String
+  photos                String
   terminee              Boolean  
 }
 
