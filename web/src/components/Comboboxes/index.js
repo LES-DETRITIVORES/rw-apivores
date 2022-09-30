@@ -2,7 +2,7 @@ import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 import { Combobox } from '@headlessui/react'
 import { classNames } from 'src/utils/classNames'
 
-const Comboboxes = ({ selected, setSelected, setQuery, filtered, label }) => {
+const Comboboxes = ({ name, selected, setSelected, setQuery, filtered, label }) => {
   return (
     <Combobox as="div" value={selected} onChange={setSelected} className="mt-6">
       <Combobox.Label className="block text-sm font-medium text-gray-700">
@@ -10,6 +10,9 @@ const Comboboxes = ({ selected, setSelected, setQuery, filtered, label }) => {
       </Combobox.Label>
       <div className="relative mt-1">
         <Combobox.Input
+          name={name} 
+          value={selected}
+          defaultValue={selected}
           className="w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 shadow-sm focus:border-green-700 focus:outline-none focus:ring-1 focus:ring-green-700 sm:text-sm"
           onChange={(event) => setQuery(event.target.value)}
           displayValue={(data) => data?.name}

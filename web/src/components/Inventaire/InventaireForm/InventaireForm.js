@@ -9,41 +9,34 @@ import {
   Submit,
 } from '@redwoodjs/forms'
 import { useQuery } from '@redwoodjs/web'
-import { FINDALLQUERY } from 'src/components/Prestation/Prestation/Prestation'
+import { FINDALLQUERY } from 'src/components/Prestation/Prestation/'
 import { useState } from 'react'
-import Comboboxes from 'src/components/Comboboxes'
+import { Combobox } from '@headlessui/react'
 
 const InventaireForm = (props) => {
-  const [query, setQuery] = useState('')
-  const [selected, setSelected] = useState({
-    site: null,
-    materiel: null,
-    matiere: null,
-    vehicule: null,
-    service: null,
-  })
-  const onSubmit = (data) => {
-    props.onSave(data, props?.inventaire?.id)
-    setSelected({
-      materiel: props.inventaire.materiel,
-      site: props.inventaire.site,
-    })
-  }
-
   const { loading, error, data } = useQuery(FINDALLQUERY)
+  const sites = data?.sites
+  const materiels = data?.materiels
+
+  const [querySite, setQuerySite] = useState('')
+  const [queryMateriel, setQueryMateriel] = useState('')
+  const [selectedSite, setSelectedSite] = useState('')
+  const [selectedMateriel, setSelectedMateriel] = useState(props.inventaire.materiel)
+  
+  const filteredSite =
+    querySite === '' ? sites : sites.filter((site) => site.nom.toLowerCase().includes(querySite.toLowerCase()))
+
+  const filteredMateriel =
+    queryMateriel === '' ? materiels : materiels.filter((materiel) => materiel.nom.toLowerCase().includes(queryMateriel.toLowerCase()))
+
+  const onSubmit = (data) => {
+    data.site = selectedSite
+    data.materiel = selectedMateriel
+    props.onSave(data, props?.inventaire?.id)
+  }
 
   if (loading) return 'Loading...'
   if (error) return `Error! ${error.message}`
-
-  const sites = data.sites.reduce((acc, site) => {
-    acc[site.id] = site.nom
-    return acc
-  }, {})
-
-  const materiels = data.materiels.reduce((acc, materiel) => {
-    acc[materiel.id] = materiel.nom
-    return acc
-  }, {})
 
   return (
     <div className="rw-form-wrapper">
@@ -54,73 +47,57 @@ const InventaireForm = (props) => {
           titleClassName="rw-form-error-title"
           listClassName="rw-form-error-list"
         />
+        <Label
+          name="site"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Site
+        </Label>
+        <Combobox
+          value={selectedSite}
+          onChange={setSelectedSite}
+          name="site"
+        >
+          <Combobox.Input
+            onChange={(event) => setQuerySite(event.target.value)}
+            displayValue={(site) => site.nom}
+          />
+          <Combobox.Options>
+            {filteredSite.map((site) => (
+              <Combobox.Option key={site.id} value={site.id}>
+                {site.nom}
+              </Combobox.Option>
+            ))}
+          </Combobox.Options>
+        </Combobox>
 
-        <Comboboxes
-          selected={props.prestation?.site}
-          setSelected={(e) =>
-            setSelected({
-              site: selected,
-            })
-          }
-          query={query}
-          setQuery={setQuery}
-          filtered={
-            query === ''
-              ? data.sites?.map((site) => {
-                  return {
-                    id: site.id,
-                    name: site.nom,
-                  }
-                })
-              : data.sites
-                  ?.map((site) => {
-                    return {
-                      id: site.id,
-                      name: site.nom,
-                    }
-                  })
-                  .filter((site) => {
-                    return site.name
-                      .toLowerCase()
-                      .includes(query?.toLowerCase())
-                  })
-          }
-          label="Site"
-        />
         <FieldError name="site" className="rw-field-error" />
-
-        <Comboboxes
-          selected={props.prestation?.materiel}
-          setSelected={(e) =>
-            setSelected({
-              materiel: selected,
-            })
-          }
-          query={query}
-          setQuery={setQuery}
-          filtered={
-            query === ''
-              ? data.materiels?.map((materiel) => {
-                  return {
-                    id: materiel.id,
-                    name: materiel.nom,
-                  }
-                })
-              : data.materiels
-                  ?.map((materiel) => {
-                    return {
-                      id: materiel.id,
-                      name: materiel.nom,
-                    }
-                  })
-                  .filter((materiel) => {
-                    return materiel.name
-                      .toLowerCase()
-                      .includes(query?.toLowerCase())
-                  })
-          }
-          label="Materiel"
-        />
+        
+        <Label
+          name="materiel"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Matériel
+        </Label>
+        <Combobox
+          value={selectedMateriel}
+          onChange={setSelectedMateriel}
+          name="materiel"
+        >
+          <Combobox.Input
+            onChange={(event) => setQueryMateriel(event.target.value)}
+            displayValue={(materiel) => materiel.nom}
+          />
+          <Combobox.Options>
+            {filteredMateriel.map((materiel) => (
+              <Combobox.Option key={materiel.id} value={materiel.id}>
+                {materiel.nom}
+              </Combobox.Option>
+            ))}
+          </Combobox.Options>
+        </Combobox>
 
         <FieldError name="materiel" className="rw-field-error" />
 
