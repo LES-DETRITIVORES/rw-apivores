@@ -106,11 +106,11 @@ const Inventaire = ({ inventaire }) => {
             </tr>
             <tr>
               <th>Site</th>
-              <td>{sites[inventaire.id]}</td>
+              <td>{inventaire.site}</td>
             </tr>
             <tr>
               <th>Materiel</th>
-              <td>{materiel[inventaire.id]}</td>
+              <td>{inventaire.materiel}</td>
             </tr>
             <tr>
               <th>Quantite</th>
