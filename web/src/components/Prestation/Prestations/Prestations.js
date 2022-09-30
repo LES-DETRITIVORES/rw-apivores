@@ -5,7 +5,6 @@ import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import { QUERY } from 'src/components/Prestation/PrestationsCell'
-import { PencilAltIcon, PencilIcon, XIcon } from '@heroicons/react/outline'
 
 const DELETE_PRESTATION_MUTATION = gql`
   mutation DeletePrestationMutation($id: Int!) {
@@ -51,14 +50,7 @@ const timeTag = (datetime) => {
 }
 
 const checkboxInputTag = (checked) => {
-  return (
-    <input
-      className='className="h-4 w-4 rounded border-gray-300 text-green-700 focus:ring-green-700'
-      type="checkbox"
-      checked={checked}
-      disabled
-    />
-  )
+  return <input type="checkbox" checked={checked} disabled />
 }
 
 const PrestationsList = ({ prestations }) => {
@@ -90,10 +82,23 @@ const PrestationsList = ({ prestations }) => {
             <th>Id</th>
             <th>Site</th>
             <th>Matiere</th>
-            <th>Date</th>
+            <th>Materiel</th>
+            <th>Quantite</th>
             <th>Service</th>
+            <th>Vehicule</th>
             <th>Prix</th>
             <th>Forfait</th>
+            <th>Note</th>
+            <th>Debut</th>
+            <th>Fin</th>
+            <th>Frequence</th>
+            <th>Lundi</th>
+            <th>Mardi</th>
+            <th>Mercredi</th>
+            <th>Jeudi</th>
+            <th>Vendredi</th>
+            <th>Samedi</th>
+            <th>Dimanche</th>
             <th>Actif</th>
             <th>&nbsp;</th>
           </tr>
@@ -104,31 +109,47 @@ const PrestationsList = ({ prestations }) => {
               <td>{truncate(prestation.id)}</td>
               <td>{truncate(prestation.site)}</td>
               <td>{truncate(prestation.matiere)}</td>
-              <td>{timeTag(prestation.date)}</td>
+              <td>{truncate(prestation.materiel)}</td>
+              <td>{truncate(prestation.quantite)}</td>
               <td>{truncate(prestation.service)}</td>
+              <td>{truncate(prestation.vehicule)}</td>
               <td>{truncate(prestation.prix)}</td>
               <td>{checkboxInputTag(prestation.forfait)}</td>
+              <td>{truncate(prestation.note)}</td>
+              <td>{timeTag(prestation.debut)}</td>
+              <td>{timeTag(prestation.fin)}</td>
+              <td>{truncate(prestation.frequence)}</td>
+              <td>{checkboxInputTag(prestation.lundi)}</td>
+              <td>{checkboxInputTag(prestation.mardi)}</td>
+              <td>{checkboxInputTag(prestation.mercredi)}</td>
+              <td>{checkboxInputTag(prestation.jeudi)}</td>
+              <td>{checkboxInputTag(prestation.vendredi)}</td>
+              <td>{checkboxInputTag(prestation.samedi)}</td>
+              <td>{checkboxInputTag(prestation.dimanche)}</td>
               <td>{checkboxInputTag(prestation.actif)}</td>
               <td>
-                <nav className="rw-table-actions space-x-2">
+                <nav className="rw-table-actions">
                   <Link
                     to={routes.prestation({ id: prestation.id })}
                     title={'Show prestation ' + prestation.id + ' detail'}
+                    className="rw-button rw-button-small"
                   >
-                    <PencilIcon className="h-5 w-5 text-green-900" />
+                    Show
                   </Link>
                   <Link
                     to={routes.editPrestation({ id: prestation.id })}
                     title={'Edit prestation ' + prestation.id}
+                    className="rw-button rw-button-small rw-button-blue"
                   >
-                    <PencilAltIcon className="h-5 w-5 text-green-900" />
+                    Edit
                   </Link>
                   <button
                     type="button"
                     title={'Delete prestation ' + prestation.id}
+                    className="rw-button rw-button-small rw-button-red"
                     onClick={() => onDeleteClick(prestation.id)}
                   >
-                    <XIcon className="h-5 w-5 text-green-900" />
+                    Delete
                   </button>
                 </nav>
               </td>

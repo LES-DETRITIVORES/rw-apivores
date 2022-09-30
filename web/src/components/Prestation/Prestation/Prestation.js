@@ -42,14 +42,7 @@ const timeTag = (datetime) => {
 }
 
 const checkboxInputTag = (checked) => {
-  return (
-    <input
-      className='className="h-4 w-4 rounded border-gray-300 text-green-700 focus:ring-green-700'
-      type="checkbox"
-      checked={checked}
-      disabled
-    />
-  )
+  return <input type="checkbox" checked={checked} disabled />
 }
 
 const Prestation = ({ prestation }) => {
@@ -92,12 +85,20 @@ const Prestation = ({ prestation }) => {
               <td>{prestation.matiere}</td>
             </tr>
             <tr>
-              <th>Date</th>
-              <td>{timeTag(prestation.date)}</td>
+              <th>Materiel</th>
+              <td>{prestation.materiel}</td>
+            </tr>
+            <tr>
+              <th>Quantite</th>
+              <td>{prestation.quantite}</td>
             </tr>
             <tr>
               <th>Service</th>
               <td>{prestation.service}</td>
+            </tr>
+            <tr>
+              <th>Vehicule</th>
+              <td>{prestation.vehicule}</td>
             </tr>
             <tr>
               <th>Prix</th>
@@ -108,22 +109,66 @@ const Prestation = ({ prestation }) => {
               <td>{checkboxInputTag(prestation.forfait)}</td>
             </tr>
             <tr>
+              <th>Note</th>
+              <td>{prestation.note}</td>
+            </tr>
+            <tr>
+              <th>Debut</th>
+              <td>{timeTag(prestation.debut)}</td>
+            </tr>
+            <tr>
+              <th>Fin</th>
+              <td>{timeTag(prestation.fin)}</td>
+            </tr>
+            <tr>
+              <th>Frequence</th>
+              <td>{prestation.frequence}</td>
+            </tr>
+            <tr>
+              <th>Lundi</th>
+              <td>{checkboxInputTag(prestation.lundi)}</td>
+            </tr>
+            <tr>
+              <th>Mardi</th>
+              <td>{checkboxInputTag(prestation.mardi)}</td>
+            </tr>
+            <tr>
+              <th>Mercredi</th>
+              <td>{checkboxInputTag(prestation.mercredi)}</td>
+            </tr>
+            <tr>
+              <th>Jeudi</th>
+              <td>{checkboxInputTag(prestation.jeudi)}</td>
+            </tr>
+            <tr>
+              <th>Vendredi</th>
+              <td>{checkboxInputTag(prestation.vendredi)}</td>
+            </tr>
+            <tr>
+              <th>Samedi</th>
+              <td>{checkboxInputTag(prestation.samedi)}</td>
+            </tr>
+            <tr>
+              <th>Dimanche</th>
+              <td>{checkboxInputTag(prestation.dimanche)}</td>
+            </tr>
+            <tr>
               <th>Actif</th>
               <td>{checkboxInputTag(prestation.actif)}</td>
             </tr>
           </tbody>
         </table>
       </div>
-      <nav className="rw-button-group space-x-2">
+      <nav className="rw-button-group">
         <Link
           to={routes.editPrestation({ id: prestation.id })}
-          className="inline-flex items-center rounded border border-transparent !bg-green-800 px-3 py-2 text-xs font-medium text-white shadow-sm hover:!bg-green-900 focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-offset-2"
+          className="rw-button rw-button-blue"
         >
           Edit
         </Link>
         <button
           type="button"
-          className="inline-flex items-center rounded border border-transparent bg-red-500 px-3 py-2 text-xs font-medium text-white shadow-sm hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-700 focus:ring-offset-2"
+          className="rw-button rw-button-red"
           onClick={() => onDeleteClick(prestation.id)}
         >
           Delete

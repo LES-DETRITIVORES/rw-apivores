@@ -28,22 +28,48 @@ describe('prestations', () => {
   scenario('creates a prestation', async () => {
     const result = await createPrestation({
       input: {
-        site: 9307533,
-        matiere: 5369271,
-        date: '2022-09-29T14:20:55Z',
-        service: 2855240,
-        prix: 2072874.006949168,
+        site: 5058874,
+        matiere: 1496660,
+        materiel: 2717802,
+        quantite: 3574671,
+        service: 3141869,
+        vehicule: 6242214,
+        prix: 9362146.477150759,
         forfait: true,
+        note: 'String',
+        debut: '2022-09-30T08:10:13Z',
+        fin: '2022-09-30T08:10:13Z',
+        frequence: 'String',
+        lundi: true,
+        mardi: true,
+        mercredi: true,
+        jeudi: true,
+        vendredi: true,
+        samedi: true,
+        dimanche: true,
         actif: true,
       },
     })
 
-    expect(result.site).toEqual(9307533)
-    expect(result.matiere).toEqual(5369271)
-    expect(result.date).toEqual('2022-09-29T14:20:55Z')
-    expect(result.service).toEqual(2855240)
-    expect(result.prix).toEqual(2072874.006949168)
+    expect(result.site).toEqual(5058874)
+    expect(result.matiere).toEqual(1496660)
+    expect(result.materiel).toEqual(2717802)
+    expect(result.quantite).toEqual(3574671)
+    expect(result.service).toEqual(3141869)
+    expect(result.vehicule).toEqual(6242214)
+    expect(result.prix).toEqual(9362146.477150759)
     expect(result.forfait).toEqual(true)
+    expect(result.note).toEqual('String')
+    expect(result.debut).toEqual('2022-09-30T08:10:13Z')
+    expect(result.fin).toEqual('2022-09-30T08:10:13Z')
+    expect(result.frequence).toEqual('String')
+    expect(result.lundi).toEqual(true)
+    expect(result.mardi).toEqual(true)
+    expect(result.mercredi).toEqual(true)
+    expect(result.jeudi).toEqual(true)
+    expect(result.vendredi).toEqual(true)
+    expect(result.samedi).toEqual(true)
+    expect(result.dimanche).toEqual(true)
     expect(result.actif).toEqual(true)
   })
 
@@ -54,10 +80,10 @@ describe('prestations', () => {
 
     const result = await updatePrestation({
       id: original.id,
-      input: { site: 3733293 },
+      input: { site: 2806094 },
     })
 
-    expect(result.site).toEqual(3733293)
+    expect(result.site).toEqual(2806094)
   })
 
   scenario('deletes a prestation', async (scenario) => {

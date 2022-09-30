@@ -3,10 +3,23 @@ export const schema = gql`
     id: Int!
     site: Int!
     matiere: Int!
-    date: DateTime!
+    materiel: Int!
+    quantite: Int!
     service: Int!
+    vehicule: Int!
     prix: Float!
     forfait: Boolean!
+    note: String!
+    debut: DateTime!
+    fin: DateTime!
+    frequence: String!
+    lundi: Boolean!
+    mardi: Boolean!
+    mercredi: Boolean!
+    jeudi: Boolean!
+    vendredi: Boolean!
+    samedi: Boolean!
+    dimanche: Boolean!
     actif: Boolean!
   }
 
@@ -18,20 +31,46 @@ export const schema = gql`
   input CreatePrestationInput {
     site: Int!
     matiere: Int!
-    date: DateTime!
+    materiel: Int!
+    quantite: Int!
     service: Int!
+    vehicule: Int!
     prix: Float!
     forfait: Boolean!
+    note: String!
+    debut: DateTime!
+    fin: DateTime!
+    frequence: String!
+    lundi: Boolean!
+    mardi: Boolean!
+    mercredi: Boolean!
+    jeudi: Boolean!
+    vendredi: Boolean!
+    samedi: Boolean!
+    dimanche: Boolean!
     actif: Boolean!
   }
 
   input UpdatePrestationInput {
     site: Int
     matiere: Int
-    date: DateTime
+    materiel: Int
+    quantite: Int
     service: Int
+    vehicule: Int
     prix: Float
     forfait: Boolean
+    note: String
+    debut: DateTime
+    fin: DateTime
+    frequence: String
+    lundi: Boolean
+    mardi: Boolean
+    mercredi: Boolean
+    jeudi: Boolean
+    vendredi: Boolean
+    samedi: Boolean
+    dimanche: Boolean
     actif: Boolean
   }
 

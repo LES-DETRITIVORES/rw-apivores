@@ -8,10 +8,23 @@ export const QUERY = gql`
       id
       site
       matiere
-      date
+      materiel
+      quantite
       service
+      vehicule
       prix
       forfait
+      note
+      debut
+      fin
+      frequence
+      lundi
+      mardi
+      mercredi
+      jeudi
+      vendredi
+      samedi
+      dimanche
       actif
     }
   }
