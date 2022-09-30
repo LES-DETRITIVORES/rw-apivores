@@ -1,6 +1,6 @@
 export const QUERY = gql`
-  query ($debut: DateTime!) {
-    prestationsByDate(debut: $debut) {
+  query ($debut: DateTime!, $fin: DateTime!) {
+    prestationsByDate(debut: $debut, fin: $fin) {
       id
       site
       matiere
@@ -34,10 +34,10 @@ export const Failure = ({ error }) => (
   <div style={{ color: 'red' }}>Error: {error?.message}</div>
 )
 
-export const Success = ({ prestations }) => {
+export const Success = ({ prestationsByDate }) => {
   return (
     <ul>
-      {prestations.map((item) => {
+      {prestationsByDate.map((item) => {
         return <li key={item.id}>{JSON.stringify(item)}</li>
       })}
     </ul>

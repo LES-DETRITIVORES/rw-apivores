@@ -10,6 +10,19 @@ export const prestation = ({ id }) => {
   })
 }
 
+export const prestationsByDate = ({ debut, fin }) => {
+  return db.prestation.findMany({
+    where: { 
+      debut : {
+        gte: new Date(debut) 
+      },
+      fin : {
+        lte: new Date(fin) 
+      }
+    },
+  })
+}
+
 export const createPrestation = ({ input }) => {
   return db.prestation.create({
     data: input,

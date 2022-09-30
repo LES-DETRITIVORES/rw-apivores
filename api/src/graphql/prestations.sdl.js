@@ -26,7 +26,7 @@ export const schema = gql`
   type Query {
     prestations: [Prestation!]! @requireAuth
     prestation(id: Int!): Prestation @requireAuth
-    prestationsByDate(debut: DateTime!): [Prestation!]! @skipAuth
+    prestationsByDate(debut: DateTime!, fin: DateTime!): [Prestation!]! @requireAuth
   }
 
   input CreatePrestationInput {
