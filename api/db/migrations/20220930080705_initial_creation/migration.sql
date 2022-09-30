@@ -22,23 +22,24 @@ CREATE TABLE "Exploitation" (
 );
 
 -- CreateTable
-CREATE TABLE "Tournee" (
-    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "date" DATETIME NOT NULL,
-    "note" TEXT NOT NULL,
-    "vehicule" INTEGER NOT NULL,
-    "operateur1" INTEGER NOT NULL,
-    "operateur2" INTEGER NOT NULL,
-    "operateur3" INTEGER NOT NULL
-);
-
--- CreateTable
-CREATE TABLE "Etape" (
+CREATE TABLE "Tache" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "debut" DATETIME NOT NULL,
     "fin" DATETIME NOT NULL,
-    "site" INTEGER NOT NULL,
-    "prestation" INTEGER NOT NULL
+    "pesee" DATETIME NOT NULL,
+    "prestation" INTEGER NOT NULL,
+    "vehicule" INTEGER NOT NULL,
+    "operateur1" INTEGER NOT NULL,
+    "operateur2" INTEGER NOT NULL,
+    "operateur3" INTEGER NOT NULL,
+    "collecte" DATETIME NOT NULL,
+    "quantite" INTEGER NOT NULL,
+    "photos" TEXT NOT NULL,
+    "noteCollecte" TEXT NOT NULL,
+    "poids" INTEGER NOT NULL,
+    "qualite" INTEGER NOT NULL,
+    "notePesee" TEXT NOT NULL,
+    "terminee" BOOLEAN NOT NULL
 );
 
 -- CreateTable
@@ -98,10 +99,23 @@ CREATE TABLE "Prestation" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "site" INTEGER NOT NULL,
     "matiere" INTEGER NOT NULL,
-    "date" DATETIME NOT NULL,
+    "materiel" INTEGER NOT NULL,
+    "quantite" INTEGER NOT NULL,
     "service" INTEGER NOT NULL,
+    "vehicule" INTEGER NOT NULL,
     "prix" REAL NOT NULL,
     "forfait" BOOLEAN NOT NULL,
+    "note" TEXT NOT NULL,
+    "debut" DATETIME NOT NULL,
+    "fin" DATETIME NOT NULL,
+    "frequence" TEXT NOT NULL,
+    "lundi" BOOLEAN NOT NULL,
+    "mardi" BOOLEAN NOT NULL,
+    "mercredi" BOOLEAN NOT NULL,
+    "jeudi" BOOLEAN NOT NULL,
+    "vendredi" BOOLEAN NOT NULL,
+    "samedi" BOOLEAN NOT NULL,
+    "dimanche" BOOLEAN NOT NULL,
     "actif" BOOLEAN NOT NULL
 );
 

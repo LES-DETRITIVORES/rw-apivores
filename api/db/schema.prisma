@@ -106,11 +106,20 @@ model Prestation {
   materiel              Int
   quantite              Int
   service               Int
+  vehicule              Int
   prix                  Float
   forfait               Boolean
   note                  String
   debut                 DateTime
   fin                   DateTime
+  frequence             String
+  lundi                 Boolean
+  mardi                 Boolean
+  mercredi              Boolean
+  jeudi                 Boolean
+  vendredi              Boolean
+  samedi                Boolean
+  dimanche              Boolean
   actif                 Boolean
 }
 
