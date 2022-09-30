@@ -1,10 +1,13 @@
 import humanize from 'humanize-string'
 
 import { Link, routes } from '@redwoodjs/router'
-import { useMutation } from '@redwoodjs/web'
+import { useMutation, useQuery } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import { QUERY } from 'src/components/Prestation/PrestationsCell'
+import { FINDALLQUERY } from '../Prestation'
+import { PencilAltIcon, PencilIcon, XIcon } from '@heroicons/react/outline'
+import { formattedDateAndTime } from 'src/utils/formattedDate'
 
 const DELETE_PRESTATION_MUTATION = gql`
   mutation DeletePrestationMutation($id: Int!) {
@@ -50,7 +53,14 @@ const timeTag = (datetime) => {
 }
 
 const checkboxInputTag = (checked) => {
-  return <input type="checkbox" checked={checked} disabled />
+  return (
+    <input
+      className='className="h-4 w-4 rounded border-gray-300 text-green-700 focus:ring-green-700'
+      type="checkbox"
+      checked={checked}
+      disabled
+    />
+  )
 }
 
 const PrestationsList = ({ prestations }) => {
@@ -73,6 +83,35 @@ const PrestationsList = ({ prestations }) => {
       deletePrestation({ variables: { id } })
     }
   }
+  const { loading, error, data } = useQuery(FINDALLQUERY)
+
+  if (loading) return 'Loading...'
+  if (error) return `Error! ${error.message}`
+
+  const sites = data.sites.reduce((acc, site) => {
+    acc[site.id] = site.nom
+    return acc
+  }, {})
+
+  const matiere = data.matieres.reduce((acc, matiere) => {
+    acc[matiere.id] = matiere.nom
+    return acc
+  }, {})
+
+  const materiel = data.materiels?.reduce((acc, materiel) => {
+    acc[materiel.id] = materiel.nom
+    return acc
+  }, {})
+
+  const vehicule = data.vehicules?.reduce((acc, vehicule) => {
+    acc[vehicule.id] = vehicule.nom + ' ' + vehicule.immatriculation
+    return acc
+  }, {})
+
+  const service = data.services?.reduce((acc, service) => {
+    acc[service.id] = service.nom
+    return acc
+  }, {})
 
   return (
     <div className="rw-segment rw-table-wrapper-responsive">
@@ -107,17 +146,17 @@ const PrestationsList = ({ prestations }) => {
           {prestations.map((prestation) => (
             <tr key={prestation.id}>
               <td>{truncate(prestation.id)}</td>
-              <td>{truncate(prestation.site)}</td>
-              <td>{truncate(prestation.matiere)}</td>
-              <td>{truncate(prestation.materiel)}</td>
+              <td>{truncate(sites[prestation.site])}</td>
+              <td>{truncate(matiere[prestation.matiere])}</td>
+              <td>{truncate(materiel[prestation.materiel])}</td>
               <td>{truncate(prestation.quantite)}</td>
-              <td>{truncate(prestation.service)}</td>
-              <td>{truncate(prestation.vehicule)}</td>
+              <td>{truncate(service[prestation.service])}</td>
+              <td>{truncate(vehicule[prestation.vehicule])}</td>
               <td>{truncate(prestation.prix)}</td>
               <td>{checkboxInputTag(prestation.forfait)}</td>
               <td>{truncate(prestation.note)}</td>
-              <td>{timeTag(prestation.debut)}</td>
-              <td>{timeTag(prestation.fin)}</td>
+              <td>{formattedDateAndTime(prestation.debut)}</td>
+              <td>{formattedDateAndTime(prestation.fin)}</td>
               <td>{truncate(prestation.frequence)}</td>
               <td>{checkboxInputTag(prestation.lundi)}</td>
               <td>{checkboxInputTag(prestation.mardi)}</td>
@@ -128,28 +167,25 @@ const PrestationsList = ({ prestations }) => {
               <td>{checkboxInputTag(prestation.dimanche)}</td>
               <td>{checkboxInputTag(prestation.actif)}</td>
               <td>
-                <nav className="rw-table-actions">
+                <nav className="rw-table-actions space-x-2">
                   <Link
                     to={routes.prestation({ id: prestation.id })}
                     title={'Show prestation ' + prestation.id + ' detail'}
-                    className="rw-button rw-button-small"
                   >
-                    Show
+                    <PencilIcon className="h-5 w-5 text-green-900" />
                   </Link>
                   <Link
                     to={routes.editPrestation({ id: prestation.id })}
                     title={'Edit prestation ' + prestation.id}
-                    className="rw-button rw-button-small rw-button-blue"
                   >
-                    Edit
+                    <PencilAltIcon className="h-5 w-5 text-green-900" />
                   </Link>
                   <button
                     type="button"
                     title={'Delete prestation ' + prestation.id}
-                    className="rw-button rw-button-small rw-button-red"
                     onClick={() => onDeleteClick(prestation.id)}
                   >
-                    Delete
+                    <XIcon className="h-5 w-5 text-green-900" />
                   </button>
                 </nav>
               </td>

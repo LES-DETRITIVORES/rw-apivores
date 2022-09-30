@@ -1,12 +1,12 @@
 import humanize from 'humanize-string'
 
 import { Link, routes } from '@redwoodjs/router'
-import { useMutation } from '@redwoodjs/web'
+import { useMutation, useQuery } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
-import { QUERY } from 'src/components/Inventaire/InventairesCell'
+import { QUERY } from 'src/components/Site/SitesCell'
+import { QUERYTWO } from 'src/components/Materiel/MaterielsCell'
 import { PencilAltIcon, PencilIcon, XIcon } from '@heroicons/react/outline'
-
 const DELETE_INVENTAIRE_MUTATION = gql`
   mutation DeleteInventaireMutation($id: Int!) {
     deleteInventaire(id: $id) {
@@ -82,6 +82,26 @@ const InventairesList = ({ inventaires }) => {
     }
   }
 
+  const { loading, error, data } = useQuery(QUERY)
+  const { data: datas } = useQuery(QUERYTWO)
+
+  if (loading) return 'Loading...'
+  if (error) return `Error! ${error.message}`
+
+  const sites = data?.sites?.reduce((acc, site) => {
+    acc[site.id] = site.nom
+    return acc
+  }, {})
+
+  const materiel = datas?.materiels?.reduce((acc, materiel) => {
+    acc[materiel.id] = materiel.nom
+    return acc
+  }, {})
+
+  if (materiel === undefined) return null
+
+  if (sites === undefined) return null
+
   return (
     <div className="rw-segment rw-table-wrapper-responsive">
       <table className="rw-table">
@@ -100,8 +120,8 @@ const InventairesList = ({ inventaires }) => {
           {inventaires.map((inventaire) => (
             <tr key={inventaire.id}>
               <td>{truncate(inventaire.id)}</td>
-              <td>{truncate(inventaire.site)}</td>
-              <td>{truncate(inventaire.materiel)}</td>
+              <td>{truncate(sites[inventaire.id])}</td>
+              <td>{truncate(materiel[inventaire.id])}</td>
               <td>{truncate(inventaire.quantite)}</td>
               <td>{truncate(inventaire.note)}</td>
               <td>{checkboxInputTag(inventaire.actif)}</td>

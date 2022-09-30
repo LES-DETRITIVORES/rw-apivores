@@ -1,9 +1,11 @@
 import humanize from 'humanize-string'
 
 import { Link, routes, navigate } from '@redwoodjs/router'
-import { useMutation } from '@redwoodjs/web'
+import { useMutation, useQuery } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
+import { QUERY } from 'src/components/Site/SitesCell'
+import { QUERYTWO } from 'src/components/Materiel/MaterielsCell'
 const DELETE_INVENTAIRE_MUTATION = gql`
   mutation DeleteInventaireMutation($id: Int!) {
     deleteInventaire(id: $id) {
@@ -68,6 +70,25 @@ const Inventaire = ({ inventaire }) => {
       deleteInventaire({ variables: { id } })
     }
   }
+  const { loading, error, data } = useQuery(QUERY)
+  const { data: datas } = useQuery(QUERYTWO)
+
+  if (loading) return 'Loading...'
+  if (error) return `Error! ${error.message}`
+
+  const sites = data.sites.reduce((acc, site) => {
+    acc[site.id] = site.nom
+    return acc
+  }, {})
+
+  const materiel = datas?.materiels?.reduce((acc, materiel) => {
+    acc[materiel.id] = materiel.nom
+    return acc
+  }, {})
+
+  if (materiel === undefined) return null
+
+  if (sites === undefined) return null
 
   return (
     <>
@@ -85,11 +106,11 @@ const Inventaire = ({ inventaire }) => {
             </tr>
             <tr>
               <th>Site</th>
-              <td>{inventaire.site}</td>
+              <td>{sites[inventaire.id]}</td>
             </tr>
             <tr>
               <th>Materiel</th>
-              <td>{inventaire.materiel}</td>
+              <td>{materiel[inventaire.id]}</td>
             </tr>
             <tr>
               <th>Quantite</th>

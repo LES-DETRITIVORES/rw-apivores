@@ -1,6 +1,6 @@
 import { navigate, routes } from '@redwoodjs/router'
 
-import { useMutation } from '@redwoodjs/web'
+import { useMutation, useQuery } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import InventaireForm from 'src/components/Inventaire/InventaireForm'
@@ -13,6 +13,26 @@ export const QUERY = gql`
       materiel
       quantite
       note
+      actif
+    }
+  }
+`
+
+export const QUERYTWO = gql`
+  query FindMateriels {
+    materiels {
+      id
+      nom
+      poids
+      actif
+    }
+  }
+`
+export const QUERYTHREE = gql`
+  query FindSites {
+    sites {
+      id
+      nom
       actif
     }
   }

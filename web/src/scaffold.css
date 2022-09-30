@@ -250,6 +250,9 @@ th {
   @apply !bg-green-800 !text-white;
 }
 
+.fc-license-message {
+  display: none;
+}
 ::-webkit-scrollbar {
   @apply h-1 w-1 bg-gray-400/20;
 }

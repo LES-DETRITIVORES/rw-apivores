@@ -12,6 +12,16 @@ export const QUERY = gql`
     }
   }
 `
+export const QUERYTWO = gql`
+  query FindMateriels {
+    materiels {
+      id
+      nom
+      poids
+      actif
+    }
+  }
+`
 
 export const Loading = () => <div>Loading...</div>
 

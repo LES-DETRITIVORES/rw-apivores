@@ -1,13 +1,57 @@
 import humanize from 'humanize-string'
 
 import { Link, routes, navigate } from '@redwoodjs/router'
-import { useMutation } from '@redwoodjs/web'
+import { useMutation, useQuery } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
+import { QUERY } from 'src/components/Site/SitesCell'
+import { QUERYTWO } from 'src/components/Materiel/MaterielsCell'
 
 const DELETE_PRESTATION_MUTATION = gql`
   mutation DeletePrestationMutation($id: Int!) {
     deletePrestation(id: $id) {
       id
+    }
+  }
+`
+
+export const FINDALLQUERY = gql`
+  query FindAllQuery {
+    materiels {
+      id
+      nom
+      poids
+      actif
+    }
+    matieres {
+      id
+      nom
+    }
+    sites {
+      id
+      nom
+    }
+    prestations {
+      id
+      site
+      matiere
+      quantite
+      note
+      actif
+    }
+    services {
+      id
+      nom
+      actif
+    }
+    vehicules {
+      id
+      ordre
+      nom
+      immatriculation
+      identifiant
+      couleur
+      icone
+      actif
     }
   }
 `
@@ -42,7 +86,14 @@ const timeTag = (datetime) => {
 }
 
 const checkboxInputTag = (checked) => {
-  return <input type="checkbox" checked={checked} disabled />
+  return (
+    <input
+      className='className="h-4 w-4 rounded border-gray-300 text-green-700 focus:ring-green-700'
+      type="checkbox"
+      checked={checked}
+      disabled
+    />
+  )
 }
 
 const Prestation = ({ prestation }) => {
@@ -62,6 +113,39 @@ const Prestation = ({ prestation }) => {
     }
   }
 
+  const { loading, error, data } = useQuery(FINDALLQUERY)
+
+  if (loading) return 'Loading...'
+  if (error) return `Error! ${error.message}`
+
+  const sites = data.sites.reduce((acc, site) => {
+    acc[site.id] = site.nom
+    return acc
+  }, {})
+
+  const matiere = data.matieres.reduce((acc, matiere) => {
+    acc[matiere.id] = matiere.nom
+    return acc
+  }, {})
+
+  const materiel = data.materiels?.reduce((acc, materiel) => {
+    acc[materiel.id] = materiel.nom
+    return acc
+  }, {})
+
+  const vehicule = data.vehicules?.reduce((acc, vehicule) => {
+    acc[vehicule.id] = vehicule.nom + ' ' + vehicule.immatriculation
+    return acc
+  }, {})
+
+  const service = data.services?.reduce((acc, service) => {
+    acc[service.id] = service.nom
+    return acc
+  }, {})
+  if (materiel === undefined) return null
+
+  if (sites === undefined) return null
+
   return (
     <>
       <div className="rw-segment">
@@ -78,15 +162,15 @@ const Prestation = ({ prestation }) => {
             </tr>
             <tr>
               <th>Site</th>
-              <td>{prestation.site}</td>
+              <td>{sites[prestation.id]}</td>
             </tr>
             <tr>
               <th>Matiere</th>
-              <td>{prestation.matiere}</td>
+              <td>{matiere[prestation.id]}</td>
             </tr>
             <tr>
               <th>Materiel</th>
-              <td>{prestation.materiel}</td>
+              <td>{materiel[prestation.id]}</td>
             </tr>
             <tr>
               <th>Quantite</th>
@@ -94,11 +178,11 @@ const Prestation = ({ prestation }) => {
             </tr>
             <tr>
               <th>Service</th>
-              <td>{prestation.service}</td>
+              <td>{service[prestation.service]}</td>
             </tr>
             <tr>
               <th>Vehicule</th>
-              <td>{prestation.vehicule}</td>
+              <td>{vehicule[prestation.id]}</td>
             </tr>
             <tr>
               <th>Prix</th>
@@ -159,16 +243,16 @@ const Prestation = ({ prestation }) => {
           </tbody>
         </table>
       </div>
-      <nav className="rw-button-group">
+      <nav className="rw-button-group space-x-2">
         <Link
           to={routes.editPrestation({ id: prestation.id })}
-          className="rw-button rw-button-blue"
+          className="inline-flex items-center rounded border border-transparent !bg-green-800 px-3 py-2 text-xs font-medium text-white shadow-sm hover:!bg-green-900 focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-offset-2"
         >
           Edit
         </Link>
         <button
           type="button"
-          className="rw-button rw-button-red"
+          className="inline-flex items-center rounded border border-transparent bg-red-500 px-3 py-2 text-xs font-medium text-white shadow-sm hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-700 focus:ring-offset-2"
           onClick={() => onDeleteClick(prestation.id)}
         >
           Delete

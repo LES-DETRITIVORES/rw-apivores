@@ -8,11 +8,32 @@ import {
   CheckboxField,
   Submit,
 } from '@redwoodjs/forms'
-
+import { useQuery } from '@redwoodjs/web'
+import { QUERY } from 'src/components/Site/SitesCell'
+import { QUERYTWO } from 'src/components/Materiel/MaterielsCell'
 const InventaireForm = (props) => {
   const onSubmit = (data) => {
     props.onSave(data, props?.inventaire?.id)
   }
+
+  const { loading, error, data } = useQuery(QUERY)
+  const { data: datas } = useQuery(QUERYTWO)
+
+  if (loading) return 'Loading...'
+  if (error) return `Error! ${error.message}`
+
+  const sites = data.sites.reduce((acc, site) => {
+    acc[site.id] = site.nom
+    return acc
+  }, {})
+
+  const materiel = datas?.materiels?.reduce((acc, materiel) => {
+    acc[materiel.id] = materiel.nom
+    return acc
+  }, {})
+  if (materiel === undefined) return null
+
+  if (sites === undefined) return null
 
   return (
     <div className="rw-form-wrapper">
@@ -32,9 +53,9 @@ const InventaireForm = (props) => {
           Site
         </Label>
 
-        <NumberField
+        <TextField
           name="site"
-          defaultValue={props.inventaire?.site}
+          defaultValue={sites[props.inventaire?.id]}
           className="mt-2 block w-full rounded-md border-gray-300 focus:border-green-700  focus:ring-green-700 sm:text-sm"
           errorClassName="sm:text-sm mt-2 block w-full rounded-md border-red-300  focus:border-red-500 focus:ring-red-500"
           validation={{ required: true }}
@@ -50,9 +71,9 @@ const InventaireForm = (props) => {
           Materiel
         </Label>
 
-        <NumberField
+        <TextField
           name="materiel"
-          defaultValue={props.inventaire?.materiel}
+          defaultValue={materiel[props.inventaire?.id]}
           className="mt-2 block w-full rounded-md border-gray-300 focus:border-green-700  focus:ring-green-700 sm:text-sm"
           errorClassName="sm:text-sm mt-2 block w-full rounded-md border-red-300  focus:border-red-500 focus:ring-red-500"
           validation={{ required: true }}

@@ -33,7 +33,7 @@ const Calendar = () => {
         timeGridPlugin,
         listPlugin,
       ]}
-      initialView="resourceTimelineDay"
+      initialView="dayGridMonth"
       nowIndicator={true}
       editable={true}
       initialEvents={initialEvents}

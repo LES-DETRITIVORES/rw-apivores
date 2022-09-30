@@ -1,11 +1,12 @@
 import humanize from 'humanize-string'
 
 import { Link, routes } from '@redwoodjs/router'
-import { useMutation } from '@redwoodjs/web'
+import { useMutation, useQuery } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import { QUERY } from 'src/components/Tache/TachesCell'
-
+import { FINDALLQUERY } from 'src/components/Prestation/Prestation'
+import { PencilAltIcon, PencilIcon, XIcon } from '@heroicons/react/outline'
 const DELETE_TACHE_MUTATION = gql`
   mutation DeleteTacheMutation($id: Int!) {
     deleteTache(id: $id) {
@@ -74,6 +75,21 @@ const TachesList = ({ taches }) => {
     }
   }
 
+  const { loading, error, data } = useQuery(FINDALLQUERY)
+
+  if (loading) return 'Loading...'
+  if (error) return `Error! ${error.message}`
+
+  const vehicule = data.vehicules?.reduce((acc, vehicule) => {
+    acc[vehicule.id] = vehicule.nom + ' ' + vehicule.immatriculation
+    return acc
+  }, {})
+
+  const prestation = data.prestations?.reduce((acc, prestation) => {
+    acc[prestation.id] = prestation.nom
+    return acc
+  }, {})
+
   return (
     <div className="rw-segment rw-table-wrapper-responsive">
       <table className="rw-table">
@@ -105,8 +121,8 @@ const TachesList = ({ taches }) => {
               <td>{truncate(tache.id)}</td>
               <td>{timeTag(tache.debut)}</td>
               <td>{timeTag(tache.fin)}</td>
-              <td>{truncate(tache.prestation)}</td>
-              <td>{truncate(tache.vehicule)}</td>
+              <td>{truncate(prestation[tache.id])}</td>
+              <td>{truncate(vehicule[tache.id])}</td>
               <td>{truncate(tache.operateur1)}</td>
               <td>{truncate(tache.operateur2)}</td>
               <td>{truncate(tache.operateur3)}</td>
@@ -120,28 +136,25 @@ const TachesList = ({ taches }) => {
               <td>{truncate(tache.photos)}</td>
               <td>{checkboxInputTag(tache.terminee)}</td>
               <td>
-                <nav className="rw-table-actions">
+                <nav className="rw-table-actions space-x-2">
                   <Link
                     to={routes.tache({ id: tache.id })}
                     title={'Show tache ' + tache.id + ' detail'}
-                    className="rw-button rw-button-small"
                   >
-                    Show
+                    <PencilIcon className="h-5 w-5 text-green-900" />
                   </Link>
                   <Link
                     to={routes.editTache({ id: tache.id })}
                     title={'Edit tache ' + tache.id}
-                    className="rw-button rw-button-small rw-button-blue"
                   >
-                    Edit
+                    <PencilAltIcon className="h-5 w-5 text-green-900" />
                   </Link>
                   <button
                     type="button"
                     title={'Delete tache ' + tache.id}
-                    className="rw-button rw-button-small rw-button-red"
                     onClick={() => onDeleteClick(tache.id)}
                   >
-                    Delete
+                    <XIcon className="h-5 w-5 text-green-900" />
                   </button>
                 </nav>
               </td>
