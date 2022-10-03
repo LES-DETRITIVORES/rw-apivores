@@ -23,7 +23,7 @@ const InventaireForm = (props) => {
 
   const [selectedSite, setSelectedSite] = useState(props?.inventaire?.site)
   const [selectedMateriel, setSelectedMateriel] = useState(
-    props.inventaire.materiel
+    props?.inventaire?.materiel
   )
 
   const filteredSite =
@@ -72,13 +72,6 @@ const InventaireForm = (props) => {
 
         <FieldError name="site" className="rw-field-error" />
 
-        <Label
-          name="materiel"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Matériel
-        </Label>
         <Comboboxes
           setQuery={setQueryMateriel}
           query={queryMateriel}
