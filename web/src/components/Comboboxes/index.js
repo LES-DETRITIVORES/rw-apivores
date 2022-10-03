@@ -1,22 +1,32 @@
 import { Combobox, Transition } from '@headlessui/react'
 import { BadgeCheckIcon, ChevronDownIcon } from '@heroicons/react/solid'
-import { Fragment } from 'react'
+import { useState, Fragment } from 'react'
 import { Label } from '@redwoodjs/forms'
+
 const Comboboxes = ({
-  setQuery,
-  filtered,
-  setSelected,
-  selected,
+  data,
+  value,
+  onChange,
   name,
   label,
 }) => {
+
+  const [query, setQuery] = useState('')
   const nameUppercase = name.charAt(0).toUpperCase() + name.slice(1)
+  
+  const filtered =
+  query === ''
+    ? data
+    : data.filter((item) =>
+        item.nom.toLowerCase().includes(query.toLowerCase())
+      )
+
   return (
     <Combobox
-      value={selected}
-      onChange={setSelected}
+      value={value}
+      onChange={onChange}
       name={name}
-      defaultValue={selected}
+      defaultValue={value}
     >
       <Label
         name={nameUppercase}
@@ -29,7 +39,7 @@ const Comboboxes = ({
           <Combobox.Input
             className="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0"
             onChange={(event) => setQuery(event.target.value)}
-            displayValue={(data) => data?.nom}
+            displayValue={(item) => item?.nom}
           />
           <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
             <ChevronDownIcon
@@ -55,20 +65,20 @@ const Comboboxes = ({
             }}
             className="absolute z-10 mt-4 mb-5 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
           >
-            {filtered.length === 0 && query !== '' ? (
+            {filtered?.length === 0 && query !== '' ? (
               <div className="relative cursor-default select-none py-2 px-4 text-gray-700">
-                Aucune matériel trouvé.
+                Aucun {name} trouvé.
               </div>
             ) : (
-              filtered.map((data) => (
+              filtered?.map((item) => (
                 <Combobox.Option
-                  key={data.id}
+                  key={item.id}
                   className={({ active }) =>
                     `relative cursor-default select-none py-2 pl-10 pr-4 ${
                       active ? 'bg-green-800 text-white' : 'text-gray-900'
                     }`
                   }
-                  value={data}
+                  value={item}
                 >
                   {({ selected, active }) => (
                     <>
@@ -77,7 +87,7 @@ const Comboboxes = ({
                           selected ? 'font-medium' : 'font-normal'
                         }`}
                       >
-                        {data.nom}
+                        {item.nom}
                       </span>
                       {selected ? (
                         <span
