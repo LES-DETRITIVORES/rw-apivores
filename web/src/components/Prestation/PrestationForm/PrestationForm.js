@@ -58,35 +58,35 @@ const PrestationForm = (props) => {
     queryMateriel === ''
       ? data.materiels
       : data.materiels.filter((materiel) =>
-          materiel.nom.toLowerCase().includes(query.toLowerCase())
+          materiel.nom.toLowerCase().includes(queryMateriel.toLowerCase())
         )
 
   const filteredSite =
     querySite === ''
       ? data.sites
       : data.sites.filter((site) =>
-          site.nom.toLowerCase().includes(query.toLowerCase())
+          site.nom.toLowerCase().includes(querySite.toLowerCase())
         )
 
   const filteredMatiere =
     queryMatiere === ''
       ? data.matieres
       : data.matieres.filter((matiere) =>
-          matiere.nom.toLowerCase().includes(query.toLowerCase())
+          matiere.nom.toLowerCase().includes(queryMatiere.toLowerCase())
         )
 
   const filteredVehicule =
     queryVehicule === ''
       ? data.vehicules
       : data.vehicules.filter((vehicule) =>
-          vehicule.nom.toLowerCase().includes(query.toLowerCase())
+          vehicule.nom.toLowerCase().includes(queryVehicule.toLowerCase())
         )
 
   const filteredService =
     queryService === ''
       ? data.services
       : data.services.filter((service) =>
-          service.nom.toLowerCase().includes(query.toLowerCase())
+          service.nom.toLowerCase().includes(queryService.toLowerCase())
         )
 
   return (
