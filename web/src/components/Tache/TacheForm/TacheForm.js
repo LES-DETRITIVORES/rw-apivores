@@ -11,6 +11,9 @@ import {
 } from '@redwoodjs/forms'
 import { FINDALLQUERY } from 'src/components/Prestation/Prestation'
 import { useQuery } from '@redwoodjs/web'
+import { IKImage, IKContext, IKUpload } from 'imagekitio-react'
+import { useEffect, useState } from 'react'
+
 const formatDatetime = (value) => {
   if (value) {
     return value.replace(/:\d{2}\.\d{3}\w/, '')
@@ -18,9 +21,15 @@ const formatDatetime = (value) => {
 }
 
 const TacheForm = (props) => {
+  const [file, setFile] = useState(null)
   const onSubmit = (data) => {
     props.onSave(data, props?.tache?.id)
   }
+  useEffect(() => {
+    if (props.tache?.photos) {
+      setFile(props.tache?.photos)
+    }
+  }, [props.tache?.photos])
 
   const { loading, error, data } = useQuery(FINDALLQUERY)
 
@@ -36,6 +45,9 @@ const TacheForm = (props) => {
     acc[prestation.id] = prestation.nom
     return acc
   }, {})
+
+  const publicKey = 'public_RujORre5FFpe1N220PBprbYjPjg='
+  const urlEndpoint = 'https://ik.imagekit.io/dttv/'
 
   return (
     <div className="rw-form-wrapper">
@@ -317,16 +329,32 @@ const TacheForm = (props) => {
               Photos
             </Label>
 
-            <TextField
-              name="photos"
-              defaultValue={props.tache?.photos}
-              className="mt-2 block w-full rounded-md border-gray-300 focus:border-green-700  focus:ring-green-700 sm:text-sm"
-              errorClassName="sm:text-sm mt-2 block w-full rounded-md border-red-300  focus:border-red-500 focus:ring-red-500"
-              validation={{ required: true }}
-            />
+            <div className="inline-flex items-center space-x-2">
+              <TextField
+                name="photos"
+                defaultValue={props.tache?.photos}
+                className="mt-2 block w-full rounded-md border-gray-300 focus:border-green-700  focus:ring-green-700 sm:text-sm"
+                errorClassName="sm:text-sm mt-2 block w-full rounded-md border-red-300  focus:border-red-500 focus:ring-red-500"
+                validation={{ required: true }}
+                onError={(error) => {
+                  console.log(error)
+                }}
+              />
 
+              <IKContext
+                publicKey={publicKey}
+                urlEndpoint={urlEndpoint}
+                transformationPosition="path"
+              >
+                <IKUpload
+                  fileName={'/' + file}
+                  folder="IMAGES_CLIENTS"
+                  authenticationEndpoint={'http://localhost:3001/auth'}
+                  className="file:mt-2 file:cursor-pointer file:rounded-md file:border-none file:bg-green-900 file:px-2.5 file:py-2.5 file:text-white file:hover:bg-green-800"
+                />
+              </IKContext>
+            </div>
             <FieldError name="photos" className="rw-field-error" />
-
             <Label
               name="terminee"
               className="rw-label"
@@ -344,6 +372,12 @@ const TacheForm = (props) => {
 
             <FieldError name="terminee" className="rw-field-error" />
           </div>
+          <IKImage
+            path={'/' + props?.tache?.photos}
+            className="m-auto rounded-md "
+            transformation={[{ height: '300', width: '300' }]}
+            urlEndpoint={urlEndpoint}
+          />
         </div>
         <div className="rw-button-group">
           <Submit

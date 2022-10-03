@@ -249,7 +249,17 @@ html {
 th {
   @apply !bg-green-800 !text-white;
 }
+.fc-button-primary {
+  @apply space-x-2 !rounded-r-md !rounded-l-md !bg-green-900 focus:!outline-none;
+}
+[type='file'] {
+  @apply !w-full focus:!outline-none;
+}
 
+.fc .fc-button-primary:not(:disabled):active:focus,
+.fc .fc-button-primary:not(:disabled).fc-button-active:focus {
+  @apply !outline-none !ring-2 !ring-white !ring-opacity-50 !ring-offset-2 !ring-offset-green-800;
+}
 .fc-license-message {
   display: none;
 }

@@ -36,6 +36,8 @@
     "framer-motion": "^7.5.0",
     "highcharts": "^10.2.1",
     "highcharts-react-official": "^3.1.0",
+    "imagekit": "^4.1.1",
+    "imagekitio-react": "^2.0.0",
     "react-color": "^2.19.3",
     "react-color-palette": "^6.2.0"
   }

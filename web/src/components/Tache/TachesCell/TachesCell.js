@@ -20,7 +20,6 @@ export const QUERY = gql`
       poids
       qualite
       notePesee
-      photos
       terminee
     }
   }

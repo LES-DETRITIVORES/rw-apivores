@@ -8105,6 +8105,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"axios@npm:^0.27.2":
+  version: 0.27.2
+  resolution: "axios@npm:0.27.2"
+  dependencies:
+    follow-redirects: ^1.14.9
+    form-data: ^4.0.0
+  checksum: 76d673d2a90629944b44d6f345f01e58e9174690f635115d5ffd4aca495d99bcd8f95c590d5ccb473513f5ebc1d1a6e8934580d0c57cdd0498c3a101313ef771
+  languageName: node
+  linkType: hard
+
 "axobject-query@npm:^2.2.0":
   version: 2.2.0
   resolution: "axobject-query@npm:2.2.0"
@@ -12964,7 +12974,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"follow-redirects@npm:^1.0.0":
+"follow-redirects@npm:^1.0.0, follow-redirects@npm:^1.14.9":
   version: 1.15.2
   resolution: "follow-redirects@npm:1.15.2"
   peerDependenciesMeta:
@@ -13783,6 +13793,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"hamming-distance@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "hamming-distance@npm:1.0.0"
+  checksum: f7575fef2e8d568e730109d2053cccfbb3d8f481d1402463d1b76b0badcde072f0f36fa6f976ae08e00036492807de65e866cde79dfa24b2515c5240d11f38ec
+  languageName: node
+  linkType: hard
+
 "handle-thing@npm:^2.0.0":
   version: 2.0.1
   resolution: "handle-thing@npm:2.0.1"
@@ -14468,6 +14485,40 @@ __metadata:
   version: 5.2.0
   resolution: "ignore@npm:5.2.0"
   checksum: 7fb7b4c4c52c2555113ff968f8a83b8ac21b076282bfcb3f468c3fb429be69bd56222306c31de95dd452c647fc6ae24339b8047ebe3ef34c02591abfec58da01
+  languageName: node
+  linkType: hard
+
+"imagekit-javascript@npm:^1.5.4":
+  version: 1.5.4
+  resolution: "imagekit-javascript@npm:1.5.4"
+  checksum: 1f397c55ee30bf25225154492ca6e2e3c47e1c0a062c616b21029ecc86904f07c2eacc507fa8d48695bb0b98f5dfe2b35316ca753e4bc6a995f5d4d4a5697458
+  languageName: node
+  linkType: hard
+
+"imagekit@npm:^4.1.1":
+  version: 4.1.1
+  resolution: "imagekit@npm:4.1.1"
+  dependencies:
+    axios: ^0.27.2
+    form-data: ^4.0.0
+    hamming-distance: ^1.0.0
+    lodash: ^4.17.15
+    tslib: ^2.4.0
+    uuid: ^8.3.2
+  checksum: 45eb928e6761523b16a005d35588d4f1c0b57d291eebfb38e1dcf01f686c4c68ae4a80ad71ca6ff5b0984a1de169e8fc08799fa4d2d3c98d441435bc435daa95
+  languageName: node
+  linkType: hard
+
+"imagekitio-react@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "imagekitio-react@npm:2.0.0"
+  dependencies:
+    imagekit-javascript: ^1.5.4
+    prop-types: ^15.7.2
+  peerDependencies:
+    react: ^16.13.1 || ^17.0.0 || ^18.0.0
+    react-dom: ^16.13.1 || ^17.0.0 || ^18.0.0
+  checksum: c91390e4ff0961219eb3bcfdc7f6bb65bb91e4f80c90ba1582f0becd5fc5cafb0eaf074d565a0cb51c6d611201d099e36da0f0d2d6e46fd17131841ee4c4ec84
   languageName: node
   linkType: hard
 
@@ -21149,6 +21200,8 @@ __metadata:
     framer-motion: ^7.5.0
     highcharts: ^10.2.1
     highcharts-react-official: ^3.1.0
+    imagekit: ^4.1.1
+    imagekitio-react: ^2.0.0
     prettier-plugin-tailwindcss: ^0.1.13
     react-color: ^2.19.3
     react-color-palette: ^6.2.0

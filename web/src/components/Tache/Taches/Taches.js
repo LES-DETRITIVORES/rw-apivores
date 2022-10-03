@@ -99,7 +99,7 @@ const TachesList = ({ taches }) => {
 
   return (
     <>
-      <Calendar initialView={'dayGridMonth'} />
+      <Calendar taches={taches} initialView="dayGridMonth" />
 
       <div className="rw-segment rw-table-wrapper-responsive">
         <table className="rw-table">

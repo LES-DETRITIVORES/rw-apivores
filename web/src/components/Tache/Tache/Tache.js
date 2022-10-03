@@ -1,9 +1,9 @@
 import humanize from 'humanize-string'
 
 import { Link, routes, navigate } from '@redwoodjs/router'
-import { useMutation } from '@redwoodjs/web'
+import { useMutation, useQuery } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
-
+import { FINDALLQUERY } from 'src/components/Prestation/Prestation'
 const DELETE_TACHE_MUTATION = gql`
   mutation DeleteTacheMutation($id: Int!) {
     deleteTache(id: $id) {
@@ -69,6 +69,20 @@ const Tache = ({ tache }) => {
     }
   }
 
+  const { loading, error, data } = useQuery(FINDALLQUERY)
+
+  if (loading) return 'Loading...'
+  if (error) return `Error! ${error.message}`
+
+  const prestation = data?.prestations?.reduce((acc, site) => {
+    acc[site.id] = site.site
+    return acc
+  }, {})
+
+  const operateur = data?.operateurs?.reduce((acc, site) => {
+    acc[site.id] = site.prenom + ' ' + site.nom
+    return acc
+  }, {})
   return (
     <>
       <div className="rw-segment">
@@ -93,7 +107,7 @@ const Tache = ({ tache }) => {
             </tr>
             <tr>
               <th>Prestation</th>
-              <td>{tache.prestation}</td>
+              <td>{prestation[tache.id]}</td>
             </tr>
             <tr>
               <th>Vehicule</th>
@@ -101,7 +115,7 @@ const Tache = ({ tache }) => {
             </tr>
             <tr>
               <th>Operateur1</th>
-              <td>{tache.operateur1}</td>
+              <td>{operateur[tache.id]}</td>
             </tr>
             <tr>
               <th>Operateur2</th>
