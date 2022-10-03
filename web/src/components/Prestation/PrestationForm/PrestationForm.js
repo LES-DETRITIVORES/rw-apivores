@@ -28,17 +28,17 @@ const PrestationForm = (props) => {
   const [queryService, setQueryService] = useState('')
 
   const [selectedMateriel, setSelectedMateriel] = useState(
-    props.prestation.materiel
+    props?.prestation?.materiel
   )
-  const [selectedSite, setSelectedSite] = useState(props.prestation.site)
+  const [selectedSite, setSelectedSite] = useState(props?.prestation?.site)
   const [selectedMatiere, setSelectedMatiere] = useState(
-    props.prestation.matiere
+    props?.prestation?.matiere
   )
   const [selectedVehicule, setSelectedVehicule] = useState(
-    props.prestation.vehicule
+    props?.prestation?.vehicule
   )
   const [selectedService, setSelectedService] = useState(
-    props.prestation.service
+    props?.prestation?.service
   )
 
   const { loading, error, data } = useQuery(FINDALLQUERY)

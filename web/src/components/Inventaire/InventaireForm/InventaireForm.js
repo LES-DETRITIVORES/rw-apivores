@@ -21,7 +21,7 @@ const InventaireForm = (props) => {
   const [querySite, setQuerySite] = useState('')
   const [queryMateriel, setQueryMateriel] = useState('')
 
-  const [selectedSite, setSelectedSite] = useState(props.inventaire.site)
+  const [selectedSite, setSelectedSite] = useState(props?.inventaire?.site)
   const [selectedMateriel, setSelectedMateriel] = useState(
     props.inventaire.materiel
   )
