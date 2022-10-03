@@ -8,46 +8,16 @@ import {
   CheckboxField,
   Submit,
 } from '@redwoodjs/forms'
-import { useQuery } from '@redwoodjs/web'
-import { FINDALLQUERY } from 'src/components/Prestation/Prestation/'
 import { useState } from 'react'
-import Comboboxes from 'src/components/Comboboxes'
+import SitesListCell from 'src/components/Site/SitesListCell'
 
 const InventaireForm = (props) => {
-  const { loading, error, data } = useQuery(FINDALLQUERY)
-  const sites = data?.sites
-  const materiels = data?.materiels
-
-  const [querySite, setQuerySite] = useState('')
-  const [queryMateriel, setQueryMateriel] = useState('')
-
   const [selectedSite, setSelectedSite] = useState(props?.inventaire?.site)
-  const [selectedMateriel, setSelectedMateriel] = useState(
-    props?.inventaire?.materiel
-  )
-
-  const filteredSite =
-    querySite === ''
-      ? sites
-      : sites.filter((site) =>
-          site.nom.toLowerCase().includes(querySite.toLowerCase())
-        )
-
-  const filteredMateriel =
-    queryMateriel === ''
-      ? materiels
-      : materiels.filter((materiel) =>
-          materiel.nom.toLowerCase().includes(queryMateriel.toLowerCase())
-        )
 
   const onSubmit = (data) => {
     data.site = selectedSite.id
-    data.materiel = selectedMateriel.id
     props.onSave(data, props?.inventaire?.id)
   }
-
-  if (loading) return 'Loading...'
-  if (error) return `Error! ${error.message}`
 
   return (
     <div className="rw-form-wrapper">
@@ -59,30 +29,14 @@ const InventaireForm = (props) => {
           listClassName="rw-form-error-list"
         />
 
-        <Comboboxes
-          setQuery={setQuerySite}
-          query={querySite}
-          filtered={filteredSite}
-          selected={selectedSite}
-          setSelected={setSelectedSite}
+        <SitesListCell 
+          value={selectedSite}
+          onChange={setSelectedSite}
           name="site"
-          defaultValue={selectedSite}
-          label="Site"
+          label="Choisir un site"          
         />
 
         <FieldError name="site" className="rw-field-error" />
-
-        <Comboboxes
-          setQuery={setQueryMateriel}
-          query={queryMateriel}
-          filtered={filteredMateriel}
-          selected={selectedMateriel}
-          setSelected={setSelectedMateriel}
-          name="materiel"
-          defaultValue={selectedMateriel}
-        />
-
-        <FieldError name="materiel" className="rw-field-error" />
 
         <Label
           name="quantite"
