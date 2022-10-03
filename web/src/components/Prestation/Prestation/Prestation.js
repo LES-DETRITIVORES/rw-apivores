@@ -66,6 +66,12 @@ export const FINDALLQUERY = gql`
       note
       actif
     }
+    operateurs {
+      id
+      nom
+      prenom
+      actif
+    }
   }
 `
 
