@@ -21,28 +21,74 @@ const formatDatetime = (value) => {
 }
 
 const PrestationForm = (props) => {
-  const [query, setQuery] = useState('')
-  const [selected, setSelected] = useState({
-    site: null,
-    materiel: null,
-    matiere: null,
-    vehicule: null,
-    service: null,
-  })
+  const [queryMateriel, setQueryMateriel] = useState('')
+  const [querySite, setQuerySite] = useState('')
+  const [queryMatiere, setQueryMatiere] = useState('')
+  const [queryVehicule, setQueryVehicule] = useState('')
+  const [queryService, setQueryService] = useState('')
+
+  const [selectedMateriel, setSelectedMateriel] = useState(
+    props.prestation.materiel
+  )
+  const [selectedSite, setSelectedSite] = useState(props.prestation.site)
+  const [selectedMatiere, setSelectedMatiere] = useState(
+    props.prestation.matiere
+  )
+  const [selectedVehicule, setSelectedVehicule] = useState(
+    props.prestation.vehicule
+  )
+  const [selectedService, setSelectedService] = useState(
+    props.prestation.service
+  )
+
   const { loading, error, data } = useQuery(FINDALLQUERY)
   if (loading) return 'Loading...'
   if (error) return `Error! ${error.message}`
 
   const onSubmit = (data) => {
     props.onSave(data, props?.prestation?.id)
-    setSelected({
-      site: props.prestation?.site,
-      matiere: props.prestation?.matiere,
-      materiel: props.prestation?.materiel,
-      vehicule: props.prestation?.vehicule,
-      service: props.prestation?.service,
-    })
+    data.materiel = selectedMateriel.id
+    data.site = selectedSite.id
+    data.matiere = selectedMatiere.id
+    data.vehicule = selectedVehicule.id
+    data.service = selectedService.id
   }
+
+  const filteredMateriel =
+    queryMateriel === ''
+      ? data.materiels
+      : data.materiels.filter((materiel) =>
+          materiel.nom.toLowerCase().includes(query.toLowerCase())
+        )
+
+  const filteredSite =
+    querySite === ''
+      ? data.sites
+      : data.sites.filter((site) =>
+          site.nom.toLowerCase().includes(query.toLowerCase())
+        )
+
+  const filteredMatiere =
+    queryMatiere === ''
+      ? data.matieres
+      : data.matieres.filter((matiere) =>
+          matiere.nom.toLowerCase().includes(query.toLowerCase())
+        )
+
+  const filteredVehicule =
+    queryVehicule === ''
+      ? data.vehicules
+      : data.vehicules.filter((vehicule) =>
+          vehicule.nom.toLowerCase().includes(query.toLowerCase())
+        )
+
+  const filteredService =
+    queryService === ''
+      ? data.services
+      : data.services.filter((service) =>
+          service.nom.toLowerCase().includes(query.toLowerCase())
+        )
+
   return (
     <div className="rw-form-wrapper">
       <Form onSubmit={onSubmit} error={props.error}>
@@ -56,105 +102,33 @@ const PrestationForm = (props) => {
         <div className="grid grid-cols-1 gap-6 md:grid-cols-6">
           <div className="col-span-2 sm:col-span-2">
             <Comboboxes
-              selected={props.prestation?.site}
-              setSelected={(e) =>
-                setSelected({
-                  site: selected,
-                })
-              }
-              query={query}
-              setQuery={setQuery}
-              filtered={
-                query === ''
-                  ? data.sites?.map((site) => {
-                      return {
-                        id: site.id,
-                        name: site.nom,
-                      }
-                    })
-                  : data.sites
-                      ?.map((site) => {
-                        return {
-                          id: site.id,
-                          name: site.nom,
-                        }
-                      })
-                      .filter((site) => {
-                        return site.name
-                          .toLowerCase()
-                          .includes(query?.toLowerCase())
-                      })
-              }
-              label="Site"
+              query={querySite}
+              setQuery={setQuerySite}
+              selected={selectedSite}
+              setSelected={setSelectedSite}
+              filtered={filteredSite}
+              name="site"
             />
             <FieldError name="site" className="rw-field-error" />
 
             <Comboboxes
-              selected={props.prestation?.matiere}
-              setSelected={(e) =>
-                setSelected({
-                  matiere: selected,
-                })
-              }
-              query={query}
-              setQuery={setQuery}
-              filtered={
-                query === ''
-                  ? data.matieres?.map((site) => {
-                      return {
-                        id: site.id,
-                        name: site.nom,
-                      }
-                    })
-                  : data.matieres
-                      ?.map((matiere) => {
-                        return {
-                          id: matiere.id,
-                          name: matiere.nom,
-                        }
-                      })
-                      .filter((matiere) => {
-                        return matiere.name
-                          .toLowerCase()
-                          .includes(query?.toLowerCase())
-                      })
-              }
-              label="Matière"
+              query={queryMatiere}
+              setQuery={setQueryMatiere}
+              selected={selectedMatiere}
+              setSelected={setSelectedMatiere}
+              filtered={filteredMatiere}
+              name="matiere"
             />
 
             <FieldError name="matiere" className="rw-field-error" />
 
             <Comboboxes
-              selected={props.prestation?.materiel}
-              setSelected={(e) =>
-                setSelected({
-                  materiel: selected,
-                })
-              }
-              query={query}
-              setQuery={setQuery}
-              filtered={
-                query === ''
-                  ? data.materiels?.map((materiel) => {
-                      return {
-                        id: materiel.id,
-                        name: materiel.nom,
-                      }
-                    })
-                  : data.materiels
-                      ?.map((materiel) => {
-                        return {
-                          id: materiel.id,
-                          name: materiel.nom,
-                        }
-                      })
-                      .filter((materiel) => {
-                        return materiel.name
-                          .toLowerCase()
-                          .includes(query?.toLowerCase())
-                      })
-              }
-              label="Materiel"
+              query={queryMateriel}
+              setQuery={setQueryMateriel}
+              selected={selectedMateriel}
+              setSelected={setSelectedMateriel}
+              filtered={filteredMateriel}
+              name="materiel"
             />
 
             <FieldError name="materiel" className="rw-field-error" />
@@ -179,71 +153,23 @@ const PrestationForm = (props) => {
             <FieldError name="quantite" className="rw-field-error" />
 
             <Comboboxes
-              selected={props.prestation?.service}
-              setSelected={(e) =>
-                setSelected({
-                  service: selected,
-                })
-              }
-              query={query}
-              setQuery={setQuery}
-              filtered={
-                query === ''
-                  ? data.services?.map((service) => {
-                      return {
-                        id: service.id,
-                        name: service.nom,
-                      }
-                    })
-                  : data.services
-                      ?.map((service) => {
-                        return {
-                          id: service.id,
-                          name: service.nom,
-                        }
-                      })
-                      .filter((service) => {
-                        return service.name
-                          .toLowerCase()
-                          .includes(query?.toLowerCase())
-                      })
-              }
-              label="Services"
+              query={queryService}
+              setQuery={setQueryService}
+              selected={selectedService}
+              setSelected={setSelectedService}
+              filtered={filteredService}
+              name="service"
             />
             <FieldError name="service" className="rw-field-error" />
           </div>
           <div className="col-span-2 sm:col-span-2">
             <Comboboxes
-              selected={props.prestation?.vehicule}
-              setSelected={(e) =>
-                setSelected({
-                  service: selected,
-                })
-              }
-              query={query}
-              setQuery={setQuery}
-              filtered={
-                query === ''
-                  ? data.vehicules?.map((vehicule) => {
-                      return {
-                        id: vehicule.id,
-                        name: vehicule.nom + ' ' + vehicule.immatriculation,
-                      }
-                    })
-                  : data.vehicules
-                      ?.map((vehicule) => {
-                        return {
-                          id: vehicule.id,
-                          name: vehicule.nom + ' ' + vehicule.immatriculation,
-                        }
-                      })
-                      .filter((vehicule) => {
-                        return vehicule.name
-                          .toLowerCase()
-                          .includes(query?.toLowerCase())
-                      })
-              }
-              label="Véhicule"
+              query={queryVehicule}
+              setQuery={setQueryVehicule}
+              selected={selectedVehicule}
+              setSelected={setSelectedVehicule}
+              filtered={filteredVehicule}
+              name="vehicule"
             />
 
             <FieldError name="vehicule" className="rw-field-error" />

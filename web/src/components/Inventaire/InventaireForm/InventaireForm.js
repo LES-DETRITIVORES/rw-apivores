@@ -10,14 +10,7 @@ import {
 } from '@redwoodjs/forms'
 import { useQuery } from '@redwoodjs/web'
 import { FINDALLQUERY } from 'src/components/Prestation/Prestation/'
-import { Fragment, useState } from 'react'
-import { Combobox, Transition } from '@headlessui/react'
-import {
-  CheckIcon,
-  ChevronDownIcon,
-  BadgeCheckIcon,
-  CheckCircleIcon,
-} from '@heroicons/react/solid'
+import { useState } from 'react'
 import Comboboxes from 'src/components/Comboboxes'
 
 const InventaireForm = (props) => {
@@ -65,13 +58,7 @@ const InventaireForm = (props) => {
           titleClassName="rw-form-error-title"
           listClassName="rw-form-error-list"
         />
-        <Label
-          name="site"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Site
-        </Label>
+
         <Comboboxes
           setQuery={setQuerySite}
           query={querySite}
@@ -80,6 +67,7 @@ const InventaireForm = (props) => {
           setSelected={setSelectedSite}
           name="site"
           defaultValue={selectedSite}
+          label="Site"
         />
 
         <FieldError name="site" className="rw-field-error" />

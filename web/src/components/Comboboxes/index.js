@@ -1,7 +1,16 @@
 import { Combobox, Transition } from '@headlessui/react'
 import { BadgeCheckIcon, ChevronDownIcon } from '@heroicons/react/solid'
 import { Fragment } from 'react'
-const Comboboxes = ({ setQuery, filtered, setSelected, selected, name }) => {
+import { Label } from '@redwoodjs/forms'
+const Comboboxes = ({
+  setQuery,
+  filtered,
+  setSelected,
+  selected,
+  name,
+  label,
+}) => {
+  const nameUppercase = name.charAt(0).toUpperCase() + name.slice(1)
   return (
     <Combobox
       value={selected}
@@ -9,6 +18,12 @@ const Comboboxes = ({ setQuery, filtered, setSelected, selected, name }) => {
       name={name}
       defaultValue={selected}
     >
+      <Label
+        name={nameUppercase}
+        className="mt-7 block text-sm font-medium text-gray-700"
+      >
+        {label}
+      </Label>
       <div className="relative mt-1">
         <div className="relative w-full cursor-default overflow-hidden rounded-lg border border-gray-300 bg-white text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
           <Combobox.Input
